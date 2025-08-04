@@ -1,0 +1,34 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using PayabliApi.Core;
+
+namespace PayabliApi;
+
+[Serializable]
+public record OrgXScope : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("orgEntry")]
+    public string? OrgEntry { get; set; }
+
+    [JsonPropertyName("orgId")]
+    public long? OrgId { get; set; }
+
+    [JsonPropertyName("orgType")]
+    public int? OrgType { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}
