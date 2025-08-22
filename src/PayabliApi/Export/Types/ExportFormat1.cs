@@ -3,15 +3,15 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<ExportFormat>))]
+[JsonConverter(typeof(StringEnumSerializer<ExportFormat1>))]
 [Serializable]
-public readonly record struct ExportFormat : IStringEnum
+public readonly record struct ExportFormat1 : IStringEnum
 {
-    public static readonly ExportFormat Csv = new(Values.Csv);
+    public static readonly ExportFormat1 Csv = new(Values.Csv);
 
-    public static readonly ExportFormat Xlsx = new(Values.Xlsx);
+    public static readonly ExportFormat1 Xlsx = new(Values.Xlsx);
 
-    public ExportFormat(string value)
+    public ExportFormat1(string value)
     {
         Value = value;
     }
@@ -24,9 +24,9 @@ public readonly record struct ExportFormat : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static ExportFormat FromCustom(string value)
+    public static ExportFormat1 FromCustom(string value)
     {
-        return new ExportFormat(value);
+        return new ExportFormat1(value);
     }
 
     public bool Equals(string? other)
@@ -42,15 +42,15 @@ public readonly record struct ExportFormat : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(ExportFormat value1, string value2) =>
+    public static bool operator ==(ExportFormat1 value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(ExportFormat value1, string value2) =>
+    public static bool operator !=(ExportFormat1 value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(ExportFormat value) => value.Value;
+    public static explicit operator string(ExportFormat1 value) => value.Value;
 
-    public static explicit operator ExportFormat(string value) => new(value);
+    public static explicit operator ExportFormat1(string value) => new(value);
 
     /// <summary>
     /// Constant strings for enum values

@@ -21,7 +21,7 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public long? PaypointId { get; set; }
 
     [JsonPropertyName("invoiceNumber")]
-    public string? InvoiceNumber { get; set; }
+    public required string InvoiceNumber { get; set; }
 
     [JsonPropertyName("invoiceDate")]
     public DateOnly? InvoiceDate { get; set; }
@@ -51,10 +51,10 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public required Frequency Frequency { get; set; }
 
     [JsonPropertyName("paymentTerms")]
-    public string? PaymentTerms { get; set; }
+    public required string PaymentTerms { get; set; }
 
     [JsonPropertyName("termsConditions")]
-    public required string TermsConditions { get; set; }
+    public string? TermsConditions { get; set; }
 
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
@@ -99,10 +99,10 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public string? Company { get; set; }
 
     [JsonPropertyName("shippingAddress1")]
-    public string? ShippingAddress1 { get; set; }
+    public required string ShippingAddress1 { get; set; }
 
     [JsonPropertyName("shippingAddress2")]
-    public string? ShippingAddress2 { get; set; }
+    public required string ShippingAddress2 { get; set; }
 
     [JsonPropertyName("shippingCity")]
     public required string ShippingCity { get; set; }
@@ -111,7 +111,7 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public required string ShippingState { get; set; }
 
     [JsonPropertyName("shippingZip")]
-    public string? ShippingZip { get; set; }
+    public required string ShippingZip { get; set; }
 
     [JsonPropertyName("shippingFromZip")]
     public required string ShippingFromZip { get; set; }
@@ -120,13 +120,13 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public required string ShippingCountry { get; set; }
 
     [JsonPropertyName("shippingEmail")]
-    public string? ShippingEmail { get; set; }
+    public required string ShippingEmail { get; set; }
 
     [JsonPropertyName("shippingPhone")]
     public required string ShippingPhone { get; set; }
 
     [JsonPropertyName("summaryCommodityCode")]
-    public string? SummaryCommodityCode { get; set; }
+    public required string SummaryCommodityCode { get; set; }
 
     [JsonPropertyName("items")]
     public IEnumerable<BillItem> Items { get; set; } = new List<BillItem>();
@@ -135,7 +135,7 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public required PayorDataResponse Customer { get; set; }
 
     [JsonPropertyName("paylinkId")]
-    public string? PaylinkId { get; set; }
+    public required string PaylinkId { get; set; }
 
     [JsonPropertyName("billEvents")]
     public IEnumerable<GeneralEvents>? BillEvents { get; set; }
@@ -147,7 +147,7 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public required string PaypointLegalname { get; set; }
 
     [JsonPropertyName("PaypointDbaname")]
-    public string? PaypointDbaname { get; set; }
+    public required string PaypointDbaname { get; set; }
 
     [JsonPropertyName("PaypointEntryname")]
     public required string PaypointEntryname { get; set; }

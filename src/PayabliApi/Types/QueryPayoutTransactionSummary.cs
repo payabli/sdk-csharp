@@ -18,34 +18,34 @@ public record QueryPayoutTransactionSummary : IJsonOnDeserialized
     public int? PageSize { get; set; }
 
     [JsonPropertyName("totalAmount")]
-    public float? TotalAmount { get; set; }
+    public double? TotalAmount { get; set; }
 
     [JsonPropertyName("totalAuthorized")]
     public int? TotalAuthorized { get; set; }
 
     [JsonPropertyName("totalAuthorizedAmount")]
-    public float? TotalAuthorizedAmount { get; set; }
+    public double? TotalAuthorizedAmount { get; set; }
 
     [JsonPropertyName("totalCanceled")]
     public int? TotalCanceled { get; set; }
 
     [JsonPropertyName("totalCanceledAmount")]
-    public float? TotalCanceledAmount { get; set; }
+    public double? TotalCanceledAmount { get; set; }
 
     [JsonPropertyName("totalCaptured")]
     public int? TotalCaptured { get; set; }
 
     [JsonPropertyName("totalCapturedAmount")]
-    public float? TotalCapturedAmount { get; set; }
+    public double? TotalCapturedAmount { get; set; }
 
     [JsonPropertyName("totalNetAmount")]
-    public float? TotalNetAmount { get; set; }
+    public double? TotalNetAmount { get; set; }
 
     [JsonPropertyName("totalOpen")]
     public int? TotalOpen { get; set; }
 
     [JsonPropertyName("totalOpenAmount")]
-    public float? TotalOpenAmount { get; set; }
+    public double? TotalOpenAmount { get; set; }
 
     [JsonPropertyName("totalPages")]
     public int? TotalPages { get; set; }
@@ -54,7 +54,7 @@ public record QueryPayoutTransactionSummary : IJsonOnDeserialized
     public int? TotalPaid { get; set; }
 
     [JsonPropertyName("totalPaidAmount")]
-    public float? TotalPaidAmount { get; set; }
+    public double? TotalPaidAmount { get; set; }
 
     /// <summary>
     /// Total number of transactions that are currently on hold.
@@ -66,13 +66,13 @@ public record QueryPayoutTransactionSummary : IJsonOnDeserialized
     /// Total amount of transactions that are currently on hold.
     /// </summary>
     [JsonPropertyName("totalOnHoldAmount")]
-    public float? TotalOnHoldAmount { get; set; }
+    public double? TotalOnHoldAmount { get; set; }
 
     [JsonPropertyName("totalProcessing")]
     public int? TotalProcessing { get; set; }
 
     [JsonPropertyName("totalProcessingAmount")]
-    public float? TotalProcessingAmount { get; set; }
+    public double? TotalProcessingAmount { get; set; }
 
     [JsonPropertyName("totalRecords")]
     public int? TotalRecords { get; set; }

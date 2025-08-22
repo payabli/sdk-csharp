@@ -25,7 +25,7 @@ public partial class BillClient
     ///         Body = new BillOutData
     ///         {
     ///             BillNumber = "ABC-123",
-    ///             NetAmount = "3762.87",
+    ///             NetAmount = 3762.87,
     ///             BillDate = new DateOnly(2024, 7, 1),
     ///             DueDate = new DateOnly(2024, 7, 1),
     ///             Comments = "Deposit for materials",
@@ -67,7 +67,7 @@ public partial class BillClient
     ///     }
     /// );
     /// </code></example>
-    public async Task<PayabliApiResponseBills> AddBillAsync(
+    public async Task<BillResponse> AddBillAsync(
         string entry,
         AddBillRequest request,
         RequestOptions? options = null,
@@ -102,7 +102,7 @@ public partial class BillClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseBills>(responseBody)!;
+                return JsonUtils.Deserialize<BillResponse>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -150,7 +150,7 @@ public partial class BillClient
     ///     new DeleteAttachedFromBillRequest()
     /// );
     /// </code></example>
-    public async Task<PayabliApiResponseBills> DeleteAttachedFromBillAsync(
+    public async Task<BillResponse> DeleteAttachedFromBillAsync(
         string filename,
         int idBill,
         DeleteAttachedFromBillRequest request,
@@ -185,7 +185,7 @@ public partial class BillClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseBills>(responseBody)!;
+                return JsonUtils.Deserialize<BillResponse>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -229,7 +229,7 @@ public partial class BillClient
     /// <example><code>
     /// await client.Bill.DeleteBillAsync(285);
     /// </code></example>
-    public async Task<PayabliApiResponseBills> DeleteBillAsync(
+    public async Task<BillResponse> DeleteBillAsync(
         int idBill,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -252,7 +252,7 @@ public partial class BillClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseBills>(responseBody)!;
+                return JsonUtils.Deserialize<BillResponse>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -296,7 +296,7 @@ public partial class BillClient
     /// <example><code>
     /// await client.Bill.EditBillAsync(
     ///     285,
-    ///     new BillOutData { NetAmount = "3762.87", BillDate = new DateOnly(2025, 7, 1) }
+    ///     new BillOutData { NetAmount = 3762.87, BillDate = new DateOnly(2025, 7, 1) }
     /// );
     /// </code></example>
     public async Task<EditBillResponse> EditBillAsync(
@@ -514,7 +514,7 @@ public partial class BillClient
     }
 
     /// <summary>
-    /// Retrieve a list of bills for an entrypoint. Use filters to limit results.
+    /// Retrieve a list of bills for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Bill.ListBillsAsync(
@@ -535,6 +535,10 @@ public partial class BillClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -611,7 +615,7 @@ public partial class BillClient
     }
 
     /// <summary>
-    /// Retrieve a list of bills for an organization. Use filters to limit results.
+    /// Retrieve a list of bills for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Bill.ListBillsOrgAsync(
@@ -632,6 +636,10 @@ public partial class BillClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -793,7 +801,7 @@ public partial class BillClient
     ///     }
     /// );
     /// </code></example>
-    public async Task<PayabliApiResponseBills> SendToApprovalBillAsync(
+    public async Task<BillResponse> SendToApprovalBillAsync(
         int idBill,
         SendToApprovalBillRequest request,
         RequestOptions? options = null,
@@ -834,7 +842,7 @@ public partial class BillClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseBills>(responseBody)!;
+                return JsonUtils.Deserialize<BillResponse>(responseBody)!;
             }
             catch (JsonException e)
             {

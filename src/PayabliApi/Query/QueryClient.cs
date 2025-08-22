@@ -15,7 +15,8 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of batches and their details, including settled and unsettled transactions for a paypoint. Use filters to limit results.
+    /// Retrieve a list of batches and their details, including settled and
+    /// unsettled transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchDetailsAsync(
@@ -28,7 +29,7 @@ public partial class QueryClient
     ///     }
     /// );
     /// </code></example>
-    public async Task<QueryResponseSettlements> ListBatchDetailsAsync(
+    public async Task<QueryBatchesDetailResponse> ListBatchDetailsAsync(
         string entry,
         ListBatchDetailsRequest request,
         RequestOptions? options = null,
@@ -36,6 +37,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -73,7 +78,7 @@ public partial class QueryClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<QueryResponseSettlements>(responseBody)!;
+                return JsonUtils.Deserialize<QueryBatchesDetailResponse>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -112,7 +117,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of batches and their details, including settled and unsettled transactions for an organization. Use filters to limit results.
+    /// Retrieve a list of batches and their details, including settled and unsettled transactions for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchDetailsOrgAsync(
@@ -133,6 +138,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -209,7 +218,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of batches for a paypoint. Use filters to limit results.
+    /// Retrieve a list of batches for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchesAsync(
@@ -230,6 +239,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -306,7 +319,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of batches for an org. Use filters to limit results.
+    /// Retrieve a list of batches for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchesOrgAsync(
@@ -327,6 +340,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -403,7 +420,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of MoneyOut batches for a paypoint. Use filters to limit results.
+    /// Retrieve a list of MoneyOut batches for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchesOutAsync(
@@ -424,6 +441,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -500,7 +521,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of MoneyOut batches for an org. Use filters to limit results.
+    /// Retrieve a list of MoneyOut batches for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchesOutOrgAsync(
@@ -521,6 +542,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -597,7 +622,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieves a list of chargebacks and returned transactions for a paypoint. Use filters to limit results.
+    /// Retrieves a list of chargebacks and returned transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListChargebacksAsync(
@@ -618,6 +643,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -694,7 +723,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of chargebacks and returned transactions for an org. Use filters to limit results.
+    /// Retrieve a list of chargebacks and returned transactions for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListChargebacksOrgAsync(
@@ -715,6 +744,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -791,7 +824,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieves a list of customers for a paypoint. Use filters to limit results.
+    /// Retrieves a list of customers for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListCustomersAsync(
@@ -812,6 +845,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -888,7 +925,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieves a list of customers for an org. Use filters to limit results.
+    /// Retrieves a list of customers for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListCustomersOrgAsync(
@@ -909,6 +946,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -1373,7 +1414,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieves a list of an organization's suborganizations and their full details such as orgId, users, and settings. Use filters to limit results.
+    /// Retrieves a list of an organization's suborganizations and their full details such as orgId, users, and settings. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListOrganizationsAsync(
@@ -1394,6 +1435,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -1470,7 +1515,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieves a list of money out transactions (payouts) for a paypoint. Use filters to limit results.
+    /// Retrieves a list of money out transactions (payouts) for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListPayoutAsync(
@@ -1491,6 +1536,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -1567,7 +1616,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieves a list of money out transactions (payouts) for an organization. Use filters to limit results.
+    /// Retrieves a list of money out transactions (payouts) for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListPayoutOrgAsync(
@@ -1588,6 +1637,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -1664,7 +1717,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Returns a list of paypoints in an organization. Use filters to limit results.
+    /// Returns a list of paypoints in an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListPaypointsAsync(
@@ -1685,6 +1738,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -1761,7 +1818,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of settled transactions for a paypoint. Use filters to limit results.
+    /// Retrieve a list of settled transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListSettlementsAsync(
@@ -1782,6 +1839,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -1858,7 +1919,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of settled transactions for an organization.
+    /// Retrieve a list of settled transactions for an organization. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListSettlementsOrgAsync(
@@ -1879,6 +1940,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -1955,7 +2020,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Returns a list of subscriptions for a single paypoint. Use filters to limit results.
+    /// Returns a list of subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListSubscriptionsAsync(
@@ -1976,6 +2041,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2052,7 +2121,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Returns a list of subscriptions for a single org. Use filters to limit results.
+    /// Returns a list of subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListSubscriptionsOrgAsync(
@@ -2073,6 +2142,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2149,7 +2222,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of transactions for a paypoint. Use filters to limit results.
+    /// Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
     /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
     /// ``` curl --request GET \
@@ -2177,6 +2250,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2253,10 +2330,16 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of transactions for an organization. Use filters to limit results.
+    /// Retrieve a list of transactions for an organization. Use filters to
+    /// limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+    ///
+    ///
     /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
+    ///
     /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
-    /// ``` curl --request GET \
+    ///
+    /// ```
+    /// curl --request GET \
     ///   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
     ///   --header 'requestToken: &lt;api-key&gt;'
     ///
@@ -2281,6 +2364,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2357,7 +2444,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of transfer details records for a paypoint. Use filters to limit results.
+    /// Retrieve a list of transfer details records for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransferDetailsAsync("47862acd", 123456, new ListTransfersPaypointRequest());
@@ -2371,6 +2458,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2448,7 +2539,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of transfers for a paypoint. Use filters to limit results.
+    /// Retrieve a list of transfers for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransfersAsync(
@@ -2464,6 +2555,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2489,6 +2584,105 @@ public partial class QueryClient
                     Path = string.Format(
                         "Query/transfers/{0}",
                         ValueConvert.ToPathParameterString(entry)
+                    ),
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<TransferQueryResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Retrieve a list of transfers for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+    /// </summary>
+    /// <example><code>
+    /// await client.Query.ListTransfersOrgAsync(
+    ///     new ListTransfersRequestOrg
+    ///     {
+    ///         OrgId = 123,
+    ///         FromRecord = 0,
+    ///         LimitRecord = 20,
+    ///     }
+    /// );
+    /// </code></example>
+    public async Task<TransferQueryResponse> ListTransfersOrgAsync(
+        ListTransfersRequestOrg request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
+        if (request.FromRecord != null)
+        {
+            _query["fromRecord"] = request.FromRecord.Value.ToString();
+        }
+        if (request.LimitRecord != null)
+        {
+            _query["limitRecord"] = request.LimitRecord.Value.ToString();
+        }
+        if (request.Parameters != null)
+        {
+            _query["parameters"] = JsonUtils.Serialize(request.Parameters);
+        }
+        if (request.SortBy != null)
+        {
+            _query["sortBy"] = request.SortBy;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Query/transfers/org/{0}",
+                        ValueConvert.ToPathParameterString(request.OrgId)
                     ),
                     Query = _query,
                     Options = options,
@@ -2734,7 +2928,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of vendors for an entrypoint. Use filters to limit results.
+    /// Retrieve a list of vendors for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListVendorsAsync(
@@ -2755,6 +2949,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2831,7 +3029,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of vendors for an organization. Use filters to limit results.
+    /// Retrieve a list of vendors for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListVendorsOrgAsync(
@@ -2852,6 +3050,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -2928,7 +3130,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of vcards (virtual credit cards) issued for an entrypoint. Use filters to limit results.
+    /// Retrieve a list of vcards (virtual credit cards) issued for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListVcardsAsync(
@@ -2949,6 +3151,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -3025,7 +3231,7 @@ public partial class QueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of vcards (virtual credit cards) issued for an organization. Use filters to limit results.
+    /// Retrieve a list of vcards (virtual credit cards) issued for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Query.ListVcardsOrgAsync(
@@ -3046,6 +3252,10 @@ public partial class QueryClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();

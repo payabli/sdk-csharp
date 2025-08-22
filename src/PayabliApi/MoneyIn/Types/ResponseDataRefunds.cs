@@ -12,7 +12,7 @@ public record ResponseDataRefunds : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("authCode")]
-    public string? AuthCode { get; set; }
+    public required string AuthCode { get; set; }
 
     /// <summary>
     /// This field isn't applicable to refund operations.

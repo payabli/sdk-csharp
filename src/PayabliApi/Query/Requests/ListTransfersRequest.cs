@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record ListTransfersRequest
 {
+    [JsonIgnore]
+    public ExportFormat? ExportFormat { get; set; }
+
     /// <summary>
     /// The number of records to skip before starting to collect the result set.
     /// </summary>
@@ -47,6 +50,10 @@ public record ListTransfersRequest
     ///   - `transferStatus` (ne, eq, in, nin)
     ///   - `batchNumber` (ne, eq, ct, nct)
     ///   - `batchId` (ne, eq, in, nin)
+    ///   - `transferId` (in, nin, eq, ne)
+    ///   - `bankAccountNumber` (ct, nct, ne, eq)
+    ///   - `bankRoutingNumber` (ct, nct, ne, eq)
+    ///   - `batchCurrency` (in, nin, ne, eq)
     /// </summary>
     [JsonIgnore]
     public Dictionary<string, string?>? Parameters { get; set; }

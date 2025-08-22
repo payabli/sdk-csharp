@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record ListPayoutRequest
 {
+    [JsonIgnore]
+    public ExportFormat? ExportFormat { get; set; }
+
     /// <summary>
     /// The number of records to skip before starting to collect the result set.
     /// </summary>
@@ -74,6 +77,7 @@ public record ListPayoutRequest
     ///   - `lotNumber` (ct, nct)
     ///   - `customerVendorAccount` (ct, nct, eq, ne)
     ///   - `batchId` (eq, ne)
+    ///   - `payoutProgram`(eq, ne) the options are `managed` or `odp`. For example, `payoutProgram(eq)=managed` returns all records with a `payoutProgram` equal to `managed`.
     ///
     ///   List of comparison accepted - enclosed between parentheses:
     ///   - eq or empty =&gt; equal

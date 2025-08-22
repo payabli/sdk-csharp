@@ -41,15 +41,15 @@ public record BillDetailResponse : IJsonOnDeserialized
     [JsonPropertyName("CreatedDate")]
     public DateTime? CreatedDate { get; set; }
 
+    [JsonPropertyName("CreatedAt")]
+    public DateTime? CreatedAt { get; set; }
+
     /// <summary>
     /// Events associated to this transaction.
     /// </summary>
     [JsonPropertyName("Events")]
     public IEnumerable<QueryTransactionEvents>? Events { get; set; }
 
-    /// <summary>
-    /// Service fee or sub-charge applied.
-    /// </summary>
     [JsonPropertyName("FeeAmount")]
     public double? FeeAmount { get; set; }
 
@@ -71,8 +71,11 @@ public record BillDetailResponse : IJsonOnDeserialized
     [JsonPropertyName("NetAmount")]
     public double? NetAmount { get; set; }
 
-    [JsonPropertyName("parentOrgName")]
+    [JsonPropertyName("ParentOrgName")]
     public string? ParentOrgName { get; set; }
+
+    [JsonPropertyName("ParentOrgId")]
+    public long? ParentOrgId { get; set; }
 
     [JsonPropertyName("PaymentData")]
     public QueryPaymentData? PaymentData { get; set; }
@@ -98,13 +101,13 @@ public record BillDetailResponse : IJsonOnDeserialized
     [JsonPropertyName("PaymentStatus")]
     public string? PaymentStatus { get; set; }
 
-    [JsonPropertyName("paypointDbaname")]
+    [JsonPropertyName("PaypointDbaname")]
     public string? PaypointDbaname { get; set; }
 
     /// <summary>
     /// Paypoint legal name.
     /// </summary>
-    [JsonPropertyName("paypointLegalname")]
+    [JsonPropertyName("PaypointLegalname")]
     public string? PaypointLegalname { get; set; }
 
     [JsonPropertyName("Source")]
@@ -133,6 +136,48 @@ public record BillDetailResponse : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("Vendor")]
     public VendorQueryRecord? Vendor { get; set; }
+
+    [JsonPropertyName("externalPaypointID")]
+    public string? ExternalPaypointId { get; set; }
+
+    [JsonPropertyName("EntryName")]
+    public string? EntryName { get; set; }
+
+    /// <summary>
+    /// Identifier for the batch in which this transaction was processed. Used to track and reconcile batch-level operations.
+    /// </summary>
+    [JsonPropertyName("BatchId")]
+    public string? BatchId { get; set; }
+
+    [JsonPropertyName("HasVcardTransactions")]
+    public bool? HasVcardTransactions { get; set; }
+
+    [JsonPropertyName("IsSameDayACH")]
+    public bool? IsSameDayAch { get; set; }
+
+    [JsonPropertyName("ScheduleId")]
+    public long? ScheduleId { get; set; }
+
+    [JsonPropertyName("SettlementStatus")]
+    public int? SettlementStatus { get; set; }
+
+    [JsonPropertyName("RiskFlagged")]
+    public bool? RiskFlagged { get; set; }
+
+    [JsonPropertyName("RiskFlaggedOn")]
+    public DateTime? RiskFlaggedOn { get; set; }
+
+    [JsonPropertyName("RiskStatus")]
+    public string? RiskStatus { get; set; }
+
+    [JsonPropertyName("RiskReason")]
+    public string? RiskReason { get; set; }
+
+    [JsonPropertyName("RiskAction")]
+    public string? RiskAction { get; set; }
+
+    [JsonPropertyName("RiskActionCode")]
+    public int? RiskActionCode { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

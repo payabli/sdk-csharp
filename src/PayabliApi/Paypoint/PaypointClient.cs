@@ -516,4 +516,87 @@ public partial class PaypointClient
             );
         }
     }
+
+    /// <summary>
+    /// Migrates a paypoint to a new parent organization.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.MigrateAsync(
+    ///     new PaypointMoveRequest
+    ///     {
+    ///         EntryPoint = "473abc123def",
+    ///         NewParentOrganizationId = 123,
+    ///         NotificationRequest = new NotificationRequest
+    ///         {
+    ///             NotificationUrl = "https://webhook-test.yoursie.com",
+    ///             WebHeaderParameters = new List&lt;WebHeaderParameter&gt;()
+    ///             {
+    ///                 new WebHeaderParameter { Key = "testheader", Value = "1234567890" },
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public async Task<MigratePaypointResponse> MigrateAsync(
+        PaypointMoveRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "Paypoint/migrate",
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<MigratePaypointResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 }

@@ -24,7 +24,7 @@ public record RequestPaymentValidatePaymentMethod : IJsonOnDeserialized
     public required string Cardexp { get; set; }
 
     [JsonPropertyName("cardzip")]
-    public string? Cardzip { get; set; }
+    public required string Cardzip { get; set; }
 
     [JsonPropertyName("cardHolder")]
     public required string CardHolder { get; set; }

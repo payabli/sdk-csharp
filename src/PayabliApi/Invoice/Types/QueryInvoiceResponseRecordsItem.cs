@@ -21,7 +21,7 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public long? PaypointId { get; set; }
 
     [JsonPropertyName("invoiceNumber")]
-    public string? InvoiceNumber { get; set; }
+    public required string InvoiceNumber { get; set; }
 
     /// <summary>
     /// Invoice date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY.
@@ -69,7 +69,7 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public required Frequency Frequency { get; set; }
 
     [JsonPropertyName("paymentTerms")]
-    public string? PaymentTerms { get; set; }
+    public required string PaymentTerms { get; set; }
 
     [JsonPropertyName("termsConditions")]
     public string? TermsConditions { get; set; }
@@ -120,10 +120,10 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public string? Company { get; set; }
 
     [JsonPropertyName("shippingAddress1")]
-    public string? ShippingAddress1 { get; set; }
+    public required string ShippingAddress1 { get; set; }
 
     [JsonPropertyName("shippingAddress2")]
-    public string? ShippingAddress2 { get; set; }
+    public required string ShippingAddress2 { get; set; }
 
     [JsonPropertyName("shippingCity")]
     public required string ShippingCity { get; set; }
@@ -132,7 +132,7 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public required string ShippingState { get; set; }
 
     [JsonPropertyName("shippingZip")]
-    public string? ShippingZip { get; set; }
+    public required string ShippingZip { get; set; }
 
     [JsonPropertyName("shippingFromZip")]
     public required string ShippingFromZip { get; set; }
@@ -144,7 +144,7 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     /// Shipping recipient's contact email address.
     /// </summary>
     [JsonPropertyName("shippingEmail")]
-    public string? ShippingEmail { get; set; }
+    public required string ShippingEmail { get; set; }
 
     /// <summary>
     /// Recipient phone number.
@@ -180,13 +180,13 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     /// Paypoint's legal name.
     /// </summary>
     [JsonPropertyName("PaypointLegalname")]
-    public string? PaypointLegalname { get; set; }
+    public required string PaypointLegalname { get; set; }
 
     /// <summary>
     /// Paypoint's DBA name.
     /// </summary>
     [JsonPropertyName("PaypointDbaname")]
-    public string? PaypointDbaname { get; set; }
+    public required string PaypointDbaname { get; set; }
 
     /// <summary>
     /// Paypoint's entryname.
@@ -213,7 +213,7 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public DocumentsRef? DocumentsRef { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
-    public string? ExternalPaypointId { get; set; }
+    public required string ExternalPaypointId { get; set; }
 
     [JsonPropertyName("pageIdentifier")]
     public string? PageIdentifier { get; set; }

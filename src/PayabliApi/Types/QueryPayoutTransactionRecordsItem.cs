@@ -15,6 +15,12 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     public string? BatchNumber { get; set; }
 
     /// <summary>
+    /// Identifier of the batch associated with payout transaction.
+    /// </summary>
+    [JsonPropertyName("BatchId")]
+    public int? BatchId { get; set; }
+
+    /// <summary>
     /// Events associated with this transaction.
     /// </summary>
     [JsonPropertyName("Bills")]
@@ -59,20 +65,23 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
 
-    /// <summary>
-    /// Service fee or sub-charge applied.
-    /// </summary>
     [JsonPropertyName("FeeAmount")]
     public double? FeeAmount { get; set; }
 
     [JsonPropertyName("Gateway")]
     public string? Gateway { get; set; }
 
+    [JsonPropertyName("HasVcardTransactions")]
+    public bool? HasVcardTransactions { get; set; }
+
     /// <summary>
     /// Identifier of payout transaction.
     /// </summary>
     [JsonPropertyName("IdOut")]
     public long? IdOut { get; set; }
+
+    [JsonPropertyName("IsSameDayACH")]
+    public bool? IsSameDayAch { get; set; }
 
     /// <summary>
     /// Timestamp when payment record was updated.
@@ -88,6 +97,9 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
 
     [JsonPropertyName("ParentOrgName")]
     public string? ParentOrgName { get; set; }
+
+    [JsonPropertyName("ParentOrgId")]
+    public long? ParentOrgId { get; set; }
 
     [JsonPropertyName("PaymentData")]
     public QueryPayoutTransactionRecordsItemPaymentData? PaymentData { get; set; }
@@ -107,6 +119,9 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("PaymentStatus")]
     public string? PaymentStatus { get; set; }
 
+    [JsonPropertyName("PayoutProgram")]
+    public string? PayoutProgram { get; set; }
+
     [JsonPropertyName("PaypointDbaname")]
     public string? PaypointDbaname { get; set; }
 
@@ -115,6 +130,30 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("PaypointLegalname")]
     public string? PaypointLegalname { get; set; }
+
+    [JsonPropertyName("RiskAction")]
+    public string? RiskAction { get; set; }
+
+    [JsonPropertyName("RiskActionCode")]
+    public int? RiskActionCode { get; set; }
+
+    [JsonPropertyName("RiskFlagged")]
+    public bool? RiskFlagged { get; set; }
+
+    [JsonPropertyName("RiskFlaggedOn")]
+    public DateTime? RiskFlaggedOn { get; set; }
+
+    [JsonPropertyName("RiskReason")]
+    public string? RiskReason { get; set; }
+
+    [JsonPropertyName("RiskStatus")]
+    public string? RiskStatus { get; set; }
+
+    [JsonPropertyName("ScheduleId")]
+    public long? ScheduleId { get; set; }
+
+    [JsonPropertyName("SettlementStatus")]
+    public string? SettlementStatus { get; set; }
 
     [JsonPropertyName("Source")]
     public string? Source { get; set; }

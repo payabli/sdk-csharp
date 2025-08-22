@@ -5,11 +5,11 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-public partial class VendorvClient
+public partial class VendorClient
 {
     private RawClient _client;
 
-    internal VendorvClient(RawClient client)
+    internal VendorClient(RawClient client)
     {
         _client = client;
     }
@@ -18,7 +18,7 @@ public partial class VendorvClient
     /// Creates a vendor in an entrypoint.
     /// </summary>
     /// <example><code>
-    /// await client.Vendorv.AddVendorAsync(
+    /// await client.Vendor.AddVendorAsync(
     ///     "8cfec329267",
     ///     new VendorData
     ///     {
@@ -57,7 +57,9 @@ public partial class VendorvClient
     ///             BankAccountHolderType = BankAccountHolderType.Business,
     ///             BankAccountFunction = 0,
     ///         },
-    ///         PaymentMethod = new VendorPaymentMethod { Method = VendorPaymentMethodMethod.Managed },
+    ///         PaymentMethod = new VendorPaymentMethod(
+    ///             new VendorPaymentMethod.Managed(new ManagedPaymentMethod())
+    ///         ),
     ///         VendorStatus = 1,
     ///         RemitAddress1 = "123 Walnut Street",
     ///         RemitAddress2 = "Suite 900",
@@ -143,7 +145,7 @@ public partial class VendorvClient
     /// Delete a vendor.
     /// </summary>
     /// <example><code>
-    /// await client.Vendorv.DeleteVendorAsync(1);
+    /// await client.Vendor.DeleteVendorAsync(1);
     /// </code></example>
     public async Task<PayabliApiResponseVendors> DeleteVendorAsync(
         int idVendor,
@@ -213,7 +215,7 @@ public partial class VendorvClient
     /// Updates a vendor's information. Send only the fields you need to update.
     /// </summary>
     /// <example><code>
-    /// await client.Vendorv.EditVendorAsync(1, new VendorData { Name1 = "Theodore's Janitorial" });
+    /// await client.Vendor.EditVendorAsync(1, new VendorData { Name1 = "Theodore's Janitorial" });
     /// </code></example>
     public async Task<PayabliApiResponseVendors> EditVendorAsync(
         int idVendor,
@@ -286,7 +288,7 @@ public partial class VendorvClient
     /// Retrieves a vendor's details.
     /// </summary>
     /// <example><code>
-    /// await client.Vendorv.GetVendorAsync(1);
+    /// await client.Vendor.GetVendorAsync(1);
     /// </code></example>
     public async Task<VendorQueryRecord> GetVendorAsync(
         int idVendor,

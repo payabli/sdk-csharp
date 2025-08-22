@@ -6,7 +6,7 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record PayabliApiResponseBills : IJsonOnDeserialized
+public record BillResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

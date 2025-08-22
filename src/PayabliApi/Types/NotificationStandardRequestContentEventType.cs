@@ -167,6 +167,10 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         Values.BoardingApplication
     );
 
+    public static readonly NotificationStandardRequestContentEventType PaypointMoved = new(
+        Values.PaypointMoved
+    );
+
     public static readonly NotificationStandardRequestContentEventType FraudAlert = new(
         Values.FraudAlert
     );
@@ -249,6 +253,10 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
 
     public static readonly NotificationStandardRequestContentEventType PayOutPaid = new(
         Values.PayOutPaid
+    );
+
+    public static readonly NotificationStandardRequestContentEventType PayOutReturned = new(
+        Values.PayOutReturned
     );
 
     public static readonly NotificationStandardRequestContentEventType PayoutSubscriptionCreated =
@@ -454,6 +462,8 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
 
         public const string BoardingApplication = "BoardingApplication";
 
+        public const string PaypointMoved = "PaypointMoved";
+
         public const string FraudAlert = "FraudAlert";
 
         public const string InvoiceSent = "InvoiceSent";
@@ -495,6 +505,8 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         public const string PayOutCanceled = "PayOutCanceled";
 
         public const string PayOutPaid = "PayOutPaid";
+
+        public const string PayOutReturned = "PayOutReturned";
 
         public const string PayoutSubscriptionCreated = "PayoutSubscriptionCreated";
 

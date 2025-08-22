@@ -15,7 +15,7 @@ public record CaptureResponseData : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("authCode")]
-    public string? AuthCode { get; set; }
+    public required string AuthCode { get; set; }
 
     [JsonPropertyName("referenceId")]
     public required string ReferenceId { get; set; }

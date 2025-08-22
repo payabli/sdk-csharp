@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record ListBatchesRequest
 {
+    [JsonIgnore]
+    public ExportFormat? ExportFormat { get; set; }
+
     /// <summary>
     /// The number of records to skip before starting to collect the result set.
     /// </summary>

@@ -12,7 +12,7 @@ public record VendorDataResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("VendorNumber")]
-    public string? VendorNumber { get; set; }
+    public required string VendorNumber { get; set; }
 
     /// <summary>
     /// Primary name for vendor.
@@ -39,7 +39,7 @@ public record VendorDataResponse : IJsonOnDeserialized
     public required string Phone { get; set; }
 
     [JsonPropertyName("Email")]
-    public string? Email { get; set; }
+    public required string Email { get; set; }
 
     /// <summary>
     /// Email address for remittance
@@ -84,7 +84,7 @@ public record VendorDataResponse : IJsonOnDeserialized
     public required string Country { get; set; }
 
     [JsonPropertyName("Mcc")]
-    public string? Mcc { get; set; }
+    public required string Mcc { get; set; }
 
     /// <summary>
     /// Additional location code used to identify the vendor.
@@ -171,28 +171,28 @@ public record VendorDataResponse : IJsonOnDeserialized
     public required DateTime LastUpdated { get; set; }
 
     [JsonPropertyName("remitAddress1")]
-    public string? RemitAddress1 { get; set; }
+    public required string RemitAddress1 { get; set; }
 
     [JsonPropertyName("remitAddress2")]
-    public string? RemitAddress2 { get; set; }
+    public required string RemitAddress2 { get; set; }
 
     [JsonPropertyName("remitCity")]
-    public string? RemitCity { get; set; }
+    public required string RemitCity { get; set; }
 
     [JsonPropertyName("remitState")]
-    public string? RemitState { get; set; }
+    public required string RemitState { get; set; }
 
     [JsonPropertyName("remitZip")]
-    public string? RemitZip { get; set; }
+    public required string RemitZip { get; set; }
 
     [JsonPropertyName("remitCountry")]
-    public string? RemitCountry { get; set; }
+    public required string RemitCountry { get; set; }
 
     [JsonPropertyName("payeeName1")]
-    public string? PayeeName1 { get; set; }
+    public required string PayeeName1 { get; set; }
 
     [JsonPropertyName("payeeName2")]
-    public string? PayeeName2 { get; set; }
+    public required string PayeeName2 { get; set; }
 
     /// <summary>
     /// Custom field 1 for vendor

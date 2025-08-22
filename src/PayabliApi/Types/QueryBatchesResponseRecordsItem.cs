@@ -11,6 +11,12 @@ public record QueryBatchesResponseRecordsItem : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("AchHolderType")]
+    public AchHolderType? AchHolderType { get; set; }
+
+    [JsonPropertyName("AchSecCode")]
+    public string? AchSecCode { get; set; }
+
     /// <summary>
     /// The amount of the batch.
     /// </summary>
@@ -77,20 +83,39 @@ public record QueryBatchesResponseRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("BatchStatus")]
     public int? BatchStatus { get; set; }
 
+    [JsonPropertyName("ChargebackId")]
+    public long? ChargebackId { get; set; }
+
+    /// <summary>
+    /// Service Fee or sub-charge transaction associated to the main
+    /// transaction.
+    /// </summary>
+    [JsonPropertyName("CfeeTransactions")]
+    public IEnumerable<QueryCFeeTransaction>? CfeeTransactions { get; set; }
+
     [JsonPropertyName("ConnectorName")]
     public string? ConnectorName { get; set; }
 
     [JsonPropertyName("DepositDate")]
     public DateTime? DepositDate { get; set; }
 
+    [JsonPropertyName("DeviceId")]
+    public string? DeviceId { get; set; }
+
     [JsonPropertyName("EntryName")]
     public string? EntryName { get; set; }
+
+    [JsonPropertyName("EntryPageid")]
+    public long? EntryPageid { get; set; }
 
     [JsonPropertyName("ExpectedDepositDate")]
     public DateTime? ExpectedDepositDate { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
+
+    [JsonPropertyName("FeeAmount")]
+    public double? FeeAmount { get; set; }
 
     /// <summary>
     /// The batch ID.
@@ -104,11 +129,23 @@ public record QueryBatchesResponseRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("Method")]
     public string? Method { get; set; }
 
+    [JsonPropertyName("OrgId")]
+    public long? OrgId { get; set; }
+
     /// <summary>
     /// The entrypoint's parent org.
     /// </summary>
     [JsonPropertyName("ParentOrgName")]
     public string? ParentOrgName { get; set; }
+
+    /// <summary>
+    /// The payment's settlement status.
+    /// </summary>
+    [JsonPropertyName("PaymentSettlementStatus")]
+    public int? PaymentSettlementStatus { get; set; }
+
+    [JsonPropertyName("PayorId")]
+    public long? PayorId { get; set; }
 
     /// <summary>
     /// Paypoint DBA name.
@@ -119,11 +156,32 @@ public record QueryBatchesResponseRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("PaypointId")]
     public long? PaypointId { get; set; }
 
-    /// <summary>
-    /// Paypoint legal name.
-    /// </summary>
     [JsonPropertyName("PaypointName")]
     public string? PaypointName { get; set; }
+
+    [JsonPropertyName("PendingFeeAmount")]
+    public double? PendingFeeAmount { get; set; }
+
+    [JsonPropertyName("RefundId")]
+    public long? RefundId { get; set; }
+
+    [JsonPropertyName("RetrievalId")]
+    public long? RetrievalId { get; set; }
+
+    [JsonPropertyName("ReturnedId")]
+    public long? ReturnedId { get; set; }
+
+    /// <summary>
+    /// Split funding instructions for the transaction
+    /// </summary>
+    [JsonPropertyName("splitFundingInstructions")]
+    public IEnumerable<SplitFundingContent>? SplitFundingInstructions { get; set; }
+
+    /// <summary>
+    /// Total amount of the batch.
+    /// </summary>
+    [JsonPropertyName("TotalAmount")]
+    public double? TotalAmount { get; set; }
 
     [JsonPropertyName("Transfer")]
     public string? Transfer { get; set; }

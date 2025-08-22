@@ -44,18 +44,12 @@ public record TransactionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("DeviceId")]
     public string? DeviceId { get; set; }
 
-    /// <summary>
-    /// If applicable, the internal reference ID to the payment page capturing the payment.
-    /// </summary>
     [JsonPropertyName("EntrypageId")]
     public long? EntrypageId { get; set; }
 
     [JsonPropertyName("ExternalProcessorInformation")]
     public string? ExternalProcessorInformation { get; set; }
 
-    /// <summary>
-    /// Service fee or sub-charge applied.
-    /// </summary>
     [JsonPropertyName("FeeAmount")]
     public double? FeeAmount { get; set; }
 
@@ -104,9 +98,6 @@ public record TransactionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("PaymentTransId")]
     public string? PaymentTransId { get; set; }
 
-    /// <summary>
-    /// Unique ID for customer linked to the transaction.
-    /// </summary>
     [JsonPropertyName("PayorId")]
     public long? PayorId { get; set; }
 
@@ -137,18 +128,12 @@ public record TransactionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("PendingFeeAmount")]
     public double? PendingFeeAmount { get; set; }
 
-    /// <summary>
-    /// Identifier of refund transaction linked to this payment.
-    /// </summary>
     [JsonPropertyName("RefundId")]
     public long? RefundId { get; set; }
 
     [JsonPropertyName("ResponseData")]
     public QueryResponseData? ResponseData { get; set; }
 
-    /// <summary>
-    /// Identifier of return/chargeback transaction linked to this payment.
-    /// </summary>
     [JsonPropertyName("ReturnedId")]
     public long? ReturnedId { get; set; }
 

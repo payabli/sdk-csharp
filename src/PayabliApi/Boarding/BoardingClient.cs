@@ -715,7 +715,7 @@ public partial class BoardingClient
     }
 
     /// <summary>
-    /// Returns a list of boarding applications for an organization. Use filters to limit results.
+    /// Returns a list of boarding applications for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Boarding.ListApplicationsAsync(
@@ -736,6 +736,10 @@ public partial class BoardingClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();

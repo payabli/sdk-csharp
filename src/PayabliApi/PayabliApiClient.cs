@@ -51,7 +51,7 @@ public partial class PayabliApiClient
         Templates = new TemplatesClient(_client);
         TokenStorage = new TokenStorageClient(_client);
         User = new UserClient(_client);
-        Vendorv = new VendorvClient(_client);
+        Vendor = new VendorClient(_client);
         Wallet = new WalletClient(_client);
     }
 
@@ -105,7 +105,7 @@ public partial class PayabliApiClient
 
     public UserClient User { get; }
 
-    public VendorvClient Vendorv { get; }
+    public VendorClient Vendor { get; }
 
     public WalletClient Wallet { get; }
 }

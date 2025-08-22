@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record ListBillsRequest
 {
+    [JsonIgnore]
+    public ExportFormat? ExportFormat { get; set; }
+
     /// <summary>
     /// The number of records to skip before starting to collect the result set.
     /// </summary>
@@ -44,6 +47,7 @@ public record ListBillsRequest
     /// - `approvalUserId` (`eq`, `ne`)
     /// - `parentOrgId` (`ne`, `eq`, `nin`, `in`)
     /// - `approvalUserEmail` (`eq`, `ne`)
+    /// - `scheduleId` (`ne`, `eq`)
     ///
     /// List of comparison accepted - enclosed between parentheses:
     /// - `eq` or empty =&gt; equal

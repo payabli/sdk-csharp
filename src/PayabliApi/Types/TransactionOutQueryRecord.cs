@@ -12,22 +12,13 @@ public record TransactionOutQueryRecord : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Events associated to this transaction.
+    /// Identifier of payout transaction.
     /// </summary>
-    [JsonPropertyName("Bills")]
-    public IEnumerable<BillPayOutData>? Bills { get; set; }
+    [JsonPropertyName("IdOut")]
+    public long? IdOut { get; set; }
 
-    /// <summary>
-    /// Object referencing to paper check image.
-    /// </summary>
-    [JsonPropertyName("CheckData")]
-    public FileContent? CheckData { get; set; }
-
-    /// <summary>
-    /// Paper check number related to payout transaction.
-    /// </summary>
-    [JsonPropertyName("CheckNumber")]
-    public string? CheckNumber { get; set; }
+    [JsonPropertyName("CreatedAt")]
+    public DateTime? CreatedAt { get; set; }
 
     /// <summary>
     /// Any comment or description for payout transaction.
@@ -36,79 +27,16 @@ public record TransactionOutQueryRecord : IJsonOnDeserialized
     public string? Comments { get; set; }
 
     /// <summary>
-    /// Timestamp when the payment was created, in UTC.
+    /// Vendor related to the payout transaction.
     /// </summary>
-    [JsonPropertyName("CreatedDate")]
-    public DateTime? CreatedDate { get; set; }
+    [JsonPropertyName("Vendor")]
+    public VendorQueryRecord? Vendor { get; set; }
 
-    /// <summary>
-    /// Events associated to this transaction.
-    /// </summary>
-    [JsonPropertyName("Events")]
-    public IEnumerable<QueryTransactionEvents>? Events { get; set; }
-
-    /// <summary>
-    /// Service fee or sub-charge applied.
-    /// </summary>
-    [JsonPropertyName("FeeAmount")]
-    public double? FeeAmount { get; set; }
-
-    [JsonPropertyName("Gateway")]
-    public string? Gateway { get; set; }
-
-    /// <summary>
-    /// Identifier of payout transaction.
-    /// </summary>
-    [JsonPropertyName("IdOut")]
-    public long? IdOut { get; set; }
-
-    /// <summary>
-    /// Timestamp when payment record was updated, in UTC.
-    /// </summary>
-    [JsonPropertyName("LastUpdated")]
-    public DateTime? LastUpdated { get; set; }
-
-    [JsonPropertyName("NetAmount")]
-    public double? NetAmount { get; set; }
-
-    [JsonPropertyName("parentOrgName")]
-    public string? ParentOrgName { get; set; }
-
-    [JsonPropertyName("PaymentData")]
-    public QueryPaymentData? PaymentData { get; set; }
-
-    /// <summary>
-    /// Unique identifier for group or batch containing the transaction.
-    /// </summary>
-    [JsonPropertyName("PaymentGroup")]
-    public string? PaymentGroup { get; set; }
-
-    [JsonPropertyName("PaymentId")]
-    public string? PaymentId { get; set; }
-
-    /// <summary>
-    /// Method of payment applied to the transaction.
-    /// </summary>
-    [JsonPropertyName("PaymentMethod")]
-    public string? PaymentMethod { get; set; }
-
-    /// <summary>
-    /// Status of payout transaction.
-    /// </summary>
-    [JsonPropertyName("PaymentStatus")]
-    public string? PaymentStatus { get; set; }
-
-    [JsonPropertyName("paypointDbaname")]
+    [JsonPropertyName("PaypointDbaname")]
     public string? PaypointDbaname { get; set; }
 
-    /// <summary>
-    /// Paypoint legal name.
-    /// </summary>
-    [JsonPropertyName("paypointLegalname")]
+    [JsonPropertyName("PaypointLegalname")]
     public string? PaypointLegalname { get; set; }
-
-    [JsonPropertyName("Source")]
-    public string? Source { get; set; }
 
     /// <summary>
     /// Internal status of transaction.
@@ -117,10 +45,10 @@ public record TransactionOutQueryRecord : IJsonOnDeserialized
     public int? Status { get; set; }
 
     /// <summary>
-    /// Status of payout transaction.
+    /// Timestamp when payment record was updated, in UTC.
     /// </summary>
-    [JsonPropertyName("StatusText")]
-    public string? StatusText { get; set; }
+    [JsonPropertyName("LastUpdated")]
+    public DateTime? LastUpdated { get; set; }
 
     /// <summary>
     /// Transaction total amount (including service fee or sub-charge).
@@ -128,11 +56,119 @@ public record TransactionOutQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("TotalAmount")]
     public double? TotalAmount { get; set; }
 
+    [JsonPropertyName("NetAmount")]
+    public double? NetAmount { get; set; }
+
+    [JsonPropertyName("FeeAmount")]
+    public double? FeeAmount { get; set; }
+
+    [JsonPropertyName("Source")]
+    public string? Source { get; set; }
+
+    [JsonPropertyName("ParentOrgName")]
+    public string? ParentOrgName { get; set; }
+
+    [JsonPropertyName("ParentOrgId")]
+    public long? ParentOrgId { get; set; }
+
     /// <summary>
-    /// Vendor related to the payout transaction.
+    /// The batch number for the payout transaction.
     /// </summary>
-    [JsonPropertyName("Vendor")]
-    public VendorQueryRecord? Vendor { get; set; }
+    [JsonPropertyName("BatchNumber")]
+    public string? BatchNumber { get; set; }
+
+    /// <summary>
+    /// Status of payout transaction.
+    /// </summary>
+    [JsonPropertyName("PaymentStatus")]
+    public string? PaymentStatus { get; set; }
+
+    /// <summary>
+    /// Method of payment applied to the transaction.
+    /// </summary>
+    [JsonPropertyName("PaymentMethod")]
+    public string? PaymentMethod { get; set; }
+
+    [JsonPropertyName("CardToken")]
+    public string? CardToken { get; set; }
+
+    /// <summary>
+    /// Paper check number related to payout transaction.
+    /// </summary>
+    [JsonPropertyName("CheckNumber")]
+    public string? CheckNumber { get; set; }
+
+    /// <summary>
+    /// Object referencing to paper check image.
+    /// </summary>
+    [JsonPropertyName("CheckData")]
+    public FileContent? CheckData { get; set; }
+
+    [JsonPropertyName("PaymentId")]
+    public string? PaymentId { get; set; }
+
+    [JsonPropertyName("PaymentData")]
+    public QueryPaymentData? PaymentData { get; set; }
+
+    /// <summary>
+    /// Events associated to this transaction.
+    /// </summary>
+    [JsonPropertyName("Bills")]
+    public IEnumerable<BillPayOutData>? Bills { get; set; }
+
+    /// <summary>
+    /// Events associated to this transaction.
+    /// </summary>
+    [JsonPropertyName("Events")]
+    public IEnumerable<QueryTransactionEvents>? Events { get; set; }
+
+    [JsonPropertyName("externalPaypointID")]
+    public string? ExternalPaypointId { get; set; }
+
+    [JsonPropertyName("EntryName")]
+    public string? EntryName { get; set; }
+
+    [JsonPropertyName("Gateway")]
+    public string? Gateway { get; set; }
+
+    /// <summary>
+    /// ID of the batch the transaction belongs to.
+    /// </summary>
+    [JsonPropertyName("BatchId")]
+    public string? BatchId { get; set; }
+
+    [JsonPropertyName("HasVcardTransactions")]
+    public bool? HasVcardTransactions { get; set; }
+
+    [JsonPropertyName("IsSameDayACH")]
+    public bool? IsSameDayAch { get; set; }
+
+    [JsonPropertyName("ScheduleId")]
+    public long? ScheduleId { get; set; }
+
+    [JsonPropertyName("SettlementStatus")]
+    public string? SettlementStatus { get; set; }
+
+    [JsonPropertyName("RiskFlagged")]
+    public bool? RiskFlagged { get; set; }
+
+    [JsonPropertyName("RiskFlaggedOn")]
+    public DateTime? RiskFlaggedOn { get; set; }
+
+    [JsonPropertyName("RiskStatus")]
+    public string? RiskStatus { get; set; }
+
+    [JsonPropertyName("RiskReason")]
+    public string? RiskReason { get; set; }
+
+    [JsonPropertyName("RiskAction")]
+    public string? RiskAction { get; set; }
+
+    [JsonPropertyName("RiskActionCode")]
+    public int? RiskActionCode { get; set; }
+
+    [JsonPropertyName("PayoutProgram")]
+    public string? PayoutProgram { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

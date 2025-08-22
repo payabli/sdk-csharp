@@ -12,7 +12,7 @@ public record AuthResponseResponseData : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("authCode")]
-    public string? AuthCode { get; set; }
+    public required string AuthCode { get; set; }
 
     [JsonPropertyName("referenceId")]
     public required string ReferenceId { get; set; }
@@ -24,10 +24,10 @@ public record AuthResponseResponseData : IJsonOnDeserialized
     public required string ResultText { get; set; }
 
     [JsonPropertyName("avsResponseText")]
-    public string? AvsResponseText { get; set; }
+    public required string AvsResponseText { get; set; }
 
     [JsonPropertyName("cvvResponseText")]
-    public string? CvvResponseText { get; set; }
+    public required string CvvResponseText { get; set; }
 
     [JsonPropertyName("customerId")]
     public long? CustomerId { get; set; }

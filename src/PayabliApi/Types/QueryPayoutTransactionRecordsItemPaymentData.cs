@@ -26,17 +26,26 @@ public record QueryPayoutTransactionRecordsItemPaymentData : IJsonOnDeserialized
     [JsonPropertyName("bankAccount")]
     public string? BankAccount { get; set; }
 
+    [JsonPropertyName("binData")]
+    public BinData? BinData { get; set; }
+
     [JsonPropertyName("cloudSignatureData")]
     public string? CloudSignatureData { get; set; }
 
     [JsonPropertyName("cloudSignatureFormat")]
     public string? CloudSignatureFormat { get; set; }
 
+    [JsonPropertyName("gatewayConnector")]
+    public PayoutGatewayConnector? GatewayConnector { get; set; }
+
     /// <summary>
     /// Card or bank account holder name.
     /// </summary>
     [JsonPropertyName("HolderName")]
     public string? HolderName { get; set; }
+
+    [JsonPropertyName("Initiator")]
+    public string? Initiator { get; set; }
 
     [JsonPropertyName("MaskedAccount")]
     public string? MaskedAccount { get; set; }
@@ -50,11 +59,17 @@ public record QueryPayoutTransactionRecordsItemPaymentData : IJsonOnDeserialized
     [JsonPropertyName("payorData")]
     public string? PayorData { get; set; }
 
+    [JsonPropertyName("Sequence")]
+    public string? Sequence { get; set; }
+
     /// <summary>
     /// Identifier of stored payment method used in transaction.
     /// </summary>
     [JsonPropertyName("StoredId")]
     public string? StoredId { get; set; }
+
+    [JsonPropertyName("StoredMethodUsageType")]
+    public string? StoredMethodUsageType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

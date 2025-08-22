@@ -26,9 +26,6 @@ public record SubscriptionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("EndDate")]
     public DateTime? EndDate { get; set; }
 
-    /// <summary>
-    /// If applicable, the internal reference ID to the payment page capturing the payment.
-    /// </summary>
     [JsonPropertyName("EntrypageId")]
     public long? EntrypageId { get; set; }
 

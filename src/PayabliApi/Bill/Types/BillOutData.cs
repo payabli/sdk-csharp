@@ -17,7 +17,7 @@ public record BillOutData : IJsonOnDeserialized
     [JsonPropertyName("accountingField2")]
     public string? AccountingField2 { get; set; }
 
-    [JsonPropertyName("AdditionalData")]
+    [JsonPropertyName("additionalData")]
     public string? AdditionalData { get; set; }
 
     /// <summary>
@@ -45,6 +45,12 @@ public record BillOutData : IJsonOnDeserialized
     public string? Comments { get; set; }
 
     /// <summary>
+    /// Discount amount applied to the bill.
+    /// </summary>
+    [JsonPropertyName("discount")]
+    public double? Discount { get; set; }
+
+    /// <summary>
     /// Due date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY.
     /// </summary>
     [JsonPropertyName("dueDate")]
@@ -63,6 +69,12 @@ public record BillOutData : IJsonOnDeserialized
     public Frequency? Frequency { get; set; }
 
     /// <summary>
+    /// Lot number associated with the bill.
+    /// </summary>
+    [JsonPropertyName("lotNumber")]
+    public string? LotNumber { get; set; }
+
+    /// <summary>
     /// Bill mode: value `0` for one-time bills, `1` for scheduled bills.
     /// </summary>
     [JsonPropertyName("mode")]
@@ -72,13 +84,25 @@ public record BillOutData : IJsonOnDeserialized
     /// Net Amount owed in bill. Required when adding a bill.
     /// </summary>
     [JsonPropertyName("netAmount")]
-    public string? NetAmount { get; set; }
+    public double? NetAmount { get; set; }
+
+    /// <summary>
+    /// Options for scheduled bills.
+    /// </summary>
+    [JsonPropertyName("scheduledOptions")]
+    public BillOutDataScheduledOptions? ScheduledOptions { get; set; }
 
     [JsonPropertyName("status")]
     public int? Status { get; set; }
 
     [JsonPropertyName("terms")]
     public string? Terms { get; set; }
+
+    /// <summary>
+    /// Total amount of the bill.
+    /// </summary>
+    [JsonPropertyName("totalAmount")]
+    public double? TotalAmount { get; set; }
 
     /// <summary>
     /// The vendor associated with the bill. Although you can create a vendor in a create bill request, Payabli recommends creating a vendor separately and passing a valid `vendorNumber` here. At minimum, the `vendorNumber` is required.

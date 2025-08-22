@@ -611,7 +611,7 @@ public partial class InvoiceClient
     }
 
     /// <summary>
-    /// Returns a list of invoices for an entrypoint. Use filters to limit results.
+    /// Returns a list of invoices for an entrypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Invoice.ListInvoicesAsync(
@@ -632,6 +632,10 @@ public partial class InvoiceClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -708,7 +712,7 @@ public partial class InvoiceClient
     }
 
     /// <summary>
-    /// Returns a list of invoices for an org. Use filters to limit results.
+    /// Returns a list of invoices for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
     /// await client.Invoice.ListInvoicesOrgAsync(
@@ -729,6 +733,10 @@ public partial class InvoiceClient
     )
     {
         var _query = new Dictionary<string, object>();
+        if (request.ExportFormat != null)
+        {
+            _query["exportFormat"] = request.ExportFormat.Value.Stringify();
+        }
         if (request.FromRecord != null)
         {
             _query["fromRecord"] = request.FromRecord.Value.ToString();
@@ -851,6 +859,76 @@ public partial class InvoiceClient
             try
             {
                 return JsonUtils.Deserialize<SendInvoiceResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Export a single invoice in PDF format.
+    /// </summary>
+    /// <example><code>
+    /// await client.Invoice.GetInvoicePdfAsync(23548884);
+    /// </code></example>
+    public async Task<Dictionary<string, object?>> GetInvoicePdfAsync(
+        int idInvoice,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Export/invoicePdf/{0}",
+                        ValueConvert.ToPathParameterString(idInvoice)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<Dictionary<string, object?>>(responseBody)!;
             }
             catch (JsonException e)
             {

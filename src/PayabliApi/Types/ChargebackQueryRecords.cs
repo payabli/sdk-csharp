@@ -45,13 +45,13 @@ public record ChargebackQueryRecords : IJsonOnDeserialized
     /// Last 4 digits of card or bank account involved in chargeback or return.
     /// </summary>
     [JsonPropertyName("lastFour")]
-    public string? LastFour { get; set; }
+    public required string LastFour { get; set; }
 
     /// <summary>
     /// Type of payment vehicle: **ach** or **card**.
     /// </summary>
     [JsonPropertyName("method")]
-    public string? Method { get; set; }
+    public required string Method { get; set; }
 
     /// <summary>
     /// Net amount in chargeback or ACH return.

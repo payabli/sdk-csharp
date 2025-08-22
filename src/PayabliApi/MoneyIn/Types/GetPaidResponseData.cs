@@ -27,10 +27,10 @@ public record GetPaidResponseData : IJsonOnDeserialized
     public required string ResultText { get; set; }
 
     [JsonPropertyName("avsResponseText")]
-    public string? AvsResponseText { get; set; }
+    public required string AvsResponseText { get; set; }
 
     [JsonPropertyName("cvvResponseText")]
-    public string? CvvResponseText { get; set; }
+    public required string CvvResponseText { get; set; }
 
     [JsonPropertyName("customerId")]
     public long? CustomerId { get; set; }

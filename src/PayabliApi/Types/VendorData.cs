@@ -54,6 +54,18 @@ public record VendorData : IJsonOnDeserialized
     public string? Country { get; set; }
 
     /// <summary>
+    /// Custom field 1 for vendor
+    /// </summary>
+    [JsonPropertyName("customField1")]
+    public string? CustomField1 { get; set; }
+
+    /// <summary>
+    /// Custom field 2 for vendor
+    /// </summary>
+    [JsonPropertyName("customField2")]
+    public string? CustomField2 { get; set; }
+
+    /// <summary>
     /// Account number of paypoint in the vendor side.
     /// </summary>
     [JsonPropertyName("customerVendorAccount")]
@@ -109,6 +121,9 @@ public record VendorData : IJsonOnDeserialized
 
     [JsonPropertyName("remitCountry")]
     public string? RemitCountry { get; set; }
+
+    [JsonPropertyName("remitEmail")]
+    public string? RemitEmail { get; set; }
 
     [JsonPropertyName("remitState")]
     public string? RemitState { get; set; }

@@ -48,7 +48,7 @@ public record OrganizationQueryRecord : IJsonOnDeserialized
     public string? OrgEntryName { get; set; }
 
     [JsonPropertyName("orgId")]
-    public long? OrgId { get; set; }
+    public string? OrgId { get; set; }
 
     [JsonPropertyName("orgLogo")]
     public FileContent? OrgLogo { get; set; }

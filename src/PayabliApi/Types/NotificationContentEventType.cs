@@ -193,6 +193,8 @@ public readonly record struct NotificationContentEventType : IStringEnum
 
     public static readonly NotificationContentEventType PayOutPaid = new(Values.PayOutPaid);
 
+    public static readonly NotificationContentEventType PayOutReturned = new(Values.PayOutReturned);
+
     public static readonly NotificationContentEventType PayoutSubscriptionCreated = new(
         Values.PayoutSubscriptionCreated
     );
@@ -423,6 +425,8 @@ public readonly record struct NotificationContentEventType : IStringEnum
         public const string PayOutCanceled = "PayOutCanceled";
 
         public const string PayOutPaid = "PayOutPaid";
+
+        public const string PayOutReturned = "PayOutReturned";
 
         public const string PayoutSubscriptionCreated = "PayoutSubscriptionCreated";
 

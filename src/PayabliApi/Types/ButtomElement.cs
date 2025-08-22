@@ -15,7 +15,7 @@ public record ButtomElement : IJsonOnDeserialized
     /// Label for custom payment button
     /// </summary>
     [JsonPropertyName("label")]
-    public string? Label { get; set; }
+    public required string Label { get; set; }
 
     /// <summary>
     /// Specify size of custom payment button

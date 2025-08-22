@@ -14,89 +14,71 @@ public record VendorQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("additionalData")]
     public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
 
-    /// <summary>
-    /// Vendor's address.
-    /// </summary>
-    [JsonPropertyName("address1")]
+    [JsonPropertyName("Address1")]
     public string? Address1 { get; set; }
 
-    /// <summary>
-    /// Additional line for vendor's address.
-    /// </summary>
-    [JsonPropertyName("address2")]
+    [JsonPropertyName("Address2")]
     public string? Address2 { get; set; }
 
-    [JsonPropertyName("billingData")]
+    [JsonPropertyName("BillingData")]
     public BillingDataResponse? BillingData { get; set; }
 
-    /// <summary>
-    /// Vendor's city.
-    /// </summary>
-    [JsonPropertyName("city")]
+    [JsonPropertyName("City")]
     public string? City { get; set; }
 
-    [JsonPropertyName("contacts")]
-    public IEnumerable<Contacts>? Contacts { get; set; }
+    [JsonPropertyName("Contacts")]
+    public ContactsResponse? Contacts { get; set; }
 
-    /// <summary>
-    /// Vendor's country.
-    /// </summary>
-    [JsonPropertyName("country")]
+    [JsonPropertyName("Country")]
     public string? Country { get; set; }
 
-    [JsonPropertyName("createdDate")]
+    [JsonPropertyName("CreatedDate")]
     public DateTime? CreatedDate { get; set; }
 
-    /// <summary>
-    /// Account number of paypoint in the vendor system.
-    /// </summary>
     [JsonPropertyName("customerVendorAccount")]
     public string? CustomerVendorAccount { get; set; }
 
-    [JsonPropertyName("ein")]
+    [JsonPropertyName("customField1")]
+    public string? CustomField1 { get; set; }
+
+    [JsonPropertyName("customField2")]
+    public string? CustomField2 { get; set; }
+
+    [JsonPropertyName("EIN")]
     public string? Ein { get; set; }
 
-    /// <summary>
-    /// Vendor's email address.
-    /// </summary>
-    [JsonPropertyName("email")]
+    [JsonPropertyName("Email")]
     public string? Email { get; set; }
 
-    [JsonPropertyName("enrollmentStatus")]
+    [JsonPropertyName("EnrollmentStatus")]
     public string? EnrollmentStatus { get; set; }
 
-    [JsonPropertyName("externalPaypointId")]
+    [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
 
-    [JsonPropertyName("internalReferenceId")]
+    [JsonPropertyName("InternalReferenceId")]
     public long? InternalReferenceId { get; set; }
 
-    [JsonPropertyName("lastUpdated")]
+    [JsonPropertyName("LastUpdated")]
     public DateTime? LastUpdated { get; set; }
 
-    /// <summary>
-    /// Additional location code used to identify the vendor.
-    /// </summary>
-    [JsonPropertyName("locationCode")]
+    [JsonPropertyName("LocationCode")]
     public string? LocationCode { get; set; }
 
-    [JsonPropertyName("mcc")]
+    [JsonPropertyName("Mcc")]
     public string? Mcc { get; set; }
 
-    /// <summary>
-    /// Primary name for vendor.
-    /// </summary>
-    [JsonPropertyName("name1")]
+    [JsonPropertyName("Name1")]
     public string? Name1 { get; set; }
 
-    /// <summary>
-    /// Secondary name for vendor.
-    /// </summary>
-    [JsonPropertyName("name2")]
+    [JsonPropertyName("Name2")]
     public string? Name2 { get; set; }
 
-    [JsonPropertyName("parentOrgName")]
+    [JsonPropertyName("ParentOrgName")]
     public string? ParentOrgName { get; set; }
+
+    [JsonPropertyName("ParentOrgId")]
+    public long? ParentOrgId { get; set; }
 
     [JsonPropertyName("payeeName1")]
     public string? PayeeName1 { get; set; }
@@ -104,22 +86,19 @@ public record VendorQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("payeeName2")]
     public string? PayeeName2 { get; set; }
 
-    [JsonPropertyName("paymentMethod")]
+    [JsonPropertyName("PaymentMethod")]
     public VendorPaymentMethod? PaymentMethod { get; set; }
 
-    [JsonPropertyName("paypointDbaname")]
+    [JsonPropertyName("PaypointDbaname")]
     public string? PaypointDbaname { get; set; }
 
-    [JsonPropertyName("paypointEntryname")]
+    [JsonPropertyName("PaypointEntryname")]
     public string? PaypointEntryname { get; set; }
 
-    [JsonPropertyName("paypointLegalname")]
+    [JsonPropertyName("PaypointLegalname")]
     public string? PaypointLegalname { get; set; }
 
-    /// <summary>
-    /// Vendor's phone number.
-    /// </summary>
-    [JsonPropertyName("phone")]
+    [JsonPropertyName("Phone")]
     public string? Phone { get; set; }
 
     [JsonPropertyName("remitAddress1")]
@@ -134,34 +113,34 @@ public record VendorQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("remitCountry")]
     public string? RemitCountry { get; set; }
 
+    [JsonPropertyName("RemitEmail")]
+    public string? RemitEmail { get; set; }
+
     [JsonPropertyName("remitState")]
     public string? RemitState { get; set; }
 
     [JsonPropertyName("remitZip")]
     public string? RemitZip { get; set; }
 
-    /// <summary>
-    /// Vendor's state.
-    /// </summary>
-    [JsonPropertyName("state")]
+    [JsonPropertyName("State")]
     public string? State { get; set; }
 
-    [JsonPropertyName("summary")]
+    [JsonPropertyName("StoredMethods")]
+    public IEnumerable<VendorResponseStoredMethod>? StoredMethods { get; set; }
+
+    [JsonPropertyName("Summary")]
     public VendorSummary? Summary { get; set; }
 
-    [JsonPropertyName("vendorId")]
+    [JsonPropertyName("VendorId")]
     public int? VendorId { get; set; }
 
-    [JsonPropertyName("vendorNumber")]
+    [JsonPropertyName("VendorNumber")]
     public string? VendorNumber { get; set; }
 
-    [JsonPropertyName("vendorStatus")]
+    [JsonPropertyName("VendorStatus")]
     public int? VendorStatus { get; set; }
 
-    /// <summary>
-    /// Vendor's zip code.
-    /// </summary>
-    [JsonPropertyName("zip")]
+    [JsonPropertyName("Zip")]
     public string? Zip { get; set; }
 
     [JsonIgnore]

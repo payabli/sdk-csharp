@@ -17,17 +17,23 @@ public record Transfer : IJsonOnDeserialized
     [JsonPropertyName("transferId")]
     public required int TransferId { get; set; }
 
-    /// <summary>
-    /// The ID of the paypoint the transfer belongs to.
-    /// </summary>
     [JsonPropertyName("paypointId")]
-    public required int PaypointId { get; set; }
+    public long? PaypointId { get; set; }
 
-    /// <summary>
-    /// The batch number associated with the transfer.
-    /// </summary>
     [JsonPropertyName("batchNumber")]
     public required string BatchNumber { get; set; }
+
+    /// <summary>
+    /// The currency of the batch, either USD or CAD.
+    /// </summary>
+    [JsonPropertyName("batchCurrency")]
+    public string? BatchCurrency { get; set; }
+
+    /// <summary>
+    /// Number of records in the batch.
+    /// </summary>
+    [JsonPropertyName("batchRecords")]
+    public int? BatchRecords { get; set; }
 
     /// <summary>
     /// Unique identifier for the transfer.
@@ -40,6 +46,36 @@ public record Transfer : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("batchId")]
     public required int BatchId { get; set; }
+
+    /// <summary>
+    /// The paypoint entry name.
+    /// </summary>
+    [JsonPropertyName("paypointEntryName")]
+    public string? PaypointEntryName { get; set; }
+
+    /// <summary>
+    /// The paypoint legal name.
+    /// </summary>
+    [JsonPropertyName("paypointLegalName")]
+    public string? PaypointLegalName { get; set; }
+
+    /// <summary>
+    /// The paypoint DBA name.
+    /// </summary>
+    [JsonPropertyName("paypointDbaName")]
+    public string? PaypointDbaName { get; set; }
+
+    /// <summary>
+    /// The paypoint logo URL.
+    /// </summary>
+    [JsonPropertyName("paypointLogo")]
+    public string? PaypointLogo { get; set; }
+
+    /// <summary>
+    /// Bank account information for the transfer.
+    /// </summary>
+    [JsonPropertyName("bankAccount")]
+    public TransferBankAccount? BankAccount { get; set; }
 
     /// <summary>
     /// Date when the transfer occurred.
@@ -117,13 +153,13 @@ public record Transfer : IJsonOnDeserialized
     /// List of events associated with the transfer.
     /// </summary>
     [JsonPropertyName("eventsData")]
-    public IEnumerable<TransferEvent> EventsData { get; set; } = new List<TransferEvent>();
+    public IEnumerable<GeneralEvents>? EventsData { get; set; }
 
     /// <summary>
     /// List of messages related to the transfer.
     /// </summary>
     [JsonPropertyName("messages")]
-    public IEnumerable<string> Messages { get; set; } = new List<string>();
+    public IEnumerable<TransferMessage>? Messages { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
