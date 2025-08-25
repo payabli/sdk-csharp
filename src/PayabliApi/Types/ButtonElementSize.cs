@@ -3,17 +3,17 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<ButtomElementSize>))]
+[JsonConverter(typeof(StringEnumSerializer<ButtonElementSize>))]
 [Serializable]
-public readonly record struct ButtomElementSize : IStringEnum
+public readonly record struct ButtonElementSize : IStringEnum
 {
-    public static readonly ButtomElementSize Sm = new(Values.Sm);
+    public static readonly ButtonElementSize Sm = new(Values.Sm);
 
-    public static readonly ButtomElementSize Md = new(Values.Md);
+    public static readonly ButtonElementSize Md = new(Values.Md);
 
-    public static readonly ButtomElementSize Lg = new(Values.Lg);
+    public static readonly ButtonElementSize Lg = new(Values.Lg);
 
-    public ButtomElementSize(string value)
+    public ButtonElementSize(string value)
     {
         Value = value;
     }
@@ -26,9 +26,9 @@ public readonly record struct ButtomElementSize : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static ButtomElementSize FromCustom(string value)
+    public static ButtonElementSize FromCustom(string value)
     {
-        return new ButtomElementSize(value);
+        return new ButtonElementSize(value);
     }
 
     public bool Equals(string? other)
@@ -44,15 +44,15 @@ public readonly record struct ButtomElementSize : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(ButtomElementSize value1, string value2) =>
+    public static bool operator ==(ButtonElementSize value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(ButtomElementSize value1, string value2) =>
+    public static bool operator !=(ButtonElementSize value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(ButtomElementSize value) => value.Value;
+    public static explicit operator string(ButtonElementSize value) => value.Value;
 
-    public static explicit operator ButtomElementSize(string value) => new(value);
+    public static explicit operator ButtonElementSize(string value) => new(value);
 
     /// <summary>
     /// Constant strings for enum values

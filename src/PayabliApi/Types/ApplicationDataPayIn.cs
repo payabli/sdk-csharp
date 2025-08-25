@@ -77,6 +77,9 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     [JsonPropertyName("contacts")]
     public IEnumerable<ApplicationDataPayInContactsItem>? Contacts { get; set; }
 
+    /// <summary>
+    /// The maximum amount of credit that our lending partner, has authorized to your business. It's the upper boundary on how much you can spend or owe on a credit account at any given time.
+    /// </summary>
     [JsonPropertyName("creditLimit")]
     public string? CreditLimit { get; set; }
 
@@ -146,8 +149,11 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     [JsonPropertyName("phonenumber")]
     public required string Phonenumber { get; set; }
 
+    /// <summary>
+    /// The business's processing region, either `US` or `CA`.
+    /// </summary>
     [JsonPropertyName("processingRegion")]
-    public required BoardingProcessingRegion ProcessingRegion { get; set; }
+    public required string ProcessingRegion { get; set; }
 
     /// <summary>
     /// Email address for the applicant. This is used to send the applicant a boarding link.

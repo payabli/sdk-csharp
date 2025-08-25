@@ -36,7 +36,7 @@ public record PageSetting : IJsonOnDeserialized
     public FileContent? PageLogo { get; set; }
 
     [JsonPropertyName("paymentButton")]
-    public ButtomElement? PaymentButton { get; set; }
+    public ButtonElement? PaymentButton { get; set; }
 
     /// <summary>
     /// Flag indicating if the capability for redirection in the page will be activated

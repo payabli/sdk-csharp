@@ -97,7 +97,7 @@ public partial class BoardingClient
     ///             },
     ///         },
     ///         Phonenumber = "1234567890",
-    ///         ProcessingRegion = BoardingProcessingRegion.Us,
+    ///         ProcessingRegion = "US",
     ///         RecipientEmail = "josephray@example.com",
     ///         RecipientEmailNotification = true,
     ///         Resumable = true,

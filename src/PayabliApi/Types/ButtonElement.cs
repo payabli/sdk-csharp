@@ -5,7 +5,7 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record ButtomElement : IJsonOnDeserialized
+public record ButtonElement : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -21,7 +21,7 @@ public record ButtomElement : IJsonOnDeserialized
     /// Specify size of custom payment button
     /// </summary>
     [JsonPropertyName("size")]
-    public ButtomElementSize? Size { get; set; }
+    public ButtonElementSize? Size { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
