@@ -19,16 +19,16 @@ internal partial class RawClient(ClientOptions clientOptions)
     internal readonly ClientOptions Options = clientOptions;
 
     [Obsolete("Use SendRequestAsync instead.")]
-    internal Task<PayabliApi.Core.ApiResponse> MakeRequestAsync(
-        PayabliApi.Core.BaseRequest request,
+    internal Task<global::PayabliApi.Core.ApiResponse> MakeRequestAsync(
+        global::PayabliApi.Core.BaseRequest request,
         CancellationToken cancellationToken = default
     )
     {
         return SendRequestAsync(request, cancellationToken);
     }
 
-    internal async Task<PayabliApi.Core.ApiResponse> SendRequestAsync(
-        PayabliApi.Core.BaseRequest request,
+    internal async Task<global::PayabliApi.Core.ApiResponse> SendRequestAsync(
+        global::PayabliApi.Core.BaseRequest request,
         CancellationToken cancellationToken = default
     )
     {
@@ -43,7 +43,7 @@ internal partial class RawClient(ClientOptions clientOptions)
             .ConfigureAwait(false);
     }
 
-    internal async Task<PayabliApi.Core.ApiResponse> SendRequestAsync(
+    internal async Task<global::PayabliApi.Core.ApiResponse> SendRequestAsync(
         HttpRequestMessage request,
         IRequestOptions? options,
         CancellationToken cancellationToken = default
@@ -109,7 +109,7 @@ internal partial class RawClient(ClientOptions clientOptions)
     /// Sends the request with retries, unless the request content is not retryable,
     /// such as stream requests and multipart form data with stream content.
     /// </summary>
-    private async Task<PayabliApi.Core.ApiResponse> SendWithRetriesAsync(
+    private async Task<global::PayabliApi.Core.ApiResponse> SendWithRetriesAsync(
         HttpRequestMessage request,
         IRequestOptions? options,
         CancellationToken cancellationToken
@@ -122,7 +122,7 @@ internal partial class RawClient(ClientOptions clientOptions)
 
         if (!isRetryableContent)
         {
-            return new PayabliApi.Core.ApiResponse
+            return new global::PayabliApi.Core.ApiResponse
             {
                 StatusCode = (int)response.StatusCode,
                 Raw = response,
@@ -144,7 +144,7 @@ internal partial class RawClient(ClientOptions clientOptions)
                 .ConfigureAwait(false);
         }
 
-        return new PayabliApi.Core.ApiResponse
+        return new global::PayabliApi.Core.ApiResponse
         {
             StatusCode = (int)response.StatusCode,
             Raw = response,
@@ -168,7 +168,7 @@ internal partial class RawClient(ClientOptions clientOptions)
         };
     }
 
-    internal HttpRequestMessage CreateHttpRequest(PayabliApi.Core.BaseRequest request)
+    internal HttpRequestMessage CreateHttpRequest(global::PayabliApi.Core.BaseRequest request)
     {
         var url = BuildUrl(request);
         var httpRequest = new HttpRequestMessage(request.Method, url);
@@ -184,7 +184,7 @@ internal partial class RawClient(ClientOptions clientOptions)
         return httpRequest;
     }
 
-    private static string BuildUrl(PayabliApi.Core.BaseRequest request)
+    private static string BuildUrl(global::PayabliApi.Core.BaseRequest request)
     {
         var baseUrl = request.Options?.BaseUrl ?? request.BaseUrl;
         var trimmedBaseUrl = baseUrl.TrimEnd('/');
@@ -208,7 +208,9 @@ internal partial class RawClient(ClientOptions clientOptions)
                 {
                     var items = collection
                         .Cast<object>()
-                        .Select(value => $"{queryItem.Key}={value}")
+                        .Select(value =>
+                            $"{Uri.EscapeDataString(queryItem.Key)}={Uri.EscapeDataString(value.ToString())}"
+                        )
                         .ToList();
                     if (items.Any())
                     {
@@ -217,7 +219,8 @@ internal partial class RawClient(ClientOptions clientOptions)
                 }
                 else
                 {
-                    current += $"{queryItem.Key}={queryItem.Value}&";
+                    current +=
+                        $"{Uri.EscapeDataString(queryItem.Key)}={Uri.EscapeDataString(queryItem.Value)}&";
                 }
 
                 return current;
@@ -228,7 +231,7 @@ internal partial class RawClient(ClientOptions clientOptions)
     }
 
     private static List<KeyValuePair<string, string>> GetQueryParameters(
-        PayabliApi.Core.BaseRequest request
+        global::PayabliApi.Core.BaseRequest request
     )
     {
         var result = TransformToKeyValuePairs(request.Query);
@@ -384,26 +387,26 @@ internal partial class RawClient(ClientOptions clientOptions)
     }
 
     /// <inheritdoc />
-    [Obsolete("Use PayabliApi.Core.ApiResponse instead.")]
-    internal record ApiResponse : PayabliApi.Core.ApiResponse;
+    [Obsolete("Use global::PayabliApi.Core.ApiResponse instead.")]
+    internal record ApiResponse : global::PayabliApi.Core.ApiResponse;
 
     /// <inheritdoc />
-    [Obsolete("Use PayabliApi.Core.BaseRequest instead.")]
-    internal abstract record BaseApiRequest : PayabliApi.Core.BaseRequest;
+    [Obsolete("Use global::PayabliApi.Core.BaseRequest instead.")]
+    internal abstract record BaseApiRequest : global::PayabliApi.Core.BaseRequest;
 
     /// <inheritdoc />
-    [Obsolete("Use PayabliApi.Core.EmptyRequest instead.")]
-    internal abstract record EmptyApiRequest : PayabliApi.Core.EmptyRequest;
+    [Obsolete("Use global::PayabliApi.Core.EmptyRequest instead.")]
+    internal abstract record EmptyApiRequest : global::PayabliApi.Core.EmptyRequest;
 
     /// <inheritdoc />
-    [Obsolete("Use PayabliApi.Core.JsonRequest instead.")]
-    internal abstract record JsonApiRequest : PayabliApi.Core.JsonRequest;
+    [Obsolete("Use global::PayabliApi.Core.JsonRequest instead.")]
+    internal abstract record JsonApiRequest : global::PayabliApi.Core.JsonRequest;
 
     /// <inheritdoc />
-    [Obsolete("Use PayabliApi.Core.MultipartFormRequest instead.")]
-    internal abstract record MultipartFormRequest : PayabliApi.Core.MultipartFormRequest;
+    [Obsolete("Use global::PayabliApi.Core.MultipartFormRequest instead.")]
+    internal abstract record MultipartFormRequest : global::PayabliApi.Core.MultipartFormRequest;
 
     /// <inheritdoc />
-    [Obsolete("Use PayabliApi.Core.StreamRequest instead.")]
-    internal abstract record StreamApiRequest : PayabliApi.Core.StreamRequest;
+    [Obsolete("Use global::PayabliApi.Core.StreamRequest instead.")]
+    internal abstract record StreamApiRequest : global::PayabliApi.Core.StreamRequest;
 }

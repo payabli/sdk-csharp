@@ -14,6 +14,9 @@ public record ResponseDataRefunds : IJsonOnDeserialized
     [JsonPropertyName("authCode")]
     public required string AuthCode { get; set; }
 
+    [JsonPropertyName("expectedProcessingDateTime")]
+    public DateTime? ExpectedProcessingDateTime { get; set; }
+
     /// <summary>
     /// This field isn't applicable to refund operations.
     /// </summary>

@@ -57,9 +57,7 @@ public partial class VendorClient
     ///             BankAccountHolderType = BankAccountHolderType.Business,
     ///             BankAccountFunction = 0,
     ///         },
-    ///         PaymentMethod = new VendorPaymentMethod(
-    ///             new VendorPaymentMethod.Managed(new ManagedPaymentMethod())
-    ///         ),
+    ///         PaymentMethod = "managed",
     ///         VendorStatus = 1,
     ///         RemitAddress1 = "123 Walnut Street",
     ///         RemitAddress2 = "Suite 900",

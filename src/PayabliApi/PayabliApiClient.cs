@@ -15,6 +15,7 @@ public partial class PayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
+                { "User-Agent", "Payabli.SDK/0.0.279" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -26,7 +27,6 @@ public partial class PayabliApiClient
             }
         }
         _client = new RawClient(clientOptions);
-        QueryTypes = new QueryTypesClient(_client);
         Bill = new BillClient(_client);
         Boarding = new BoardingClient(_client);
         ChargeBacks = new ChargeBacksClient(_client);
@@ -55,8 +55,6 @@ public partial class PayabliApiClient
         Vendor = new VendorClient(_client);
         Wallet = new WalletClient(_client);
     }
-
-    public QueryTypesClient QueryTypes { get; }
 
     public BillClient Bill { get; }
 

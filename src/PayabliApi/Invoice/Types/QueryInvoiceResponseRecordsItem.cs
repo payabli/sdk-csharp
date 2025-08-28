@@ -15,10 +15,10 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public required long InvoiceId { get; set; }
 
     [JsonPropertyName("customerId")]
-    public long? CustomerId { get; set; }
+    public required long CustomerId { get; set; }
 
     [JsonPropertyName("paypointId")]
-    public long? PaypointId { get; set; }
+    public required long PaypointId { get; set; }
 
     [JsonPropertyName("invoiceNumber")]
     public required string InvoiceNumber { get; set; }
@@ -87,7 +87,7 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public double? Discount { get; set; }
 
     [JsonPropertyName("invoiceAmount")]
-    public double? InvoiceAmount { get; set; }
+    public required double InvoiceAmount { get; set; }
 
     [JsonPropertyName("invoicePaidAmount")]
     public required double InvoicePaidAmount { get; set; }
@@ -195,7 +195,7 @@ public record QueryInvoiceResponseRecordsItem : IJsonOnDeserialized
     public required string PaypointEntryname { get; set; }
 
     [JsonPropertyName("ParentOrgId")]
-    public long? ParentOrgId { get; set; }
+    public required long ParentOrgId { get; set; }
 
     [JsonPropertyName("ParentOrgName")]
     public required string ParentOrgName { get; set; }

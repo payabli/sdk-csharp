@@ -7,7 +7,7 @@ namespace PayabliApi;
 public record ListTransfersRequestOrg
 {
     [JsonIgnore]
-    public long? OrgId { get; set; }
+    public required long OrgId { get; set; }
 
     [JsonIgnore]
     public ExportFormat? ExportFormat { get; set; }

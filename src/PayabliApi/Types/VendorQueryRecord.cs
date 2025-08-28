@@ -87,7 +87,7 @@ public record VendorQueryRecord : IJsonOnDeserialized
     public string? PayeeName2 { get; set; }
 
     [JsonPropertyName("PaymentMethod")]
-    public VendorPaymentMethod? PaymentMethod { get; set; }
+    public string? PaymentMethod { get; set; }
 
     [JsonPropertyName("PaypointDbaname")]
     public string? PaypointDbaname { get; set; }

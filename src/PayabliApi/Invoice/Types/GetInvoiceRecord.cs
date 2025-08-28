@@ -15,10 +15,10 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public required long InvoiceId { get; set; }
 
     [JsonPropertyName("customerId")]
-    public long? CustomerId { get; set; }
+    public required long CustomerId { get; set; }
 
     [JsonPropertyName("paypointId")]
-    public long? PaypointId { get; set; }
+    public required long PaypointId { get; set; }
 
     [JsonPropertyName("invoiceNumber")]
     public required string InvoiceNumber { get; set; }
@@ -66,7 +66,7 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public double? Discount { get; set; }
 
     [JsonPropertyName("invoiceAmount")]
-    public double? InvoiceAmount { get; set; }
+    public required double InvoiceAmount { get; set; }
 
     [JsonPropertyName("invoicePaidAmount")]
     public required double InvoicePaidAmount { get; set; }

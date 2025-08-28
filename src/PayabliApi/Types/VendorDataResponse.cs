@@ -213,7 +213,7 @@ public record VendorDataResponse : IJsonOnDeserialized
     public string? CustomerVendorAccount { get; set; }
 
     [JsonPropertyName("InternalReferenceId")]
-    public long? InternalReferenceId { get; set; }
+    public required long InternalReferenceId { get; set; }
 
     [JsonPropertyName("additionalData")]
     public Dictionary<string, string> AdditionalData { get; set; } =

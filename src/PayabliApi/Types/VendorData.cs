@@ -105,7 +105,7 @@ public record VendorData : IJsonOnDeserialized
     public string? PayeeName2 { get; set; }
 
     [JsonPropertyName("paymentMethod")]
-    public VendorPaymentMethod? PaymentMethod { get; set; }
+    public string? PaymentMethod { get; set; }
 
     [JsonPropertyName("phone")]
     public string? Phone { get; set; }

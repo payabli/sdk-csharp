@@ -18,7 +18,7 @@ public record Transfer : IJsonOnDeserialized
     public required int TransferId { get; set; }
 
     [JsonPropertyName("paypointId")]
-    public long? PaypointId { get; set; }
+    public required long PaypointId { get; set; }
 
     [JsonPropertyName("batchNumber")]
     public required string BatchNumber { get; set; }
@@ -35,9 +35,6 @@ public record Transfer : IJsonOnDeserialized
     [JsonPropertyName("batchRecords")]
     public int? BatchRecords { get; set; }
 
-    /// <summary>
-    /// Unique identifier for the transfer.
-    /// </summary>
     [JsonPropertyName("transferIdentifier")]
     public required string TransferIdentifier { get; set; }
 

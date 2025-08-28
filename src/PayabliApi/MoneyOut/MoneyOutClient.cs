@@ -30,9 +30,7 @@ public partial class MoneyOutClient
     ///             },
     ///             OrderDescription = "Window Painting",
     ///             PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
-    ///             PaymentMethod = new VendorPaymentMethod(
-    ///                 new VendorPaymentMethod.Managed(new ManagedPaymentMethod())
-    ///             ),
+    ///             PaymentMethod = new VendorPaymentMethod { Method = "managed" },
     ///             VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
     ///         },
     ///     }

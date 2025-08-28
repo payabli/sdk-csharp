@@ -33,7 +33,7 @@ public record GetPaidResponseData : IJsonOnDeserialized
     public required string CvvResponseText { get; set; }
 
     [JsonPropertyName("customerId")]
-    public long? CustomerId { get; set; }
+    public required long CustomerId { get; set; }
 
     [JsonPropertyName("methodReferenceId")]
     public string? MethodReferenceId { get; set; }

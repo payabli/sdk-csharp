@@ -5,26 +5,38 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// ACH payment method.
+/// Contact information structure.
 /// </summary>
 [Serializable]
-public record AchPaymentMethod : IJsonOnDeserialized
+public record VCardGetResponseContact : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Payment method type
+    /// Name of the contact.
     /// </summary>
-    [JsonPropertyName("method")]
-    public string Method { get; set; } = "ach";
+    [JsonPropertyName("ContactName")]
+    public string? ContactName { get; set; }
 
     /// <summary>
-    /// ID of the stored ACH payment method. Required when using a previously saved ACH method when the vendor has more than one saved method. See the [Payouts with saved ACH payment methods](/developers/developer-guides/pay-out-manage-payouts) section for more details.
+    /// Email of the contact.
     /// </summary>
-    [JsonPropertyName("storedMethodId")]
-    public string? StoredMethodId { get; set; }
+    [JsonPropertyName("ContactEmail")]
+    public string? ContactEmail { get; set; }
+
+    /// <summary>
+    /// Title of the contact.
+    /// </summary>
+    [JsonPropertyName("ContactTitle")]
+    public string? ContactTitle { get; set; }
+
+    /// <summary>
+    /// Phone number of the contact.
+    /// </summary>
+    [JsonPropertyName("ContactPhone")]
+    public string? ContactPhone { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -121,7 +121,12 @@ public partial class MoneyInClient
     }
 
     /// <summary>
-    /// Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated and will be sunset on November 24, 2025. Migrate to [POST `/capture/{transId}`](/api-reference/moneyin/capture-an-authorized-transaction)`.
+    /// &lt;/Warning&gt;
+    ///
+    ///   Capture an [authorized
+    /// transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
@@ -144,6 +149,86 @@ public partial class MoneyInClient
                         ValueConvert.ToPathParameterString(transId),
                         ValueConvert.ToPathParameterString(amount)
                     ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<CaptureResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
+    ///
+    /// You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyIn.CaptureAuthAsync(
+    ///     "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+    ///     new CaptureRequest
+    ///     {
+    ///         PaymentDetails = new CapturePaymentDetails { TotalAmount = 105, ServiceFee = 5 },
+    ///     }
+    /// );
+    /// </code></example>
+    public async Task<CaptureResponse> CaptureAuthAsync(
+        string transId,
+        CaptureRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "MoneyIn/capture/{0}",
+                        ValueConvert.ToPathParameterString(transId)
+                    ),
+                    Body = request,
                     Options = options,
                 },
                 cancellationToken

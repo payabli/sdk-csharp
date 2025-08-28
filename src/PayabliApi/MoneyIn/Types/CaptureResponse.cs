@@ -21,7 +21,7 @@ public record CaptureResponse : IJsonOnDeserialized
     public string? PageIdentifier { get; set; }
 
     [JsonPropertyName("roomId")]
-    public long? RoomId { get; set; }
+    public required long RoomId { get; set; }
 
     [JsonPropertyName("isSuccess")]
     public required bool IsSuccess { get; set; }

@@ -12,28 +12,10 @@ public record VCardGetResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The initial amount loaded on the card.
+    /// Indicates if the virtual card was sent.
     /// </summary>
-    [JsonPropertyName("amount")]
-    public double? Amount { get; set; }
-
-    /// <summary>
-    /// Information about the associated customer, if applicable.
-    /// </summary>
-    [JsonPropertyName("associatedCustomer")]
-    public string? AssociatedCustomer { get; set; }
-
-    /// <summary>
-    /// Information about the associated vendor.
-    /// </summary>
-    [JsonPropertyName("associatedVendor")]
-    public VCardGetResponseAssociatedVendor? AssociatedVendor { get; set; }
-
-    /// <summary>
-    /// The masked number of the card.
-    /// </summary>
-    [JsonPropertyName("cardNumber")]
-    public string? CardNumber { get; set; }
+    [JsonPropertyName("vcardSent")]
+    public bool? VcardSent { get; set; }
 
     /// <summary>
     /// A unique token identifier for the card.
@@ -42,16 +24,10 @@ public record VCardGetResponse : IJsonOnDeserialized
     public string? CardToken { get; set; }
 
     /// <summary>
-    /// The current balance available on the card.
+    /// The masked number of the card.
     /// </summary>
-    [JsonPropertyName("currentBalance")]
-    public double? CurrentBalance { get; set; }
-
-    /// <summary>
-    /// The current number of times the card has been used.
-    /// </summary>
-    [JsonPropertyName("currentNumberOfUses")]
-    public int? CurrentNumberOfUses { get; set; }
+    [JsonPropertyName("cardNumber")]
+    public string? CardNumber { get; set; }
 
     /// <summary>
     /// Masked Card Verification Code.
@@ -60,22 +36,28 @@ public record VCardGetResponse : IJsonOnDeserialized
     public string? Cvc { get; set; }
 
     /// <summary>
-    /// The creation date of the record.
+    /// The expiration date of the card.
     /// </summary>
-    [JsonPropertyName("dateCreated")]
-    public string? DateCreated { get; set; }
+    [JsonPropertyName("expirationDate")]
+    public string? ExpirationDate { get; set; }
 
     /// <summary>
-    /// The last modified date of the record.
+    /// The current status of the card.
     /// </summary>
-    [JsonPropertyName("dateModified")]
-    public string? DateModified { get; set; }
+    [JsonPropertyName("status")]
+    public string? Status { get; set; }
 
     /// <summary>
-    /// Indicates if only the exact amount is allowed for transactions.
+    /// The initial amount loaded on the card.
     /// </summary>
-    [JsonPropertyName("exactAmount")]
-    public bool? ExactAmount { get; set; }
+    [JsonPropertyName("amount")]
+    public double? Amount { get; set; }
+
+    /// <summary>
+    /// The current balance available on the card.
+    /// </summary>
+    [JsonPropertyName("currentBalance")]
+    public double? CurrentBalance { get; set; }
 
     /// <summary>
     /// The set limit for expenses.
@@ -90,25 +72,34 @@ public record VCardGetResponse : IJsonOnDeserialized
     public string? ExpenseLimitPeriod { get; set; }
 
     /// <summary>
-    /// The expiration date of the card.
-    /// </summary>
-    [JsonPropertyName("expirationDate")]
-    public string? ExpirationDate { get; set; }
-
-    [JsonPropertyName("externalPaypointID")]
-    public string? ExternalPaypointId { get; set; }
-
-    /// <summary>
     /// Maximum number of uses allowed for the card.
     /// </summary>
     [JsonPropertyName("maxNumberOfUses")]
     public int? MaxNumberOfUses { get; set; }
 
     /// <summary>
+    /// The current number of times the card has been used.
+    /// </summary>
+    [JsonPropertyName("currentNumberOfUses")]
+    public int? CurrentNumberOfUses { get; set; }
+
+    /// <summary>
+    /// Indicates if only the exact amount is allowed for transactions.
+    /// </summary>
+    [JsonPropertyName("exactAmount")]
+    public bool? ExactAmount { get; set; }
+
+    /// <summary>
     /// Merchant Category Code, if applicable.
     /// </summary>
     [JsonPropertyName("mcc")]
     public string? Mcc { get; set; }
+
+    /// <summary>
+    /// Transaction Category Code, if applicable.
+    /// </summary>
+    [JsonPropertyName("tcc")]
+    public string? Tcc { get; set; }
 
     /// <summary>
     /// A miscellaneous field for additional information.
@@ -123,6 +114,30 @@ public record VCardGetResponse : IJsonOnDeserialized
     public string? Misc2 { get; set; }
 
     /// <summary>
+    /// The creation date of the record.
+    /// </summary>
+    [JsonPropertyName("dateCreated")]
+    public string? DateCreated { get; set; }
+
+    /// <summary>
+    /// The last modified date of the record.
+    /// </summary>
+    [JsonPropertyName("dateModified")]
+    public string? DateModified { get; set; }
+
+    /// <summary>
+    /// Information about the associated vendor.
+    /// </summary>
+    [JsonPropertyName("associatedVendor")]
+    public VCardGetResponseAssociatedVendor? AssociatedVendor { get; set; }
+
+    /// <summary>
+    /// Information about the associated customer, if applicable.
+    /// </summary>
+    [JsonPropertyName("associatedCustomer")]
+    public string? AssociatedCustomer { get; set; }
+
+    /// <summary>
     /// Name of the parent organization.
     /// </summary>
     [JsonPropertyName("ParentOrgName")]
@@ -135,34 +150,19 @@ public record VCardGetResponse : IJsonOnDeserialized
     public string? PaypointDbaname { get; set; }
 
     /// <summary>
-    /// Entry name for the Paypoint, if applicable.
-    /// </summary>
-    [JsonPropertyName("PaypointEntryname")]
-    public string? PaypointEntryname { get; set; }
-
-    /// <summary>
     /// The legal name of the Paypoint.
     /// </summary>
     [JsonPropertyName("PaypointLegalname")]
     public string? PaypointLegalname { get; set; }
 
     /// <summary>
-    /// The current status of the card.
+    /// Entry name for the Paypoint, if applicable.
     /// </summary>
-    [JsonPropertyName("status")]
-    public string? Status { get; set; }
+    [JsonPropertyName("PaypointEntryname")]
+    public string? PaypointEntryname { get; set; }
 
-    /// <summary>
-    /// Transaction Category Code, if applicable.
-    /// </summary>
-    [JsonPropertyName("tcc")]
-    public string? Tcc { get; set; }
-
-    /// <summary>
-    /// Indicates if the virtual card was sent.
-    /// </summary>
-    [JsonPropertyName("vcardSent")]
-    public bool? VcardSent { get; set; }
+    [JsonPropertyName("externalPaypointID")]
+    public string? ExternalPaypointId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

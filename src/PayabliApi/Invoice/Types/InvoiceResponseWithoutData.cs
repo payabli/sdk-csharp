@@ -34,7 +34,7 @@ public record InvoiceResponseWithoutData : IJsonOnDeserialized
     public string? Pageidentifier { get; set; }
 
     [JsonPropertyName("roomId")]
-    public long? RoomId { get; set; }
+    public required long RoomId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -120,7 +120,7 @@ public record BatchDetailResponseRecord : IJsonOnDeserialized
     public required long RetrievalId { get; set; }
 
     [JsonPropertyName("ChargebackId")]
-    public long? ChargebackId { get; set; }
+    public required long ChargebackId { get; set; }
 
     [JsonPropertyName("AchHolderType")]
     public required AchHolderType AchHolderType { get; set; }
@@ -132,25 +132,25 @@ public record BatchDetailResponseRecord : IJsonOnDeserialized
     public required string ConnectorName { get; set; }
 
     [JsonPropertyName("EntrypageId")]
-    public long? EntrypageId { get; set; }
+    public required long EntrypageId { get; set; }
 
     [JsonPropertyName("FeeAmount")]
     public required double FeeAmount { get; set; }
 
     [JsonPropertyName("OrgId")]
-    public long? OrgId { get; set; }
+    public required long OrgId { get; set; }
 
     [JsonPropertyName("PayorId")]
-    public long? PayorId { get; set; }
+    public required long PayorId { get; set; }
 
     [JsonPropertyName("PaypointId")]
-    public long? PaypointId { get; set; }
+    public required long PaypointId { get; set; }
 
     [JsonPropertyName("PendingFeeAmount")]
     public double? PendingFeeAmount { get; set; }
 
     [JsonPropertyName("RefundId")]
-    public long? RefundId { get; set; }
+    public required long RefundId { get; set; }
 
     [JsonPropertyName("ReturnedId")]
     public required long ReturnedId { get; set; }

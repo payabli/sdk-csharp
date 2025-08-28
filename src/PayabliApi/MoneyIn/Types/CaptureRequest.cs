@@ -4,15 +4,15 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-/// <summary>
-/// Virtual card payment method.
-/// </summary>
 [Serializable]
-public record VCardPaymentMethod : IJsonOnDeserialized
+public record CaptureRequest : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("paymentDetails")]
+    public required CapturePaymentDetails PaymentDetails { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
