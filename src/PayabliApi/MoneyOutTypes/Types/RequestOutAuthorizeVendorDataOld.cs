@@ -8,7 +8,7 @@ namespace PayabliApi;
 /// Object containing vendor data.
 /// </summary>
 [Serializable]
-public record RequestOutAuthorizeVendorData : IJsonOnDeserialized
+public record RequestOutAuthorizeVendorDataOld : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

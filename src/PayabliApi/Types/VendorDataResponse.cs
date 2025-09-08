@@ -86,9 +86,6 @@ public record VendorDataResponse : IJsonOnDeserialized
     [JsonPropertyName("Mcc")]
     public required string Mcc { get; set; }
 
-    /// <summary>
-    /// Additional location code used to identify the vendor.
-    /// </summary>
     [JsonPropertyName("LocationCode")]
     public required string LocationCode { get; set; }
 
@@ -111,10 +108,10 @@ public record VendorDataResponse : IJsonOnDeserialized
     public required VendorDataResponsePaymentMethod PaymentMethod { get; set; }
 
     [JsonPropertyName("VendorStatus")]
-    public int? VendorStatus { get; set; }
+    public required int VendorStatus { get; set; }
 
     [JsonPropertyName("VendorId")]
-    public int? VendorId { get; set; }
+    public required int VendorId { get; set; }
 
     /// <summary>
     /// Vendor enrollment status

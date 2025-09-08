@@ -4,24 +4,30 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Object containing vendor's bank information.
+/// </summary>
 [Serializable]
-public record PayabliApiResponse11 : IJsonOnDeserialized
+public record RequestOutAuthorizeVendorBillingData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("isSuccess")]
-    public bool? IsSuccess { get; set; }
+    [JsonPropertyName("bankName")]
+    public string? BankName { get; set; }
 
-    [JsonPropertyName("pageIdentifier")]
-    public string? PageIdentifier { get; set; }
+    [JsonPropertyName("routingAccount")]
+    public string? RoutingAccount { get; set; }
 
-    [JsonPropertyName("responseData")]
-    public PayabliApiResponse11ResponseData? ResponseData { get; set; }
+    [JsonPropertyName("accountNumber")]
+    public string? AccountNumber { get; set; }
 
-    [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    [JsonPropertyName("typeAccount")]
+    public TypeAccount? TypeAccount { get; set; }
+
+    [JsonPropertyName("bankAccountHolderName")]
+    public string? BankAccountHolderName { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -146,9 +146,6 @@ public record BillQueryRecord2 : IJsonOnDeserialized
     [JsonPropertyName("ParentOrgName")]
     public string? ParentOrgName { get; set; }
 
-    /// <summary>
-    /// Payment identifier.
-    /// </summary>
     [JsonPropertyName("PaymentId")]
     public string? PaymentId { get; set; }
 

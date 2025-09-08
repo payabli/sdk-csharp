@@ -4,7 +4,7 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record RequestOutAuthorize
+public record MoneyOutTypesRequestOutAuthorize
 {
     /// <summary>
     /// When `true`, the authorization bypasses the requirement for unique bills, identified by vendor invoice number. This allows you to make more than one payout authorization for a bill, like a split payment.

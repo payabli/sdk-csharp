@@ -19,14 +19,14 @@ public partial class MoneyOutClient
     /// </summary>
     /// <example><code>
     /// await client.MoneyOut.AuthorizeOutAsync(
-    ///     new RequestOutAuthorize
+    ///     new MoneyOutTypesRequestOutAuthorize
     ///     {
     ///         Body = new AuthorizePayoutBody
     ///         {
     ///             EntryPoint = "48acde49",
-    ///             InvoiceData = new List&lt;BillPayOutDataRequest&gt;()
+    ///             InvoiceData = new List&lt;RequestOutAuthorizeInvoiceData&gt;()
     ///             {
-    ///                 new BillPayOutDataRequest { BillId = 54323 },
+    ///                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
     ///             },
     ///             OrderDescription = "Window Painting",
     ///             PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
@@ -36,8 +36,8 @@ public partial class MoneyOutClient
     ///     }
     /// );
     /// </code></example>
-    public async Task<PayabliApiResponse11> AuthorizeOutAsync(
-        RequestOutAuthorize request,
+    public async Task<AuthCapturePayoutResponse> AuthorizeOutAsync(
+        MoneyOutTypesRequestOutAuthorize request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -83,7 +83,7 @@ public partial class MoneyOutClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponse11>(responseBody)!;
+                return JsonUtils.Deserialize<AuthCapturePayoutResponse>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -346,7 +346,7 @@ public partial class MoneyOutClient
     /// <example><code>
     /// await client.MoneyOut.CaptureOutAsync("129-219", new CaptureOutRequest());
     /// </code></example>
-    public async Task<PayabliApiResponse11> CaptureOutAsync(
+    public async Task<AuthCapturePayoutResponse> CaptureOutAsync(
         string referenceId,
         CaptureOutRequest request,
         RequestOptions? options = null,
@@ -379,7 +379,7 @@ public partial class MoneyOutClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponse11>(responseBody)!;
+                return JsonUtils.Deserialize<AuthCapturePayoutResponse>(responseBody)!;
             }
             catch (JsonException e)
             {

@@ -98,9 +98,6 @@ public record VCardGetResponseAssociatedVendor : IJsonOnDeserialized
     [JsonPropertyName("Mcc")]
     public string? Mcc { get; set; }
 
-    /// <summary>
-    /// Unique location code for the vendor.
-    /// </summary>
     [JsonPropertyName("LocationCode")]
     public string? LocationCode { get; set; }
 

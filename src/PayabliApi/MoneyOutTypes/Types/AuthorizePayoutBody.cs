@@ -11,23 +11,20 @@ public record AuthorizePayoutBody : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("accountId")]
-    public string? AccountId { get; set; }
-
     [JsonPropertyName("entryPoint")]
     public required string EntryPoint { get; set; }
 
-    /// <summary>
-    /// Array of bills associated to the transaction
-    /// </summary>
-    [JsonPropertyName("invoiceData")]
-    public IEnumerable<BillPayOutDataRequest>? InvoiceData { get; set; }
+    [JsonPropertyName("source")]
+    public string? Source { get; set; }
+
+    [JsonPropertyName("orderId")]
+    public string? OrderId { get; set; }
 
     [JsonPropertyName("orderDescription")]
     public string? OrderDescription { get; set; }
 
-    [JsonPropertyName("orderId")]
-    public string? OrderId { get; set; }
+    [JsonPropertyName("paymentMethod")]
+    public required VendorPaymentMethod PaymentMethod { get; set; }
 
     /// <summary>
     /// Object containing payment details.
@@ -35,23 +32,32 @@ public record AuthorizePayoutBody : IJsonOnDeserialized
     [JsonPropertyName("paymentDetails")]
     public required RequestOutAuthorizePaymentDetails PaymentDetails { get; set; }
 
-    [JsonPropertyName("paymentMethod")]
-    public VendorPaymentMethod? PaymentMethod { get; set; }
+    /// <summary>
+    /// Object containing vendor data.
+    /// &lt;Note&gt;
+    ///   When creating a new vendor in a payout authorization, the system first checks `billingData` for the vendor's billing information.
+    ///   If `billingData` is empty, it falls back to the `paymentMethod` object information.
+    ///   For existing vendors, `paymentMethod` is ignored unless a `storedMethodId` is provided.
+    /// &lt;/Note&gt;
+    /// </summary>
+    [JsonPropertyName("vendorData")]
+    public required RequestOutAuthorizeVendorData VendorData { get; set; }
 
-    [JsonPropertyName("source")]
-    public string? Source { get; set; }
+    /// <summary>
+    /// Array of bills associated to the transaction
+    /// </summary>
+    [JsonPropertyName("invoiceData")]
+    public IEnumerable<RequestOutAuthorizeInvoiceData> InvoiceData { get; set; } =
+        new List<RequestOutAuthorizeInvoiceData>();
+
+    [JsonPropertyName("accountId")]
+    public string? AccountId { get; set; }
 
     [JsonPropertyName("subdomain")]
     public string? Subdomain { get; set; }
 
     [JsonPropertyName("subscriptionId")]
     public long? SubscriptionId { get; set; }
-
-    /// <summary>
-    /// Object containing vendor data.
-    /// </summary>
-    [JsonPropertyName("vendorData")]
-    public required RequestOutAuthorizeVendorData VendorData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

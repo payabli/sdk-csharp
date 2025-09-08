@@ -5,7 +5,7 @@ namespace PayabliApi;
 /// </summary>
 [Serializable]
 public class CaptureError(PayabliApiResponseError400 body)
-    : PayabliApiApiException("CaptureError", 400, body)
+    : PayabliApiApiException("CaptureError", 423, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

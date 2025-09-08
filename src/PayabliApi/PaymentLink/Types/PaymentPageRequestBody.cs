@@ -1,25 +1,15 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
 [Serializable]
-public record PayLinkData
+public record PaymentPageRequestBody : IJsonOnDeserialized
 {
-    /// <summary>
-    /// Indicates whether customer can modify the payment amount. A value of `true` means the amount isn't modifiable, a value `false` means the payor can modify the amount to pay.
-    /// </summary>
-    [JsonIgnore]
-    public bool? AmountFixed { get; set; }
-
-    /// <summary>
-    /// List of recipient email addresses. When there is more than one, separate them by a semicolon (;).
-    /// </summary>
-    [JsonIgnore]
-    public string? Mail2 { get; set; }
-
-    [JsonIgnore]
-    public string? IdempotencyKey { get; set; }
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
 
     /// <summary>
     /// ContactUs section of payment link page
@@ -86,6 +76,12 @@ public record PayLinkData
     /// </summary>
     [JsonPropertyName("settings")]
     public PagelinkSetting? Settings { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()
