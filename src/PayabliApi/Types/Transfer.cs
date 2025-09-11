@@ -69,6 +69,30 @@ public record Transfer : IJsonOnDeserialized
     public string? PaypointLogo { get; set; }
 
     /// <summary>
+    /// The parent organization name.
+    /// </summary>
+    [JsonPropertyName("parentOrgName")]
+    public string? ParentOrgName { get; set; }
+
+    /// <summary>
+    /// The parent organization ID.
+    /// </summary>
+    [JsonPropertyName("parentOrgId")]
+    public int? ParentOrgId { get; set; }
+
+    /// <summary>
+    /// The parent organization logo URL.
+    /// </summary>
+    [JsonPropertyName("parentOrgLogo")]
+    public string? ParentOrgLogo { get; set; }
+
+    /// <summary>
+    /// The external paypoint ID.
+    /// </summary>
+    [JsonPropertyName("externalPaypointId")]
+    public string? ExternalPaypointId { get; set; }
+
+    /// <summary>
     /// Bank account information for the transfer.
     /// </summary>
     [JsonPropertyName("bankAccount")]

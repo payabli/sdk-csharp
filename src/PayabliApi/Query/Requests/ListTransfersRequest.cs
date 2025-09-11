@@ -54,6 +54,9 @@ public record ListTransfersRequest
     ///   - `bankAccountNumber` (ct, nct, ne, eq)
     ///   - `bankRoutingNumber` (ct, nct, ne, eq)
     ///   - `batchCurrency` (in, nin, ne, eq)
+    ///   - `parentOrgName` (ct, nct, ne, eq)
+    ///   - `parentOrgId` (ct, nct, ne, eq)
+    ///   - `externalPaypointID` (ct, nct)
     /// </summary>
     [JsonIgnore]
     public Dictionary<string, string?>? Parameters { get; set; }

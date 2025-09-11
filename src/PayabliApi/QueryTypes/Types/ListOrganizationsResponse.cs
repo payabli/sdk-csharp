@@ -12,10 +12,11 @@ public record ListOrganizationsResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("Records")]
-    public IEnumerable<OrganizationQueryRecord>? Records { get; set; }
+    public IEnumerable<OrganizationQueryRecord> Records { get; set; } =
+        new List<OrganizationQueryRecord>();
 
     [JsonPropertyName("Summary")]
-    public QuerySummary? Summary { get; set; }
+    public required QuerySummary Summary { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -15,13 +15,14 @@ public record QueryTransferDetailResponse : IJsonOnDeserialized
     /// List of transfer detail records
     /// </summary>
     [JsonPropertyName("Records")]
-    public IEnumerable<TransferDetailRecord>? Records { get; set; }
+    public IEnumerable<TransferDetailRecord> Records { get; set; } =
+        new List<TransferDetailRecord>();
 
     /// <summary>
     /// Summary of the transfer details query
     /// </summary>
     [JsonPropertyName("Summary")]
-    public QueryTransferSummary? Summary { get; set; }
+    public required QueryTransferSummary Summary { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

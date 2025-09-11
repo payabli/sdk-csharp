@@ -66,6 +66,13 @@ public record QueryTransferSummary : IJsonOnDeserialized
     public double? ServiceFees { get; set; }
 
     /// <summary>
+    /// The net batch amount is the gross batch amount minus any returns, refunds,
+    /// billing and fees items, chargebacks, adjustments, and third party payments.
+    /// </summary>
+    [JsonPropertyName("netBatchAmount")]
+    public double? NetBatchAmount { get; set; }
+
+    /// <summary>
     /// The transfer amount is the net batch amount plus or minus any returns, refunds,  billing and fees items, chargebacks, adjustments, and third party payments.  This is the amount from the batch that is transferred to the merchant bank account.
     /// </summary>
     [JsonPropertyName("transferAmount")]

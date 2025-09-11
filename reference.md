@@ -6936,7 +6936,7 @@ await client.MoneyOut.AuthorizeOutAsync(
             },
             OrderDescription = "Window Painting",
             PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
-            PaymentMethod = new VendorPaymentMethod { Method = "managed" },
+            PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
             VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
         },
     }

@@ -5,7 +5,7 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// Object containing vendor's bank information.
+/// Object containing vendor's bank information. This object is deprecated for this endpoint. Use the `paymentMethod` object in payout authorize requests instead.
 /// </summary>
 [Serializable]
 public record RequestOutAuthorizeVendorBillingData : IJsonOnDeserialized

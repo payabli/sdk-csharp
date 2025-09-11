@@ -24,7 +24,7 @@ public record AuthorizePayoutBody : IJsonOnDeserialized
     public string? OrderDescription { get; set; }
 
     [JsonPropertyName("paymentMethod")]
-    public required VendorPaymentMethod PaymentMethod { get; set; }
+    public required AuthorizePaymentMethod PaymentMethod { get; set; }
 
     /// <summary>
     /// Object containing payment details.
@@ -34,11 +34,6 @@ public record AuthorizePayoutBody : IJsonOnDeserialized
 
     /// <summary>
     /// Object containing vendor data.
-    /// &lt;Note&gt;
-    ///   When creating a new vendor in a payout authorization, the system first checks `billingData` for the vendor's billing information.
-    ///   If `billingData` is empty, it falls back to the `paymentMethod` object information.
-    ///   For existing vendors, `paymentMethod` is ignored unless a `storedMethodId` is provided.
-    /// &lt;/Note&gt;
     /// </summary>
     [JsonPropertyName("vendorData")]
     public required RequestOutAuthorizeVendorData VendorData { get; set; }
