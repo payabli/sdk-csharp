@@ -45,7 +45,7 @@ public record Transfer : IJsonOnDeserialized
     public required int BatchId { get; set; }
 
     /// <summary>
-    /// The paypoint entry name.
+    /// The paypoint entryname.
     /// </summary>
     [JsonPropertyName("paypointEntryName")]
     public string? PaypointEntryName { get; set; }
@@ -81,6 +81,12 @@ public record Transfer : IJsonOnDeserialized
     public int? ParentOrgId { get; set; }
 
     /// <summary>
+    /// The parent organization entryname.
+    /// </summary>
+    [JsonPropertyName("parentOrgEntryName")]
+    public string? ParentOrgEntryName { get; set; }
+
+    /// <summary>
     /// The parent organization logo URL.
     /// </summary>
     [JsonPropertyName("parentOrgLogo")]
@@ -89,7 +95,7 @@ public record Transfer : IJsonOnDeserialized
     /// <summary>
     /// The external paypoint ID.
     /// </summary>
-    [JsonPropertyName("externalPaypointId")]
+    [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
 
     /// <summary>

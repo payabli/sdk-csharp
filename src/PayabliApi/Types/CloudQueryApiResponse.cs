@@ -24,7 +24,7 @@ public record CloudQueryApiResponse : IJsonOnDeserialized
     public IEnumerable<PoiDevice>? ResponseList { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

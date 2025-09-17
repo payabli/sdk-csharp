@@ -24,7 +24,7 @@ public record PayabliApiResponse00 : IJsonOnDeserialized
     public Dictionary<string, object?>? ResponseData { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

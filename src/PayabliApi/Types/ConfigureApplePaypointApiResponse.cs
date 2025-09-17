@@ -24,7 +24,7 @@ public record ConfigureApplePaypointApiResponse : IJsonOnDeserialized
     public ApplePayPaypointRegistrationData? ResponseData { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     /// <summary>
     /// Field not in use on this endpoint

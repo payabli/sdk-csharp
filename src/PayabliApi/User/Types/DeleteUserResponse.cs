@@ -12,7 +12,7 @@ public record DeleteUserResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

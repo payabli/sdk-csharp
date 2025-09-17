@@ -128,6 +128,12 @@ public record VCardRecord : IJsonOnDeserialized
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
 
+    /// <summary>
+    /// The paypoint's unique identifier.
+    /// </summary>
+    [JsonPropertyName("paypointId")]
+    public int? PaypointId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

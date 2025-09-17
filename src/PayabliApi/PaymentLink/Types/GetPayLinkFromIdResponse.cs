@@ -18,7 +18,7 @@ public record GetPayLinkFromIdResponse : IJsonOnDeserialized
     public bool? IsSuccess { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

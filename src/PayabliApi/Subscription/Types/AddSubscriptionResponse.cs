@@ -18,7 +18,7 @@ public record AddSubscriptionResponse : IJsonOnDeserialized
     public long? CustomerId { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonPropertyName("isSuccess")]
     public bool? IsSuccess { get; set; }

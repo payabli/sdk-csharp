@@ -28,7 +28,7 @@ public record PayabliApiResponse00Responsedatanonobject : IJsonOnDeserialized
     public bool? IsSuccess { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonPropertyName("responseData")]
     public OneOf<string, int>? ResponseData { get; set; }

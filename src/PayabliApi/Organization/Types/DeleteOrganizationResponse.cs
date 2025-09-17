@@ -22,7 +22,7 @@ public record DeleteOrganizationResponse : IJsonOnDeserialized
     public OneOf<string, int>? ResponseData { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -27,7 +27,7 @@ public record GetBillResponse : IJsonOnDeserialized
     public bool? IsSuccess { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonPropertyName("responseData")]
     public BillResponseData? ResponseData { get; set; }

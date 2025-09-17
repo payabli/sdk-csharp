@@ -15,7 +15,7 @@ public partial class PayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/0.0.282" },
+                { "User-Agent", "Payabli.SDK/0.0.283" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -41,6 +41,7 @@ public partial class PayabliApiClient
         MoneyIn = new MoneyInClient(_client);
         MoneyOut = new MoneyOutClient(_client);
         Notification = new NotificationClient(_client);
+        Notificationlogs = new NotificationlogsClient(_client);
         Ocr = new OcrClient(_client);
         Organization = new OrganizationClient(_client);
         PaymentLink = new PaymentLinkClient(_client);
@@ -83,6 +84,8 @@ public partial class PayabliApiClient
     public MoneyOutClient MoneyOut { get; }
 
     public NotificationClient Notification { get; }
+
+    public NotificationlogsClient Notificationlogs { get; }
 
     public OcrClient Ocr { get; }
 

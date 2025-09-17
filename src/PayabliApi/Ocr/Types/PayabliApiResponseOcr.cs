@@ -12,13 +12,13 @@ public record PayabliApiResponseOcr : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("isSuccess")]
-    public bool? IsSuccess { get; set; }
+    public required bool IsSuccess { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonPropertyName("responseCode")]
-    public int? ResponseCode { get; set; }
+    public required int ResponseCode { get; set; }
 
     /// <summary>
     /// Details of the OCR processing result

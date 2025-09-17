@@ -12,7 +12,7 @@ public record PayabliApiResponsePaymentLinks : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("isSuccess")]
-    public bool? IsSuccess { get; set; }
+    public required bool IsSuccess { get; set; }
 
     /// <summary>
     /// If `isSuccess` = true, this contains the payment link identifier. If `isSuccess` = false, this contains the reason of the error.
@@ -21,7 +21,7 @@ public record PayabliApiResponsePaymentLinks : IJsonOnDeserialized
     public string? ResponseData { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

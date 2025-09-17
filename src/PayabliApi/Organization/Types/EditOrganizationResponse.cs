@@ -19,7 +19,7 @@ public record EditOrganizationResponse : IJsonOnDeserialized
     public string? PageIdentifier { get; set; }
 
     [JsonPropertyName("responseCode")]
-    public int? ResponseCode { get; set; }
+    public required int ResponseCode { get; set; }
 
     /// <summary>
     /// Returns the organization ID.
@@ -28,7 +28,7 @@ public record EditOrganizationResponse : IJsonOnDeserialized
     public OneOf<string, int>? ResponseData { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

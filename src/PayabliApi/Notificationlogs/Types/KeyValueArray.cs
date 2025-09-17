@@ -5,20 +5,17 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record PayabliApiResponseCustomerQuery : IJsonOnDeserialized
+public record KeyValueArray : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("isSuccess")]
-    public bool? IsSuccess { get; set; }
+    [JsonPropertyName("key")]
+    public string? Key { get; set; }
 
-    [JsonPropertyName("responseData")]
-    public CustomerQueryRecords? ResponseData { get; set; }
-
-    [JsonPropertyName("responseText")]
-    public required string ResponseText { get; set; }
+    [JsonPropertyName("value")]
+    public IEnumerable<string>? Value { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

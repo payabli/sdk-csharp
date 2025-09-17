@@ -25,7 +25,7 @@ public record BillResponse : IJsonOnDeserialized
     public bool? IsSuccess { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     /// <summary>
     /// If `isSuccess` = true, this contains the bill identifier. If `isSuccess` = false, this contains the reason for the error.

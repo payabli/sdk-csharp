@@ -18,7 +18,7 @@ public record PayabliApiResponse0000 : IJsonOnDeserialized
     public bool? IsSuccess { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonPropertyName("pageIdentifier")]
     public string? PageIdentifier { get; set; }

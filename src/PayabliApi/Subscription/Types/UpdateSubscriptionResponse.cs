@@ -26,7 +26,7 @@ public record UpdateSubscriptionResponse : IJsonOnDeserialized
     public string? ResponseData { get; set; }
 
     [JsonPropertyName("responseText")]
-    public string? ResponseText { get; set; }
+    public required string ResponseText { get; set; }
 
     [JsonPropertyName("customerId")]
     public long? CustomerId { get; set; }
