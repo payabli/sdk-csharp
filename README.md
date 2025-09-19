@@ -7,7 +7,7 @@ The Payabli C# library provides convenient access to the Payabli APIs from C#.
 
 ## Documentation
 
-API reference documentation is available [here](https://docs.payabli.com/).
+API reference documentation is available [here](https://docs.payabli.com).
 
 ## Requirements
 
