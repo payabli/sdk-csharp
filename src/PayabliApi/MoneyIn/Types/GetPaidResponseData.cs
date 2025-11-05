@@ -14,6 +14,12 @@ public record GetPaidResponseData : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Details of the transaction. Present only if `includeDetails` query parameter is set to `true` in the request.
+    /// </summary>
+    [JsonPropertyName("transactionDetails")]
+    public TransactionDetailRecord? TransactionDetails { get; set; }
+
     [JsonPropertyName("authCode")]
     public string? AuthCode { get; set; }
 

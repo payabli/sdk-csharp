@@ -29,6 +29,18 @@ public record StatBasicQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("inTransactionsVolume")]
     public required double InTransactionsVolume { get; set; }
 
+    /// <summary>
+    /// Number of incoming wallet transactions
+    /// </summary>
+    [JsonPropertyName("inWalletTransactions")]
+    public required int InWalletTransactions { get; set; }
+
+    /// <summary>
+    /// Volume of incoming wallet transactions
+    /// </summary>
+    [JsonPropertyName("inWalletVolume")]
+    public required double InWalletVolume { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

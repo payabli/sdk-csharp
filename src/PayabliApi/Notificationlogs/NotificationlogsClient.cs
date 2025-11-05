@@ -1,7 +1,4 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
-using global::System.Threading.Tasks;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -49,9 +46,9 @@ public partial class NotificationlogsClient
         {
             _query["PageSize"] = request.PageSize.Value.ToString();
         }
-        if (request.Skip != null)
+        if (request.Page != null)
         {
-            _query["Skip"] = request.Skip.Value.ToString();
+            _query["Page"] = request.Page.Value.ToString();
         }
         var response = await _client
             .SendRequestAsync(
@@ -269,7 +266,7 @@ public partial class NotificationlogsClient
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task BulkRetryNotificationLogsAsync(
+    public async Task BulkRetryNotificationLogsAsync(
         IEnumerable<string> request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

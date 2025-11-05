@@ -6297,7 +6297,7 @@ await client.MoneyIn.CreditAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">DetailsAsync</a>(transId) -> TransactionQueryRecords</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">DetailsAsync</a>(transId) -> TransactionQueryRecordsCustomer</code></summary>
 <dl>
 <dd>
 
@@ -6542,7 +6542,7 @@ await client.MoneyIn.RefundAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 
 Amount to refund from original transaction, minus any service fees charged on the original transaction. 
 
-The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was $90 plus a $10 service fee, you can refund up to $90. 
+The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was \$90 plus a \$10 service fee, you can refund up to \$90.
 
 An amount equal to zero will refund the total amount authorized minus any service fee.
     
@@ -7087,7 +7087,7 @@ await client.MoneyOut.CancelOutAsync("129-219");
 <dl>
 <dd>
 
-Captures an array of authorized payout transactions for settlement.
+Captures an array of authorized payout transactions for settlement. The maximum number of transactions that can be captured in a single request is 500.
 </dd>
 </dl>
 </dd>
@@ -13323,68 +13323,6 @@ await client.Subscription.UpdateSubscriptionAsync(
 </details>
 
 ## Templates
-<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">AddTemplateAsync</a>(orgId, TemplateData { ... }) -> PayabliApiResponseTemplateId</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a boarding template in an organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Templates.AddTemplateAsync(123, new TemplateData());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**orgId:** `int` — The numeric identifier for organization, assigned by Payabli.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `TemplateData` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">DeleteTemplateAsync</a>(templateId) -> PayabliApiResponseTemplateId</code></summary>
 <dl>
 <dd>
@@ -13614,68 +13552,6 @@ await client.Templates.ListTemplatesAsync(
 <dd>
 
 **request:** `ListTemplatesRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">UpdateTemplateAsync</a>(templateId, TemplateData { ... }) -> PayabliApiResponseTemplateId</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates a boarding template by ID.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Templates.UpdateTemplateAsync(80, new TemplateData());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**templateId:** `double` — The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `TemplateData` 
     
 </dd>
 </dl>

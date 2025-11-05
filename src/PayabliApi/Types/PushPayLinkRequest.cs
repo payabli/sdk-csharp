@@ -67,7 +67,7 @@ public record PushPayLinkRequest
     public PayabliApi.PushPayLinkRequestEmail AsEmail() =>
         IsEmail
             ? (PayabliApi.PushPayLinkRequestEmail)Value!
-            : throw new Exception("PushPayLinkRequest.Channel is not 'email'");
+            : throw new System.Exception("PushPayLinkRequest.Channel is not 'email'");
 
     /// <summary>
     /// Returns the value as a <see cref="PayabliApi.PushPayLinkRequestSms"/> if <see cref="Channel"/> is 'sms', otherwise throws an exception.
@@ -76,7 +76,7 @@ public record PushPayLinkRequest
     public PayabliApi.PushPayLinkRequestSms AsSms() =>
         IsSms
             ? (PayabliApi.PushPayLinkRequestSms)Value!
-            : throw new Exception("PushPayLinkRequest.Channel is not 'sms'");
+            : throw new System.Exception("PushPayLinkRequest.Channel is not 'sms'");
 
     public T Match<T>(
         Func<PayabliApi.PushPayLinkRequestEmail, T> onEmail,
@@ -182,11 +182,11 @@ public record PushPayLinkRequest
 
             var value = discriminator switch
             {
-                "email" => json.Deserialize<PayabliApi.PushPayLinkRequestEmail>(options)
+                "email" => json.Deserialize<PayabliApi.PushPayLinkRequestEmail?>(options)
                     ?? throw new JsonException(
                         "Failed to deserialize PayabliApi.PushPayLinkRequestEmail"
                     ),
-                "sms" => json.Deserialize<PayabliApi.PushPayLinkRequestSms>(options)
+                "sms" => json.Deserialize<PayabliApi.PushPayLinkRequestSms?>(options)
                     ?? throw new JsonException(
                         "Failed to deserialize PayabliApi.PushPayLinkRequestSms"
                     ),
@@ -226,10 +226,11 @@ public record PushPayLinkRequest
 
         internal PayabliApi.PushPayLinkRequestEmail Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator Email(PayabliApi.PushPayLinkRequestEmail value) =>
-            new(value);
+        public static implicit operator PushPayLinkRequest.Email(
+            PayabliApi.PushPayLinkRequestEmail value
+        ) => new(value);
     }
 
     /// <summary>
@@ -245,8 +246,10 @@ public record PushPayLinkRequest
 
         internal PayabliApi.PushPayLinkRequestSms Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator Sms(PayabliApi.PushPayLinkRequestSms value) => new(value);
+        public static implicit operator PushPayLinkRequest.Sms(
+            PayabliApi.PushPayLinkRequestSms value
+        ) => new(value);
     }
 }

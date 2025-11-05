@@ -12,6 +12,12 @@ public record RequestPayment
     [JsonIgnore]
     public bool? ForceCustomerCreation { get; set; }
 
+    /// <summary>
+    /// When `true`, transactionDetails object is returned in the response. See a full example of the `transactionDetails` object in the [Transaction integration guide](/developers/developer-guides/money-in-transaction-add#includedetailstrue-response).
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeDetails { get; set; }
+
     [JsonIgnore]
     public string? IdempotencyKey { get; set; }
 

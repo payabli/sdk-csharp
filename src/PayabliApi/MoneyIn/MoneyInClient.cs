@@ -1,6 +1,4 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -388,7 +386,7 @@ public partial class MoneyInClient
     /// <example><code>
     /// await client.MoneyIn.DetailsAsync("45-as456777hhhhhhhhhh77777777-324");
     /// </code></example>
-    public async Task<TransactionQueryRecords> DetailsAsync(
+    public async Task<TransactionQueryRecordsCustomer> DetailsAsync(
         string transId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -414,7 +412,7 @@ public partial class MoneyInClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<TransactionQueryRecords>(responseBody)!;
+                return JsonUtils.Deserialize<TransactionQueryRecordsCustomer>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -495,6 +493,10 @@ public partial class MoneyInClient
             _query["forceCustomerCreation"] = JsonUtils.Serialize(
                 request.ForceCustomerCreation.Value
             );
+        }
+        if (request.IncludeDetails != null)
+        {
+            _query["includeDetails"] = JsonUtils.Serialize(request.IncludeDetails.Value);
         }
         var _headers = new Headers(new Dictionary<string, string>() { });
         if (request.IdempotencyKey != null)

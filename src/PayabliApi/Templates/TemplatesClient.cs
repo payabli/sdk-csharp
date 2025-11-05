@@ -1,6 +1,4 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -12,79 +10,6 @@ public partial class TemplatesClient
     internal TemplatesClient(RawClient client)
     {
         _client = client;
-    }
-
-    /// <summary>
-    /// Creates a boarding template in an organization.
-    /// </summary>
-    /// <example><code>
-    /// await client.Templates.AddTemplateAsync(123, new TemplateData());
-    /// </code></example>
-    public async Task<PayabliApiResponseTemplateId> AddTemplateAsync(
-        int orgId,
-        TemplateData request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = string.Format(
-                        "Templates/{0}",
-                        ValueConvert.ToPathParameterString(orgId)
-                    ),
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PayabliApiResponseTemplateId>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
-                        );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
     }
 
     /// <summary>
@@ -359,79 +284,6 @@ public partial class TemplatesClient
             try
             {
                 return JsonUtils.Deserialize<TemplateQueryResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
-                        );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    /// <summary>
-    /// Updates a boarding template by ID.
-    /// </summary>
-    /// <example><code>
-    /// await client.Templates.UpdateTemplateAsync(80, new TemplateData());
-    /// </code></example>
-    public async Task<PayabliApiResponseTemplateId> UpdateTemplateAsync(
-        double templateId,
-        TemplateData request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Put,
-                    Path = string.Format(
-                        "Templates/{0}",
-                        ValueConvert.ToPathParameterString(templateId)
-                    ),
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PayabliApiResponseTemplateId>(responseBody)!;
             }
             catch (JsonException e)
             {

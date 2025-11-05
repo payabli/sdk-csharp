@@ -10,10 +10,10 @@ public record SearchNotificationLogsRequest
     public int? PageSize { get; set; }
 
     /// <summary>
-    /// The number of records to skip before starting to collect the result set.
+    /// The page number to retrieve. Defaults to 1 if not provided.
     /// </summary>
     [JsonIgnore]
-    public int? Skip { get; set; }
+    public int? Page { get; set; }
 
     [JsonIgnore]
     public required NotificationLogSearchRequest Body { get; set; }

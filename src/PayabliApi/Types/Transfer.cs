@@ -177,6 +177,12 @@ public record Transfer : IJsonOnDeserialized
     public required double NetTransferAmount { get; set; }
 
     /// <summary>
+    /// The sum of each splitFundingAmount of each record in the transfer.
+    /// </summary>
+    [JsonPropertyName("splitAmount")]
+    public double? SplitAmount { get; set; }
+
+    /// <summary>
     /// List of events associated with the transfer.
     /// </summary>
     [JsonPropertyName("eventsData")]

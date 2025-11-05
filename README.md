@@ -40,7 +40,7 @@ await client.MoneyIn.GetpaidAsync(
             {
                 Cardcvv = "999",
                 Cardexp = "02/27",
-                CardHolder = "Kassiane Cassian",
+                CardHolder = "John Cassian",
                 Cardnumber = "4111111111111111",
                 Cardzip = "12345",
                 Initiator = "payor",
@@ -103,6 +103,35 @@ var response = await client.MoneyIn.GetpaidAsync(
         Timeout: TimeSpan.FromSeconds(3) // Override timeout to 3s
     }
 );
+```
+
+### Forward Compatible Enums
+
+This SDK uses forward-compatible enums that can handle unknown values gracefully.
+
+```csharp
+using PayabliApi;
+
+// Using a built-in value
+var achaccounttype = Achaccounttype.Checking;
+
+// Using a custom value
+var customAchaccounttype = Achaccounttype.FromCustom("custom-value");
+
+// Using in a switch statement
+switch (achaccounttype.Value)
+{
+    case Achaccounttype.Values.Checking:
+        Console.WriteLine("Checking");
+        break;
+    default:
+        Console.WriteLine($"Unknown value: {achaccounttype.Value}");
+        break;
+}
+
+// Explicit casting
+string achaccounttypeString = (string)Achaccounttype.Checking;
+Achaccounttype achaccounttypeFromString = (Achaccounttype)"Checking";
 ```
 
 ## Contributing

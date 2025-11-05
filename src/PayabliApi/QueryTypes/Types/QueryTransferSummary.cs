@@ -60,6 +60,12 @@ public record QueryTransferSummary : IJsonOnDeserialized
     public double? TotalNetAmountTransfer { get; set; }
 
     /// <summary>
+    /// The sum of each splitFundingAmount of each record in the transfer.
+    /// </summary>
+    [JsonPropertyName("splitAmount")]
+    public double? SplitAmount { get; set; }
+
+    /// <summary>
     /// Service fees are any pass-through fees charged to the customer at the time of payment.  These aren't transferred to the merchant when the batch is transferred and funded.
     /// </summary>
     [JsonPropertyName("serviceFees")]
