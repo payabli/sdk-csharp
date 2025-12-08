@@ -149,8 +149,8 @@ public partial class BillClient
     /// );
     /// </code></example>
     public async Task<BillResponse> DeleteAttachedFromBillAsync(
-        string filename,
         int idBill,
+        string filename,
         DeleteAttachedFromBillRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -372,8 +372,8 @@ public partial class BillClient
     /// );
     /// </code></example>
     public async Task<FileContent> GetAttachedFromBillAsync(
-        string filename,
         int idBill,
+        string filename,
         GetAttachedFromBillRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -885,8 +885,8 @@ public partial class BillClient
     /// await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest());
     /// </code></example>
     public async Task<SetApprovedBillResponse> SetApprovedBillAsync(
-        string approved,
         int idBill,
+        string approved,
         SetApprovedBillRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

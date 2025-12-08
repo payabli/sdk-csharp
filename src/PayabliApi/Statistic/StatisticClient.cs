@@ -21,14 +21,14 @@ public partial class StatisticClient
     ///     "m",
     ///     1,
     ///     "ytd",
-    ///     new BasicStatsRequest { EndDate = "2023-05-23", StartDate = "2023-03-23" }
+    ///     new BasicStatsRequest { EndDate = "2025-11-01", StartDate = "2025-11-30" }
     /// );
     /// </code></example>
-    public async Task<IEnumerable<StatBasicQueryRecord>> BasicStatsAsync(
-        long entryId,
+    public async Task<IEnumerable<StatBasicExtendedQueryRecord>> BasicStatsAsync(
+        string mode,
         string freq,
         int level,
-        string mode,
+        long entryId,
         BasicStatsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -71,7 +71,9 @@ public partial class StatisticClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<IEnumerable<StatBasicQueryRecord>>(responseBody)!;
+                return JsonUtils.Deserialize<IEnumerable<StatBasicExtendedQueryRecord>>(
+                    responseBody
+                )!;
             }
             catch (JsonException e)
             {
@@ -116,9 +118,9 @@ public partial class StatisticClient
     /// await client.Statistic.CustomerBasicStatsAsync(998, "m", "ytd", new CustomerBasicStatsRequest());
     /// </code></example>
     public async Task<IEnumerable<SubscriptionStatsQueryRecord>> CustomerBasicStatsAsync(
-        int customerId,
-        string freq,
         string mode,
+        string freq,
+        int customerId,
         CustomerBasicStatsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -199,9 +201,9 @@ public partial class StatisticClient
     /// await client.Statistic.SubStatsAsync(1000000, "30", 1, new SubStatsRequest());
     /// </code></example>
     public async Task<IEnumerable<StatBasicQueryRecord>> SubStatsAsync(
-        long entryId,
         string interval,
         int level,
+        long entryId,
         SubStatsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -280,9 +282,9 @@ public partial class StatisticClient
     /// await client.Statistic.VendorBasicStatsAsync("m", 1, "ytd", new VendorBasicStatsRequest());
     /// </code></example>
     public async Task<IEnumerable<StatisticsVendorQueryRecord>> VendorBasicStatsAsync(
+        string mode,
         string freq,
         int idVendor,
-        string mode,
         VendorBasicStatsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

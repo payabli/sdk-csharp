@@ -5,6 +5,20 @@
 
 The Payabli C# library provides convenient access to the Payabli APIs from C#.
 
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Exception Handling](#exception-handling)
+- [Advanced](#advanced)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Forward Compatible Enums](#forward-compatible-enums)
+- [Contributing](#contributing)
+- [Reference](#reference)
+
 ## Documentation
 
 API reference documentation is available [here](https://docs.payabli.com).

@@ -101,8 +101,8 @@ public partial class CloudClient
     /// await client.Cloud.HistoryDeviceAsync("WXGDWB", "8cfec329267");
     /// </code></example>
     public async Task<CloudQueryApiResponse> HistoryDeviceAsync(
-        string deviceId,
         string entry,
+        string deviceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -250,8 +250,8 @@ public partial class CloudClient
     /// await client.Cloud.RemoveDeviceAsync("6c361c7d-674c-44cc-b790-382b75d1xxx", "8cfec329267");
     /// </code></example>
     public async Task<RemoveDeviceResponse> RemoveDeviceAsync(
-        string deviceId,
         string entry,
+        string deviceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

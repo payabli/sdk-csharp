@@ -133,7 +133,7 @@ public record QueryResponseSettlementsRecordsItem : IJsonOnDeserialized
     public double? SettledAmount { get; set; }
 
     /// <summary>
-    ///
+    /// The date and time when the transaction was settled. This field is null when the transaction's `SettlementStatus` is -1, -5, or -6 (Exception, Held, or Released).
     /// </summary>
     [JsonPropertyName("SettlementDate")]
     public DateTime? SettlementDate { get; set; }

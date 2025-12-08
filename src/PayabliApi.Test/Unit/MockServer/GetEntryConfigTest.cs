@@ -1,0 +1,106 @@
+using NUnit.Framework;
+using PayabliApi;
+using PayabliApi.Core;
+
+namespace PayabliApi.Test.Unit.MockServer;
+
+[TestFixture]
+public class GetEntryConfigTest : BaseMockServerTest
+{
+    [NUnit.Framework.Test]
+    public async Task MockServerTest()
+    {
+        const string mockResponse = """
+            {
+              "isSuccess": true,
+              "responseCode": 1,
+              "responseData": {
+                "EntryName": "abc123def",
+                "EntryPages": [
+                  {
+                    "AdditionalData": {
+                      "key1": {
+                        "key": "value"
+                      },
+                      "key2": {
+                        "key": "value"
+                      },
+                      "key3": {
+                        "key": "value"
+                      }
+                    }
+                  }
+                ],
+                "IdEntry": 11111,
+                "Paypoint": {
+                  "address1": "123 Ocean Drive",
+                  "address2": "Suite 400",
+                  "bankData": [
+                    {
+                      "bankAccountFunction": 0,
+                      "bankAccountHolderName": "Gruzya Adventure Outfitters LLC",
+                      "nickname": "Business Checking 1234"
+                    }
+                  ],
+                  "boardingId": 340,
+                  "city": "Bristol",
+                  "contacts": [
+                    {}
+                  ],
+                  "country": "US",
+                  "credentials": [
+                    {}
+                  ],
+                  "dbaName": "Sunshine Gutters",
+                  "externalPaypointID": "",
+                  "fax": "5555555555",
+                  "idPaypoint": 1000000,
+                  "legalName": "Sunshine Services, LLC",
+                  "parentOrg": {
+                    "orgName": "Pilgrim Planner",
+                    "orgStatus": 1,
+                    "orgType": 0
+                  },
+                  "paypointStatus": 1,
+                  "phone": "5555555555",
+                  "state": "GA",
+                  "summary": {
+                    "amountSubs": 0,
+                    "amountTx": 0,
+                    "countSubs": 0,
+                    "countTx": 0,
+                    "customers": 1
+                  },
+                  "timeZone": -5,
+                  "websiteAddress": "www.example.com",
+                  "zip": "31113"
+                }
+              },
+              "responseText": "Success"
+            }
+            """;
+
+        Server
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Paypoint/8cfec329267")
+                    .UsingGet()
+            )
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
+
+        var response = await Client.Paypoint.GetEntryConfigAsync(
+            "8cfec329267",
+            new GetEntryConfigRequest()
+        );
+        Assert.That(
+            response,
+            Is.EqualTo(JsonUtils.Deserialize<GetEntryConfigResponse>(mockResponse)).UsingDefaults()
+        );
+    }
+}

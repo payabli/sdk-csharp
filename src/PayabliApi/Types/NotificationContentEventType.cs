@@ -107,6 +107,10 @@ public readonly record struct NotificationContentEventType : IStringEnum
         Values.SubmittedApplication
     );
 
+    public static readonly NotificationContentEventType UnderWritingApplication = new(
+        Values.UnderWritingApplication
+    );
+
     public static readonly NotificationContentEventType ActivatedMerchant = new(
         Values.ActivatedMerchant
     );
@@ -365,6 +369,8 @@ public readonly record struct NotificationContentEventType : IStringEnum
         public const string FailedBoardingApplication = "FailedBoardingApplication";
 
         public const string SubmittedApplication = "SubmittedApplication";
+
+        public const string UnderWritingApplication = "UnderWritingApplication";
 
         public const string ActivatedMerchant = "ActivatedMerchant";
 

@@ -164,12 +164,15 @@ public partial class ChargeBacksClient
         }
     }
 
+    /// <summary>
+    /// Retrieves a chargeback attachment file by its file name.
+    /// </summary>
     /// <example><code>
-    /// await client.ChargeBacks.GetChargebackAttachmentAsync("fileName", 1000000);
+    /// await client.ChargeBacks.GetChargebackAttachmentAsync(1000000, "fileName");
     /// </code></example>
     public async Task<string> GetChargebackAttachmentAsync(
-        string fileName,
         long id,
+        string fileName,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

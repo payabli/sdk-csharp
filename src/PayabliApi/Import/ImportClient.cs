@@ -15,6 +15,9 @@ public partial class ImportClient
     /// <summary>
     /// Import a list of bills from a CSV file. See the [Import Guide](/developers/developer-guides/bills-add#import-bills) for more help and an example file.
     /// </summary>
+    /// <example><code>
+    /// await client.Import.ImportBillsAsync("8cfec329267", new ImportBillsRequest());
+    /// </code></example>
     public async Task<PayabliApiResponseImport> ImportBillsAsync(
         string entry,
         ImportBillsRequest request,
@@ -79,6 +82,9 @@ public partial class ImportClient
     /// <summary>
     /// Import a list of customers from a CSV file. See the [Import Guide](/developers/developer-guides/entities-customers#import-customers) for more help and example files.
     /// </summary>
+    /// <example><code>
+    /// await client.Import.ImportCustomerAsync("8cfec329267", new ImportCustomerRequest());
+    /// </code></example>
     public async Task<PayabliApiResponseImport> ImportCustomerAsync(
         string entry,
         ImportCustomerRequest request,
@@ -152,6 +158,9 @@ public partial class ImportClient
     /// <summary>
     /// Import a list of vendors from a CSV file. See the [Import Guide](/developers/developer-guides/entities-vendors#import-vendors) for more help and example files.
     /// </summary>
+    /// <example><code>
+    /// await client.Import.ImportVendorAsync("8cfec329267", new ImportVendorRequest());
+    /// </code></example>
     public async Task<PayabliApiResponseImport> ImportVendorAsync(
         string entry,
         ImportVendorRequest request,

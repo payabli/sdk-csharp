@@ -112,6 +112,9 @@ public partial class ExportClient
         }
     }
 
+    /// <summary>
+    /// This endpoint is deprecated. Export batch details for a paypoint. Use filters to limit results.
+    /// </summary>
     /// <example><code>
     /// await client.Export.ExportBatchDetailsAsync(
     ///     "8cfec329267",
@@ -125,8 +128,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportBatchDetailsAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportBatchDetailsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -209,6 +212,9 @@ public partial class ExportClient
         }
     }
 
+    /// <summary>
+    /// This endpoint is deprecated. Export batch details for an organization. Use filters to limit results.
+    /// </summary>
     /// <example><code>
     /// await client.Export.ExportBatchDetailsOrgAsync(
     ///     ExportFormat1.Csv,
@@ -322,8 +328,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportBatchesAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportBatchesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -522,8 +528,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportBatchesOutAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportBatchesOutRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -722,8 +728,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportBillsAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportBillsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -922,8 +928,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportChargebacksAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportChargebacksRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -1122,8 +1128,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportCustomersAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportCustomersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -1322,8 +1328,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportInvoicesAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportInvoicesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -1622,8 +1628,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportPayoutAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportPayoutRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -1922,8 +1928,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportSettlementsAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportSettlementsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -2122,8 +2128,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportSubscriptionsAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportSubscriptionsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -2322,8 +2328,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportTransactionsAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportTransactionsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -2524,8 +2530,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportTransferDetailsAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         long transferId,
         ExportTransferDetailsRequest request,
         RequestOptions? options = null,
@@ -2732,8 +2738,8 @@ public partial class ExportClient
     /// );
     /// </code></example>
     public async Task<Dictionary<string, object?>> ExportVendorsAsync(
-        string entry,
         ExportFormat1 format,
+        string entry,
         ExportVendorsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

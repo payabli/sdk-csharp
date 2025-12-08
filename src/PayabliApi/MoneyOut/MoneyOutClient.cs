@@ -27,7 +27,11 @@ public partial class MoneyOutClient
     ///                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
     ///             },
     ///             OrderDescription = "Window Painting",
-    ///             PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
+    ///             PaymentDetails = new RequestOutAuthorizePaymentDetails
+    ///             {
+    ///                 TotalAmount = 47,
+    ///                 Unbundled = false,
+    ///             },
     ///             PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
     ///             VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
     ///         },
@@ -192,9 +196,9 @@ public partial class MoneyOutClient
     /// Cancel a payout transaction by ID.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyOut.CancelOutAsync("129-219");
+    /// await client.MoneyOut.CancelOutGetAsync("129-219");
     /// </code></example>
-    public async Task<PayabliApiResponse0000> CancelOutAsync(
+    public async Task<PayabliApiResponse0000> CancelOutGetAsync(
         string referenceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -206,6 +210,76 @@ public partial class MoneyOutClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "MoneyOut/cancel/{0}",
+                        ValueConvert.ToPathParameterString(referenceId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<PayabliApiResponse0000>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Cancel a payout transaction by ID.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyOut.CancelOutDeleteAsync("129-219");
+    /// </code></example>
+    public async Task<PayabliApiResponse0000> CancelOutDeleteAsync(
+        string referenceId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Delete,
                     Path = string.Format(
                         "MoneyOut/cancel/{0}",
                         ValueConvert.ToPathParameterString(referenceId)

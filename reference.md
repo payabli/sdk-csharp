@@ -109,7 +109,7 @@ await client.Bill.AddBillAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">DeleteAttachedFromBillAsync</a>(filename, idBill, DeleteAttachedFromBillRequest { ... }) -> BillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">DeleteAttachedFromBillAsync</a>(idBill, filename, DeleteAttachedFromBillRequest { ... }) -> BillResponse</code></summary>
 <dl>
 <dd>
 
@@ -155,6 +155,14 @@ await client.Bill.DeleteAttachedFromBillAsync(
 <dl>
 <dd>
 
+**idBill:** `int` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filename:** `string` 
 
 The filename in Payabli. Filename is `zipName` in response to a
@@ -173,14 +181,6 @@ request to `/api/Invoice/{idInvoice}`. Here, the filename is
     ]
   }
   ```
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**idBill:** `int` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
     
 </dd>
 </dl>
@@ -319,7 +319,7 @@ await client.Bill.EditBillAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">GetAttachedFromBillAsync</a>(filename, idBill, GetAttachedFromBillRequest { ... }) -> FileContent</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">GetAttachedFromBillAsync</a>(idBill, filename, GetAttachedFromBillRequest { ... }) -> FileContent</code></summary>
 <dl>
 <dd>
 
@@ -365,6 +365,14 @@ await client.Bill.GetAttachedFromBillAsync(
 <dl>
 <dd>
 
+**idBill:** `int` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filename:** `string` 
 
 The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``. 
@@ -378,14 +386,6 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
     }
   ]
 }
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**idBill:** `int` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
     
 </dd>
 </dl>
@@ -730,7 +730,7 @@ await client.Bill.SendToApprovalBillAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">SetApprovedBillAsync</a>(approved, idBill, SetApprovedBillRequest { ... }) -> SetApprovedBillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">SetApprovedBillAsync</a>(idBill, approved, SetApprovedBillRequest { ... }) -> SetApprovedBillResponse</code></summary>
 <dl>
 <dd>
 
@@ -772,7 +772,7 @@ await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest()
 <dl>
 <dd>
 
-**approved:** `string` — String representing the approved status. Accepted values: 'true' or 'false'.
+**idBill:** `int` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
     
 </dd>
 </dl>
@@ -780,7 +780,7 @@ await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest()
 <dl>
 <dd>
 
-**idBill:** `int` — Payabli ID for the bill. Get this ID by querying `/api/Query/bills/` for the entrypoint or the organization.
+**approved:** `string` — String representing the approved status. Accepted values: 'true' or 'false'.
     
 </dd>
 </dl>
@@ -1698,9 +1698,23 @@ await client.ChargeBacks.GetChargebackAsync(1000000);
 </dl>
 </details>
 
-<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">GetChargebackAttachmentAsync</a>(fileName, id) -> string</code></summary>
+<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">GetChargebackAttachmentAsync</a>(id, fileName) -> string</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a chargeback attachment file by its file name.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -1711,7 +1725,7 @@ await client.ChargeBacks.GetChargebackAsync(1000000);
 <dd>
 
 ```csharp
-await client.ChargeBacks.GetChargebackAttachmentAsync("fileName", 1000000);
+await client.ChargeBacks.GetChargebackAttachmentAsync(1000000, "fileName");
 ```
 </dd>
 </dl>
@@ -1726,7 +1740,7 @@ await client.ChargeBacks.GetChargebackAttachmentAsync("fileName", 1000000);
 <dl>
 <dd>
 
-**fileName:** `string` — The chargeback attachment's file name.
+**id:** `long` — The ID of chargeback or return record.
     
 </dd>
 </dl>
@@ -1734,7 +1748,7 @@ await client.ChargeBacks.GetChargebackAttachmentAsync("fileName", 1000000);
 <dl>
 <dd>
 
-**id:** `long` — The ID of chargeback or return record.
+**fileName:** `string` — The chargeback attachment's file name.
     
 </dd>
 </dl>
@@ -1875,7 +1889,7 @@ await client.Cloud.AddDeviceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">HistoryDeviceAsync</a>(deviceId, entry) -> CloudQueryApiResponse</code></summary>
+<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">HistoryDeviceAsync</a>(entry, deviceId) -> CloudQueryApiResponse</code></summary>
 <dl>
 <dd>
 
@@ -1917,7 +1931,7 @@ await client.Cloud.HistoryDeviceAsync("WXGDWB", "8cfec329267");
 <dl>
 <dd>
 
-**deviceId:** `string` — ID of the cloud device. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -1925,7 +1939,7 @@ await client.Cloud.HistoryDeviceAsync("WXGDWB", "8cfec329267");
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**deviceId:** `string` — ID of the cloud device. 
     
 </dd>
 </dl>
@@ -1999,7 +2013,7 @@ await client.Cloud.ListDeviceAsync("8cfec329267", new ListDeviceRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">RemoveDeviceAsync</a>(deviceId, entry) -> RemoveDeviceResponse</code></summary>
+<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">RemoveDeviceAsync</a>(entry, deviceId) -> RemoveDeviceResponse</code></summary>
 <dl>
 <dd>
 
@@ -2041,7 +2055,7 @@ await client.Cloud.RemoveDeviceAsync("6c361c7d-674c-44cc-b790-382b75d1xxx", "8cf
 <dl>
 <dd>
 
-**deviceId:** `string` — ID of the cloud device. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -2049,7 +2063,7 @@ await client.Cloud.RemoveDeviceAsync("6c361c7d-674c-44cc-b790-382b75d1xxx", "8cf
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**deviceId:** `string` — ID of the cloud device. 
     
 </dd>
 </dl>
@@ -2522,9 +2536,23 @@ await client.Export.ExportApplicationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsAsync</a>(entry, format, ExportBatchDetailsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsAsync</a>(format, entry, ExportBatchDetailsRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint is deprecated. Export batch details for a paypoint. Use filters to limit results.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -2559,7 +2587,7 @@ await client.Export.ExportBatchDetailsAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -2567,7 +2595,7 @@ await client.Export.ExportBatchDetailsAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -2590,6 +2618,20 @@ await client.Export.ExportBatchDetailsAsync(
 <details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsOrgAsync</a>(format, orgId, ExportBatchDetailsOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint is deprecated. Export batch details for an organization. Use filters to limit results.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -2652,7 +2694,7 @@ await client.Export.ExportBatchDetailsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesAsync</a>(entry, format, ExportBatchesRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesAsync</a>(format, entry, ExportBatchesRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -2703,7 +2745,7 @@ await client.Export.ExportBatchesAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -2711,7 +2753,7 @@ await client.Export.ExportBatchesAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -2810,7 +2852,7 @@ await client.Export.ExportBatchesOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutAsync</a>(entry, format, ExportBatchesOutRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutAsync</a>(format, entry, ExportBatchesOutRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -2861,7 +2903,7 @@ await client.Export.ExportBatchesOutAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -2869,7 +2911,7 @@ await client.Export.ExportBatchesOutAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -2968,7 +3010,7 @@ await client.Export.ExportBatchesOutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsAsync</a>(entry, format, ExportBillsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsAsync</a>(format, entry, ExportBillsRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -3019,7 +3061,7 @@ await client.Export.ExportBillsAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -3027,7 +3069,7 @@ await client.Export.ExportBillsAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -3126,7 +3168,7 @@ await client.Export.ExportBillsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksAsync</a>(entry, format, ExportChargebacksRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksAsync</a>(format, entry, ExportChargebacksRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -3177,7 +3219,7 @@ await client.Export.ExportChargebacksAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -3185,7 +3227,7 @@ await client.Export.ExportChargebacksAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -3284,7 +3326,7 @@ await client.Export.ExportChargebacksOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersAsync</a>(entry, format, ExportCustomersRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersAsync</a>(format, entry, ExportCustomersRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -3335,7 +3377,7 @@ await client.Export.ExportCustomersAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -3343,7 +3385,7 @@ await client.Export.ExportCustomersAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -3442,7 +3484,7 @@ await client.Export.ExportCustomersOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesAsync</a>(entry, format, ExportInvoicesRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesAsync</a>(format, entry, ExportInvoicesRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -3493,7 +3535,7 @@ await client.Export.ExportInvoicesAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -3501,7 +3543,7 @@ await client.Export.ExportInvoicesAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -3679,7 +3721,7 @@ await client.Export.ExportOrganizationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutAsync</a>(entry, format, ExportPayoutRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutAsync</a>(format, entry, ExportPayoutRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -3730,7 +3772,7 @@ await client.Export.ExportPayoutAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -3738,7 +3780,7 @@ await client.Export.ExportPayoutAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -3916,7 +3958,7 @@ await client.Export.ExportPaypointsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsAsync</a>(entry, format, ExportSettlementsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsAsync</a>(format, entry, ExportSettlementsRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -3967,7 +4009,7 @@ await client.Export.ExportSettlementsAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -3975,7 +4017,7 @@ await client.Export.ExportSettlementsAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -4074,7 +4116,7 @@ await client.Export.ExportSettlementsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsAsync</a>(entry, format, ExportSubscriptionsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsAsync</a>(format, entry, ExportSubscriptionsRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -4125,7 +4167,7 @@ await client.Export.ExportSubscriptionsAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -4133,7 +4175,7 @@ await client.Export.ExportSubscriptionsAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -4232,7 +4274,7 @@ await client.Export.ExportSubscriptionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsAsync</a>(entry, format, ExportTransactionsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsAsync</a>(format, entry, ExportTransactionsRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -4283,7 +4325,7 @@ await client.Export.ExportTransactionsAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -4291,7 +4333,7 @@ await client.Export.ExportTransactionsAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -4390,7 +4432,7 @@ await client.Export.ExportTransactionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransferDetailsAsync</a>(entry, format, transferId, ExportTransferDetailsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransferDetailsAsync</a>(format, entry, transferId, ExportTransferDetailsRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -4443,7 +4485,7 @@ await client.Export.ExportTransferDetailsAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -4451,7 +4493,7 @@ await client.Export.ExportTransferDetailsAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -4550,7 +4592,7 @@ await client.Export.ExportTransfersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsAsync</a>(entry, format, ExportVendorsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsAsync</a>(format, entry, ExportVendorsRequest { ... }) -> Dictionary<string, object?></code></summary>
 <dl>
 <dd>
 
@@ -4601,7 +4643,7 @@ await client.Export.ExportVendorsAsync(
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
     
 </dd>
 </dl>
@@ -4609,7 +4651,7 @@ await client.Export.ExportVendorsAsync(
 <dl>
 <dd>
 
-**format:** `ExportFormat1` — Format for the export, either XLSX or CSV. 
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
     
 </dd>
 </dl>
@@ -4913,6 +4955,192 @@ await client.HostedPaymentPages.SavePageAsync("8cfec329267", "pay-your-fees-1", 
 </details>
 
 ## Import
+<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportBillsAsync</a>(entry, ImportBillsRequest { ... }) -> PayabliApiResponseImport</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Import a list of bills from a CSV file. See the [Import Guide](/developers/developer-guides/bills-add#import-bills) for more help and an example file.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Import.ImportBillsAsync("8cfec329267", new ImportBillsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/api-reference/api-overview#entrypoint-vs-entry)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ImportBillsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportCustomerAsync</a>(entry, ImportCustomerRequest { ... }) -> PayabliApiResponseImport</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Import a list of customers from a CSV file. See the [Import Guide](/developers/developer-guides/entities-customers#import-customers) for more help and example files.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Import.ImportCustomerAsync("8cfec329267", new ImportCustomerRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ImportCustomerRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportVendorAsync</a>(entry, ImportVendorRequest { ... }) -> PayabliApiResponseImport</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Import a list of vendors from a CSV file. See the [Import Guide](/developers/developer-guides/entities-vendors#import-vendors) for more help and example files.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Import.ImportVendorAsync("8cfec329267", new ImportVendorRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ImportVendorRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Invoice
 <details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">AddInvoiceAsync</a>(entry, AddInvoiceRequest { ... }) -> InvoiceResponseWithoutData</code></summary>
 <dl>
@@ -5018,7 +5246,7 @@ await client.Invoice.AddInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">DeleteAttachedFromInvoiceAsync</a>(filename, idInvoice) -> InvoiceResponseWithoutData</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">DeleteAttachedFromInvoiceAsync</a>(idInvoice, filename) -> InvoiceResponseWithoutData</code></summary>
 <dl>
 <dd>
 
@@ -5060,6 +5288,14 @@ await client.Invoice.DeleteAttachedFromInvoiceAsync("0_Bill.pdf", 23548884);
 <dl>
 <dd>
 
+**idInvoice:** `int` — Invoice ID
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **filename:** `string` 
 
 The filename in Payabli. Filename is `zipName` in response to a request to `/api/Invoice/{idInvoice}`. Here, the filename is `0_Bill.pdf``. 
@@ -5073,14 +5309,6 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
     }
   ]
 }
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**idInvoice:** `int` — Invoice ID
     
 </dd>
 </dl>
@@ -5232,7 +5460,7 @@ await client.Invoice.EditInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetAttachedFileFromInvoiceAsync</a>(filename, idInvoice, GetAttachedFileFromInvoiceRequest { ... }) -> FileContent</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetAttachedFileFromInvoiceAsync</a>(idInvoice, filename, GetAttachedFileFromInvoiceRequest { ... }) -> FileContent</code></summary>
 <dl>
 <dd>
 
@@ -5260,8 +5488,8 @@ Retrieves a file attached to an invoice.
 
 ```csharp
 await client.Invoice.GetAttachedFileFromInvoiceAsync(
-    "filename",
     1,
+    "filename",
     new GetAttachedFileFromInvoiceRequest()
 );
 ```
@@ -5274,6 +5502,14 @@ await client.Invoice.GetAttachedFileFromInvoiceAsync(
 
 <dl>
 <dd>
+
+<dl>
+<dd>
+
+**idInvoice:** `int` — Invoice ID
+    
+</dd>
+</dl>
 
 <dl>
 <dd>
@@ -5293,14 +5529,6 @@ The filename in Payabli. Filename is `zipName` in the response to a request to `
     ]
   }
   ```
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**idInvoice:** `int` — Invoice ID
     
 </dd>
 </dl>
@@ -6084,7 +6312,7 @@ await client.MoneyIn.AuthorizeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CaptureAsync</a>(amount, transId) -> CaptureResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CaptureAsync</a>(transId, amount) -> CaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -6131,7 +6359,7 @@ await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 <dl>
 <dd>
 
-**amount:** `double` — Amount to be captured. The amount can't be greater the original total amount of the transaction. `0` captures the total amount authorized in the transaction. Partial captures aren't supported.
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
     
 </dd>
 </dl>
@@ -6139,7 +6367,7 @@ await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 <dl>
 <dd>
 
-**transId:** `string` — ReferenceId for the transaction (PaymentId).
+**amount:** `double` — Amount to be captured. The amount can't be greater the original total amount of the transaction. `0` captures the total amount authorized in the transaction. Partial captures aren't supported.
     
 </dd>
 </dl>
@@ -6426,7 +6654,7 @@ await client.MoneyIn.GetpaidAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ReverseAsync</a>(amount, transId) -> ReverseResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ReverseAsync</a>(transId, amount) -> ReverseResponse</code></summary>
 <dl>
 <dd>
 
@@ -6468,6 +6696,14 @@ await client.MoneyIn.ReverseAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dl>
 <dd>
 
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **amount:** `double` 
 
 
@@ -6479,14 +6715,6 @@ An amount equal to zero will refunds the total amount authorized minus any servi
     
 </dd>
 </dl>
-
-<dl>
-<dd>
-
-**transId:** `string` — ReferenceId for the transaction (PaymentId).
-    
-</dd>
-</dl>
 </dd>
 </dl>
 
@@ -6495,7 +6723,7 @@ An amount equal to zero will refunds the total amount authorized minus any servi
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">RefundAsync</a>(amount, transId) -> RefundResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">RefundAsync</a>(transId, amount) -> RefundResponse</code></summary>
 <dl>
 <dd>
 
@@ -6537,6 +6765,14 @@ await client.MoneyIn.RefundAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dl>
 <dd>
 
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **amount:** `double` 
 
 
@@ -6545,14 +6781,6 @@ Amount to refund from original transaction, minus any service fees charged on th
 The amount provided can't be greater than the original total amount of the transaction, minus service fees. For example, if a transaction was \$90 plus a \$10 service fee, you can refund up to \$90.
 
 An amount equal to zero will refund the total amount authorized minus any service fee.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**transId:** `string` — ReferenceId for the transaction (PaymentId).
     
 </dd>
 </dl>
@@ -6935,7 +7163,11 @@ await client.MoneyOut.AuthorizeOutAsync(
                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
             },
             OrderDescription = "Window Painting",
-            PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
+            PaymentDetails = new RequestOutAuthorizePaymentDetails
+            {
+                TotalAmount = 47,
+                Unbundled = false,
+            },
             PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
             VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
         },
@@ -7021,7 +7253,7 @@ await client.MoneyOut.CancelAllOutAsync(new List<string>() { "2-29", "2-28", "2-
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelOutAsync</a>(referenceId) -> PayabliApiResponse0000</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelOutGetAsync</a>(referenceId) -> PayabliApiResponse0000</code></summary>
 <dl>
 <dd>
 
@@ -7048,7 +7280,61 @@ Cancel a payout transaction by ID.
 <dd>
 
 ```csharp
-await client.MoneyOut.CancelOutAsync("129-219");
+await client.MoneyOut.CancelOutGetAsync("129-219");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**referenceId:** `string` — The ID for the payout transaction. 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelOutDeleteAsync</a>(referenceId) -> PayabliApiResponse0000</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancel a payout transaction by ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyOut.CancelOutDeleteAsync("129-219");
 ```
 </dd>
 </dl>
@@ -7987,6 +8273,20 @@ await client.Notificationlogs.BulkRetryNotificationLogsAsync(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -8043,6 +8343,20 @@ await client.Ocr.OcrDocumentFormAsync(
 <details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentJsonAsync</a>(typeResult, FileContentImageOnly { ... }) -> PayabliApiResponseOcr</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to submit a Base64-encoded image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -12654,7 +12968,7 @@ await client.Query.ListVcardsOrgAsync(
 </details>
 
 ## Statistic
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">BasicStatsAsync</a>(entryId, freq, level, mode, BasicStatsRequest { ... }) -> IEnumerable<StatBasicQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">BasicStatsAsync</a>(mode, freq, level, entryId, BasicStatsRequest { ... }) -> IEnumerable<StatBasicExtendedQueryRecord></code></summary>
 <dl>
 <dd>
 
@@ -12686,7 +13000,7 @@ await client.Statistic.BasicStatsAsync(
     "m",
     1,
     "ytd",
-    new BasicStatsRequest { EndDate = "2023-05-23", StartDate = "2023-03-23" }
+    new BasicStatsRequest { EndDate = "2025-11-01", StartDate = "2025-11-30" }
 );
 ```
 </dd>
@@ -12702,7 +13016,23 @@ await client.Statistic.BasicStatsAsync(
 <dl>
 <dd>
 
-**entryId:** `long` — Identifier in Payabli for the entity.
+**mode:** `string` 
+
+Mode for the request. Allowed values:
+
+- `custom` - Allows you to set a custom date range
+- `ytd` - Year To Date
+- `mtd` - Month To Date
+- `wtd` - Week To Date
+- `today` - All current day
+- `m12` - Last 12 months
+- `d30` - Last 30 days
+- `h24` - Last 24 hours
+- `lasty` - Last Year
+- `lastm` - Last Month
+- `lastw` - Last Week
+- `yesterday` - Last Day
+  
     
 </dd>
 </dl>
@@ -12739,23 +13069,7 @@ The entry level for the request:
 <dl>
 <dd>
 
-**mode:** `string` 
-
-Mode for the request. Allowed values:
-
-- `custom` - Allows you to set a custom date range
-- `ytd` - Year To Date
-- `mtd` - Month To Date
-- `wtd` - Week To Date
-- `today` - All current day
-- `m12` - Last 12 months
-- `d30` - Last 30 days
-- `h24` - Last 24 hours
-- `lasty` - Last Year
-- `lastm` - Last Month
-- `lastw` - Last Week
-- `yesterday` - Last Day
-  
+**entryId:** `long` — Identifier in Payabli for the entity.
     
 </dd>
 </dl>
@@ -12775,7 +13089,7 @@ Mode for the request. Allowed values:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(customerId, freq, mode, CustomerBasicStatsRequest { ... }) -> IEnumerable<SubscriptionStatsQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(mode, freq, customerId, CustomerBasicStatsRequest { ... }) -> IEnumerable<SubscriptionStatsQueryRecord></code></summary>
 <dl>
 <dd>
 
@@ -12817,7 +13131,21 @@ await client.Statistic.CustomerBasicStatsAsync(998, "m", "ytd", new CustomerBasi
 <dl>
 <dd>
 
-**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
+**mode:** `string` 
+
+Mode for request. Allowed values:
+
+- `ytd` - Year To Date
+- `mtd` - Month To Date
+- `wtd` - Week To Date
+- `today` - All current day
+- `m12` - Last 12 months
+- `d30` - Last 30 days
+- `h24` - Last 24 hours
+- `lasty` - Last Year
+- `lastm` - Last Month
+- `lastw` - Last Week
+- `yesterday` - Last Day
     
 </dd>
 </dl>
@@ -12842,21 +13170,7 @@ For example, `w` groups the results by week.
 <dl>
 <dd>
 
-**mode:** `string` 
-
-Mode for request. Allowed values:
-
-- `ytd` - Year To Date
-- `mtd` - Month To Date
-- `wtd` - Week To Date
-- `today` - All current day
-- `m12` - Last 12 months
-- `d30` - Last 30 days
-- `h24` - Last 24 hours
-- `lasty` - Last Year
-- `lastm` - Last Month
-- `lastw` - Last Week
-- `yesterday` - Last Day
+**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub. 
     
 </dd>
 </dl>
@@ -12876,7 +13190,7 @@ Mode for request. Allowed values:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(entryId, interval, level, SubStatsRequest { ... }) -> IEnumerable<StatBasicQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(interval, level, entryId, SubStatsRequest { ... }) -> IEnumerable<StatBasicQueryRecord></code></summary>
 <dl>
 <dd>
 
@@ -12918,14 +13232,6 @@ await client.Statistic.SubStatsAsync(1000000, "30", 1, new SubStatsRequest());
 <dl>
 <dd>
 
-**entryId:** `long` — Identifier in Payabli for the entity.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **interval:** `string` 
 
 Interval to get the data. Allowed values:
@@ -12954,6 +13260,14 @@ The entry level for the request:
 <dl>
 <dd>
 
+**entryId:** `long` — Identifier in Payabli for the entity.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **request:** `SubStatsRequest` 
     
 </dd>
@@ -12966,7 +13280,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(freq, idVendor, mode, VendorBasicStatsRequest { ... }) -> IEnumerable<StatisticsVendorQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(mode, freq, idVendor, VendorBasicStatsRequest { ... }) -> IEnumerable<StatisticsVendorQueryRecord></code></summary>
 <dl>
 <dd>
 
@@ -13008,6 +13322,28 @@ await client.Statistic.VendorBasicStatsAsync("m", 1, "ytd", new VendorBasicStats
 <dl>
 <dd>
 
+**mode:** `string` 
+
+Mode for request. Allowed values:
+
+- `ytd` - Year To Date
+- `mtd` - Month To Date
+- `wtd` - Week To Date
+- `today` - All current day
+- `m12` - Last 12 months
+- `d30` - Last 30 days
+- `h24` - Last 24 hours
+- `lasty` - Last Year
+- `lastm` - Last Month
+- `lastw` - Last Week
+- `yesterday` - Last Day
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **freq:** `string` 
 
 Frequency to group series. Allowed values:
@@ -13026,28 +13362,6 @@ For example, `w` groups the results by week.
 <dd>
 
 **idVendor:** `int` — Vendor ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**mode:** `string` 
-
-Mode for request. Allowed values:
-
-- `ytd` - Year To Date
-- `mtd` - Month To Date
-- `wtd` - Week To Date
-- `today` - All current day
-- `m12` - Last 12 months
-- `d30` - Last 30 days
-- `h24` - Last 24 hours
-- `lasty` - Last Year
-- `lastm` - Last Month
-- `lastw` - Last Week
-- `yesterday` - Last Day
     
 </dd>
 </dl>
@@ -13377,7 +13691,7 @@ await client.Templates.DeleteTemplateAsync(80);
 </dl>
 </details>
 
-<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">GetlinkTemplateAsync</a>(ignoreEmpty, templateId) -> BoardingLinkApiResponse</code></summary>
+<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">GetlinkTemplateAsync</a>(templateId, ignoreEmpty) -> BoardingLinkApiResponse</code></summary>
 <dl>
 <dd>
 
@@ -13419,7 +13733,7 @@ await client.Templates.GetlinkTemplateAsync(true, 80);
 <dl>
 <dd>
 
-**ignoreEmpty:** `bool` — Ignore read-only and empty fields Default is `false`. If `ignoreEmpty` = `false` and any field is empty, then the request returns a failure response. If `ignoreEmpty` = `true`, the request returns the boarding link name regardless of whether fields are empty.
+**templateId:** `double` — The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -13427,7 +13741,7 @@ await client.Templates.GetlinkTemplateAsync(true, 80);
 <dl>
 <dd>
 
-**templateId:** `double` — The boarding template ID. Can be found at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**ignoreEmpty:** `bool` — Ignore read-only and empty fields Default is `false`. If `ignoreEmpty` = `false` and any field is empty, then the request returns a failure response. If `ignoreEmpty` = `true`, the request returns the boarding link name regardless of whether fields are empty.
     
 </dd>
 </dl>
@@ -13843,6 +14157,20 @@ await client.TokenStorage.UpdateMethodAsync(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to add a new user to an organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -13883,6 +14211,20 @@ await client.User.AddUserAsync(new UserData());
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to refresh the authentication token for a user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -13907,6 +14249,20 @@ await client.User.AuthRefreshUserAsync();
 <details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AuthResetUserAsync</a>(UserAuthResetRequest { ... }) -> AuthResetUserResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to initiate a password reset for a user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -14010,6 +14366,20 @@ await client.User.AuthUserAsync("provider", new UserAuthRequest());
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to change the password for a user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -14050,6 +14420,20 @@ await client.User.ChangePswUserAsync(new UserAuthPswResetRequest());
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to delete a specific user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -14089,6 +14473,20 @@ await client.User.DeleteUserAsync(1000000);
 <details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">EditMfaUserAsync</a>(userId, MfaData { ... }) -> EditMfaUserResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to enable or disable multi-factor authentication (MFA) for a user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -14138,6 +14536,20 @@ await client.User.EditMfaUserAsync(1000000, new MfaData());
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to modify the details of a specific user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -14185,6 +14597,20 @@ await client.User.EditUserAsync(1000000, new UserData());
 <details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">GetUserAsync</a>(userId, GetUserRequest { ... }) -> UserQueryRecord</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to retrieve information about a specific user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -14234,6 +14660,20 @@ await client.User.GetUserAsync(1000000, new GetUserRequest { Entry = "478ae1234"
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to log a user out from the system.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -14255,9 +14695,23 @@ await client.User.LogoutUserAsync();
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ResendMfaCodeAsync</a>(entry, entryType, usrname) -> PayabliApiResponseMfaBasic</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ResendMfaCodeAsync</a>(usrname, entry, entryType) -> PayabliApiResponseMfaBasic</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resends the MFA code to the user via the selected MFA mode (email or SMS).
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -14283,6 +14737,14 @@ await client.User.ResendMfaCodeAsync("Entry", 1, "usrname");
 <dl>
 <dd>
 
+**usrname:** `string` —  
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **entry:** `string` —  
     
 </dd>
@@ -14292,14 +14754,6 @@ await client.User.ResendMfaCodeAsync("Entry", 1, "usrname");
 <dd>
 
 **entryType:** `int` —  
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**usrname:** `string` —  
     
 </dd>
 </dl>
@@ -14314,6 +14768,20 @@ await client.User.ResendMfaCodeAsync("Entry", 1, "usrname");
 <details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ValidateMfaUserAsync</a>(MfaValidationData { ... }) -> PayabliApiResponseUserMfa</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Use this endpoint to validate the multi-factor authentication (MFA) code for a user within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 

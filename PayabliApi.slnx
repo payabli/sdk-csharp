@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/PayabliApi.Test/PayabliApi.Test.csproj" />
+  <Project Path="src/PayabliApi/PayabliApi.csproj" />
+</Solution>

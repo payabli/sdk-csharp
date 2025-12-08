@@ -383,6 +383,9 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         Values.SubmittedApplication
     );
 
+    public static readonly NotificationStandardRequestContentEventType UnderWritingApplication =
+        new(Values.UnderWritingApplication);
+
     public static readonly NotificationStandardRequestContentEventType ActivatedMerchant = new(
         Values.ActivatedMerchant
     );
@@ -846,6 +849,8 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         public const string FailedBoardingApplication = "FailedBoardingApplication";
 
         public const string SubmittedApplication = "SubmittedApplication";
+
+        public const string UnderWritingApplication = "UnderWritingApplication";
 
         public const string ActivatedMerchant = "ActivatedMerchant";
 

@@ -12,6 +12,9 @@ public partial class UserClient
         _client = client;
     }
 
+    /// <summary>
+    /// Use this endpoint to add a new user to an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.AddUserAsync(new UserData());
     /// </code></example>
@@ -78,6 +81,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to refresh the authentication token for a user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.AuthRefreshUserAsync();
     /// </code></example>
@@ -141,6 +147,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to initiate a password reset for a user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.AuthResetUserAsync(new UserAuthResetRequest());
     /// </code></example>
@@ -280,6 +289,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to change the password for a user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.ChangePswUserAsync(new UserAuthPswResetRequest());
     /// </code></example>
@@ -346,6 +358,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to delete a specific user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.DeleteUserAsync(1000000);
     /// </code></example>
@@ -410,6 +425,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to enable or disable multi-factor authentication (MFA) for a user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.EditMfaUserAsync(1000000, new MfaData());
     /// </code></example>
@@ -480,6 +498,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to modify the details of a specific user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.EditUserAsync(1000000, new UserData());
     /// </code></example>
@@ -547,6 +568,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to retrieve information about a specific user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.GetUserAsync(1000000, new GetUserRequest { Entry = "478ae1234" });
     /// </code></example>
@@ -622,6 +646,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to log a user out from the system.
+    /// </summary>
     /// <example><code>
     /// await client.User.LogoutUserAsync();
     /// </code></example>
@@ -685,13 +712,16 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Resends the MFA code to the user via the selected MFA mode (email or SMS).
+    /// </summary>
     /// <example><code>
     /// await client.User.ResendMfaCodeAsync("Entry", 1, "usrname");
     /// </code></example>
     public async Task<PayabliApiResponseMfaBasic> ResendMfaCodeAsync(
+        string usrname,
         string entry,
         int entryType,
-        string usrname,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -756,6 +786,9 @@ public partial class UserClient
         }
     }
 
+    /// <summary>
+    /// Use this endpoint to validate the multi-factor authentication (MFA) code for a user within an organization.
+    /// </summary>
     /// <example><code>
     /// await client.User.ValidateMfaUserAsync(new MfaValidationData());
     /// </code></example>

@@ -120,10 +120,10 @@ public record ApplicationDetailsRecord : IJsonOnDeserialized
     public string? LicenseState { get; set; }
 
     /// <summary>
-    /// Object containing logo file.
+    /// A URL pointing to a logo file.
     /// </summary>
     [JsonPropertyName("logo")]
-    public FileContent? Logo { get; set; }
+    public string? Logo { get; set; }
 
     [JsonPropertyName("mAddress1")]
     public string? MAddress1 { get; set; }

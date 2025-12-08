@@ -145,8 +145,8 @@ public partial class InvoiceClient
     /// await client.Invoice.DeleteAttachedFromInvoiceAsync("0_Bill.pdf", 23548884);
     /// </code></example>
     public async Task<InvoiceResponseWithoutData> DeleteAttachedFromInvoiceAsync(
-        string filename,
         int idInvoice,
+        string filename,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -390,14 +390,14 @@ public partial class InvoiceClient
     /// </summary>
     /// <example><code>
     /// await client.Invoice.GetAttachedFileFromInvoiceAsync(
-    ///     "filename",
     ///     1,
+    ///     "filename",
     ///     new GetAttachedFileFromInvoiceRequest()
     /// );
     /// </code></example>
     public async Task<FileContent> GetAttachedFileFromInvoiceAsync(
-        string filename,
         int idInvoice,
+        string filename,
         GetAttachedFileFromInvoiceRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

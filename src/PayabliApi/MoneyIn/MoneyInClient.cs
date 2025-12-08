@@ -130,8 +130,8 @@ public partial class MoneyInClient
     /// await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
     /// </code></example>
     public async Task<CaptureResponse> CaptureAsync(
-        double amount,
         string transId,
+        double amount,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -573,8 +573,8 @@ public partial class MoneyInClient
     /// await client.MoneyIn.ReverseAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
     /// </code></example>
     public async Task<ReverseResponse> ReverseAsync(
-        double amount,
         string transId,
+        double amount,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -645,8 +645,8 @@ public partial class MoneyInClient
     /// await client.MoneyIn.RefundAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
     /// </code></example>
     public async Task<RefundResponse> RefundAsync(
-        double amount,
         string transId,
+        double amount,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

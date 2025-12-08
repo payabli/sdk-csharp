@@ -89,8 +89,8 @@ public partial class TemplatesClient
     /// await client.Templates.GetlinkTemplateAsync(true, 80);
     /// </code></example>
     public async Task<BoardingLinkApiResponse> GetlinkTemplateAsync(
-        bool ignoreEmpty,
         double templateId,
+        bool ignoreEmpty,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

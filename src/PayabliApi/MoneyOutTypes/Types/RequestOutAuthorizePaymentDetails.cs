@@ -18,7 +18,7 @@ public record RequestOutAuthorizePaymentDetails : IJsonOnDeserialized
     public string? CheckNumber { get; set; }
 
     /// <summary>
-    /// Currency code ISO-4217. If not code is provided the currency in the paypoint setting is taken. Default is **USD**.
+    /// Currency code ISO-4217. If no code is provided, then the currency in the paypoint setting is used. Default is **USD**.
     /// </summary>
     [JsonPropertyName("currency")]
     public string? Currency { get; set; }
@@ -34,6 +34,12 @@ public record RequestOutAuthorizePaymentDetails : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("totalAmount")]
     public double? TotalAmount { get; set; }
+
+    /// <summary>
+    /// Indicates whether the payout should be bundled into a single transaction or processed separately. If set to `true`, each bill will be processed as a separate payout. If `false` or not provided, then multiple bills will be paid with a single payout.
+    /// </summary>
+    [JsonPropertyName("unbundled")]
+    public bool? Unbundled { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

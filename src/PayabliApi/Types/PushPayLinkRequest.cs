@@ -150,12 +150,12 @@ public record PushPayLinkRequest
     [Serializable]
     internal sealed class JsonConverter : JsonConverter<PushPayLinkRequest>
     {
-        public override bool CanConvert(global::System.Type typeToConvert) =>
+        public override bool CanConvert(System.Type typeToConvert) =>
             typeof(PushPayLinkRequest).IsAssignableFrom(typeToConvert);
 
         public override PushPayLinkRequest Read(
             ref Utf8JsonReader reader,
-            global::System.Type typeToConvert,
+            System.Type typeToConvert,
             JsonSerializerOptions options
         )
         {
