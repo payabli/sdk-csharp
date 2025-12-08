@@ -3,6 +3,6 @@
   "generatorName": "fernapi/fern-csharp-sdk",
   "generatorVersion": "2.11.2",
   "generatorConfig": {
-    "generateMockServerTests": false
+    "generate-mock-server-tests": false
   }
 }
