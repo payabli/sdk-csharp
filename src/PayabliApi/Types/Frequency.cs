@@ -66,7 +66,7 @@ public readonly record struct Frequency : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string OneTime = "one-time";
+        public const string OneTime = "onetime";
 
         public const string Weekly = "weekly";
 

@@ -44,8 +44,8 @@ public record FrequencyList : IJsonOnDeserialized
     /// <summary>
     /// Enable or disable frequency
     /// </summary>
-    [JsonPropertyName("one-time")]
-    public bool? OneTime { get; set; }
+    [JsonPropertyName("onetime")]
+    public bool? Onetime { get; set; }
 
     /// <summary>
     /// Enable or disable frequency

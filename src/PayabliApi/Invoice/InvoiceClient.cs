@@ -39,6 +39,7 @@ public partial class InvoiceClient
     ///                         ItemCost = 100,
     ///                         ItemQty = 1,
     ///                         ItemMode = 1,
+    ///                         ItemTotalAmount = 1,
     ///                     },
     ///                     new BillItem
     ///                     {
@@ -46,6 +47,7 @@ public partial class InvoiceClient
     ///                         ItemDescription = "Deposit for trip planning",
     ///                         ItemCost = 882.37,
     ///                         ItemQty = 1,
+    ///                         ItemTotalAmount = 1,
     ///                     },
     ///                 },
     ///                 InvoiceDate = new DateOnly(2025, 10, 19),
