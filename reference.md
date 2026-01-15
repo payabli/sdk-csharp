@@ -599,7 +599,7 @@ await client.Bill.ListBillsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ModifyApprovalBillAsync</a>(idBill, IEnumerable<string> { ... }) -> ModifyApprovalBillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ModifyApprovalBillAsync</a>(idBill, IEnumerable&lt;string&gt; { ... }) -> ModifyApprovalBillResponse</code></summary>
 <dl>
 <dd>
 
@@ -801,7 +801,7 @@ await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest()
 </details>
 
 ## Boarding
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">AddApplicationAsync</a>(OneOf<ApplicationDataPayIn, ApplicationDataManaged, ApplicationDataOdp, ApplicationData> { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">AddApplicationAsync</a>(OneOf&lt;ApplicationDataPayIn, ApplicationDataManaged, ApplicationDataOdp, ApplicationData&gt; { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
 <dl>
 <dd>
 
@@ -2457,7 +2457,7 @@ await client.Customer.UpdateCustomerAsync(
 </details>
 
 ## Export
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportApplicationsAsync</a>(format, orgId, ExportApplicationsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportApplicationsAsync</a>(format, orgId, ExportApplicationsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2536,7 +2536,7 @@ await client.Export.ExportApplicationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsAsync</a>(format, entry, ExportBatchDetailsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsAsync</a>(format, entry, ExportBatchDetailsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2615,7 +2615,7 @@ await client.Export.ExportBatchDetailsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsOrgAsync</a>(format, orgId, ExportBatchDetailsOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsOrgAsync</a>(format, orgId, ExportBatchDetailsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2694,7 +2694,7 @@ await client.Export.ExportBatchDetailsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesAsync</a>(format, entry, ExportBatchesRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesAsync</a>(format, entry, ExportBatchesRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2773,7 +2773,7 @@ await client.Export.ExportBatchesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOrgAsync</a>(format, orgId, ExportBatchesOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOrgAsync</a>(format, orgId, ExportBatchesOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2852,7 +2852,7 @@ await client.Export.ExportBatchesOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutAsync</a>(format, entry, ExportBatchesOutRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutAsync</a>(format, entry, ExportBatchesOutRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2931,7 +2931,7 @@ await client.Export.ExportBatchesOutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutOrgAsync</a>(format, orgId, ExportBatchesOutOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutOrgAsync</a>(format, orgId, ExportBatchesOutOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3010,7 +3010,7 @@ await client.Export.ExportBatchesOutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsAsync</a>(format, entry, ExportBillsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsAsync</a>(format, entry, ExportBillsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3089,7 +3089,7 @@ await client.Export.ExportBillsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsOrgAsync</a>(format, orgId, ExportBillsOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsOrgAsync</a>(format, orgId, ExportBillsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3168,7 +3168,7 @@ await client.Export.ExportBillsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksAsync</a>(format, entry, ExportChargebacksRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksAsync</a>(format, entry, ExportChargebacksRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3247,7 +3247,7 @@ await client.Export.ExportChargebacksAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksOrgAsync</a>(format, orgId, ExportChargebacksOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksOrgAsync</a>(format, orgId, ExportChargebacksOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3326,7 +3326,7 @@ await client.Export.ExportChargebacksOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersAsync</a>(format, entry, ExportCustomersRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersAsync</a>(format, entry, ExportCustomersRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3405,7 +3405,7 @@ await client.Export.ExportCustomersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersOrgAsync</a>(format, orgId, ExportCustomersOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersOrgAsync</a>(format, orgId, ExportCustomersOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3484,7 +3484,7 @@ await client.Export.ExportCustomersOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesAsync</a>(format, entry, ExportInvoicesRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesAsync</a>(format, entry, ExportInvoicesRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3563,7 +3563,7 @@ await client.Export.ExportInvoicesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesOrgAsync</a>(format, orgId, ExportInvoicesOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesOrgAsync</a>(format, orgId, ExportInvoicesOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3642,7 +3642,7 @@ await client.Export.ExportInvoicesOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportOrganizationsAsync</a>(format, orgId, ExportOrganizationsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportOrganizationsAsync</a>(format, orgId, ExportOrganizationsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3721,7 +3721,7 @@ await client.Export.ExportOrganizationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutAsync</a>(format, entry, ExportPayoutRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutAsync</a>(format, entry, ExportPayoutRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3800,7 +3800,7 @@ await client.Export.ExportPayoutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutOrgAsync</a>(format, orgId, ExportPayoutOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutOrgAsync</a>(format, orgId, ExportPayoutOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3879,7 +3879,7 @@ await client.Export.ExportPayoutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPaypointsAsync</a>(format, orgId, ExportPaypointsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPaypointsAsync</a>(format, orgId, ExportPaypointsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3958,7 +3958,7 @@ await client.Export.ExportPaypointsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsAsync</a>(format, entry, ExportSettlementsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsAsync</a>(format, entry, ExportSettlementsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4037,7 +4037,7 @@ await client.Export.ExportSettlementsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsOrgAsync</a>(format, orgId, ExportSettlementsOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsOrgAsync</a>(format, orgId, ExportSettlementsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4116,7 +4116,7 @@ await client.Export.ExportSettlementsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsAsync</a>(format, entry, ExportSubscriptionsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsAsync</a>(format, entry, ExportSubscriptionsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4195,7 +4195,7 @@ await client.Export.ExportSubscriptionsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsOrgAsync</a>(format, orgId, ExportSubscriptionsOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsOrgAsync</a>(format, orgId, ExportSubscriptionsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4274,7 +4274,7 @@ await client.Export.ExportSubscriptionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsAsync</a>(format, entry, ExportTransactionsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsAsync</a>(format, entry, ExportTransactionsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4353,7 +4353,7 @@ await client.Export.ExportTransactionsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsOrgAsync</a>(format, orgId, ExportTransactionsOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsOrgAsync</a>(format, orgId, ExportTransactionsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4432,7 +4432,7 @@ await client.Export.ExportTransactionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransferDetailsAsync</a>(format, entry, transferId, ExportTransferDetailsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransferDetailsAsync</a>(format, entry, transferId, ExportTransferDetailsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4521,7 +4521,7 @@ await client.Export.ExportTransferDetailsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransfersAsync</a>(entry, ExportTransfersRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransfersAsync</a>(entry, ExportTransfersRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4592,7 +4592,7 @@ await client.Export.ExportTransfersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsAsync</a>(format, entry, ExportVendorsRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsAsync</a>(format, entry, ExportVendorsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4671,7 +4671,7 @@ await client.Export.ExportVendorsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsOrgAsync</a>(format, orgId, ExportVendorsOrgRequest { ... }) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsOrgAsync</a>(format, orgId, ExportVendorsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5863,7 +5863,7 @@ await client.Invoice.SendInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoicePdfAsync</a>(idInvoice) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoicePdfAsync</a>(idInvoice) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6250,8 +6250,10 @@ await client.LineItem.UpdateItemAsync(700, new LineItem { ItemCost = 12.45, Item
 <dd>
 
 Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/api-reference/moneyin/capture-an-authorized-transaction).
-
-**Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+<Tip>
+  Consider migrating to the [v2 Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction) to take advantage of unified response codes and improved response consistency.
+</Tip>
 </dd>
 </dl>
 </dd>
@@ -6396,6 +6398,10 @@ await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account. 
 
 You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
+
+<Tip>
+Consider migrating to the [v2 Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction) to take advantage of unified response codes and improved response consistency.
+</Tip>
 </dd>
 </dl>
 </dd>
@@ -6594,6 +6600,10 @@ await client.MoneyIn.DetailsAsync("45-as456777hhhhhhhhhh77777777-324");
 <dd>
 
 Make a single transaction. This method authorizes and captures a payment in one step.
+
+  <Tip>
+  Consider migrating to the [v2 Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) to take advantage of unified response codes and improved response consistency.
+  </Tip>
 </dd>
 </dl>
 </dd>
@@ -6738,6 +6748,10 @@ An amount equal to zero will refunds the total amount authorized minus any servi
 <dd>
 
 Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
+
+  <Tip>
+  Consider migrating to the [v2 Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) to take advantage of unified response codes and improved response consistency.
+  </Tip>
 </dd>
 </dl>
 </dd>
@@ -7085,6 +7099,10 @@ await client.MoneyIn.ValidateAsync(
 <dd>
 
 Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
+
+  <Tip>
+  Consider migrating to the [v2 Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction) to take advantage of unified response codes and improved response consistency.
+  </Tip>
 </dd>
 </dl>
 </dd>
@@ -7100,6 +7118,400 @@ Cancel a transaction that hasn't been settled yet. Voiding non-captured authoriz
 
 ```csharp
 await client.MoneyIn.VoidAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Getpaidv2Async</a>(RequestPaymentV2 { ... }) -> V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Make a single transaction. This method authorizes and captures a payment in one step. This is the v2 version of the `api/MoneyIn/getpaid` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyIn.Getpaidv2Async(
+    new RequestPaymentV2
+    {
+        Body = new TransRequestBody
+        {
+            CustomerData = new PayorDataRequest { CustomerId = 4440 },
+            EntryPoint = "f743aed24a",
+            Ipaddress = "255.255.255.255",
+            PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+            PaymentMethod = new PayMethodCredit
+            {
+                Cardcvv = "999",
+                Cardexp = "02/27",
+                CardHolder = "John Cassian",
+                Cardnumber = "4111111111111111",
+                Cardzip = "12345",
+                Initiator = "payor",
+                Method = "card",
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `RequestPaymentV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Authorizev2Async</a>(RequestPaymentAuthorizeV2 { ... }) -> V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until captured. This is the v2 version of the `api/MoneyIn/authorize` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+
+**Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyIn.Authorizev2Async(
+    new RequestPaymentAuthorizeV2
+    {
+        Body = new TransRequestBody
+        {
+            CustomerData = new PayorDataRequest { CustomerId = 4440 },
+            EntryPoint = "f743aed24a",
+            Ipaddress = "255.255.255.255",
+            PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+            PaymentMethod = new PayMethodCredit
+            {
+                Cardcvv = "999",
+                Cardexp = "02/27",
+                CardHolder = "John Cassian",
+                Cardnumber = "4111111111111111",
+                Cardzip = "12345",
+                Initiator = "payor",
+                Method = "card",
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `RequestPaymentAuthorizeV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Capturev2Async</a>(transId, CaptureRequest { ... }) -> V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Capture an authorized transaction to complete the transaction and move funds from the customer to merchant account. This is the v2 version of the `api/MoneyIn/capture/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyIn.Capturev2Async(
+    "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+    new CaptureRequest
+    {
+        PaymentDetails = new CapturePaymentDetails { TotalAmount = 105, ServiceFee = 5 },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CaptureRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2Async</a>(transId) -> V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+
+This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2AmountAsync</a>(transId, amount) -> V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Refund a transaction that has settled and send money back to the account holder. If `amount` is omitted or set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+
+This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyIn.Refundv2AmountAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**amount:** `double` — Amount to refund from original transaction, minus any service fees charged on the original transaction. If omitted or set to 0, performs a full refund.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Voidv2Async</a>(transId) -> V2TransactionResponseWrapper</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. This is the v2 version of the `api/MoneyIn/void/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyIn.Voidv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 ```
 </dd>
 </dl>
@@ -7201,7 +7613,7 @@ await client.MoneyOut.AuthorizeOutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelAllOutAsync</a>(IEnumerable<string> { ... }) -> CaptureAllOutResponse</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelAllOutAsync</a>(IEnumerable&lt;string&gt; { ... }) -> CaptureAllOutResponse</code></summary>
 <dl>
 <dd>
 
@@ -7716,7 +8128,7 @@ in the response when you make a GET request to `/MoneyOut/details/{transId}`.
 </details>
 
 ## Notification
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">AddNotificationAsync</a>(OneOf<NotificationStandardRequest, NotificationReportRequest> { ... }) -> PayabliApiResponseNotifications</code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">AddNotificationAsync</a>(OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> PayabliApiResponseNotifications</code></summary>
 <dl>
 <dd>
 
@@ -7892,7 +8304,7 @@ await client.Notification.GetNotificationAsync("1717");
 </dl>
 </details>
 
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">UpdateNotificationAsync</a>(nId, OneOf<NotificationStandardRequest, NotificationReportRequest> { ... }) -> PayabliApiResponseNotifications</code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">UpdateNotificationAsync</a>(nId, OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> PayabliApiResponseNotifications</code></summary>
 <dl>
 <dd>
 
@@ -7969,7 +8381,7 @@ await client.Notification.UpdateNotificationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">GetReportFileAsync</a>(id) -> Dictionary<string, object?></code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">GetReportFileAsync</a>(id) -> Dictionary&lt;string, object?&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8024,7 +8436,7 @@ await client.Notification.GetReportFileAsync(1000000);
 </details>
 
 ## Notificationlogs
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">SearchNotificationLogsAsync</a>(SearchNotificationLogsRequest { ... }) -> IEnumerable<NotificationLog></code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">SearchNotificationLogsAsync</a>(SearchNotificationLogsRequest { ... }) -> IEnumerable&lt;NotificationLog&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8206,7 +8618,7 @@ await client.Notificationlogs.RetryNotificationLogAsync("550e8400-e29b-41d4-a716
 </dl>
 </details>
 
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">BulkRetryNotificationLogsAsync</a>(IEnumerable<string> { ... })</code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">BulkRetryNotificationLogsAsync</a>(IEnumerable&lt;string&gt; { ... })</code></summary>
 <dl>
 <dd>
 
@@ -12970,7 +13382,7 @@ await client.Query.ListVcardsOrgAsync(
 </details>
 
 ## Statistic
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">BasicStatsAsync</a>(mode, freq, level, entryId, BasicStatsRequest { ... }) -> IEnumerable<StatBasicExtendedQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">BasicStatsAsync</a>(mode, freq, level, entryId, BasicStatsRequest { ... }) -> IEnumerable&lt;StatBasicExtendedQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13091,7 +13503,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(mode, freq, customerId, CustomerBasicStatsRequest { ... }) -> IEnumerable<SubscriptionStatsQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(mode, freq, customerId, CustomerBasicStatsRequest { ... }) -> IEnumerable&lt;SubscriptionStatsQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13192,7 +13604,7 @@ For example, `w` groups the results by week.
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(interval, level, entryId, SubStatsRequest { ... }) -> IEnumerable<StatBasicQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(interval, level, entryId, SubStatsRequest { ... }) -> IEnumerable&lt;StatBasicQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13282,7 +13694,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(mode, freq, idVendor, VendorBasicStatsRequest { ... }) -> IEnumerable<StatisticsVendorQueryRecord></code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(mode, freq, idVendor, VendorBasicStatsRequest { ... }) -> IEnumerable&lt;StatisticsVendorQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 

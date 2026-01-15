@@ -10,6 +10,7 @@ The Payabli C# library provides convenient access to the Payabli APIs from C#.
 - [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Passing Query Parameters](#passing-query-parameters)
 - [Usage](#usage)
 - [Exception Handling](#exception-handling)
 - [Advanced](#advanced)
@@ -32,6 +33,28 @@ This SDK requires:
 ```sh
 dotnet add package PayabliApi
 ```
+
+## Passing Query Parameters
+
+```csharp
+var client = new PayabliApiClient("API_KEY");
+
+var queryParams = new Dictionary<string, string>();
+
+queryParams.Add("email(ct)", "test@example.com");
+
+var result = await client.Query.ListCustomersAsync(
+    "ENTRYPOINT", 
+    new ListCustomersRequest {},
+    new RequestOptions
+    {
+        AdditionalQueryParameters = queryParams
+    }
+);
+
+Console.WriteLine($"Response: {result}");
+```
+
 
 ## Usage
 

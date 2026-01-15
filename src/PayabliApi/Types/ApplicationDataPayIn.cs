@@ -212,6 +212,9 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     [JsonPropertyName("RepOffice")]
     public string? RepOffice { get; set; }
 
+    [JsonPropertyName("onCreate")]
+    public string? OnCreate { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

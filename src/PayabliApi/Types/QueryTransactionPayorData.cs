@@ -111,7 +111,7 @@ public record QueryTransactionPayorData : IJsonOnDeserialized
     public int? CustomerStatus { get; set; }
 
     [JsonPropertyName("AdditionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

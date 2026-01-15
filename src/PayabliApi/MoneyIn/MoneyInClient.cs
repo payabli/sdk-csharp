@@ -14,8 +14,10 @@ public partial class MoneyInClient
 
     /// <summary>
     /// Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/api-reference/moneyin/capture-an-authorized-transaction).
-    ///
-    /// **Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+    /// Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+    /// &lt;Tip&gt;
+    ///   Consider migrating to the [v2 Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction) to take advantage of unified response codes and improved response consistency.
+    /// &lt;/Tip&gt;
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.AuthorizeAsync(
@@ -199,6 +201,10 @@ public partial class MoneyInClient
     /// Capture an [authorized transaction](/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
     ///
     /// You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
+    ///
+    /// &lt;Tip&gt;
+    /// Consider migrating to the [v2 Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction) to take advantage of unified response codes and improved response consistency.
+    /// &lt;/Tip&gt;
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.CaptureAuthAsync(
@@ -452,6 +458,10 @@ public partial class MoneyInClient
 
     /// <summary>
     /// Make a single transaction. This method authorizes and captures a payment in one step.
+    ///
+    ///   &lt;Tip&gt;
+    ///   Consider migrating to the [v2 Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) to take advantage of unified response codes and improved response consistency.
+    ///   &lt;/Tip&gt;
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.GetpaidAsync(
@@ -640,6 +650,10 @@ public partial class MoneyInClient
 
     /// <summary>
     /// Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
+    ///
+    ///   &lt;Tip&gt;
+    ///   Consider migrating to the [v2 Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) to take advantage of unified response codes and improved response consistency.
+    ///   &lt;/Tip&gt;
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.RefundAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
@@ -1059,6 +1073,10 @@ public partial class MoneyInClient
 
     /// <summary>
     /// Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
+    ///
+    ///   &lt;Tip&gt;
+    ///   Consider migrating to the [v2 Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction) to take advantage of unified response codes and improved response consistency.
+    ///   &lt;/Tip&gt;
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.VoidAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
@@ -1112,6 +1130,555 @@ public partial class MoneyInClient
                     case 503:
                         throw new ServiceUnavailableError(
                             JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Make a single transaction. This method authorizes and captures a payment in one step. This is the v2 version of the `api/MoneyIn/getpaid` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyIn.Getpaidv2Async(
+    ///     new RequestPaymentV2
+    ///     {
+    ///         Body = new TransRequestBody
+    ///         {
+    ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
+    ///             EntryPoint = "f743aed24a",
+    ///             Ipaddress = "255.255.255.255",
+    ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+    ///             PaymentMethod = new PayMethodCredit
+    ///             {
+    ///                 Cardcvv = "999",
+    ///                 Cardexp = "02/27",
+    ///                 CardHolder = "John Cassian",
+    ///                 Cardnumber = "4111111111111111",
+    ///                 Cardzip = "12345",
+    ///                 Initiator = "payor",
+    ///                 Method = "card",
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public async Task<V2TransactionResponseWrapper> Getpaidv2Async(
+        RequestPaymentV2 request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.AchValidation != null)
+        {
+            _query["achValidation"] = JsonUtils.Serialize(request.AchValidation.Value);
+        }
+        if (request.ForceCustomerCreation != null)
+        {
+            _query["forceCustomerCreation"] = JsonUtils.Serialize(
+                request.ForceCustomerCreation.Value
+            );
+        }
+        var _headers = new Headers(new Dictionary<string, string>() { });
+        if (request.IdempotencyKey != null)
+        {
+            _headers["idempotencyKey"] = request.IdempotencyKey;
+        }
+        if (request.ValidationCode != null)
+        {
+            _headers["validationCode"] = request.ValidationCode;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "v2/MoneyIn/getpaid",
+                    Body = request.Body,
+                    Query = _query,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<V2TransactionResponseWrapper>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestAuthResponseErrorV2(
+                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 402:
+                        throw new DeclinedAuthResponseErrorV2(
+                            JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
+                                responseBody
+                            )
+                        );
+                    case 500:
+                        throw new InternalServerResponseErrorV2(
+                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until captured. This is the v2 version of the `api/MoneyIn/authorize` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+    ///
+    /// **Note**: Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyIn.Authorizev2Async(
+    ///     new RequestPaymentAuthorizeV2
+    ///     {
+    ///         Body = new TransRequestBody
+    ///         {
+    ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
+    ///             EntryPoint = "f743aed24a",
+    ///             Ipaddress = "255.255.255.255",
+    ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+    ///             PaymentMethod = new PayMethodCredit
+    ///             {
+    ///                 Cardcvv = "999",
+    ///                 Cardexp = "02/27",
+    ///                 CardHolder = "John Cassian",
+    ///                 Cardnumber = "4111111111111111",
+    ///                 Cardzip = "12345",
+    ///                 Initiator = "payor",
+    ///                 Method = "card",
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public async Task<V2TransactionResponseWrapper> Authorizev2Async(
+        RequestPaymentAuthorizeV2 request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.ForceCustomerCreation != null)
+        {
+            _query["forceCustomerCreation"] = JsonUtils.Serialize(
+                request.ForceCustomerCreation.Value
+            );
+        }
+        var _headers = new Headers(new Dictionary<string, string>() { });
+        if (request.IdempotencyKey != null)
+        {
+            _headers["idempotencyKey"] = request.IdempotencyKey;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "v2/MoneyIn/authorize",
+                    Body = request.Body,
+                    Query = _query,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<V2TransactionResponseWrapper>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestAuthResponseErrorV2(
+                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 402:
+                        throw new DeclinedAuthResponseErrorV2(
+                            JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
+                                responseBody
+                            )
+                        );
+                    case 500:
+                        throw new InternalServerResponseErrorV2(
+                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Capture an authorized transaction to complete the transaction and move funds from the customer to merchant account. This is the v2 version of the `api/MoneyIn/capture/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyIn.Capturev2Async(
+    ///     "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
+    ///     new CaptureRequest
+    ///     {
+    ///         PaymentDetails = new CapturePaymentDetails { TotalAmount = 105, ServiceFee = 5 },
+    ///     }
+    /// );
+    /// </code></example>
+    public async Task<V2TransactionResponseWrapper> Capturev2Async(
+        string transId,
+        CaptureRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "v2/MoneyIn/capture/{0}",
+                        ValueConvert.ToPathParameterString(transId)
+                    ),
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<V2TransactionResponseWrapper>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestCaptureResponseErrorV2(
+                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 402:
+                        throw new DeclinedCaptureResponseErrorV2(
+                            JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
+                                responseBody
+                            )
+                        );
+                    case 500:
+                        throw new InternalServerResponseErrorV2(
+                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+    ///
+    /// This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+    /// </code></example>
+    public async Task<V2TransactionResponseWrapper> Refundv2Async(
+        string transId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "v2/MoneyIn/refund/{0}",
+                        ValueConvert.ToPathParameterString(transId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<V2TransactionResponseWrapper>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestRefundResponseErrorV2(
+                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 402:
+                        throw new DeclinedRefundResponseErrorV2(
+                            JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
+                                responseBody
+                            )
+                        );
+                    case 500:
+                        throw new InternalServerResponseErrorV2(
+                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Refund a transaction that has settled and send money back to the account holder. If `amount` is omitted or set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+    ///
+    /// This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyIn.Refundv2AmountAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+    /// </code></example>
+    public async Task<V2TransactionResponseWrapper> Refundv2AmountAsync(
+        string transId,
+        double amount,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "v2/MoneyIn/refund/{0}/{1}",
+                        ValueConvert.ToPathParameterString(transId),
+                        ValueConvert.ToPathParameterString(amount)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<V2TransactionResponseWrapper>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestRefundResponseErrorV2(
+                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 402:
+                        throw new DeclinedRefundResponseErrorV2(
+                            JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
+                                responseBody
+                            )
+                        );
+                    case 500:
+                        throw new InternalServerResponseErrorV2(
+                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. This is the v2 version of the `api/MoneyIn/void/{transId}` endpoint, and returns the unified response format. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyIn.Voidv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+    /// </code></example>
+    public async Task<V2TransactionResponseWrapper> Voidv2Async(
+        string transId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "v2/MoneyIn/void/{0}",
+                        ValueConvert.ToPathParameterString(transId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<V2TransactionResponseWrapper>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestVoidResponseErrorV2(
+                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
+                        );
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 402:
+                        throw new DeclinedVoidResponseErrorV2(
+                            JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
+                                responseBody
+                            )
+                        );
+                    case 500:
+                        throw new InternalServerResponseErrorV2(
+                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
                         );
                 }
             }

@@ -50,6 +50,9 @@ public record BillResponseData : IJsonOnDeserialized
     [JsonPropertyName("DueDate")]
     public DateOnly? DueDate { get; set; }
 
+    /// <summary>
+    /// Comments associated with the bill. For managed payables, the character limit is 200. For on demand payouts, the characters limit is 250.
+    /// </summary>
     [JsonPropertyName("Comments")]
     public string? Comments { get; set; }
 

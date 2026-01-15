@@ -8,23 +8,17 @@ namespace PayabliApi;
 /// Response data from payment processor
 /// </summary>
 [Serializable]
-public record TransactionDetailResponseData : IJsonOnDeserialized
+public record V2TransactionDetailResponseData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    /// <summary>
-    /// Unified result code for the transaction. See [Pay In unified response codes](/developers/references/pay-in-unified-response-codes) for more information.
-    /// </summary>
     [JsonPropertyName("resultCode")]
-    public string? ResultCode { get; set; }
+    public required string ResultCode { get; set; }
 
-    /// <summary>
-    /// Description of the result code. See [Pay In unified response codes](/developers/references/pay-in-unified-response-codes) for more information.
-    /// </summary>
     [JsonPropertyName("resultCodeText")]
-    public string? ResultCodeText { get; set; }
+    public required string ResultCodeText { get; set; }
 
     [JsonPropertyName("response")]
     public string? Response { get; set; }
@@ -35,6 +29,9 @@ public record TransactionDetailResponseData : IJsonOnDeserialized
     [JsonPropertyName("authcode")]
     public string? Authcode { get; set; }
 
+    /// <summary>
+    /// Unique identifier for the transaction assigned by the payment processor.
+    /// </summary>
     [JsonPropertyName("transactionid")]
     public required string Transactionid { get; set; }
 
@@ -56,9 +53,15 @@ public record TransactionDetailResponseData : IJsonOnDeserialized
     [JsonPropertyName("type")]
     public string? Type { get; set; }
 
+    /// <summary>
+    /// Processor-specific response code.
+    /// </summary>
     [JsonPropertyName("response_code")]
     public required string ResponseCode { get; set; }
 
+    /// <summary>
+    /// Description of the response code.
+    /// </summary>
     [JsonPropertyName("response_code_text")]
     public required string ResponseCodeText { get; set; }
 

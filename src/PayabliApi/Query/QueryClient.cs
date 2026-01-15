@@ -3301,26 +3301,6 @@ public partial class QueryClient
 
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
-                        );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

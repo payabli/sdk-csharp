@@ -17,33 +17,18 @@ public record QueryResponseData : IJsonOnDeserialized
     [JsonPropertyName("authcode")]
     public string? Authcode { get; set; }
 
-    /// <summary>
-    /// Text code describing the result for address validation (applies only for card transactions).
-    /// </summary>
     [JsonPropertyName("avsresponse")]
     public string? Avsresponse { get; set; }
 
-    /// <summary>
-    /// Text code describing the result for address validation (applies only for card transactions).
-    /// </summary>
     [JsonPropertyName("avsresponse_text")]
     public string? AvsresponseText { get; set; }
 
-    /// <summary>
-    /// Text code describing the result for CVV validation (applies only for card transactions).
-    /// </summary>
     [JsonPropertyName("cvvresponse")]
     public string? Cvvresponse { get; set; }
 
-    /// <summary>
-    /// Text code describing the result for CVV validation (applies only for card transactions).
-    /// </summary>
     [JsonPropertyName("cvvresponse_text")]
     public string? CvvresponseText { get; set; }
 
-    /// <summary>
-    /// EMV authorization response data, applicable for card transactions.
-    /// </summary>
     [JsonPropertyName("emv_auth_response_data")]
     public string? EmvAuthResponseData { get; set; }
 
@@ -73,6 +58,12 @@ public record QueryResponseData : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("responsetext")]
     public string? Responsetext { get; set; }
+
+    [JsonPropertyName("resultCode")]
+    public string? ResultCode { get; set; }
+
+    [JsonPropertyName("resultCodeText")]
+    public string? ResultCodeText { get; set; }
 
     /// <summary>
     /// The transaction identifier in Payabli.

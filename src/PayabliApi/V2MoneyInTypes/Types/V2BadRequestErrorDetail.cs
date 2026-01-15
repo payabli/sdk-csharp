@@ -5,20 +5,26 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// Subscription query response body.
+/// Individual field error detail for bad request responses.
 /// </summary>
 [Serializable]
-public record QuerySubscriptionResponse : IJsonOnDeserialized
+public record V2BadRequestErrorDetail : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("Records")]
-    public IEnumerable<SubscriptionQueryRecords>? Records { get; set; }
+    /// <summary>
+    /// Description of the validation error.
+    /// </summary>
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
-    [JsonPropertyName("Summary")]
-    public QuerySummary? Summary { get; set; }
+    /// <summary>
+    /// Suggested action to fix the error.
+    /// </summary>
+    [JsonPropertyName("suggestion")]
+    public required string Suggestion { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

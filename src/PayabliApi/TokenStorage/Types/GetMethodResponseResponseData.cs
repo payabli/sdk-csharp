@@ -32,6 +32,12 @@ public record GetMethodResponseResponseData : IJsonOnDeserialized
     [JsonPropertyName("binData")]
     public BinData? BinData { get; set; }
 
+    /// <summary>
+    /// Timestamp for when card was last updated
+    /// </summary>
+    [JsonPropertyName("cardUpdatedOn")]
+    public DateTime? CardUpdatedOn { get; set; }
+
     [JsonPropertyName("customers")]
     public IEnumerable<GetMethodResponseResponseDataCustomersItem>? Customers { get; set; }
 
@@ -55,6 +61,12 @@ public record GetMethodResponseResponseData : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("idPmethod")]
     public string? IdPmethod { get; set; }
+
+    /// <summary>
+    /// Whether the ACH account has been validated
+    /// </summary>
+    [JsonPropertyName("isValidatedACH")]
+    public bool? IsValidatedAch { get; set; }
 
     /// <summary>
     /// Timestamp for last update of stored method, in UTC
@@ -82,6 +94,9 @@ public record GetMethodResponseResponseData : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("postalCode")]
     public string? PostalCode { get; set; }
+
+    [JsonPropertyName("vendors")]
+    public IEnumerable<GetMethodResponseResponseDataVendorsItem>? Vendors { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

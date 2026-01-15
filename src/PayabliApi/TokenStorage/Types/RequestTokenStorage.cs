@@ -48,6 +48,9 @@ public record RequestTokenStorage : IJsonOnDeserialized
     [JsonPropertyName("paymentMethod")]
     public OneOf<TokenizeCard, TokenizeAch, ConvertToken>? PaymentMethod { get; set; }
 
+    [JsonPropertyName("vendorData")]
+    public VendorDataRequest? VendorData { get; set; }
+
     /// <summary>
     /// Custom identifier to indicate the source for the request
     /// </summary>
