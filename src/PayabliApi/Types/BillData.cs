@@ -12,7 +12,7 @@ public record BillData : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("AdditionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("attachments")]
     public IEnumerable<FileContent>? Attachments { get; set; }

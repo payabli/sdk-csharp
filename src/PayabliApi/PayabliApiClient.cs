@@ -15,7 +15,7 @@ public partial class PayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/0.0.290" },
+                { "User-Agent", "Payabli.SDK/0.0.291" },
             }
         );
         clientOptions ??= new ClientOptions();
