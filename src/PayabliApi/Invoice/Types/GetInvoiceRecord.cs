@@ -156,7 +156,7 @@ public record GetInvoiceRecord : IJsonOnDeserialized
     public required string ParentOrgName { get; set; }
 
     [JsonPropertyName("AdditionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("DocumentsRef")]
     public required DocumentsRef DocumentsRef { get; set; }
