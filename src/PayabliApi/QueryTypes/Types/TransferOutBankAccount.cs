@@ -1,34 +1,36 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using OneOf;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Bank account information for an outbound transfer.
+/// </summary>
 [Serializable]
-public record QueryTransactionEvents : IJsonOnDeserialized
+public record TransferOutBankAccount : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Any data associated to the event received from processor. Contents vary by event type.
+    /// The masked bank account number.
     /// </summary>
-    [JsonPropertyName("EventData")]
-    public OneOf<Dictionary<string, object?>, string>? EventData { get; set; }
+    [JsonPropertyName("accountNumber")]
+    public string? AccountNumber { get; set; }
 
     /// <summary>
-    /// Date and time of event.
+    /// The bank routing number.
     /// </summary>
-    [JsonPropertyName("EventTime")]
-    public DateTime? EventTime { get; set; }
+    [JsonPropertyName("routingNumber")]
+    public string? RoutingNumber { get; set; }
 
     /// <summary>
-    /// Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details.
+    /// The bank name.
     /// </summary>
-    [JsonPropertyName("TransEvent")]
-    public string? TransEvent { get; set; }
+    [JsonPropertyName("bankName")]
+    public string? BankName { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -1,34 +1,30 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using OneOf;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Properties associated with a transfer message.
+/// </summary>
 [Serializable]
-public record QueryTransactionEvents : IJsonOnDeserialized
+public record TransferOutMessageProperties : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Any data associated to the event received from processor. Contents vary by event type.
+    /// The original status of the transfer before the message.
     /// </summary>
-    [JsonPropertyName("EventData")]
-    public OneOf<Dictionary<string, object?>, string>? EventData { get; set; }
+    [JsonPropertyName("originalTransferStatus")]
+    public string? OriginalTransferStatus { get; set; }
 
     /// <summary>
-    /// Date and time of event.
+    /// The current status of the transfer after the message.
     /// </summary>
-    [JsonPropertyName("EventTime")]
-    public DateTime? EventTime { get; set; }
-
-    /// <summary>
-    /// Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details.
-    /// </summary>
-    [JsonPropertyName("TransEvent")]
-    public string? TransEvent { get; set; }
+    [JsonPropertyName("currentTransferStatus")]
+    public string? CurrentTransferStatus { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

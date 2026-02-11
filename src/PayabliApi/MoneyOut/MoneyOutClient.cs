@@ -770,4 +770,89 @@ public partial class MoneyOutClient
             );
         }
     }
+
+    /// <summary>
+    /// Updates the status of a processed check payment transaction. This endpoint handles the status transition, updates related bills, creates audit events, and triggers notifications.
+    ///
+    /// The transaction must meet all of the following criteria:
+    /// - **Status**: Must be in Processing or Processed status.
+    /// - **Payment method**: Must be a check payment method.
+    ///
+    /// ### Allowed status values
+    ///
+    /// | Value | Status | Description |
+    /// |-------|--------|-------------|
+    /// | `0` | Cancelled/Voided | Cancels the check transaction. Reverts associated bills to their previous state (Approved or Active), creates "Cancelled" events, and sends a `payout_transaction_voidedcancelled` notification if the notification is enabled. |
+    /// | `5` | Paid | Marks the check transaction as paid. Updates associated bills to "Paid" status, creates "Paid" events, and sends a `payout_transaction_paid` notification if the notification is enabled. |
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyOut.UpdateCheckPaymentStatusAsync("TRANS123456", AllowedCheckPaymentStatus.Paid);
+    /// </code></example>
+    public async Task<PayabliApiResponse00Responsedatanonobject> UpdateCheckPaymentStatusAsync(
+        string transId,
+        AllowedCheckPaymentStatus checkPaymentStatus,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "MoneyOut/status/{0}/{1}",
+                        ValueConvert.ToPathParameterString(transId),
+                        ValueConvert.ToPathParameterString(checkPaymentStatus)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
+                    responseBody
+                )!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 }

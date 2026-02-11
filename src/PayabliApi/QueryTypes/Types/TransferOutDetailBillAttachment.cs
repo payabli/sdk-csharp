@@ -1,34 +1,48 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using OneOf;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Attachment for a bill.
+/// </summary>
 [Serializable]
-public record QueryTransactionEvents : IJsonOnDeserialized
+public record TransferOutDetailBillAttachment : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Any data associated to the event received from processor. Contents vary by event type.
+    /// File type.
     /// </summary>
-    [JsonPropertyName("EventData")]
-    public OneOf<Dictionary<string, object?>, string>? EventData { get; set; }
+    [JsonPropertyName("ftype")]
+    public string? Ftype { get; set; }
 
     /// <summary>
-    /// Date and time of event.
+    /// File name.
     /// </summary>
-    [JsonPropertyName("EventTime")]
-    public DateTime? EventTime { get; set; }
+    [JsonPropertyName("filename")]
+    public string? Filename { get; set; }
 
     /// <summary>
-    /// Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details.
+    /// File descriptor.
     /// </summary>
-    [JsonPropertyName("TransEvent")]
-    public string? TransEvent { get; set; }
+    [JsonPropertyName("fileDescriptor")]
+    public string? FileDescriptor { get; set; }
+
+    /// <summary>
+    /// File URL.
+    /// </summary>
+    [JsonPropertyName("furl")]
+    public string? Furl { get; set; }
+
+    /// <summary>
+    /// File content.
+    /// </summary>
+    [JsonPropertyName("fContent")]
+    public string? FContent { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

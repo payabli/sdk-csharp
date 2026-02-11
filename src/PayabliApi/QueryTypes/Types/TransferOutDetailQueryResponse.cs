@@ -1,34 +1,31 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using OneOf;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Response body for queries about outbound transfer details.
+/// </summary>
 [Serializable]
-public record QueryTransactionEvents : IJsonOnDeserialized
+public record TransferOutDetailQueryResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Any data associated to the event received from processor. Contents vary by event type.
+    /// Summary information about the transfer details.
     /// </summary>
-    [JsonPropertyName("EventData")]
-    public OneOf<Dictionary<string, object?>, string>? EventData { get; set; }
+    [JsonPropertyName("Summary")]
+    public required QueryTransferSummary Summary { get; set; }
 
     /// <summary>
-    /// Date and time of event.
+    /// List of outbound transfer detail records.
     /// </summary>
-    [JsonPropertyName("EventTime")]
-    public DateTime? EventTime { get; set; }
-
-    /// <summary>
-    /// Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details.
-    /// </summary>
-    [JsonPropertyName("TransEvent")]
-    public string? TransEvent { get; set; }
+    [JsonPropertyName("Records")]
+    public IEnumerable<TransferOutDetailRecord> Records { get; set; } =
+        new List<TransferOutDetailRecord>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

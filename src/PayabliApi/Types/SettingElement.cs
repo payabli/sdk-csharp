@@ -30,7 +30,7 @@ public record SettingElement : IJsonOnDeserialized
     public bool? SendAuto { get; set; }
 
     /// <summary>
-    /// When `true`, you must send the reciept to the payor manually using the [/MoneyIn/sendreceipt/\{transId\}](/api-reference/moneyin/send-receipt-for-transaction) endpoint.
+    /// When `true`, you must send the reciept to the payor manually using the [/MoneyIn/sendreceipt/\{transId\}](/developers/api-reference/moneyin/send-receipt-for-transaction) endpoint.
     /// </summary>
     [JsonPropertyName("sendManual")]
     public bool? SendManual { get; set; }

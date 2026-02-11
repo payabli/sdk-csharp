@@ -1,34 +1,36 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using OneOf;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Summary information for outbound transfer queries.
+/// </summary>
 [Serializable]
-public record QueryTransactionEvents : IJsonOnDeserialized
+public record TransferOutSummary : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Any data associated to the event received from processor. Contents vary by event type.
+    /// Number of pages in the response.
     /// </summary>
-    [JsonPropertyName("EventData")]
-    public OneOf<Dictionary<string, object?>, string>? EventData { get; set; }
+    [JsonPropertyName("totalPages")]
+    public int? TotalPages { get; set; }
 
     /// <summary>
-    /// Date and time of event.
+    /// Number of records in the response.
     /// </summary>
-    [JsonPropertyName("EventTime")]
-    public DateTime? EventTime { get; set; }
+    [JsonPropertyName("totalRecords")]
+    public int? TotalRecords { get; set; }
 
     /// <summary>
-    /// Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details.
+    /// Number of records per page.
     /// </summary>
-    [JsonPropertyName("TransEvent")]
-    public string? TransEvent { get; set; }
+    [JsonPropertyName("pageSize")]
+    public int? PageSize { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

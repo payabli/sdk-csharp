@@ -17,6 +17,9 @@ public record TransferBankAccount : IJsonOnDeserialized
     [JsonPropertyName("routingNumber")]
     public required string RoutingNumber { get; set; }
 
+    [JsonPropertyName("bankName")]
+    public required string BankName { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

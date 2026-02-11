@@ -45,7 +45,7 @@ public record V2BadRequestError : IJsonOnDeserialized
     public required string Instance { get; set; }
 
     /// <summary>
-    /// Payabli's unified response code for validation errors. Starts with 'E'. See [Pay In unified response codes reference](/developers/references/pay-in-unified-response-codes) for more information.
+    /// Payabli's unified response code for validation errors. Starts with 'E'. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
     /// </summary>
     [JsonPropertyName("code")]
     public required string Code { get; set; }

@@ -2732,6 +2732,285 @@ public partial class QueryClient
     }
 
     /// <summary>
+    /// Retrieve a list of outbound transfers for an organization. Use filters to limit results.
+    /// </summary>
+    /// <example><code>
+    /// await client.Query.ListTransfersOutOrgAsync(
+    ///     77,
+    ///     new ListTransfersOutOrgRequest { FromRecord = 0, LimitRecord = 20 }
+    /// );
+    /// </code></example>
+    public async Task<TransferOutQueryResponse> ListTransfersOutOrgAsync(
+        int orgId,
+        ListTransfersOutOrgRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.FromRecord != null)
+        {
+            _query["fromRecord"] = request.FromRecord.Value.ToString();
+        }
+        if (request.LimitRecord != null)
+        {
+            _query["limitRecord"] = request.LimitRecord.Value.ToString();
+        }
+        if (request.Parameters != null)
+        {
+            _query["parameters"] = JsonUtils.Serialize(request.Parameters);
+        }
+        if (request.SortBy != null)
+        {
+            _query["sortBy"] = request.SortBy;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Query/transfersOut/org/{0}",
+                        ValueConvert.ToPathParameterString(orgId)
+                    ),
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<TransferOutQueryResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Retrieve a list of outbound transfers for a paypoint. Use filters to limit results.
+    /// </summary>
+    /// <example><code>
+    /// await client.Query.ListTransfersOutPaypointAsync(
+    ///     "47cade237",
+    ///     new ListTransfersOutPaypointRequest { FromRecord = 0, LimitRecord = 20 }
+    /// );
+    /// </code></example>
+    public async Task<TransferOutQueryResponse> ListTransfersOutPaypointAsync(
+        string entry,
+        ListTransfersOutPaypointRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.FromRecord != null)
+        {
+            _query["fromRecord"] = request.FromRecord.Value.ToString();
+        }
+        if (request.LimitRecord != null)
+        {
+            _query["limitRecord"] = request.LimitRecord.Value.ToString();
+        }
+        if (request.Parameters != null)
+        {
+            _query["parameters"] = JsonUtils.Serialize(request.Parameters);
+        }
+        if (request.SortBy != null)
+        {
+            _query["sortBy"] = request.SortBy;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Query/transfersOut/{0}",
+                        ValueConvert.ToPathParameterString(entry)
+                    ),
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<TransferOutQueryResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Retrieve details for a specific outbound transfer. Use filters to limit results.
+    /// </summary>
+    /// <example><code>
+    /// await client.Query.ListTransferDetailsOutAsync(
+    ///     "47ace2b25",
+    ///     4521,
+    ///     new ListTransferDetailsOutRequest { FromRecord = 0, LimitRecord = 20 }
+    /// );
+    /// </code></example>
+    public async Task<TransferOutDetailQueryResponse> ListTransferDetailsOutAsync(
+        string entry,
+        int transferId,
+        ListTransferDetailsOutRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.FromRecord != null)
+        {
+            _query["fromRecord"] = request.FromRecord.Value.ToString();
+        }
+        if (request.LimitRecord != null)
+        {
+            _query["limitRecord"] = request.LimitRecord.Value.ToString();
+        }
+        if (request.Parameters != null)
+        {
+            _query["parameters"] = JsonUtils.Serialize(request.Parameters);
+        }
+        if (request.SortBy != null)
+        {
+            _query["sortBy"] = request.SortBy;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Query/transferDetailsOut/{0}/{1}",
+                        ValueConvert.ToPathParameterString(entry),
+                        ValueConvert.ToPathParameterString(transferId)
+                    ),
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<TransferOutDetailQueryResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
     /// Get list of users for an org. Use filters to limit results.
     /// </summary>
     /// <example><code>
