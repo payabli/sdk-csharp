@@ -1,6 +1,6 @@
 # Reference
 ## Bill
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">AddBillAsync</a>(entry, AddBillRequest { ... }) -> BillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">AddBillAsync</a>(entry, AddBillRequest { ... }) -> WithRawResponseTask&lt;BillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -109,7 +109,7 @@ await client.Bill.AddBillAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">DeleteAttachedFromBillAsync</a>(idBill, filename, DeleteAttachedFromBillRequest { ... }) -> BillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">DeleteAttachedFromBillAsync</a>(idBill, filename, DeleteAttachedFromBillRequest { ... }) -> WithRawResponseTask&lt;BillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -200,7 +200,7 @@ request to `/api/Invoice/{idInvoice}`. Here, the filename is
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">DeleteBillAsync</a>(idBill) -> BillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">DeleteBillAsync</a>(idBill) -> WithRawResponseTask&lt;BillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -254,7 +254,7 @@ await client.Bill.DeleteBillAsync(285);
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">EditBillAsync</a>(idBill, BillOutData { ... }) -> EditBillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">EditBillAsync</a>(idBill, BillOutData { ... }) -> WithRawResponseTask&lt;EditBillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -319,7 +319,7 @@ await client.Bill.EditBillAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">GetAttachedFromBillAsync</a>(idBill, filename, GetAttachedFromBillRequest { ... }) -> FileContent</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">GetAttachedFromBillAsync</a>(idBill, filename, GetAttachedFromBillRequest { ... }) -> WithRawResponseTask&lt;FileContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -405,7 +405,7 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">GetBillAsync</a>(idBill) -> GetBillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">GetBillAsync</a>(idBill) -> WithRawResponseTask&lt;GetBillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -459,7 +459,7 @@ await client.Bill.GetBillAsync(285);
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ListBillsAsync</a>(entry, ListBillsRequest { ... }) -> BillQueryResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ListBillsAsync</a>(entry, ListBillsRequest { ... }) -> WithRawResponseTask&lt;BillQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -529,7 +529,7 @@ await client.Bill.ListBillsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ListBillsOrgAsync</a>(orgId, ListBillsOrgRequest { ... }) -> BillQueryResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ListBillsOrgAsync</a>(orgId, ListBillsOrgRequest { ... }) -> WithRawResponseTask&lt;BillQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -599,7 +599,7 @@ await client.Bill.ListBillsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ModifyApprovalBillAsync</a>(idBill, IEnumerable&lt;string&gt; { ... }) -> ModifyApprovalBillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">ModifyApprovalBillAsync</a>(idBill, IEnumerable&lt;string&gt; { ... }) -> WithRawResponseTask&lt;ModifyApprovalBillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -661,7 +661,7 @@ await client.Bill.ModifyApprovalBillAsync(285, new List<string>() { "string" });
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">SendToApprovalBillAsync</a>(idBill, SendToApprovalBillRequest { ... }) -> BillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">SendToApprovalBillAsync</a>(idBill, SendToApprovalBillRequest { ... }) -> WithRawResponseTask&lt;BillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -730,7 +730,7 @@ await client.Bill.SendToApprovalBillAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">SetApprovedBillAsync</a>(idBill, approved, SetApprovedBillRequest { ... }) -> SetApprovedBillResponse</code></summary>
+<details><summary><code>client.Bill.<a href="/src/PayabliApi/Bill/BillClient.cs">SetApprovedBillAsync</a>(idBill, approved, SetApprovedBillRequest { ... }) -> WithRawResponseTask&lt;SetApprovedBillResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -801,7 +801,7 @@ await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest()
 </details>
 
 ## Boarding
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">AddApplicationAsync</a>(OneOf&lt;ApplicationDataPayIn, ApplicationDataManaged, ApplicationDataOdp, ApplicationData&gt; { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">AddApplicationAsync</a>(OneOf&lt;ApplicationDataPayIn, ApplicationDataManaged, ApplicationDataOdp, ApplicationData&gt; { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -967,7 +967,7 @@ await client.Boarding.AddApplicationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">DeleteApplicationAsync</a>(appId) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">DeleteApplicationAsync</a>(appId) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1021,7 +1021,7 @@ await client.Boarding.DeleteApplicationAsync(352);
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetApplicationAsync</a>(appId) -> ApplicationDetailsRecord</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetApplicationAsync</a>(appId) -> WithRawResponseTask&lt;ApplicationDetailsRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1075,7 +1075,7 @@ await client.Boarding.GetApplicationAsync(352);
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetApplicationByAuthAsync</a>(xId, RequestAppByAuth { ... }) -> ApplicationQueryRecord</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetApplicationByAuthAsync</a>(xId, RequestAppByAuth { ... }) -> WithRawResponseTask&lt;ApplicationQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1140,7 +1140,7 @@ await client.Boarding.GetApplicationByAuthAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetByIdLinkApplicationAsync</a>(boardingLinkId) -> BoardingLinkQueryRecord</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetByIdLinkApplicationAsync</a>(boardingLinkId) -> WithRawResponseTask&lt;BoardingLinkQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1194,7 +1194,7 @@ await client.Boarding.GetByIdLinkApplicationAsync(91);
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetByTemplateIdLinkApplicationAsync</a>(templateId) -> BoardingLinkQueryRecord</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetByTemplateIdLinkApplicationAsync</a>(templateId) -> WithRawResponseTask&lt;BoardingLinkQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1248,7 +1248,7 @@ await client.Boarding.GetByTemplateIdLinkApplicationAsync(80);
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetExternalApplicationAsync</a>(appId, mail2, GetExternalApplicationRequest { ... }) -> PayabliApiResponse00</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetExternalApplicationAsync</a>(appId, mail2, GetExternalApplicationRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1322,7 +1322,7 @@ await client.Boarding.GetExternalApplicationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetLinkApplicationAsync</a>(boardingLinkReference) -> BoardingLinkQueryRecord</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetLinkApplicationAsync</a>(boardingLinkReference) -> WithRawResponseTask&lt;BoardingLinkQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1376,7 +1376,7 @@ await client.Boarding.GetLinkApplicationAsync("myorgaccountname-00091");
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">ListApplicationsAsync</a>(orgId, ListApplicationsRequest { ... }) -> QueryBoardingAppsListResponse</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">ListApplicationsAsync</a>(orgId, ListApplicationsRequest { ... }) -> WithRawResponseTask&lt;QueryBoardingAppsListResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1446,7 +1446,7 @@ await client.Boarding.ListApplicationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">ListBoardingLinksAsync</a>(orgId, ListBoardingLinksRequest { ... }) -> QueryBoardingLinksResponse</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">ListBoardingLinksAsync</a>(orgId, ListBoardingLinksRequest { ... }) -> WithRawResponseTask&lt;QueryBoardingLinksResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1516,7 +1516,7 @@ await client.Boarding.ListBoardingLinksAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">UpdateApplicationAsync</a>(appId, ApplicationData { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">UpdateApplicationAsync</a>(appId, ApplicationData { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1579,7 +1579,7 @@ await client.Boarding.UpdateApplicationAsync(352, new ApplicationData());
 </details>
 
 ## ChargeBacks
-<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">AddResponseAsync</a>(id, ResponseChargeBack { ... }) -> AddResponseResponse</code></summary>
+<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">AddResponseAsync</a>(id, ResponseChargeBack { ... }) -> WithRawResponseTask&lt;AddResponseResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1644,7 +1644,7 @@ await client.ChargeBacks.AddResponseAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">GetChargebackAsync</a>(id) -> ChargebackQueryRecords</code></summary>
+<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">GetChargebackAsync</a>(id) -> WithRawResponseTask&lt;ChargebackQueryRecords&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1698,7 +1698,7 @@ await client.ChargeBacks.GetChargebackAsync(1000000);
 </dl>
 </details>
 
-<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">GetChargebackAttachmentAsync</a>(id, fileName) -> string</code></summary>
+<details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">GetChargebackAttachmentAsync</a>(id, fileName) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1761,7 +1761,7 @@ await client.ChargeBacks.GetChargebackAttachmentAsync(1000000, "fileName");
 </details>
 
 ## CheckCapture
-<details><summary><code>client.CheckCapture.<a href="/src/PayabliApi/CheckCapture/CheckCaptureClient.cs">CheckProcessingAsync</a>(CheckCaptureRequestBody { ... }) -> CheckCaptureResponse</code></summary>
+<details><summary><code>client.CheckCapture.<a href="/src/PayabliApi/CheckCapture/CheckCaptureClient.cs">CheckProcessingAsync</a>(CheckCaptureRequestBody { ... }) -> WithRawResponseTask&lt;CheckCaptureResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1824,7 +1824,7 @@ await client.CheckCapture.CheckProcessingAsync(
 </details>
 
 ## Cloud
-<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">AddDeviceAsync</a>(entry, DeviceEntry { ... }) -> AddDeviceResponse</code></summary>
+<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">AddDeviceAsync</a>(entry, DeviceEntry { ... }) -> WithRawResponseTask&lt;AddDeviceResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1889,7 +1889,7 @@ await client.Cloud.AddDeviceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">HistoryDeviceAsync</a>(entry, deviceId) -> CloudQueryApiResponse</code></summary>
+<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">HistoryDeviceAsync</a>(entry, deviceId) -> WithRawResponseTask&lt;CloudQueryApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1951,7 +1951,7 @@ await client.Cloud.HistoryDeviceAsync("WXGDWB", "8cfec329267");
 </dl>
 </details>
 
-<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">ListDeviceAsync</a>(entry, ListDeviceRequest { ... }) -> CloudQueryApiResponse</code></summary>
+<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">ListDeviceAsync</a>(entry, ListDeviceRequest { ... }) -> WithRawResponseTask&lt;CloudQueryApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2013,7 +2013,7 @@ await client.Cloud.ListDeviceAsync("8cfec329267", new ListDeviceRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">RemoveDeviceAsync</a>(entry, deviceId) -> RemoveDeviceResponse</code></summary>
+<details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">RemoveDeviceAsync</a>(entry, deviceId) -> WithRawResponseTask&lt;RemoveDeviceResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2076,7 +2076,7 @@ await client.Cloud.RemoveDeviceAsync("6c361c7d-674c-44cc-b790-382b75d1xxx", "8cf
 </details>
 
 ## Customer
-<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">AddCustomerAsync</a>(entry, AddCustomerRequest { ... }) -> PayabliApiResponseCustomerQuery</code></summary>
+<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">AddCustomerAsync</a>(entry, AddCustomerRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponseCustomerQuery&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2158,7 +2158,7 @@ await client.Customer.AddCustomerAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">DeleteCustomerAsync</a>(customerId) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">DeleteCustomerAsync</a>(customerId) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2212,7 +2212,7 @@ await client.Customer.DeleteCustomerAsync(998);
 </dl>
 </details>
 
-<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">GetCustomerAsync</a>(customerId) -> CustomerQueryRecords</code></summary>
+<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">GetCustomerAsync</a>(customerId) -> WithRawResponseTask&lt;CustomerQueryRecords&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2266,7 +2266,7 @@ await client.Customer.GetCustomerAsync(998);
 </dl>
 </details>
 
-<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">LinkCustomerTransactionAsync</a>(customerId, transId) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">LinkCustomerTransactionAsync</a>(customerId, transId) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2328,7 +2328,7 @@ await client.Customer.LinkCustomerTransactionAsync(998, "45-as456777hhhhhhhhhh77
 </dl>
 </details>
 
-<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">RequestConsentAsync</a>(customerId) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">RequestConsentAsync</a>(customerId) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2382,7 +2382,7 @@ await client.Customer.RequestConsentAsync(998);
 </dl>
 </details>
 
-<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">UpdateCustomerAsync</a>(customerId, CustomerData { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Customer.<a href="/src/PayabliApi/Customer/CustomerClient.cs">UpdateCustomerAsync</a>(customerId, CustomerData { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2457,7 +2457,7 @@ await client.Customer.UpdateCustomerAsync(
 </details>
 
 ## Export
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportApplicationsAsync</a>(format, orgId, ExportApplicationsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportApplicationsAsync</a>(format, orgId, ExportApplicationsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2536,7 +2536,7 @@ await client.Export.ExportApplicationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsAsync</a>(format, entry, ExportBatchDetailsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsAsync</a>(format, entry, ExportBatchDetailsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2615,7 +2615,7 @@ await client.Export.ExportBatchDetailsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsOrgAsync</a>(format, orgId, ExportBatchDetailsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchDetailsOrgAsync</a>(format, orgId, ExportBatchDetailsOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2694,7 +2694,7 @@ await client.Export.ExportBatchDetailsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesAsync</a>(format, entry, ExportBatchesRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesAsync</a>(format, entry, ExportBatchesRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2773,7 +2773,7 @@ await client.Export.ExportBatchesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOrgAsync</a>(format, orgId, ExportBatchesOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOrgAsync</a>(format, orgId, ExportBatchesOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2852,7 +2852,7 @@ await client.Export.ExportBatchesOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutAsync</a>(format, entry, ExportBatchesOutRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutAsync</a>(format, entry, ExportBatchesOutRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2931,7 +2931,7 @@ await client.Export.ExportBatchesOutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutOrgAsync</a>(format, orgId, ExportBatchesOutOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBatchesOutOrgAsync</a>(format, orgId, ExportBatchesOutOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3010,7 +3010,7 @@ await client.Export.ExportBatchesOutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsAsync</a>(format, entry, ExportBillsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsAsync</a>(format, entry, ExportBillsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3089,7 +3089,7 @@ await client.Export.ExportBillsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsOrgAsync</a>(format, orgId, ExportBillsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportBillsOrgAsync</a>(format, orgId, ExportBillsOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3168,7 +3168,7 @@ await client.Export.ExportBillsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksAsync</a>(format, entry, ExportChargebacksRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksAsync</a>(format, entry, ExportChargebacksRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3247,7 +3247,7 @@ await client.Export.ExportChargebacksAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksOrgAsync</a>(format, orgId, ExportChargebacksOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportChargebacksOrgAsync</a>(format, orgId, ExportChargebacksOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3326,7 +3326,7 @@ await client.Export.ExportChargebacksOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersAsync</a>(format, entry, ExportCustomersRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersAsync</a>(format, entry, ExportCustomersRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3405,7 +3405,7 @@ await client.Export.ExportCustomersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersOrgAsync</a>(format, orgId, ExportCustomersOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportCustomersOrgAsync</a>(format, orgId, ExportCustomersOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3484,7 +3484,7 @@ await client.Export.ExportCustomersOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesAsync</a>(format, entry, ExportInvoicesRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesAsync</a>(format, entry, ExportInvoicesRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3563,7 +3563,7 @@ await client.Export.ExportInvoicesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesOrgAsync</a>(format, orgId, ExportInvoicesOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportInvoicesOrgAsync</a>(format, orgId, ExportInvoicesOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3642,7 +3642,7 @@ await client.Export.ExportInvoicesOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportOrganizationsAsync</a>(format, orgId, ExportOrganizationsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportOrganizationsAsync</a>(format, orgId, ExportOrganizationsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3721,7 +3721,7 @@ await client.Export.ExportOrganizationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutAsync</a>(format, entry, ExportPayoutRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutAsync</a>(format, entry, ExportPayoutRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3800,7 +3800,7 @@ await client.Export.ExportPayoutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutOrgAsync</a>(format, orgId, ExportPayoutOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPayoutOrgAsync</a>(format, orgId, ExportPayoutOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3879,7 +3879,7 @@ await client.Export.ExportPayoutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPaypointsAsync</a>(format, orgId, ExportPaypointsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportPaypointsAsync</a>(format, orgId, ExportPaypointsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3958,7 +3958,7 @@ await client.Export.ExportPaypointsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsAsync</a>(format, entry, ExportSettlementsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsAsync</a>(format, entry, ExportSettlementsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4037,7 +4037,7 @@ await client.Export.ExportSettlementsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsOrgAsync</a>(format, orgId, ExportSettlementsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSettlementsOrgAsync</a>(format, orgId, ExportSettlementsOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4116,7 +4116,7 @@ await client.Export.ExportSettlementsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsAsync</a>(format, entry, ExportSubscriptionsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsAsync</a>(format, entry, ExportSubscriptionsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4195,7 +4195,7 @@ await client.Export.ExportSubscriptionsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsOrgAsync</a>(format, orgId, ExportSubscriptionsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportSubscriptionsOrgAsync</a>(format, orgId, ExportSubscriptionsOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4274,7 +4274,7 @@ await client.Export.ExportSubscriptionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsAsync</a>(format, entry, ExportTransactionsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsAsync</a>(format, entry, ExportTransactionsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4353,7 +4353,7 @@ await client.Export.ExportTransactionsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsOrgAsync</a>(format, orgId, ExportTransactionsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransactionsOrgAsync</a>(format, orgId, ExportTransactionsOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4432,7 +4432,7 @@ await client.Export.ExportTransactionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransferDetailsAsync</a>(format, entry, transferId, ExportTransferDetailsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransferDetailsAsync</a>(format, entry, transferId, ExportTransferDetailsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4521,7 +4521,7 @@ await client.Export.ExportTransferDetailsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransfersAsync</a>(entry, ExportTransfersRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportTransfersAsync</a>(entry, ExportTransfersRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4592,7 +4592,7 @@ await client.Export.ExportTransfersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsAsync</a>(format, entry, ExportVendorsRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsAsync</a>(format, entry, ExportVendorsRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4671,7 +4671,7 @@ await client.Export.ExportVendorsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsOrgAsync</a>(format, orgId, ExportVendorsOrgRequest { ... }) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Export.<a href="/src/PayabliApi/Export/ExportClient.cs">ExportVendorsOrgAsync</a>(format, orgId, ExportVendorsOrgRequest { ... }) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4751,7 +4751,7 @@ await client.Export.ExportVendorsOrgAsync(
 </details>
 
 ## HostedPaymentPages
-<details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">LoadPageAsync</a>(entry, subdomain) -> PayabliPages</code></summary>
+<details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">LoadPageAsync</a>(entry, subdomain) -> WithRawResponseTask&lt;PayabliPages&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4813,7 +4813,7 @@ await client.HostedPaymentPages.LoadPageAsync("8cfec329267", "pay-your-fees-1");
 </dl>
 </details>
 
-<details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">NewPageAsync</a>(entry, NewPageRequest { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">NewPageAsync</a>(entry, NewPageRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4884,7 +4884,7 @@ await client.HostedPaymentPages.NewPageAsync(
 </dl>
 </details>
 
-<details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">SavePageAsync</a>(entry, subdomain, PayabliPages { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">SavePageAsync</a>(entry, subdomain, PayabliPages { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4955,7 +4955,7 @@ await client.HostedPaymentPages.SavePageAsync("8cfec329267", "pay-your-fees-1", 
 </details>
 
 ## Import
-<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportBillsAsync</a>(entry, ImportBillsRequest { ... }) -> PayabliApiResponseImport</code></summary>
+<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportBillsAsync</a>(entry, ImportBillsRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponseImport&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5017,7 +5017,7 @@ await client.Import.ImportBillsAsync("8cfec329267", new ImportBillsRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportCustomerAsync</a>(entry, ImportCustomerRequest { ... }) -> PayabliApiResponseImport</code></summary>
+<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportCustomerAsync</a>(entry, ImportCustomerRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponseImport&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5079,7 +5079,7 @@ await client.Import.ImportCustomerAsync("8cfec329267", new ImportCustomerRequest
 </dl>
 </details>
 
-<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportVendorAsync</a>(entry, ImportVendorRequest { ... }) -> PayabliApiResponseImport</code></summary>
+<details><summary><code>client.Import.<a href="/src/PayabliApi/Import/ImportClient.cs">ImportVendorAsync</a>(entry, ImportVendorRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponseImport&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5142,7 +5142,7 @@ await client.Import.ImportVendorAsync("8cfec329267", new ImportVendorRequest());
 </details>
 
 ## Invoice
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">AddInvoiceAsync</a>(entry, AddInvoiceRequest { ... }) -> InvoiceResponseWithoutData</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">AddInvoiceAsync</a>(entry, AddInvoiceRequest { ... }) -> WithRawResponseTask&lt;InvoiceResponseWithoutData&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5248,7 +5248,7 @@ await client.Invoice.AddInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">DeleteAttachedFromInvoiceAsync</a>(idInvoice, filename) -> InvoiceResponseWithoutData</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">DeleteAttachedFromInvoiceAsync</a>(idInvoice, filename) -> WithRawResponseTask&lt;InvoiceResponseWithoutData&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5322,7 +5322,7 @@ The filename in Payabli. Filename is `zipName` in response to a request to `/api
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">DeleteInvoiceAsync</a>(idInvoice) -> InvoiceResponseWithoutData</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">DeleteInvoiceAsync</a>(idInvoice) -> WithRawResponseTask&lt;InvoiceResponseWithoutData&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5376,7 +5376,7 @@ await client.Invoice.DeleteInvoiceAsync(23548884);
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">EditInvoiceAsync</a>(idInvoice, EditInvoiceRequest { ... }) -> InvoiceResponseWithoutData</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">EditInvoiceAsync</a>(idInvoice, EditInvoiceRequest { ... }) -> WithRawResponseTask&lt;InvoiceResponseWithoutData&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5462,7 +5462,7 @@ await client.Invoice.EditInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetAttachedFileFromInvoiceAsync</a>(idInvoice, filename, GetAttachedFileFromInvoiceRequest { ... }) -> FileContent</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetAttachedFileFromInvoiceAsync</a>(idInvoice, filename, GetAttachedFileFromInvoiceRequest { ... }) -> WithRawResponseTask&lt;FileContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5550,7 +5550,7 @@ The filename in Payabli. Filename is `zipName` in the response to a request to `
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoiceAsync</a>(idInvoice) -> GetInvoiceRecord</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoiceAsync</a>(idInvoice) -> WithRawResponseTask&lt;GetInvoiceRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5604,7 +5604,7 @@ await client.Invoice.GetInvoiceAsync(23548884);
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoiceNumberAsync</a>(entry) -> InvoiceNumberResponse</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoiceNumberAsync</a>(entry) -> WithRawResponseTask&lt;InvoiceNumberResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5658,7 +5658,7 @@ await client.Invoice.GetInvoiceNumberAsync("8cfec329267");
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">ListInvoicesAsync</a>(entry, ListInvoicesRequest { ... }) -> QueryInvoiceResponse</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">ListInvoicesAsync</a>(entry, ListInvoicesRequest { ... }) -> WithRawResponseTask&lt;QueryInvoiceResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5728,7 +5728,7 @@ await client.Invoice.ListInvoicesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">ListInvoicesOrgAsync</a>(orgId, ListInvoicesOrgRequest { ... }) -> QueryInvoiceResponse</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">ListInvoicesOrgAsync</a>(orgId, ListInvoicesOrgRequest { ... }) -> WithRawResponseTask&lt;QueryInvoiceResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5798,7 +5798,7 @@ await client.Invoice.ListInvoicesOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">SendInvoiceAsync</a>(idInvoice, SendInvoiceRequest { ... }) -> SendInvoiceResponse</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">SendInvoiceAsync</a>(idInvoice, SendInvoiceRequest { ... }) -> WithRawResponseTask&lt;SendInvoiceResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5863,7 +5863,7 @@ await client.Invoice.SendInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoicePdfAsync</a>(idInvoice) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Invoice.<a href="/src/PayabliApi/Invoice/InvoiceClient.cs">GetInvoicePdfAsync</a>(idInvoice) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5918,7 +5918,7 @@ await client.Invoice.GetInvoicePdfAsync(23548884);
 </details>
 
 ## LineItem
-<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">AddItemAsync</a>(entry, AddItemRequest { ... }) -> PayabliApiResponse6</code></summary>
+<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">AddItemAsync</a>(entry, AddItemRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponse6&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5996,7 +5996,7 @@ await client.LineItem.AddItemAsync(
 </dl>
 </details>
 
-<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">DeleteItemAsync</a>(lineItemId) -> DeleteItemResponse</code></summary>
+<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">DeleteItemAsync</a>(lineItemId) -> WithRawResponseTask&lt;DeleteItemResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6050,7 +6050,7 @@ await client.LineItem.DeleteItemAsync(700);
 </dl>
 </details>
 
-<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">GetItemAsync</a>(lineItemId) -> LineItemQueryRecord</code></summary>
+<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">GetItemAsync</a>(lineItemId) -> WithRawResponseTask&lt;LineItemQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6104,7 +6104,7 @@ await client.LineItem.GetItemAsync(700);
 </dl>
 </details>
 
-<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">ListLineItemsAsync</a>(entry, ListLineItemsRequest { ... }) -> QueryResponseItems</code></summary>
+<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">ListLineItemsAsync</a>(entry, ListLineItemsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseItems&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6174,7 +6174,7 @@ await client.LineItem.ListLineItemsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">UpdateItemAsync</a>(lineItemId, LineItem { ... }) -> PayabliApiResponse6</code></summary>
+<details><summary><code>client.LineItem.<a href="/src/PayabliApi/LineItem/LineItemClient.cs">UpdateItemAsync</a>(lineItemId, LineItem { ... }) -> WithRawResponseTask&lt;PayabliApiResponse6&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6237,7 +6237,7 @@ await client.LineItem.UpdateItemAsync(700, new LineItem { ItemCost = 12.45, Item
 </details>
 
 ## MoneyIn
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">AuthorizeAsync</a>(RequestPaymentAuthorize { ... }) -> AuthResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">AuthorizeAsync</a>(RequestPaymentAuthorize { ... }) -> WithRawResponseTask&lt;AuthResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6316,7 +6316,7 @@ await client.MoneyIn.AuthorizeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CaptureAsync</a>(transId, amount) -> CaptureResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CaptureAsync</a>(transId, amount) -> WithRawResponseTask&lt;CaptureResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6383,7 +6383,7 @@ await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CaptureAuthAsync</a>(transId, CaptureRequest { ... }) -> CaptureResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CaptureAuthAsync</a>(transId, CaptureRequest { ... }) -> WithRawResponseTask&lt;CaptureResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6457,7 +6457,7 @@ await client.MoneyIn.CaptureAuthAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CreditAsync</a>(RequestCredit { ... }) -> PayabliApiResponse0</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">CreditAsync</a>(RequestCredit { ... }) -> WithRawResponseTask&lt;PayabliApiResponse0&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6533,7 +6533,7 @@ await client.MoneyIn.CreditAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">DetailsAsync</a>(transId) -> TransactionQueryRecordsCustomer</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">DetailsAsync</a>(transId) -> WithRawResponseTask&lt;TransactionQueryRecordsCustomer&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6587,7 +6587,7 @@ await client.MoneyIn.DetailsAsync("45-as456777hhhhhhhhhh77777777-324");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">GetpaidAsync</a>(RequestPayment { ... }) -> PayabliApiResponseGetPaid</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">GetpaidAsync</a>(RequestPayment { ... }) -> WithRawResponseTask&lt;PayabliApiResponseGetPaid&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6666,7 +6666,7 @@ await client.MoneyIn.GetpaidAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ReverseAsync</a>(transId, amount) -> ReverseResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ReverseAsync</a>(transId, amount) -> WithRawResponseTask&lt;ReverseResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6735,7 +6735,7 @@ An amount equal to zero will refunds the total amount authorized minus any servi
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">RefundAsync</a>(transId, amount) -> RefundResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">RefundAsync</a>(transId, amount) -> WithRawResponseTask&lt;RefundResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6808,7 +6808,7 @@ An amount equal to zero will refund the total amount authorized minus any servic
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">RefundWithInstructionsAsync</a>(transId, RequestRefund { ... }) -> RefundWithInstructionsResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">RefundWithInstructionsAsync</a>(transId, RequestRefund { ... }) -> WithRawResponseTask&lt;RefundWithInstructionsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6899,7 +6899,7 @@ await client.MoneyIn.RefundWithInstructionsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ReverseCreditAsync</a>(transId) -> PayabliApiResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ReverseCreditAsync</a>(transId) -> WithRawResponseTask&lt;PayabliApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6953,7 +6953,7 @@ await client.MoneyIn.ReverseCreditAsync("45-as456777hhhhhhhhhh77777777-324");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">SendReceipt2TransAsync</a>(transId, SendReceipt2TransRequest { ... }) -> ReceiptResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">SendReceipt2TransAsync</a>(transId, SendReceipt2TransRequest { ... }) -> WithRawResponseTask&lt;ReceiptResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7018,7 +7018,7 @@ await client.MoneyIn.SendReceipt2TransAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ValidateAsync</a>(RequestPaymentValidate { ... }) -> ValidateResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">ValidateAsync</a>(RequestPaymentValidate { ... }) -> WithRawResponseTask&lt;ValidateResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7086,7 +7086,7 @@ await client.MoneyIn.ValidateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">VoidAsync</a>(transId) -> VoidResponse</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">VoidAsync</a>(transId) -> WithRawResponseTask&lt;VoidResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7144,7 +7144,7 @@ await client.MoneyIn.VoidAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Getpaidv2Async</a>(RequestPaymentV2 { ... }) -> V2TransactionResponseWrapper</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Getpaidv2Async</a>(RequestPaymentV2 { ... }) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7219,7 +7219,7 @@ await client.MoneyIn.Getpaidv2Async(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Authorizev2Async</a>(RequestPaymentAuthorizeV2 { ... }) -> V2TransactionResponseWrapper</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Authorizev2Async</a>(RequestPaymentAuthorizeV2 { ... }) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7296,7 +7296,7 @@ await client.MoneyIn.Authorizev2Async(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Capturev2Async</a>(transId, CaptureRequest { ... }) -> V2TransactionResponseWrapper</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Capturev2Async</a>(transId, CaptureRequest { ... }) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7364,7 +7364,7 @@ await client.MoneyIn.Capturev2Async(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2Async</a>(transId) -> V2TransactionResponseWrapper</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2Async</a>(transId) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7420,7 +7420,7 @@ await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2AmountAsync</a>(transId, amount) -> V2TransactionResponseWrapper</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2AmountAsync</a>(transId, amount) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7484,7 +7484,7 @@ await client.MoneyIn.Refundv2AmountAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a72
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Voidv2Async</a>(transId) -> V2TransactionResponseWrapper</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Voidv2Async</a>(transId) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7539,7 +7539,7 @@ await client.MoneyIn.Voidv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 </details>
 
 ## MoneyOut
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">AuthorizeOutAsync</a>(MoneyOutTypesRequestOutAuthorize { ... }) -> AuthCapturePayoutResponse</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">AuthorizeOutAsync</a>(MoneyOutTypesRequestOutAuthorize { ... }) -> WithRawResponseTask&lt;AuthCapturePayoutResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7613,7 +7613,7 @@ await client.MoneyOut.AuthorizeOutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelAllOutAsync</a>(IEnumerable&lt;string&gt; { ... }) -> CaptureAllOutResponse</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelAllOutAsync</a>(IEnumerable&lt;string&gt; { ... }) -> WithRawResponseTask&lt;CaptureAllOutResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7667,7 +7667,7 @@ await client.MoneyOut.CancelAllOutAsync(new List<string>() { "2-29", "2-28", "2-
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelOutGetAsync</a>(referenceId) -> PayabliApiResponse0000</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelOutGetAsync</a>(referenceId) -> WithRawResponseTask&lt;PayabliApiResponse0000&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7721,7 +7721,7 @@ await client.MoneyOut.CancelOutGetAsync("129-219");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelOutDeleteAsync</a>(referenceId) -> PayabliApiResponse0000</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CancelOutDeleteAsync</a>(referenceId) -> WithRawResponseTask&lt;PayabliApiResponse0000&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7775,7 +7775,7 @@ await client.MoneyOut.CancelOutDeleteAsync("129-219");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CaptureAllOutAsync</a>(CaptureAllOutRequest { ... }) -> CaptureAllOutResponse</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CaptureAllOutAsync</a>(CaptureAllOutRequest { ... }) -> WithRawResponseTask&lt;CaptureAllOutResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7834,7 +7834,7 @@ await client.MoneyOut.CaptureAllOutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CaptureOutAsync</a>(referenceId, CaptureOutRequest { ... }) -> AuthCapturePayoutResponse</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">CaptureOutAsync</a>(referenceId, CaptureOutRequest { ... }) -> WithRawResponseTask&lt;AuthCapturePayoutResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7896,7 +7896,7 @@ await client.MoneyOut.CaptureOutAsync("129-219", new CaptureOutRequest());
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">PayoutDetailsAsync</a>(transId) -> BillDetailResponse</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">PayoutDetailsAsync</a>(transId) -> WithRawResponseTask&lt;BillDetailResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7950,7 +7950,7 @@ await client.MoneyOut.PayoutDetailsAsync("45-as456777hhhhhhhhhh77777777-324");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">VCardGetAsync</a>(cardToken) -> VCardGetResponse</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">VCardGetAsync</a>(cardToken) -> WithRawResponseTask&lt;VCardGetResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8004,7 +8004,7 @@ await client.MoneyOut.VCardGetAsync("20230403315245421165");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">SendVCardLinkAsync</a>(SendVCardLinkRequest { ... }) -> OperationResult</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">SendVCardLinkAsync</a>(SendVCardLinkRequest { ... }) -> WithRawResponseTask&lt;OperationResult&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8060,7 +8060,7 @@ await client.MoneyOut.SendVCardLinkAsync(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">GetCheckImageAsync</a>(assetName) -> string</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">GetCheckImageAsync</a>(assetName) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8127,7 +8127,7 @@ in the response when you make a GET request to `/MoneyOut/details/{transId}`.
 </dl>
 </details>
 
-<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">UpdateCheckPaymentStatusAsync</a>(transId, checkPaymentStatus) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">UpdateCheckPaymentStatusAsync</a>(transId, checkPaymentStatus) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8201,7 +8201,7 @@ await client.MoneyOut.UpdateCheckPaymentStatusAsync("TRANS123456", AllowedCheckP
 </details>
 
 ## Notification
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">AddNotificationAsync</a>(OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> PayabliApiResponseNotifications</code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">AddNotificationAsync</a>(OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> WithRawResponseTask&lt;PayabliApiResponseNotifications&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8269,7 +8269,7 @@ await client.Notification.AddNotificationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">DeleteNotificationAsync</a>(nId) -> PayabliApiResponseNotifications</code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">DeleteNotificationAsync</a>(nId) -> WithRawResponseTask&lt;PayabliApiResponseNotifications&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8323,7 +8323,7 @@ await client.Notification.DeleteNotificationAsync("1717");
 </dl>
 </details>
 
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">GetNotificationAsync</a>(nId) -> NotificationQueryRecord</code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">GetNotificationAsync</a>(nId) -> WithRawResponseTask&lt;NotificationQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8377,7 +8377,7 @@ await client.Notification.GetNotificationAsync("1717");
 </dl>
 </details>
 
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">UpdateNotificationAsync</a>(nId, OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> PayabliApiResponseNotifications</code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">UpdateNotificationAsync</a>(nId, OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> WithRawResponseTask&lt;PayabliApiResponseNotifications&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8454,7 +8454,7 @@ await client.Notification.UpdateNotificationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">GetReportFileAsync</a>(id) -> Dictionary&lt;string, object?&gt;</code></summary>
+<details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">GetReportFileAsync</a>(id) -> WithRawResponseTask&lt;Dictionary&lt;string, object?&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8509,7 +8509,7 @@ await client.Notification.GetReportFileAsync(1000000);
 </details>
 
 ## Notificationlogs
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">SearchNotificationLogsAsync</a>(SearchNotificationLogsRequest { ... }) -> IEnumerable&lt;NotificationLog&gt;</code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">SearchNotificationLogsAsync</a>(SearchNotificationLogsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;NotificationLog&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8580,7 +8580,7 @@ await client.Notificationlogs.SearchNotificationLogsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">GetNotificationLogAsync</a>(uuid) -> NotificationLogDetail</code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">GetNotificationLogAsync</a>(uuid) -> WithRawResponseTask&lt;NotificationLogDetail&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8635,7 +8635,7 @@ await client.Notificationlogs.GetNotificationLogAsync("550e8400-e29b-41d4-a716-4
 </dl>
 </details>
 
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">RetryNotificationLogAsync</a>(uuid) -> NotificationLogDetail</code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">RetryNotificationLogAsync</a>(uuid) -> WithRawResponseTask&lt;NotificationLogDetail&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8756,7 +8756,7 @@ await client.Notificationlogs.BulkRetryNotificationLogsAsync(
 </details>
 
 ## Ocr
-<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentFormAsync</a>(typeResult, FileContentImageOnly { ... }) -> PayabliApiResponseOcr</code></summary>
+<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentFormAsync</a>(typeResult, FileContentImageOnly { ... }) -> WithRawResponseTask&lt;PayabliApiResponseOcr&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8827,7 +8827,7 @@ await client.Ocr.OcrDocumentFormAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentJsonAsync</a>(typeResult, FileContentImageOnly { ... }) -> PayabliApiResponseOcr</code></summary>
+<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentJsonAsync</a>(typeResult, FileContentImageOnly { ... }) -> WithRawResponseTask&lt;PayabliApiResponseOcr&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8899,7 +8899,7 @@ await client.Ocr.OcrDocumentJsonAsync(
 </details>
 
 ## Organization
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">AddOrganizationAsync</a>(AddOrganizationRequest { ... }) -> AddOrganizationResponse</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">AddOrganizationAsync</a>(AddOrganizationRequest { ... }) -> WithRawResponseTask&lt;AddOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9000,7 +9000,7 @@ await client.Organization.AddOrganizationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">DeleteOrganizationAsync</a>(orgId) -> DeleteOrganizationResponse</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">DeleteOrganizationAsync</a>(orgId) -> WithRawResponseTask&lt;DeleteOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9054,7 +9054,7 @@ await client.Organization.DeleteOrganizationAsync(123);
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">EditOrganizationAsync</a>(orgId, OrganizationData { ... }) -> EditOrganizationResponse</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">EditOrganizationAsync</a>(orgId, OrganizationData { ... }) -> WithRawResponseTask&lt;EditOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9142,7 +9142,7 @@ await client.Organization.EditOrganizationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationAsync</a>(entry) -> OrganizationQueryRecord</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationAsync</a>(entry) -> WithRawResponseTask&lt;OrganizationQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9196,7 +9196,7 @@ await client.Organization.GetBasicOrganizationAsync("8cfec329267");
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationByIdAsync</a>(orgId) -> OrganizationQueryRecord</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationByIdAsync</a>(orgId) -> WithRawResponseTask&lt;OrganizationQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9250,7 +9250,7 @@ await client.Organization.GetBasicOrganizationByIdAsync(123);
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetOrganizationAsync</a>(orgId) -> OrganizationQueryRecord</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetOrganizationAsync</a>(orgId) -> WithRawResponseTask&lt;OrganizationQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9304,7 +9304,7 @@ await client.Organization.GetOrganizationAsync(123);
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetSettingsOrganizationAsync</a>(orgId) -> SettingsQueryRecord</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetSettingsOrganizationAsync</a>(orgId) -> WithRawResponseTask&lt;SettingsQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9359,7 +9359,7 @@ await client.Organization.GetSettingsOrganizationAsync(123);
 </details>
 
 ## PaymentLink
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">AddPayLinkFromInvoiceAsync</a>(idInvoice, PayLinkDataInvoice { ... }) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">AddPayLinkFromInvoiceAsync</a>(idInvoice, PayLinkDataInvoice { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9553,7 +9553,7 @@ await client.PaymentLink.AddPayLinkFromInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">AddPayLinkFromBillAsync</a>(billId, PayLinkDataBill { ... }) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">AddPayLinkFromBillAsync</a>(billId, PayLinkDataBill { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9706,7 +9706,7 @@ await client.PaymentLink.AddPayLinkFromBillAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">DeletePayLinkFromIdAsync</a>(payLinkId) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">DeletePayLinkFromIdAsync</a>(payLinkId) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9760,7 +9760,7 @@ await client.PaymentLink.DeletePayLinkFromIdAsync("payLinkId");
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">GetPayLinkFromIdAsync</a>(paylinkId) -> GetPayLinkFromIdResponse</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">GetPayLinkFromIdAsync</a>(paylinkId) -> WithRawResponseTask&lt;GetPayLinkFromIdResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9814,7 +9814,7 @@ await client.PaymentLink.GetPayLinkFromIdAsync("paylinkId");
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">PushPayLinkFromIdAsync</a>(payLinkId, PushPayLinkRequest { ... }) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">PushPayLinkFromIdAsync</a>(payLinkId, PushPayLinkRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9879,7 +9879,7 @@ await client.PaymentLink.PushPayLinkFromIdAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">RefreshPayLinkFromIdAsync</a>(payLinkId, RefreshPayLinkFromIdRequest { ... }) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">RefreshPayLinkFromIdAsync</a>(payLinkId, RefreshPayLinkFromIdRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9941,7 +9941,7 @@ await client.PaymentLink.RefreshPayLinkFromIdAsync("payLinkId", new RefreshPayLi
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">SendPayLinkFromIdAsync</a>(payLinkId, SendPayLinkFromIdRequest { ... }) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">SendPayLinkFromIdAsync</a>(payLinkId, SendPayLinkFromIdRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10006,7 +10006,7 @@ await client.PaymentLink.SendPayLinkFromIdAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">UpdatePayLinkFromIdAsync</a>(payLinkId, PayLinkUpdateData { ... }) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">UpdatePayLinkFromIdAsync</a>(payLinkId, PayLinkUpdateData { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10087,7 +10087,7 @@ await client.PaymentLink.UpdatePayLinkFromIdAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">AddPayLinkFromBillLotNumberAsync</a>(lotNumber, PayLinkDataOut { ... }) -> PayabliApiResponsePaymentLinks</code></summary>
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">AddPayLinkFromBillLotNumberAsync</a>(lotNumber, PayLinkDataOut { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10244,7 +10244,7 @@ await client.PaymentLink.AddPayLinkFromBillLotNumberAsync(
 </details>
 
 ## PaymentMethodDomain
-<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">AddPaymentMethodDomainAsync</a>(AddPaymentMethodDomainRequest { ... }) -> AddPaymentMethodDomainApiResponse</code></summary>
+<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">AddPaymentMethodDomainAsync</a>(AddPaymentMethodDomainRequest { ... }) -> WithRawResponseTask&lt;AddPaymentMethodDomainApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10307,7 +10307,7 @@ await client.PaymentMethodDomain.AddPaymentMethodDomainAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">CascadePaymentMethodDomainAsync</a>(domainId) -> PaymentMethodDomainGeneralResponse</code></summary>
+<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">CascadePaymentMethodDomainAsync</a>(domainId) -> WithRawResponseTask&lt;PaymentMethodDomainGeneralResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10363,7 +10363,7 @@ await client.PaymentMethodDomain.CascadePaymentMethodDomainAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">DeletePaymentMethodDomainAsync</a>(domainId) -> DeletePaymentMethodDomainResponse</code></summary>
+<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">DeletePaymentMethodDomainAsync</a>(domainId) -> WithRawResponseTask&lt;DeletePaymentMethodDomainResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10419,7 +10419,7 @@ await client.PaymentMethodDomain.DeletePaymentMethodDomainAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">GetPaymentMethodDomainAsync</a>(domainId) -> PaymentMethodDomainApiResponse</code></summary>
+<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">GetPaymentMethodDomainAsync</a>(domainId) -> WithRawResponseTask&lt;PaymentMethodDomainApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10475,7 +10475,7 @@ await client.PaymentMethodDomain.GetPaymentMethodDomainAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">ListPaymentMethodDomainsAsync</a>(ListPaymentMethodDomainsRequest { ... }) -> ListPaymentMethodDomainsResponse</code></summary>
+<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">ListPaymentMethodDomainsAsync</a>(ListPaymentMethodDomainsRequest { ... }) -> WithRawResponseTask&lt;ListPaymentMethodDomainsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10531,7 +10531,7 @@ await client.PaymentMethodDomain.ListPaymentMethodDomainsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">UpdatePaymentMethodDomainAsync</a>(domainId, UpdatePaymentMethodDomainRequest { ... }) -> PaymentMethodDomainGeneralResponse</code></summary>
+<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">UpdatePaymentMethodDomainAsync</a>(domainId, UpdatePaymentMethodDomainRequest { ... }) -> WithRawResponseTask&lt;PaymentMethodDomainGeneralResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10600,7 +10600,7 @@ await client.PaymentMethodDomain.UpdatePaymentMethodDomainAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">VerifyPaymentMethodDomainAsync</a>(domainId) -> PaymentMethodDomainGeneralResponse</code></summary>
+<details><summary><code>client.PaymentMethodDomain.<a href="/src/PayabliApi/PaymentMethodDomain/PaymentMethodDomainClient.cs">VerifyPaymentMethodDomainAsync</a>(domainId) -> WithRawResponseTask&lt;PaymentMethodDomainGeneralResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10657,7 +10657,7 @@ await client.PaymentMethodDomain.VerifyPaymentMethodDomainAsync(
 </details>
 
 ## Paypoint
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetBasicEntryAsync</a>(entry) -> GetBasicEntryResponse</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetBasicEntryAsync</a>(entry) -> WithRawResponseTask&lt;GetBasicEntryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10711,7 +10711,7 @@ await client.Paypoint.GetBasicEntryAsync("8cfec329267");
 </dl>
 </details>
 
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetBasicEntryByIdAsync</a>(idPaypoint) -> GetBasicEntryByIdResponse</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetBasicEntryByIdAsync</a>(idPaypoint) -> WithRawResponseTask&lt;GetBasicEntryByIdResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10765,7 +10765,7 @@ await client.Paypoint.GetBasicEntryByIdAsync("198");
 </dl>
 </details>
 
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetEntryConfigAsync</a>(entry, GetEntryConfigRequest { ... }) -> GetEntryConfigResponse</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetEntryConfigAsync</a>(entry, GetEntryConfigRequest { ... }) -> WithRawResponseTask&lt;GetEntryConfigResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10827,7 +10827,7 @@ await client.Paypoint.GetEntryConfigAsync("8cfec329267", new GetEntryConfigReque
 </dl>
 </details>
 
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetPageAsync</a>(entry, subdomain) -> PayabliPages</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetPageAsync</a>(entry, subdomain) -> WithRawResponseTask&lt;PayabliPages&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10889,7 +10889,7 @@ await client.Paypoint.GetPageAsync("8cfec329267", "pay-your-fees-1");
 </dl>
 </details>
 
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">RemovePageAsync</a>(entry, subdomain) -> PayabliApiResponseGeneric2Part</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">RemovePageAsync</a>(entry, subdomain) -> WithRawResponseTask&lt;PayabliApiResponseGeneric2Part&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10951,7 +10951,7 @@ await client.Paypoint.RemovePageAsync("8cfec329267", "pay-your-fees-1");
 </dl>
 </details>
 
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">SaveLogoAsync</a>(entry, FileContent { ... }) -> PayabliApiResponse00Responsedatanonobject</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">SaveLogoAsync</a>(entry, FileContent { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11013,7 +11013,7 @@ await client.Paypoint.SaveLogoAsync("8cfec329267", new FileContent());
 </dl>
 </details>
 
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">SettingsPageAsync</a>(entry) -> SettingsQueryRecord</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">SettingsPageAsync</a>(entry) -> WithRawResponseTask&lt;SettingsQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11067,7 +11067,7 @@ await client.Paypoint.SettingsPageAsync("8cfec329267");
 </dl>
 </details>
 
-<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">MigrateAsync</a>(PaypointMoveRequest { ... }) -> MigratePaypointResponse</code></summary>
+<details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">MigrateAsync</a>(PaypointMoveRequest { ... }) -> WithRawResponseTask&lt;MigratePaypointResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11136,7 +11136,7 @@ await client.Paypoint.MigrateAsync(
 </details>
 
 ## Query
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchDetailsAsync</a>(entry, ListBatchDetailsRequest { ... }) -> QueryBatchesDetailResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchDetailsAsync</a>(entry, ListBatchDetailsRequest { ... }) -> WithRawResponseTask&lt;QueryBatchesDetailResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11207,7 +11207,7 @@ await client.Query.ListBatchDetailsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchDetailsOrgAsync</a>(orgId, ListBatchDetailsOrgRequest { ... }) -> QueryResponseSettlements</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchDetailsOrgAsync</a>(orgId, ListBatchDetailsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryResponseSettlements&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11277,7 +11277,7 @@ await client.Query.ListBatchDetailsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesAsync</a>(entry, ListBatchesRequest { ... }) -> QueryBatchesResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesAsync</a>(entry, ListBatchesRequest { ... }) -> WithRawResponseTask&lt;QueryBatchesResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11347,7 +11347,7 @@ await client.Query.ListBatchesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesOrgAsync</a>(orgId, ListBatchesOrgRequest { ... }) -> QueryBatchesResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesOrgAsync</a>(orgId, ListBatchesOrgRequest { ... }) -> WithRawResponseTask&lt;QueryBatchesResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11417,7 +11417,7 @@ await client.Query.ListBatchesOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesOutAsync</a>(entry, ListBatchesOutRequest { ... }) -> QueryBatchesOutResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesOutAsync</a>(entry, ListBatchesOutRequest { ... }) -> WithRawResponseTask&lt;QueryBatchesOutResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11487,7 +11487,7 @@ await client.Query.ListBatchesOutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesOutOrgAsync</a>(orgId, ListBatchesOutOrgRequest { ... }) -> QueryBatchesOutResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListBatchesOutOrgAsync</a>(orgId, ListBatchesOutOrgRequest { ... }) -> WithRawResponseTask&lt;QueryBatchesOutResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11557,7 +11557,7 @@ await client.Query.ListBatchesOutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListChargebacksAsync</a>(entry, ListChargebacksRequest { ... }) -> QueryChargebacksResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListChargebacksAsync</a>(entry, ListChargebacksRequest { ... }) -> WithRawResponseTask&lt;QueryChargebacksResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11627,7 +11627,7 @@ await client.Query.ListChargebacksAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListChargebacksOrgAsync</a>(orgId, ListChargebacksOrgRequest { ... }) -> QueryChargebacksResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListChargebacksOrgAsync</a>(orgId, ListChargebacksOrgRequest { ... }) -> WithRawResponseTask&lt;QueryChargebacksResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11697,7 +11697,7 @@ await client.Query.ListChargebacksOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListCustomersAsync</a>(entry, ListCustomersRequest { ... }) -> QueryCustomerResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListCustomersAsync</a>(entry, ListCustomersRequest { ... }) -> WithRawResponseTask&lt;QueryCustomerResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11767,7 +11767,7 @@ await client.Query.ListCustomersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListCustomersOrgAsync</a>(orgId, ListCustomersOrgRequest { ... }) -> QueryCustomerResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListCustomersOrgAsync</a>(orgId, ListCustomersOrgRequest { ... }) -> WithRawResponseTask&lt;QueryCustomerResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11837,7 +11837,7 @@ await client.Query.ListCustomersOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationReportsAsync</a>(entry, ListNotificationReportsRequest { ... }) -> QueryResponseNotificationReports</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationReportsAsync</a>(entry, ListNotificationReportsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseNotificationReports&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11907,7 +11907,7 @@ await client.Query.ListNotificationReportsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationReportsOrgAsync</a>(orgId, ListNotificationReportsOrgRequest { ... }) -> QueryResponseNotificationReports</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationReportsOrgAsync</a>(orgId, ListNotificationReportsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryResponseNotificationReports&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11977,7 +11977,7 @@ await client.Query.ListNotificationReportsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationsAsync</a>(entry, ListNotificationsRequest { ... }) -> QueryResponseNotifications</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationsAsync</a>(entry, ListNotificationsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseNotifications&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12047,7 +12047,7 @@ await client.Query.ListNotificationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationsOrgAsync</a>(orgId, ListNotificationsOrgRequest { ... }) -> QueryResponseNotifications</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListNotificationsOrgAsync</a>(orgId, ListNotificationsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryResponseNotifications&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12117,7 +12117,7 @@ await client.Query.ListNotificationsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListOrganizationsAsync</a>(orgId, ListOrganizationsRequest { ... }) -> ListOrganizationsResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListOrganizationsAsync</a>(orgId, ListOrganizationsRequest { ... }) -> WithRawResponseTask&lt;ListOrganizationsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12187,7 +12187,7 @@ await client.Query.ListOrganizationsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutAsync</a>(entry, ListPayoutRequest { ... }) -> QueryPayoutTransaction</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutAsync</a>(entry, ListPayoutRequest { ... }) -> WithRawResponseTask&lt;QueryPayoutTransaction&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12257,7 +12257,7 @@ await client.Query.ListPayoutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutOrgAsync</a>(orgId, ListPayoutOrgRequest { ... }) -> QueryPayoutTransaction</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutOrgAsync</a>(orgId, ListPayoutOrgRequest { ... }) -> WithRawResponseTask&lt;QueryPayoutTransaction&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12327,7 +12327,7 @@ await client.Query.ListPayoutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPaypointsAsync</a>(orgId, ListPaypointsRequest { ... }) -> QueryEntrypointResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPaypointsAsync</a>(orgId, ListPaypointsRequest { ... }) -> WithRawResponseTask&lt;QueryEntrypointResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12397,7 +12397,7 @@ await client.Query.ListPaypointsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSettlementsAsync</a>(entry, ListSettlementsRequest { ... }) -> QueryResponseSettlements</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSettlementsAsync</a>(entry, ListSettlementsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseSettlements&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12467,7 +12467,7 @@ await client.Query.ListSettlementsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSettlementsOrgAsync</a>(orgId, ListSettlementsOrgRequest { ... }) -> QueryResponseSettlements</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSettlementsOrgAsync</a>(orgId, ListSettlementsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryResponseSettlements&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12537,7 +12537,7 @@ await client.Query.ListSettlementsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSubscriptionsAsync</a>(entry, ListSubscriptionsRequest { ... }) -> QuerySubscriptionResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSubscriptionsAsync</a>(entry, ListSubscriptionsRequest { ... }) -> WithRawResponseTask&lt;QuerySubscriptionResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12607,7 +12607,7 @@ await client.Query.ListSubscriptionsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSubscriptionsOrgAsync</a>(orgId, ListSubscriptionsOrgRequest { ... }) -> QuerySubscriptionResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListSubscriptionsOrgAsync</a>(orgId, ListSubscriptionsOrgRequest { ... }) -> WithRawResponseTask&lt;QuerySubscriptionResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12677,7 +12677,7 @@ await client.Query.ListSubscriptionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransactionsAsync</a>(entry, ListTransactionsRequest { ... }) -> QueryResponseTransactions</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransactionsAsync</a>(entry, ListTransactionsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseTransactions&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12754,7 +12754,7 @@ await client.Query.ListTransactionsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransactionsOrgAsync</a>(orgId, ListTransactionsOrgRequest { ... }) -> QueryResponseTransactions</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransactionsOrgAsync</a>(orgId, ListTransactionsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryResponseTransactions&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12838,7 +12838,7 @@ await client.Query.ListTransactionsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransferDetailsAsync</a>(entry, transferId, ListTransfersPaypointRequest { ... }) -> QueryTransferDetailResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransferDetailsAsync</a>(entry, transferId, ListTransfersPaypointRequest { ... }) -> WithRawResponseTask&lt;QueryTransferDetailResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12908,7 +12908,7 @@ await client.Query.ListTransferDetailsAsync("47862acd", 123456, new ListTransfer
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersAsync</a>(entry, ListTransfersRequest { ... }) -> TransferQueryResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersAsync</a>(entry, ListTransfersRequest { ... }) -> WithRawResponseTask&lt;TransferQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12973,7 +12973,7 @@ await client.Query.ListTransfersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersOrgAsync</a>(ListTransfersRequestOrg { ... }) -> TransferQueryResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersOrgAsync</a>(ListTransfersRequestOrg { ... }) -> WithRawResponseTask&lt;TransferQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13034,7 +13034,7 @@ await client.Query.ListTransfersOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersOutOrgAsync</a>(orgId, ListTransfersOutOrgRequest { ... }) -> TransferOutQueryResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersOutOrgAsync</a>(orgId, ListTransfersOutOrgRequest { ... }) -> WithRawResponseTask&lt;TransferOutQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13099,7 +13099,7 @@ await client.Query.ListTransfersOutOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersOutPaypointAsync</a>(entry, ListTransfersOutPaypointRequest { ... }) -> TransferOutQueryResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransfersOutPaypointAsync</a>(entry, ListTransfersOutPaypointRequest { ... }) -> WithRawResponseTask&lt;TransferOutQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13164,7 +13164,7 @@ await client.Query.ListTransfersOutPaypointAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransferDetailsOutAsync</a>(entry, transferId, ListTransferDetailsOutRequest { ... }) -> TransferOutDetailQueryResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransferDetailsOutAsync</a>(entry, transferId, ListTransferDetailsOutRequest { ... }) -> WithRawResponseTask&lt;TransferOutDetailQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13238,7 +13238,7 @@ await client.Query.ListTransferDetailsOutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListUsersOrgAsync</a>(orgId, ListUsersOrgRequest { ... }) -> QueryUserResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListUsersOrgAsync</a>(orgId, ListUsersOrgRequest { ... }) -> WithRawResponseTask&lt;QueryUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13308,7 +13308,7 @@ await client.Query.ListUsersOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListUsersPaypointAsync</a>(entry, ListUsersPaypointRequest { ... }) -> QueryUserResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListUsersPaypointAsync</a>(entry, ListUsersPaypointRequest { ... }) -> WithRawResponseTask&lt;QueryUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13378,7 +13378,7 @@ await client.Query.ListUsersPaypointAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVendorsAsync</a>(entry, ListVendorsRequest { ... }) -> QueryResponseVendors</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVendorsAsync</a>(entry, ListVendorsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseVendors&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13448,7 +13448,7 @@ await client.Query.ListVendorsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVendorsOrgAsync</a>(orgId, ListVendorsOrgRequest { ... }) -> QueryResponseVendors</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVendorsOrgAsync</a>(orgId, ListVendorsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryResponseVendors&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13518,7 +13518,7 @@ await client.Query.ListVendorsOrgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVcardsAsync</a>(entry, ListVcardsRequest { ... }) -> VCardQueryResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVcardsAsync</a>(entry, ListVcardsRequest { ... }) -> WithRawResponseTask&lt;VCardQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13588,7 +13588,7 @@ await client.Query.ListVcardsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVcardsOrgAsync</a>(orgId, ListVcardsOrgRequest { ... }) -> VCardQueryResponse</code></summary>
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVcardsOrgAsync</a>(orgId, ListVcardsOrgRequest { ... }) -> WithRawResponseTask&lt;VCardQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13659,7 +13659,7 @@ await client.Query.ListVcardsOrgAsync(
 </details>
 
 ## Statistic
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">BasicStatsAsync</a>(mode, freq, level, entryId, BasicStatsRequest { ... }) -> IEnumerable&lt;StatBasicExtendedQueryRecord&gt;</code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">BasicStatsAsync</a>(mode, freq, level, entryId, BasicStatsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;StatBasicExtendedQueryRecord&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13780,7 +13780,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(mode, freq, customerId, CustomerBasicStatsRequest { ... }) -> IEnumerable&lt;SubscriptionStatsQueryRecord&gt;</code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(mode, freq, customerId, CustomerBasicStatsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;SubscriptionStatsQueryRecord&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13881,7 +13881,7 @@ For example, `w` groups the results by week.
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(interval, level, entryId, SubStatsRequest { ... }) -> IEnumerable&lt;StatBasicQueryRecord&gt;</code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(interval, level, entryId, SubStatsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;StatBasicQueryRecord&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13971,7 +13971,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(mode, freq, idVendor, VendorBasicStatsRequest { ... }) -> IEnumerable&lt;StatisticsVendorQueryRecord&gt;</code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(mode, freq, idVendor, VendorBasicStatsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;StatisticsVendorQueryRecord&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14073,7 +14073,7 @@ For example, `w` groups the results by week.
 </details>
 
 ## Subscription
-<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">GetSubscriptionAsync</a>(subId) -> SubscriptionQueryRecords</code></summary>
+<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">GetSubscriptionAsync</a>(subId) -> WithRawResponseTask&lt;SubscriptionQueryRecords&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14127,7 +14127,7 @@ await client.Subscription.GetSubscriptionAsync(263);
 </dl>
 </details>
 
-<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">NewSubscriptionAsync</a>(RequestSchedule { ... }) -> AddSubscriptionResponse</code></summary>
+<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">NewSubscriptionAsync</a>(RequestSchedule { ... }) -> WithRawResponseTask&lt;AddSubscriptionResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14208,7 +14208,7 @@ await client.Subscription.NewSubscriptionAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">RemoveSubscriptionAsync</a>(subId) -> RemoveSubscriptionResponse</code></summary>
+<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">RemoveSubscriptionAsync</a>(subId) -> WithRawResponseTask&lt;RemoveSubscriptionResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14262,7 +14262,7 @@ await client.Subscription.RemoveSubscriptionAsync(396);
 </dl>
 </details>
 
-<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">UpdateSubscriptionAsync</a>(subId, RequestUpdateSchedule { ... }) -> UpdateSubscriptionResponse</code></summary>
+<details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">UpdateSubscriptionAsync</a>(subId, RequestUpdateSchedule { ... }) -> WithRawResponseTask&lt;UpdateSubscriptionResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14328,7 +14328,7 @@ await client.Subscription.UpdateSubscriptionAsync(
 </details>
 
 ## Templates
-<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">DeleteTemplateAsync</a>(templateId) -> PayabliApiResponseTemplateId</code></summary>
+<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">DeleteTemplateAsync</a>(templateId) -> WithRawResponseTask&lt;PayabliApiResponseTemplateId&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14382,7 +14382,7 @@ await client.Templates.DeleteTemplateAsync(80);
 </dl>
 </details>
 
-<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">GetlinkTemplateAsync</a>(templateId, ignoreEmpty) -> BoardingLinkApiResponse</code></summary>
+<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">GetlinkTemplateAsync</a>(templateId, ignoreEmpty) -> WithRawResponseTask&lt;BoardingLinkApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14444,7 +14444,7 @@ await client.Templates.GetlinkTemplateAsync(true, 80);
 </dl>
 </details>
 
-<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">GetTemplateAsync</a>(templateId) -> TemplateQueryRecord</code></summary>
+<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">GetTemplateAsync</a>(templateId) -> WithRawResponseTask&lt;TemplateQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14498,7 +14498,7 @@ await client.Templates.GetTemplateAsync(80);
 </dl>
 </details>
 
-<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">ListTemplatesAsync</a>(orgId, ListTemplatesRequest { ... }) -> TemplateQueryResponse</code></summary>
+<details><summary><code>client.Templates.<a href="/src/PayabliApi/Templates/TemplatesClient.cs">ListTemplatesAsync</a>(orgId, ListTemplatesRequest { ... }) -> WithRawResponseTask&lt;TemplateQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14569,7 +14569,7 @@ await client.Templates.ListTemplatesAsync(
 </details>
 
 ## TokenStorage
-<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">AddMethodAsync</a>(AddMethodRequest { ... }) -> AddMethodResponse</code></summary>
+<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">AddMethodAsync</a>(AddMethodRequest { ... }) -> WithRawResponseTask&lt;AddMethodResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14642,7 +14642,7 @@ await client.TokenStorage.AddMethodAsync(
 </dl>
 </details>
 
-<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">GetMethodAsync</a>(methodId, GetMethodRequest { ... }) -> GetMethodResponse</code></summary>
+<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">GetMethodAsync</a>(methodId, GetMethodRequest { ... }) -> WithRawResponseTask&lt;GetMethodResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14707,7 +14707,7 @@ await client.TokenStorage.GetMethodAsync(
 </dl>
 </details>
 
-<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">RemoveMethodAsync</a>(methodId) -> PayabliApiResponsePaymethodDelete</code></summary>
+<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">RemoveMethodAsync</a>(methodId) -> WithRawResponseTask&lt;PayabliApiResponsePaymethodDelete&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14761,7 +14761,7 @@ await client.TokenStorage.RemoveMethodAsync("32-8877drt00045632-678");
 </dl>
 </details>
 
-<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">UpdateMethodAsync</a>(methodId, UpdateMethodRequest { ... }) -> PayabliApiResponsePaymethodDelete</code></summary>
+<details><summary><code>client.TokenStorage.<a href="/src/PayabliApi/TokenStorage/TokenStorageClient.cs">UpdateMethodAsync</a>(methodId, UpdateMethodRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymethodDelete&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14844,7 +14844,7 @@ await client.TokenStorage.UpdateMethodAsync(
 </details>
 
 ## User
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AddUserAsync</a>(UserData { ... }) -> AddUserResponse</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AddUserAsync</a>(UserData { ... }) -> WithRawResponseTask&lt;AddUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14898,7 +14898,7 @@ await client.User.AddUserAsync(new UserData());
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AuthRefreshUserAsync</a>() -> PayabliApiResponseUserMfa</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AuthRefreshUserAsync</a>() -> WithRawResponseTask&lt;PayabliApiResponseUserMfa&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14937,7 +14937,7 @@ await client.User.AuthRefreshUserAsync();
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AuthResetUserAsync</a>(UserAuthResetRequest { ... }) -> AuthResetUserResponse</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AuthResetUserAsync</a>(UserAuthResetRequest { ... }) -> WithRawResponseTask&lt;AuthResetUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14991,7 +14991,7 @@ await client.User.AuthResetUserAsync(new UserAuthResetRequest());
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AuthUserAsync</a>(provider, UserAuthRequest { ... }) -> PayabliApiResponseMfaBasic</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">AuthUserAsync</a>(provider, UserAuthRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponseMfaBasic&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15053,7 +15053,7 @@ await client.User.AuthUserAsync("provider", new UserAuthRequest());
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ChangePswUserAsync</a>(UserAuthPswResetRequest { ... }) -> ChangePswUserResponse</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ChangePswUserAsync</a>(UserAuthPswResetRequest { ... }) -> WithRawResponseTask&lt;ChangePswUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15107,7 +15107,7 @@ await client.User.ChangePswUserAsync(new UserAuthPswResetRequest());
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">DeleteUserAsync</a>(userId) -> DeleteUserResponse</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">DeleteUserAsync</a>(userId) -> WithRawResponseTask&lt;DeleteUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15161,7 +15161,7 @@ await client.User.DeleteUserAsync(1000000);
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">EditMfaUserAsync</a>(userId, MfaData { ... }) -> EditMfaUserResponse</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">EditMfaUserAsync</a>(userId, MfaData { ... }) -> WithRawResponseTask&lt;EditMfaUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15223,7 +15223,7 @@ await client.User.EditMfaUserAsync(1000000, new MfaData());
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">EditUserAsync</a>(userId, UserData { ... }) -> PayabliApiResponse</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">EditUserAsync</a>(userId, UserData { ... }) -> WithRawResponseTask&lt;PayabliApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15285,7 +15285,7 @@ await client.User.EditUserAsync(1000000, new UserData());
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">GetUserAsync</a>(userId, GetUserRequest { ... }) -> UserQueryRecord</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">GetUserAsync</a>(userId, GetUserRequest { ... }) -> WithRawResponseTask&lt;UserQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15347,7 +15347,7 @@ await client.User.GetUserAsync(1000000, new GetUserRequest { Entry = "478ae1234"
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">LogoutUserAsync</a>() -> LogoutUserResponse</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">LogoutUserAsync</a>() -> WithRawResponseTask&lt;LogoutUserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15386,7 +15386,7 @@ await client.User.LogoutUserAsync();
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ResendMfaCodeAsync</a>(usrname, entry, entryType) -> PayabliApiResponseMfaBasic</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ResendMfaCodeAsync</a>(usrname, entry, entryType) -> WithRawResponseTask&lt;PayabliApiResponseMfaBasic&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15456,7 +15456,7 @@ await client.User.ResendMfaCodeAsync("Entry", 1, "usrname");
 </dl>
 </details>
 
-<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ValidateMfaUserAsync</a>(MfaValidationData { ... }) -> PayabliApiResponseUserMfa</code></summary>
+<details><summary><code>client.User.<a href="/src/PayabliApi/User/UserClient.cs">ValidateMfaUserAsync</a>(MfaValidationData { ... }) -> WithRawResponseTask&lt;PayabliApiResponseUserMfa&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15511,7 +15511,7 @@ await client.User.ValidateMfaUserAsync(new MfaValidationData());
 </details>
 
 ## Vendor
-<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">AddVendorAsync</a>(entry, VendorData { ... }) -> PayabliApiResponseVendors</code></summary>
+<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">AddVendorAsync</a>(entry, VendorData { ... }) -> WithRawResponseTask&lt;PayabliApiResponseVendors&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15625,7 +15625,7 @@ await client.Vendor.AddVendorAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">DeleteVendorAsync</a>(idVendor) -> PayabliApiResponseVendors</code></summary>
+<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">DeleteVendorAsync</a>(idVendor) -> WithRawResponseTask&lt;PayabliApiResponseVendors&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15679,7 +15679,7 @@ await client.Vendor.DeleteVendorAsync(1);
 </dl>
 </details>
 
-<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">EditVendorAsync</a>(idVendor, VendorData { ... }) -> PayabliApiResponseVendors</code></summary>
+<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">EditVendorAsync</a>(idVendor, VendorData { ... }) -> WithRawResponseTask&lt;PayabliApiResponseVendors&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15741,7 +15741,7 @@ await client.Vendor.EditVendorAsync(1, new VendorData { Name1 = "Theodore's Jani
 </dl>
 </details>
 
-<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">GetVendorAsync</a>(idVendor) -> VendorQueryRecord</code></summary>
+<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">GetVendorAsync</a>(idVendor) -> WithRawResponseTask&lt;VendorQueryRecord&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15796,7 +15796,7 @@ await client.Vendor.GetVendorAsync(1);
 </details>
 
 ## Wallet
-<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureApplePayOrganizationAsync</a>(ConfigureOrganizationRequestApplePay { ... }) -> ConfigureApplePayOrganizationApiResponse</code></summary>
+<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureApplePayOrganizationAsync</a>(ConfigureOrganizationRequestApplePay { ... }) -> WithRawResponseTask&lt;ConfigureApplePayOrganizationApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15857,7 +15857,7 @@ await client.Wallet.ConfigureApplePayOrganizationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureApplePayPaypointAsync</a>(ConfigurePaypointRequestApplePay { ... }) -> ConfigureApplePaypointApiResponse</code></summary>
+<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureApplePayPaypointAsync</a>(ConfigurePaypointRequestApplePay { ... }) -> WithRawResponseTask&lt;ConfigureApplePaypointApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15913,7 +15913,7 @@ await client.Wallet.ConfigureApplePayPaypointAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureGooglePayOrganizationAsync</a>(ConfigureOrganizationRequestGooglePay { ... }) -> ConfigureApplePayOrganizationApiResponse</code></summary>
+<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureGooglePayOrganizationAsync</a>(ConfigureOrganizationRequestGooglePay { ... }) -> WithRawResponseTask&lt;ConfigureApplePayOrganizationApiResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15974,7 +15974,7 @@ await client.Wallet.ConfigureGooglePayOrganizationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureGooglePayPaypointAsync</a>(ConfigurePaypointRequestGooglePay { ... }) -> ConfigureGooglePaypointApiResponse</code></summary>
+<details><summary><code>client.Wallet.<a href="/src/PayabliApi/Wallet/WalletClient.cs">ConfigureGooglePayPaypointAsync</a>(ConfigurePaypointRequestGooglePay { ... }) -> WithRawResponseTask&lt;ConfigureGooglePaypointApiResponse&gt;</code></summary>
 <dl>
 <dd>
 

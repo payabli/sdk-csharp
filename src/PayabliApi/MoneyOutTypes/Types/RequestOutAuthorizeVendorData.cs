@@ -87,7 +87,7 @@ public record RequestOutAuthorizeVendorData : IJsonOnDeserialized
     public string? CustomField2 { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     [JsonPropertyName("address2")]
     public string? Address2 { get; set; }

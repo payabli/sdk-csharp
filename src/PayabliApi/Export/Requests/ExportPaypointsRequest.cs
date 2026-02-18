@@ -75,7 +75,7 @@ public record ExportPaypointsRequest
     /// Example: `dbaname(ct)=hoa` returns all records with `dbaname` containing "hoa"
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

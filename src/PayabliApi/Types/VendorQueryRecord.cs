@@ -12,7 +12,7 @@ public record VendorQueryRecord : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     [JsonPropertyName("Address1")]
     public string? Address1 { get; set; }

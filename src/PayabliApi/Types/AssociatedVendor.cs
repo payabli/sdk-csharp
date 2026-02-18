@@ -171,7 +171,7 @@ public record AssociatedVendor : IJsonOnDeserialized
     public long? InternalReferenceId { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }

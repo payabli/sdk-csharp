@@ -21,7 +21,7 @@ public record BasicStatsRequest
     /// List of parameters.
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <summary>
     /// Used with `custom` mode. The start date for the range.

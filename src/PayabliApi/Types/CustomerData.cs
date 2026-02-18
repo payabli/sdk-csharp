@@ -129,7 +129,7 @@ public record CustomerData : IJsonOnDeserialized
     /// Additional Custom fields in format "key":"value".
     /// </summary>
     [JsonPropertyName("additionalFields")]
-    public Dictionary<string, string?>? AdditionalFields { get; set; }
+    public Dictionary<string, string>? AdditionalFields { get; set; }
 
     [JsonPropertyName("identifierFields")]
     public IEnumerable<string>? IdentifierFields { get; set; }

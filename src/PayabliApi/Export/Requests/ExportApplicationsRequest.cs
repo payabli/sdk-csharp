@@ -76,7 +76,7 @@ public record ExportApplicationsRequest
     /// Example: `dbaname(ct)=hoa` returns all records with a `dbaname` containing "hoa"
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

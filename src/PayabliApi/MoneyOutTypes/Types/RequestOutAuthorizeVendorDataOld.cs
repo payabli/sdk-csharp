@@ -15,7 +15,7 @@ public record RequestOutAuthorizeVendorDataOld : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     /// <summary>
     /// Vendor's address

@@ -12,7 +12,7 @@ public record PayabliPages : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("AdditionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     /// <summary>
     /// Array of credential objects with active services for the page

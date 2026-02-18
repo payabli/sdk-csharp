@@ -3,7 +3,7 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-public partial class ChargeBacksClient
+public partial class ChargeBacksClient : IChargeBacksClient
 {
     private RawClient _client;
 
@@ -12,27 +12,20 @@ public partial class ChargeBacksClient
         _client = client;
     }
 
-    /// <summary>
-    /// Add a response to a chargeback or ACH return.
-    /// </summary>
-    /// <example><code>
-    /// await client.ChargeBacks.AddResponseAsync(
-    ///     1000000,
-    ///     new ResponseChargeBack { IdempotencyKey = "6B29FC40-CA47-1067-B31D-00DD010662DA" }
-    /// );
-    /// </code></example>
-    public async Task<AddResponseResponse> AddResponseAsync(
+    private async Task<WithRawResponse<AddResponseResponse>> AddResponseAsyncCore(
         long id,
         ResponseChargeBack request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _headers = new Headers(new Dictionary<string, string>() { });
-        if (request.IdempotencyKey != null)
-        {
-            _headers["idempotencyKey"] = request.IdempotencyKey;
-        }
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add("idempotencyKey", request.IdempotencyKey)
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -56,14 +49,28 @@ public partial class ChargeBacksClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<AddResponseResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<AddResponseResponse>(responseBody)!;
+                return new WithRawResponse<AddResponseResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -94,18 +101,18 @@ public partial class ChargeBacksClient
         }
     }
 
-    /// <summary>
-    /// Retrieves a chargeback record and its details.
-    /// </summary>
-    /// <example><code>
-    /// await client.ChargeBacks.GetChargebackAsync(1000000);
-    /// </code></example>
-    public async Task<ChargebackQueryRecords> GetChargebackAsync(
+    private async Task<WithRawResponse<ChargebackQueryRecords>> GetChargebackAsyncCore(
         long id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -116,6 +123,7 @@ public partial class ChargeBacksClient
                         "ChargeBacks/read/{0}",
                         ValueConvert.ToPathParameterString(id)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -126,14 +134,28 @@ public partial class ChargeBacksClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<ChargebackQueryRecords>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<ChargebackQueryRecords>(responseBody)!;
+                return new WithRawResponse<ChargebackQueryRecords>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -164,19 +186,19 @@ public partial class ChargeBacksClient
         }
     }
 
-    /// <summary>
-    /// Retrieves a chargeback attachment file by its file name.
-    /// </summary>
-    /// <example><code>
-    /// await client.ChargeBacks.GetChargebackAttachmentAsync(1000000, "fileName");
-    /// </code></example>
-    public async Task<string> GetChargebackAttachmentAsync(
+    private async Task<WithRawResponse<string>> GetChargebackAttachmentAsyncCore(
         long id,
         string fileName,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -188,6 +210,7 @@ public partial class ChargeBacksClient
                         ValueConvert.ToPathParameterString(id),
                         ValueConvert.ToPathParameterString(fileName)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -196,7 +219,16 @@ public partial class ChargeBacksClient
         if (response.StatusCode is >= 200 and < 400)
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            return responseBody;
+            return new WithRawResponse<string>()
+            {
+                Data = responseBody,
+                RawResponse = new RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                },
+            };
         }
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
@@ -226,5 +258,61 @@ public partial class ChargeBacksClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Add a response to a chargeback or ACH return.
+    /// </summary>
+    /// <example><code>
+    /// await client.ChargeBacks.AddResponseAsync(
+    ///     1000000,
+    ///     new ResponseChargeBack { IdempotencyKey = "6B29FC40-CA47-1067-B31D-00DD010662DA" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<AddResponseResponse> AddResponseAsync(
+        long id,
+        ResponseChargeBack request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<AddResponseResponse>(
+            AddResponseAsyncCore(id, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieves a chargeback record and its details.
+    /// </summary>
+    /// <example><code>
+    /// await client.ChargeBacks.GetChargebackAsync(1000000);
+    /// </code></example>
+    public WithRawResponseTask<ChargebackQueryRecords> GetChargebackAsync(
+        long id,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ChargebackQueryRecords>(
+            GetChargebackAsyncCore(id, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieves a chargeback attachment file by its file name.
+    /// </summary>
+    /// <example><code>
+    /// await client.ChargeBacks.GetChargebackAttachmentAsync(1000000, "fileName");
+    /// </code></example>
+    public WithRawResponseTask<string> GetChargebackAttachmentAsync(
+        long id,
+        string fileName,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<string>(
+            GetChargebackAttachmentAsyncCore(id, fileName, options, cancellationToken)
+        );
     }
 }

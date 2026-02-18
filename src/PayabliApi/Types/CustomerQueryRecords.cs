@@ -167,7 +167,7 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     /// List of additional custom fields in format key:value.
     /// </summary>
     [JsonPropertyName("AdditionalFields")]
-    public Dictionary<string, string?>? AdditionalFields { get; set; }
+    public Dictionary<string, string>? AdditionalFields { get; set; }
 
     [JsonPropertyName("IdentifierFields")]
     public IEnumerable<string>? IdentifierFields { get; set; }

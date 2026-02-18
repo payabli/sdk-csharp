@@ -3,7 +3,7 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-public partial class ImportClient
+public partial class ImportClient : IImportClient
 {
     private RawClient _client;
 
@@ -12,24 +12,25 @@ public partial class ImportClient
         _client = client;
     }
 
-    /// <summary>
-    /// Import a list of bills from a CSV file. See the [Import Guide](/developers/developer-guides/bills-add#import-bills) for more help and an example file.
-    /// </summary>
-    /// <example><code>
-    /// await client.Import.ImportBillsAsync("8cfec329267", new ImportBillsRequest());
-    /// </code></example>
-    public async Task<PayabliApiResponseImport> ImportBillsAsync(
+    private async Task<WithRawResponse<PayabliApiResponseImport>> ImportBillsAsyncCore(
         string entry,
         ImportBillsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var multipartFormRequest_ = new MultipartFormRequest
         {
             BaseUrl = _client.Options.BaseUrl,
             Method = HttpMethod.Post,
             Path = string.Format("Import/billsForm/{0}", ValueConvert.ToPathParameterString(entry)),
+            Headers = _headers,
             Options = options,
         };
         multipartFormRequest_.AddFileParameterPart("file", request.File);
@@ -41,14 +42,28 @@ public partial class ImportClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
+                return new WithRawResponse<PayabliApiResponseImport>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -79,24 +94,23 @@ public partial class ImportClient
         }
     }
 
-    /// <summary>
-    /// Import a list of customers from a CSV file. See the [Import Guide](/developers/developer-guides/entities-customers#import-customers) for more help and example files.
-    /// </summary>
-    /// <example><code>
-    /// await client.Import.ImportCustomerAsync("8cfec329267", new ImportCustomerRequest());
-    /// </code></example>
-    public async Task<PayabliApiResponseImport> ImportCustomerAsync(
+    private async Task<WithRawResponse<PayabliApiResponseImport>> ImportCustomerAsyncCore(
         string entry,
         ImportCustomerRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.ReplaceExisting != null)
-        {
-            _query["replaceExisting"] = request.ReplaceExisting.Value.ToString();
-        }
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("replaceExisting", request.ReplaceExisting)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var multipartFormRequest_ = new MultipartFormRequest
         {
             BaseUrl = _client.Options.BaseUrl,
@@ -105,7 +119,8 @@ public partial class ImportClient
                 "Import/customersForm/{0}",
                 ValueConvert.ToPathParameterString(entry)
             ),
-            Query = _query,
+            QueryString = _queryString,
+            Headers = _headers,
             Options = options,
         };
         multipartFormRequest_.AddFileParameterPart("file", request.File);
@@ -117,14 +132,28 @@ public partial class ImportClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
+                return new WithRawResponse<PayabliApiResponseImport>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -155,19 +184,19 @@ public partial class ImportClient
         }
     }
 
-    /// <summary>
-    /// Import a list of vendors from a CSV file. See the [Import Guide](/developers/developer-guides/entities-vendors#import-vendors) for more help and example files.
-    /// </summary>
-    /// <example><code>
-    /// await client.Import.ImportVendorAsync("8cfec329267", new ImportVendorRequest());
-    /// </code></example>
-    public async Task<PayabliApiResponseImport> ImportVendorAsync(
+    private async Task<WithRawResponse<PayabliApiResponseImport>> ImportVendorAsyncCore(
         string entry,
         ImportVendorRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var multipartFormRequest_ = new MultipartFormRequest
         {
             BaseUrl = _client.Options.BaseUrl,
@@ -176,6 +205,7 @@ public partial class ImportClient
                 "Import/vendorsForm/{0}",
                 ValueConvert.ToPathParameterString(entry)
             ),
+            Headers = _headers,
             Options = options,
         };
         multipartFormRequest_.AddFileParameterPart("file", request.File);
@@ -187,14 +217,28 @@ public partial class ImportClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
+                return new WithRawResponse<PayabliApiResponseImport>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new PayabliApiApiException(
@@ -203,5 +247,59 @@ public partial class ImportClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Import a list of bills from a CSV file. See the [Import Guide](/developers/developer-guides/bills-add#import-bills) for more help and an example file.
+    /// </summary>
+    /// <example><code>
+    /// await client.Import.ImportBillsAsync("8cfec329267", new ImportBillsRequest());
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponseImport> ImportBillsAsync(
+        string entry,
+        ImportBillsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponseImport>(
+            ImportBillsAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Import a list of customers from a CSV file. See the [Import Guide](/developers/developer-guides/entities-customers#import-customers) for more help and example files.
+    /// </summary>
+    /// <example><code>
+    /// await client.Import.ImportCustomerAsync("8cfec329267", new ImportCustomerRequest());
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponseImport> ImportCustomerAsync(
+        string entry,
+        ImportCustomerRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponseImport>(
+            ImportCustomerAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Import a list of vendors from a CSV file. See the [Import Guide](/developers/developer-guides/entities-vendors#import-vendors) for more help and example files.
+    /// </summary>
+    /// <example><code>
+    /// await client.Import.ImportVendorAsync("8cfec329267", new ImportVendorRequest());
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponseImport> ImportVendorAsync(
+        string entry,
+        ImportVendorRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponseImport>(
+            ImportVendorAsyncCore(entry, request, options, cancellationToken)
+        );
     }
 }

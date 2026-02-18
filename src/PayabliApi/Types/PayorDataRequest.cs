@@ -15,7 +15,7 @@ public record PayorDataRequest : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     [JsonPropertyName("billingAddress1")]
     public string? BillingAddress1 { get; set; }

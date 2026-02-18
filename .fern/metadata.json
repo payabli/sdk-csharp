@@ -1,8 +1,9 @@
 {
-  "cliVersion": "3.68.1",
+  "cliVersion": "3.79.2",
   "generatorName": "fernapi/fern-csharp-sdk",
-  "generatorVersion": "2.11.2",
+  "generatorVersion": "2.20.5",
   "generatorConfig": {
     "generate-mock-server-tests": false
-  }
+  },
+  "sdkVersion": "0.0.297"
 }

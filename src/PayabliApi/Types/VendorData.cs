@@ -15,7 +15,7 @@ public record VendorData : IJsonOnDeserialized
     public string? VendorNumber { get; set; }
 
     [JsonPropertyName("AdditionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     /// <summary>
     /// Vendor's address

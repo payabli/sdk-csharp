@@ -3,7 +3,7 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-public partial class CloudClient
+public partial class CloudClient : ICloudClient
 {
     private RawClient _client;
 
@@ -12,27 +12,20 @@ public partial class CloudClient
         _client = client;
     }
 
-    /// <summary>
-    /// Register a cloud device to an entrypoint. See [Devices Quickstart](/developers/developer-guides/devices-quickstart#devices-quickstart) for a complete guide.
-    /// </summary>
-    /// <example><code>
-    /// await client.Cloud.AddDeviceAsync(
-    ///     "8cfec329267",
-    ///     new DeviceEntry { RegistrationCode = "YS7DS5", Description = "Front Desk POS" }
-    /// );
-    /// </code></example>
-    public async Task<AddDeviceResponse> AddDeviceAsync(
+    private async Task<WithRawResponse<AddDeviceResponse>> AddDeviceAsyncCore(
         string entry,
         DeviceEntry request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _headers = new Headers(new Dictionary<string, string>() { });
-        if (request.IdempotencyKey != null)
-        {
-            _headers["idempotencyKey"] = request.IdempotencyKey;
-        }
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add("idempotencyKey", request.IdempotencyKey)
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -56,14 +49,28 @@ public partial class CloudClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<AddDeviceResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<AddDeviceResponse>(responseBody)!;
+                return new WithRawResponse<AddDeviceResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -94,19 +101,19 @@ public partial class CloudClient
         }
     }
 
-    /// <summary>
-    /// Retrieve the registration history for a device.
-    /// </summary>
-    /// <example><code>
-    /// await client.Cloud.HistoryDeviceAsync("WXGDWB", "8cfec329267");
-    /// </code></example>
-    public async Task<CloudQueryApiResponse> HistoryDeviceAsync(
+    private async Task<WithRawResponse<CloudQueryApiResponse>> HistoryDeviceAsyncCore(
         string entry,
         string deviceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -118,6 +125,7 @@ public partial class CloudClient
                         ValueConvert.ToPathParameterString(entry),
                         ValueConvert.ToPathParameterString(deviceId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -128,14 +136,28 @@ public partial class CloudClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<CloudQueryApiResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<CloudQueryApiResponse>(responseBody)!;
+                return new WithRawResponse<CloudQueryApiResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -166,24 +188,23 @@ public partial class CloudClient
         }
     }
 
-    /// <summary>
-    /// Get a list of cloud devices registered to an entrypoint.
-    /// </summary>
-    /// <example><code>
-    /// await client.Cloud.ListDeviceAsync("8cfec329267", new ListDeviceRequest());
-    /// </code></example>
-    public async Task<CloudQueryApiResponse> ListDeviceAsync(
+    private async Task<WithRawResponse<CloudQueryApiResponse>> ListDeviceAsyncCore(
         string entry,
         ListDeviceRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.ForceRefresh != null)
-        {
-            _query["forceRefresh"] = JsonUtils.Serialize(request.ForceRefresh.Value);
-        }
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("forceRefresh", request.ForceRefresh)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -194,7 +215,8 @@ public partial class CloudClient
                         "Cloud/list/{0}",
                         ValueConvert.ToPathParameterString(entry)
                     ),
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -205,14 +227,28 @@ public partial class CloudClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<CloudQueryApiResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<CloudQueryApiResponse>(responseBody)!;
+                return new WithRawResponse<CloudQueryApiResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -243,19 +279,19 @@ public partial class CloudClient
         }
     }
 
-    /// <summary>
-    /// Remove a cloud device from an entrypoint.
-    /// </summary>
-    /// <example><code>
-    /// await client.Cloud.RemoveDeviceAsync("6c361c7d-674c-44cc-b790-382b75d1xxx", "8cfec329267");
-    /// </code></example>
-    public async Task<RemoveDeviceResponse> RemoveDeviceAsync(
+    private async Task<WithRawResponse<RemoveDeviceResponse>> RemoveDeviceAsyncCore(
         string entry,
         string deviceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -267,6 +303,7 @@ public partial class CloudClient
                         ValueConvert.ToPathParameterString(entry),
                         ValueConvert.ToPathParameterString(deviceId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -277,14 +314,28 @@ public partial class CloudClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<RemoveDeviceResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<RemoveDeviceResponse>(responseBody)!;
+                return new WithRawResponse<RemoveDeviceResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -313,5 +364,80 @@ public partial class CloudClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Register a cloud device to an entrypoint. See [Devices Quickstart](/developers/developer-guides/devices-quickstart#devices-quickstart) for a complete guide.
+    /// </summary>
+    /// <example><code>
+    /// await client.Cloud.AddDeviceAsync(
+    ///     "8cfec329267",
+    ///     new DeviceEntry { RegistrationCode = "YS7DS5", Description = "Front Desk POS" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<AddDeviceResponse> AddDeviceAsync(
+        string entry,
+        DeviceEntry request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<AddDeviceResponse>(
+            AddDeviceAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieve the registration history for a device.
+    /// </summary>
+    /// <example><code>
+    /// await client.Cloud.HistoryDeviceAsync("WXGDWB", "8cfec329267");
+    /// </code></example>
+    public WithRawResponseTask<CloudQueryApiResponse> HistoryDeviceAsync(
+        string entry,
+        string deviceId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<CloudQueryApiResponse>(
+            HistoryDeviceAsyncCore(entry, deviceId, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Get a list of cloud devices registered to an entrypoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.Cloud.ListDeviceAsync("8cfec329267", new ListDeviceRequest());
+    /// </code></example>
+    public WithRawResponseTask<CloudQueryApiResponse> ListDeviceAsync(
+        string entry,
+        ListDeviceRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<CloudQueryApiResponse>(
+            ListDeviceAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Remove a cloud device from an entrypoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.Cloud.RemoveDeviceAsync("6c361c7d-674c-44cc-b790-382b75d1xxx", "8cfec329267");
+    /// </code></example>
+    public WithRawResponseTask<RemoveDeviceResponse> RemoveDeviceAsync(
+        string entry,
+        string deviceId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<RemoveDeviceResponse>(
+            RemoveDeviceAsyncCore(entry, deviceId, options, cancellationToken)
+        );
     }
 }

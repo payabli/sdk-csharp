@@ -102,7 +102,7 @@ public record ListPayoutOrgRequest
     ///   Example: `sortBy=desc(netamount)` returns all records sorted by `netAmount` descending
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <summary>
     /// The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.

@@ -3,7 +3,7 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-public partial class PaypointClient
+public partial class PaypointClient : IPaypointClient
 {
     private RawClient _client;
 
@@ -12,18 +12,18 @@ public partial class PaypointClient
         _client = client;
     }
 
-    /// <summary>
-    /// Gets the basic details for a paypoint.
-    /// </summary>
-    /// <example><code>
-    /// await client.Paypoint.GetBasicEntryAsync("8cfec329267");
-    /// </code></example>
-    public async Task<GetBasicEntryResponse> GetBasicEntryAsync(
+    private async Task<WithRawResponse<GetBasicEntryResponse>> GetBasicEntryAsyncCore(
         string entry,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -34,6 +34,7 @@ public partial class PaypointClient
                         "Paypoint/basic/{0}",
                         ValueConvert.ToPathParameterString(entry)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -44,14 +45,28 @@ public partial class PaypointClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<GetBasicEntryResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<GetBasicEntryResponse>(responseBody)!;
+                return new WithRawResponse<GetBasicEntryResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -82,18 +97,18 @@ public partial class PaypointClient
         }
     }
 
-    /// <summary>
-    /// Retrieves the basic details for a paypoint by ID.
-    /// </summary>
-    /// <example><code>
-    /// await client.Paypoint.GetBasicEntryByIdAsync("198");
-    /// </code></example>
-    public async Task<GetBasicEntryByIdResponse> GetBasicEntryByIdAsync(
+    private async Task<WithRawResponse<GetBasicEntryByIdResponse>> GetBasicEntryByIdAsyncCore(
         string idPaypoint,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -104,6 +119,7 @@ public partial class PaypointClient
                         "Paypoint/basicById/{0}",
                         ValueConvert.ToPathParameterString(idPaypoint)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -114,14 +130,28 @@ public partial class PaypointClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<GetBasicEntryByIdResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<GetBasicEntryByIdResponse>(responseBody)!;
+                return new WithRawResponse<GetBasicEntryByIdResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -152,24 +182,23 @@ public partial class PaypointClient
         }
     }
 
-    /// <summary>
-    /// Gets the details for a single paypoint.
-    /// </summary>
-    /// <example><code>
-    /// await client.Paypoint.GetEntryConfigAsync("8cfec329267", new GetEntryConfigRequest());
-    /// </code></example>
-    public async Task<GetEntryConfigResponse> GetEntryConfigAsync(
+    private async Task<WithRawResponse<GetEntryConfigResponse>> GetEntryConfigAsyncCore(
         string entry,
         GetEntryConfigRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Entrypages != null)
-        {
-            _query["entrypages"] = request.Entrypages;
-        }
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("entrypages", request.Entrypages)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -177,7 +206,8 @@ public partial class PaypointClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format("Paypoint/{0}", ValueConvert.ToPathParameterString(entry)),
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -188,14 +218,28 @@ public partial class PaypointClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<GetEntryConfigResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<GetEntryConfigResponse>(responseBody)!;
+                return new WithRawResponse<GetEntryConfigResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -226,19 +270,19 @@ public partial class PaypointClient
         }
     }
 
-    /// <summary>
-    /// Gets the details for single payment page for a paypoint.
-    /// </summary>
-    /// <example><code>
-    /// await client.Paypoint.GetPageAsync("8cfec329267", "pay-your-fees-1");
-    /// </code></example>
-    public async Task<PayabliPages> GetPageAsync(
+    private async Task<WithRawResponse<PayabliPages>> GetPageAsyncCore(
         string entry,
         string subdomain,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -250,6 +294,7 @@ public partial class PaypointClient
                         ValueConvert.ToPathParameterString(entry),
                         ValueConvert.ToPathParameterString(subdomain)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -260,14 +305,28 @@ public partial class PaypointClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliPages>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PayabliPages>(responseBody)!;
+                return new WithRawResponse<PayabliPages>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -298,19 +357,19 @@ public partial class PaypointClient
         }
     }
 
-    /// <summary>
-    /// Deletes a payment page in a paypoint.
-    /// </summary>
-    /// <example><code>
-    /// await client.Paypoint.RemovePageAsync("8cfec329267", "pay-your-fees-1");
-    /// </code></example>
-    public async Task<PayabliApiResponseGeneric2Part> RemovePageAsync(
+    private async Task<WithRawResponse<PayabliApiResponseGeneric2Part>> RemovePageAsyncCore(
         string entry,
         string subdomain,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -322,6 +381,7 @@ public partial class PaypointClient
                         ValueConvert.ToPathParameterString(entry),
                         ValueConvert.ToPathParameterString(subdomain)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -332,14 +392,30 @@ public partial class PaypointClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponseGeneric2Part>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PayabliApiResponseGeneric2Part>(
+                    responseBody
+                )!;
+                return new WithRawResponse<PayabliApiResponseGeneric2Part>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -370,19 +446,21 @@ public partial class PaypointClient
         }
     }
 
-    /// <summary>
-    /// Updates a paypoint logo.
-    /// </summary>
-    /// <example><code>
-    /// await client.Paypoint.SaveLogoAsync("8cfec329267", new FileContent());
-    /// </code></example>
-    public async Task<PayabliApiResponse00Responsedatanonobject> SaveLogoAsync(
+    private async Task<
+        WithRawResponse<PayabliApiResponse00Responsedatanonobject>
+    > SaveLogoAsyncCore(
         string entry,
         FileContent request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -394,6 +472,7 @@ public partial class PaypointClient
                         ValueConvert.ToPathParameterString(entry)
                     ),
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -405,16 +484,30 @@ public partial class PaypointClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
+                var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
                     responseBody
                 )!;
+                return new WithRawResponse<PayabliApiResponse00Responsedatanonobject>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -445,18 +538,18 @@ public partial class PaypointClient
         }
     }
 
-    /// <summary>
-    /// Retrieves an paypoint's basic settings like custom fields, identifiers, and invoicing settings.
-    /// </summary>
-    /// <example><code>
-    /// await client.Paypoint.SettingsPageAsync("8cfec329267");
-    /// </code></example>
-    public async Task<SettingsQueryRecord> SettingsPageAsync(
+    private async Task<WithRawResponse<SettingsQueryRecord>> SettingsPageAsyncCore(
         string entry,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -467,6 +560,7 @@ public partial class PaypointClient
                         "Paypoint/settings/{0}",
                         ValueConvert.ToPathParameterString(entry)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -477,14 +571,28 @@ public partial class PaypointClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<SettingsQueryRecord>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<SettingsQueryRecord>(responseBody)!;
+                return new WithRawResponse<SettingsQueryRecord>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new PayabliApiException("Failed to deserialize response", e);
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -513,6 +621,193 @@ public partial class PaypointClient
                 responseBody
             );
         }
+    }
+
+    private async Task<WithRawResponse<MigratePaypointResponse>> MigrateAsyncCore(
+        PaypointMoveRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "Paypoint/migrate",
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<MigratePaypointResponse>(responseBody)!;
+                return new WithRawResponse<MigratePaypointResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Gets the basic details for a paypoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.GetBasicEntryAsync("8cfec329267");
+    /// </code></example>
+    public WithRawResponseTask<GetBasicEntryResponse> GetBasicEntryAsync(
+        string entry,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<GetBasicEntryResponse>(
+            GetBasicEntryAsyncCore(entry, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieves the basic details for a paypoint by ID.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.GetBasicEntryByIdAsync("198");
+    /// </code></example>
+    public WithRawResponseTask<GetBasicEntryByIdResponse> GetBasicEntryByIdAsync(
+        string idPaypoint,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<GetBasicEntryByIdResponse>(
+            GetBasicEntryByIdAsyncCore(idPaypoint, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Gets the details for a single paypoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.GetEntryConfigAsync("8cfec329267", new GetEntryConfigRequest());
+    /// </code></example>
+    public WithRawResponseTask<GetEntryConfigResponse> GetEntryConfigAsync(
+        string entry,
+        GetEntryConfigRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<GetEntryConfigResponse>(
+            GetEntryConfigAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Gets the details for single payment page for a paypoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.GetPageAsync("8cfec329267", "pay-your-fees-1");
+    /// </code></example>
+    public WithRawResponseTask<PayabliPages> GetPageAsync(
+        string entry,
+        string subdomain,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliPages>(
+            GetPageAsyncCore(entry, subdomain, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Deletes a payment page in a paypoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.RemovePageAsync("8cfec329267", "pay-your-fees-1");
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponseGeneric2Part> RemovePageAsync(
+        string entry,
+        string subdomain,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponseGeneric2Part>(
+            RemovePageAsyncCore(entry, subdomain, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Updates a paypoint logo.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.SaveLogoAsync("8cfec329267", new FileContent());
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> SaveLogoAsync(
+        string entry,
+        FileContent request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponse00Responsedatanonobject>(
+            SaveLogoAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieves an paypoint's basic settings like custom fields, identifiers, and invoicing settings.
+    /// </summary>
+    /// <example><code>
+    /// await client.Paypoint.SettingsPageAsync("8cfec329267");
+    /// </code></example>
+    public WithRawResponseTask<SettingsQueryRecord> SettingsPageAsync(
+        string entry,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<SettingsQueryRecord>(
+            SettingsPageAsyncCore(entry, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -535,46 +830,14 @@ public partial class PaypointClient
     ///     }
     /// );
     /// </code></example>
-    public async Task<MigratePaypointResponse> MigrateAsync(
+    public WithRawResponseTask<MigratePaypointResponse> MigrateAsync(
         PaypointMoveRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "Paypoint/migrate",
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<MigratePaypointResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<MigratePaypointResponse>(
+            MigrateAsyncCore(request, options, cancellationToken)
+        );
     }
 }

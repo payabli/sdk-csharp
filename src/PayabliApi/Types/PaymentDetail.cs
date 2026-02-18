@@ -52,6 +52,12 @@ public record PaymentDetail : IJsonOnDeserialized
     public IEnumerable<SplitFundingContent>? SplitFunding { get; set; }
 
     /// <summary>
+    /// Unique identifier for a processed check image. Required for RDC (Remote Deposit Capture) transactions where `achCode` is `BOC`. Use the `id` value from the [check processing](/developers/api-reference/checkcapture/process-a-check-image) response.
+    /// </summary>
+    [JsonPropertyName("checkUniqueId")]
+    public string? CheckUniqueId { get; set; }
+
+    /// <summary>
     /// Total amount to be charged. If a service fee is sent, then this amount should include the service fee."
     /// </summary>
     [JsonPropertyName("totalAmount")]

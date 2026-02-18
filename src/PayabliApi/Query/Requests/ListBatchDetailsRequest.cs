@@ -99,7 +99,7 @@ public record ListBatchDetailsRequest
     /// Example: `settledAmount(gt)=20` returns all records with a `settledAmount` greater than 20.00.
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <summary>
     /// The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.

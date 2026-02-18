@@ -74,7 +74,7 @@ public record ExportOrganizationsRequest
     /// Example: name(ct)=hoa  return all records where name contains "hoa"
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

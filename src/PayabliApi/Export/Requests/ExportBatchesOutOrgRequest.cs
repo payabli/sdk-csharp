@@ -57,7 +57,7 @@ public record ExportBatchesOutOrgRequest
     /// Example: `batchAmount(gt)=20` returns all records with a `batchAmount` greater than 20.00"
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

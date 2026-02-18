@@ -25,16 +25,7 @@ internal partial class RawClient(ClientOptions clientOptions)
     /// </summary>
     internal readonly ClientOptions Options = clientOptions;
 
-    [Obsolete("Use SendRequestAsync instead.")]
-    internal Task<global::PayabliApi.Core.ApiResponse> MakeRequestAsync(
-        global::PayabliApi.Core.BaseRequest request,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return SendRequestAsync(request, cancellationToken);
-    }
-
-    internal async Task<global::PayabliApi.Core.ApiResponse> SendRequestAsync(
+    internal async global::System.Threading.Tasks.Task<global::PayabliApi.Core.ApiResponse> SendRequestAsync(
         global::PayabliApi.Core.BaseRequest request,
         CancellationToken cancellationToken = default
     )
@@ -44,13 +35,13 @@ internal partial class RawClient(ClientOptions clientOptions)
         var timeout = request.Options?.Timeout ?? Options.Timeout;
         cts.CancelAfter(timeout);
 
-        var httpRequest = CreateHttpRequest(request);
+        var httpRequest = await CreateHttpRequestAsync(request).ConfigureAwait(false);
         // Send the request.
         return await SendWithRetriesAsync(httpRequest, request.Options, cts.Token)
             .ConfigureAwait(false);
     }
 
-    internal async Task<global::PayabliApi.Core.ApiResponse> SendRequestAsync(
+    internal async global::System.Threading.Tasks.Task<global::PayabliApi.Core.ApiResponse> SendRequestAsync(
         HttpRequestMessage request,
         IRequestOptions? options,
         CancellationToken cancellationToken = default
@@ -65,7 +56,9 @@ internal partial class RawClient(ClientOptions clientOptions)
         return await SendWithRetriesAsync(request, options, cts.Token).ConfigureAwait(false);
     }
 
-    private static async Task<HttpRequestMessage> CloneRequestAsync(HttpRequestMessage request)
+    private static async global::System.Threading.Tasks.Task<HttpRequestMessage> CloneRequestAsync(
+        HttpRequestMessage request
+    )
     {
         var clonedRequest = new HttpRequestMessage(request.Method, request.RequestUri);
         clonedRequest.Version = request.Version;
@@ -77,7 +70,8 @@ internal partial class RawClient(ClientOptions clientOptions)
                         .Headers.ContentType?.Parameters.First(p =>
                             p.Name.Equals("boundary", StringComparison.OrdinalIgnoreCase)
                         )
-                        .Value?.Trim('"') ?? Guid.NewGuid().ToString();
+                        .Value?.Trim('"')
+                    ?? Guid.NewGuid().ToString();
                 var newMultipartContent = oldMultipartFormContent switch
                 {
                     MultipartFormDataContent => new MultipartFormDataContent(originalBoundary),
@@ -116,7 +110,7 @@ internal partial class RawClient(ClientOptions clientOptions)
     /// Sends the request with retries, unless the request content is not retryable,
     /// such as stream requests and multipart form data with stream content.
     /// </summary>
-    private async Task<global::PayabliApi.Core.ApiResponse> SendWithRetriesAsync(
+    private async global::System.Threading.Tasks.Task<global::PayabliApi.Core.ApiResponse> SendWithRetriesAsync(
         HttpRequestMessage request,
         IRequestOptions? options,
         CancellationToken cancellationToken
@@ -255,19 +249,15 @@ internal partial class RawClient(ClientOptions clientOptions)
         };
     }
 
-    internal HttpRequestMessage CreateHttpRequest(global::PayabliApi.Core.BaseRequest request)
+    internal async global::System.Threading.Tasks.Task<HttpRequestMessage> CreateHttpRequestAsync(
+        global::PayabliApi.Core.BaseRequest request
+    )
     {
         var url = BuildUrl(request);
         var httpRequest = new HttpRequestMessage(request.Method, url);
         httpRequest.Content = request.CreateContent();
-        var mergedHeaders = new Dictionary<string, List<string>>();
-        MergeHeaders(mergedHeaders, Options.Headers);
-        MergeAdditionalHeaders(mergedHeaders, Options.AdditionalHeaders);
-        MergeHeaders(mergedHeaders, request.Headers);
-        MergeHeaders(mergedHeaders, request.Options?.Headers);
+        SetHeaders(httpRequest, request.Headers);
 
-        MergeAdditionalHeaders(mergedHeaders, request.Options?.AdditionalHeaders ?? []);
-        SetHeaders(httpRequest, mergedHeaders);
         return httpRequest;
     }
 
@@ -278,165 +268,30 @@ internal partial class RawClient(ClientOptions clientOptions)
         var trimmedBasePath = request.Path.TrimStart('/');
         var url = $"{trimmedBaseUrl}/{trimmedBasePath}";
 
-        var queryParameters = GetQueryParameters(request);
-        if (!queryParameters.Any())
-            return url;
+        // Append query string if present
+        if (!string.IsNullOrEmpty(request.QueryString))
+        {
+            return url + request.QueryString;
+        }
 
-        url += "?";
-        url = queryParameters.Aggregate(
-            url,
-            (current, queryItem) =>
-            {
-                if (
-                    queryItem.Value
-                    is global::System.Collections.IEnumerable collection
-                        and not string
-                )
-                {
-                    var items = collection
-                        .Cast<object>()
-                        .Select(value =>
-                            $"{Uri.EscapeDataString(queryItem.Key)}={Uri.EscapeDataString(value?.ToString() ?? "")}"
-                        )
-                        .ToList();
-                    if (items.Any())
-                    {
-                        current += string.Join("&", items) + "&";
-                    }
-                }
-                else
-                {
-                    current +=
-                        $"{Uri.EscapeDataString(queryItem.Key)}={Uri.EscapeDataString(queryItem.Value)}&";
-                }
-
-                return current;
-            }
-        );
-        url = url[..^1];
         return url;
     }
 
-    private static List<KeyValuePair<string, string>> GetQueryParameters(
-        global::PayabliApi.Core.BaseRequest request
-    )
-    {
-        var result = TransformToKeyValuePairs(request.Query);
-        if (
-            request.Options?.AdditionalQueryParameters is null
-            || !request.Options.AdditionalQueryParameters.Any()
-        )
-        {
-            return result;
-        }
-
-        var additionalKeys = request
-            .Options.AdditionalQueryParameters.Select(p => p.Key)
-            .Distinct();
-        foreach (var key in additionalKeys)
-        {
-            result.RemoveAll(kv => kv.Key == key);
-        }
-
-        result.AddRange(request.Options.AdditionalQueryParameters);
-        return result;
-    }
-
-    private static List<KeyValuePair<string, string>> TransformToKeyValuePairs(
-        Dictionary<string, object> inputDict
-    )
-    {
-        var result = new List<KeyValuePair<string, string>>();
-        foreach (var kvp in inputDict)
-        {
-            switch (kvp.Value)
-            {
-                case string str:
-                    result.Add(new KeyValuePair<string, string>(kvp.Key, str));
-                    break;
-                case IEnumerable<string> strList:
-                {
-                    foreach (var value in strList)
-                    {
-                        result.Add(new KeyValuePair<string, string>(kvp.Key, value));
-                    }
-
-                    break;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    private static void MergeHeaders(
-        Dictionary<string, List<string>> mergedHeaders,
-        Headers? headers
-    )
+    private void SetHeaders(HttpRequestMessage httpRequest, Dictionary<string, string>? headers)
     {
         if (headers is null)
         {
             return;
         }
 
-        foreach (var header in headers)
+        foreach (var kv in headers)
         {
-            var value = header.Value?.Match(str => str, func => func.Invoke());
-            if (value != null)
+            if (kv.Value is null)
             {
-                mergedHeaders[header.Key] = [value];
-            }
-        }
-    }
-
-    private static void MergeAdditionalHeaders(
-        Dictionary<string, List<string>> mergedHeaders,
-        IEnumerable<KeyValuePair<string, string?>>? headers
-    )
-    {
-        if (headers is null)
-        {
-            return;
-        }
-
-        var usedKeys = new HashSet<string>();
-        foreach (var header in headers)
-        {
-            if (header.Value is null)
-            {
-                mergedHeaders.Remove(header.Key);
-                usedKeys.Remove(header.Key);
                 continue;
             }
 
-            if (usedKeys.Contains(header.Key))
-            {
-                mergedHeaders[header.Key].Add(header.Value);
-            }
-            else
-            {
-                mergedHeaders[header.Key] = [header.Value];
-                usedKeys.Add(header.Key);
-            }
-        }
-    }
-
-    private void SetHeaders(
-        HttpRequestMessage httpRequest,
-        Dictionary<string, List<string>> mergedHeaders
-    )
-    {
-        foreach (var kv in mergedHeaders)
-        {
-            foreach (var header in kv.Value)
-            {
-                if (header is null)
-                {
-                    continue;
-                }
-
-                httpRequest.Headers.TryAddWithoutValidation(kv.Key, header);
-            }
+            httpRequest.Headers.TryAddWithoutValidation(kv.Key, kv.Value);
         }
     }
 
@@ -472,28 +327,4 @@ internal partial class RawClient(ClientOptions clientOptions)
 
         return (encoding, charset, mediaType);
     }
-
-    /// <inheritdoc />
-    [Obsolete("Use global::PayabliApi.Core.ApiResponse instead.")]
-    internal record ApiResponse : global::PayabliApi.Core.ApiResponse;
-
-    /// <inheritdoc />
-    [Obsolete("Use global::PayabliApi.Core.BaseRequest instead.")]
-    internal abstract record BaseApiRequest : global::PayabliApi.Core.BaseRequest;
-
-    /// <inheritdoc />
-    [Obsolete("Use global::PayabliApi.Core.EmptyRequest instead.")]
-    internal abstract record EmptyApiRequest : global::PayabliApi.Core.EmptyRequest;
-
-    /// <inheritdoc />
-    [Obsolete("Use global::PayabliApi.Core.JsonRequest instead.")]
-    internal abstract record JsonApiRequest : global::PayabliApi.Core.JsonRequest;
-
-    /// <inheritdoc />
-    [Obsolete("Use global::PayabliApi.Core.MultipartFormRequest instead.")]
-    internal abstract record MultipartFormRequest : global::PayabliApi.Core.MultipartFormRequest;
-
-    /// <inheritdoc />
-    [Obsolete("Use global::PayabliApi.Core.StreamRequest instead.")]
-    internal abstract record StreamApiRequest : global::PayabliApi.Core.StreamRequest;
 }

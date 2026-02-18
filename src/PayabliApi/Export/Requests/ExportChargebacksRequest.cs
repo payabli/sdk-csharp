@@ -96,7 +96,7 @@ public record ExportChargebacksRequest
     /// Example: `netAmount(gt)=20` returns all records with a `netAmount` greater than 20.00
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

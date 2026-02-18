@@ -75,7 +75,7 @@ public record ExportBillsRequest
     /// Example: totalAmount(gt)=20  return all records with totalAmount greater than 20.00
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

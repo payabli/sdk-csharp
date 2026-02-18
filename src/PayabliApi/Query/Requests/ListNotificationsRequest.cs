@@ -61,7 +61,7 @@ public record ListNotificationsRequest
     /// Example: totalAmount(gt)=20  return all records with totalAmount greater than 20.00
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
+    public Dictionary<string, string>? Parameters { get; set; }
 
     /// <summary>
     /// The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.

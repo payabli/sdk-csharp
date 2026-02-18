@@ -2,31 +2,38 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-public partial class PayabliApiClient
+public partial class PayabliApiClient : IPayabliApiClient
 {
     private readonly RawClient _client;
 
     public PayabliApiClient(string apiKey, ClientOptions? clientOptions = null)
     {
-        var defaultHeaders = new Headers(
+        clientOptions ??= new ClientOptions();
+        var platformHeaders = new Headers(
             new Dictionary<string, string>()
             {
-                { "requestToken", apiKey },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/0.0.296" },
+                { "User-Agent", "Payabli.SDK/0.0.297" },
             }
         );
-        clientOptions ??= new ClientOptions();
-        foreach (var header in defaultHeaders)
+        foreach (var header in platformHeaders)
         {
             if (!clientOptions.Headers.ContainsKey(header.Key))
             {
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
-        _client = new RawClient(clientOptions);
+        var clientOptionsWithAuth = clientOptions.Clone();
+        var authHeaders = new Headers(
+            new Dictionary<string, string>() { { "requestToken", apiKey } }
+        );
+        foreach (var header in authHeaders)
+        {
+            clientOptionsWithAuth.Headers[header.Key] = header.Value;
+        }
+        _client = new RawClient(clientOptionsWithAuth);
         Bill = new BillClient(_client);
         Boarding = new BoardingClient(_client);
         ChargeBacks = new ChargeBacksClient(_client);
@@ -57,59 +64,59 @@ public partial class PayabliApiClient
         Wallet = new WalletClient(_client);
     }
 
-    public BillClient Bill { get; }
+    public IBillClient Bill { get; }
 
-    public BoardingClient Boarding { get; }
+    public IBoardingClient Boarding { get; }
 
-    public ChargeBacksClient ChargeBacks { get; }
+    public IChargeBacksClient ChargeBacks { get; }
 
-    public CheckCaptureClient CheckCapture { get; }
+    public ICheckCaptureClient CheckCapture { get; }
 
-    public CloudClient Cloud { get; }
+    public ICloudClient Cloud { get; }
 
-    public CustomerClient Customer { get; }
+    public ICustomerClient Customer { get; }
 
-    public ExportClient Export { get; }
+    public IExportClient Export { get; }
 
-    public HostedPaymentPagesClient HostedPaymentPages { get; }
+    public IHostedPaymentPagesClient HostedPaymentPages { get; }
 
-    public ImportClient Import { get; }
+    public IImportClient Import { get; }
 
-    public InvoiceClient Invoice { get; }
+    public IInvoiceClient Invoice { get; }
 
-    public LineItemClient LineItem { get; }
+    public ILineItemClient LineItem { get; }
 
-    public MoneyInClient MoneyIn { get; }
+    public IMoneyInClient MoneyIn { get; }
 
-    public MoneyOutClient MoneyOut { get; }
+    public IMoneyOutClient MoneyOut { get; }
 
-    public NotificationClient Notification { get; }
+    public INotificationClient Notification { get; }
 
-    public NotificationlogsClient Notificationlogs { get; }
+    public INotificationlogsClient Notificationlogs { get; }
 
-    public OcrClient Ocr { get; }
+    public IOcrClient Ocr { get; }
 
-    public OrganizationClient Organization { get; }
+    public IOrganizationClient Organization { get; }
 
-    public PaymentLinkClient PaymentLink { get; }
+    public IPaymentLinkClient PaymentLink { get; }
 
-    public PaymentMethodDomainClient PaymentMethodDomain { get; }
+    public IPaymentMethodDomainClient PaymentMethodDomain { get; }
 
-    public PaypointClient Paypoint { get; }
+    public IPaypointClient Paypoint { get; }
 
-    public QueryClient Query { get; }
+    public IQueryClient Query { get; }
 
-    public StatisticClient Statistic { get; }
+    public IStatisticClient Statistic { get; }
 
-    public SubscriptionClient Subscription { get; }
+    public ISubscriptionClient Subscription { get; }
 
-    public TemplatesClient Templates { get; }
+    public ITemplatesClient Templates { get; }
 
-    public TokenStorageClient TokenStorage { get; }
+    public ITokenStorageClient TokenStorage { get; }
 
-    public UserClient User { get; }
+    public IUserClient User { get; }
 
-    public VendorClient Vendor { get; }
+    public IVendorClient Vendor { get; }
 
-    public WalletClient Wallet { get; }
+    public IWalletClient Wallet { get; }
 }

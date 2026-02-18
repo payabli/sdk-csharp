@@ -15,7 +15,7 @@ public record UserData : IJsonOnDeserialized
     public IEnumerable<UsrAccess>? Access { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>?>? AdditionalData { get; set; }
+    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     /// <summary>
     /// The user's email address.
