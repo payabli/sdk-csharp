@@ -27,7 +27,7 @@ public record NotificationReportRequest : IJsonOnDeserialized
     public required NotificationReportRequestMethod Method { get; set; }
 
     [JsonPropertyName("ownerId")]
-    public string? OwnerId { get; set; }
+    public int? OwnerId { get; set; }
 
     [JsonPropertyName("ownerType")]
     public required int OwnerType { get; set; }

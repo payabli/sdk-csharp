@@ -63,7 +63,7 @@ public record SignerDataRequest : IJsonOnDeserialized
     public string? AttestationDate { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("signDate")]
     public string? SignDate { get; set; }

@@ -833,6 +833,190 @@ public partial class PaymentLinkClient : IPaymentLinkClient
         }
     }
 
+    private async Task<
+        WithRawResponse<PayabliApiResponsePaymentLinks>
+    > PatchOutPaymentLinkAsyncCore(
+        string paylinkId,
+        PatchOutPaymentLinkRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "PaymentLink/out/{0}",
+                        ValueConvert.ToPathParameterString(paylinkId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PayabliApiResponsePaymentLinks>(
+                    responseBody
+                )!;
+                return new WithRawResponse<PayabliApiResponsePaymentLinks>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<PayabliApiResponsePaymentLinks>
+    > UpdatePayLinkOutFromIdAsyncCore(
+        string paylinkId,
+        PaymentPageRequestBodyOut request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "PaymentLink/updateOut/{0}",
+                        ValueConvert.ToPathParameterString(paylinkId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PayabliApiResponsePaymentLinks>(
+                    responseBody
+                )!;
+                return new WithRawResponse<PayabliApiResponsePaymentLinks>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     /// <summary>
     /// Generates a payment link for an invoice from the invoice ID.
     /// </summary>
@@ -984,7 +1168,7 @@ public partial class PaymentLinkClient : IPaymentLinkClient
     }
 
     /// <summary>
-    /// Generates a payment link for a bill from the bill ID.
+    /// Generates a payment link for a bill from the bill ID. The vendor receives a secure page where they can select their preferred payment method (ACH, virtual card, or check) and complete the payment.
     /// </summary>
     /// <example><code>
     /// await client.PaymentLink.AddPayLinkFromBillAsync(
@@ -992,7 +1176,7 @@ public partial class PaymentLinkClient : IPaymentLinkClient
     ///     new PayLinkDataBill
     ///     {
     ///         Mail2 = "jo@example.com; ceo@example.com",
-    ///         Body = new PaymentPageRequestBody
+    ///         Body = new PaymentPageRequestBodyOut
     ///         {
     ///             ContactUs = new ContactElement
     ///             {
@@ -1031,43 +1215,21 @@ public partial class PaymentLinkClient : IPaymentLinkClient
     ///                 Label = "Pay Now",
     ///                 Order = 0,
     ///             },
-    ///             PaymentMethods = new MethodElement
+    ///             PaymentMethods = new MethodElementOut
     ///             {
     ///                 AllMethodsChecked = true,
+    ///                 AllowMultipleMethods = true,
+    ///                 DefaultMethod = "vcard",
     ///                 Enabled = true,
     ///                 Header = "Payment Methods",
-    ///                 Methods = new MethodsList
+    ///                 Methods = new MethodsListOut
     ///                 {
-    ///                     Amex = true,
-    ///                     ApplePay = true,
-    ///                     Discover = true,
-    ///                     ECheck = true,
-    ///                     Mastercard = true,
-    ///                     Visa = true,
+    ///                     Ach = true,
+    ///                     Check = true,
+    ///                     Vcard = true,
     ///                 },
     ///                 Order = 0,
-    ///             },
-    ///             Payor = new PayorElement
-    ///             {
-    ///                 Enabled = true,
-    ///                 Fields = new List&lt;PayorFields&gt;()
-    ///                 {
-    ///                     new PayorFields
-    ///                     {
-    ///                         Display = true,
-    ///                         Fixed = true,
-    ///                         Identifier = true,
-    ///                         Label = "Full Name",
-    ///                         Name = "fullName",
-    ///                         Order = 0,
-    ///                         Required = true,
-    ///                         Validation = "alpha",
-    ///                         Value = "",
-    ///                         Width = 0,
-    ///                     },
-    ///                 },
-    ///                 Header = "Payor Information",
-    ///                 Order = 0,
+    ///                 ShowPreviewVirtualCard = true,
     ///             },
     ///             Review = new HeaderElement
     ///             {
@@ -1096,7 +1258,7 @@ public partial class PaymentLinkClient : IPaymentLinkClient
     /// Deletes a payment link by ID.
     /// </summary>
     /// <example><code>
-    /// await client.PaymentLink.DeletePayLinkFromIdAsync("payLinkId");
+    /// await client.PaymentLink.DeletePayLinkFromIdAsync("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234");
     /// </code></example>
     public WithRawResponseTask<PayabliApiResponsePaymentLinks> DeletePayLinkFromIdAsync(
         string payLinkId,
@@ -1235,7 +1397,7 @@ public partial class PaymentLinkClient : IPaymentLinkClient
     ///         VendorNumber = "VENDOR-123",
     ///         Mail2 = "customer@example.com; billing@example.com",
     ///         AmountFixed = "true",
-    ///         Body = new PaymentPageRequestBody
+    ///         Body = new PaymentPageRequestBodyOut
     ///         {
     ///             ContactUs = new ContactElement
     ///             {
@@ -1274,43 +1436,21 @@ public partial class PaymentLinkClient : IPaymentLinkClient
     ///                 Label = "Pay Now",
     ///                 Order = 0,
     ///             },
-    ///             PaymentMethods = new MethodElement
+    ///             PaymentMethods = new MethodElementOut
     ///             {
     ///                 AllMethodsChecked = true,
+    ///                 AllowMultipleMethods = true,
+    ///                 DefaultMethod = "vcard",
     ///                 Enabled = true,
     ///                 Header = "Payment Methods",
-    ///                 Methods = new MethodsList
+    ///                 Methods = new MethodsListOut
     ///                 {
-    ///                     Amex = true,
-    ///                     ApplePay = true,
-    ///                     Discover = true,
-    ///                     ECheck = true,
-    ///                     Mastercard = true,
-    ///                     Visa = true,
+    ///                     Ach = true,
+    ///                     Check = true,
+    ///                     Vcard = true,
     ///                 },
     ///                 Order = 0,
-    ///             },
-    ///             Payor = new PayorElement
-    ///             {
-    ///                 Enabled = true,
-    ///                 Fields = new List&lt;PayorFields&gt;()
-    ///                 {
-    ///                     new PayorFields
-    ///                     {
-    ///                         Display = true,
-    ///                         Fixed = true,
-    ///                         Identifier = true,
-    ///                         Label = "Full Name",
-    ///                         Name = "fullName",
-    ///                         Order = 0,
-    ///                         Required = true,
-    ///                         Validation = "alpha",
-    ///                         Value = "",
-    ///                         Width = 0,
-    ///                     },
-    ///                 },
-    ///                 Header = "Payor Information",
-    ///                 Order = 0,
+    ///                 ShowPreviewVirtualCard = true,
     ///             },
     ///             Review = new HeaderElement
     ///             {
@@ -1332,6 +1472,114 @@ public partial class PaymentLinkClient : IPaymentLinkClient
     {
         return new WithRawResponseTask<PayabliApiResponsePaymentLinks>(
             AddPayLinkFromBillLotNumberAsyncCore(lotNumber, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Partially updates a Pay Out payment link's content, expiration date, and/or status. Use this to modify the payment page configuration, extend or change the expiration, or cancel a link. Updating the expiration date of an expired link reactivates it to Active status.
+    /// </summary>
+    /// <example><code>
+    /// await client.PaymentLink.PatchOutPaymentLinkAsync(
+    ///     "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+    ///     new PatchOutPaymentLinkRequest
+    ///     {
+    ///         ExpirationDate = "2026-06-01T00:00:00Z",
+    ///         Status = PaymentLinkStatus.Active,
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponsePaymentLinks> PatchOutPaymentLinkAsync(
+        string paylinkId,
+        PatchOutPaymentLinkRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponsePaymentLinks>(
+            PatchOutPaymentLinkAsyncCore(paylinkId, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Updates the payment page content for a Pay Out payment link. Use this to change the branding, messaging, payment methods offered, or other page configuration.
+    /// </summary>
+    /// <example><code>
+    /// await client.PaymentLink.UpdatePayLinkOutFromIdAsync(
+    ///     "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+    ///     new PaymentPageRequestBodyOut
+    ///     {
+    ///         ContactUs = new ContactElement
+    ///         {
+    ///             EmailLabel = "Email",
+    ///             Enabled = true,
+    ///             Header = "Contact Us",
+    ///             Order = 0,
+    ///             PaymentIcons = true,
+    ///             PhoneLabel = "Phone",
+    ///         },
+    ///         Logo = new Element { Enabled = true, Order = 0 },
+    ///         MessageBeforePaying = new LabelElement
+    ///         {
+    ///             Enabled = true,
+    ///             Label = "Please review your payment details",
+    ///             Order = 0,
+    ///         },
+    ///         Notes = new NoteElement
+    ///         {
+    ///             Enabled = true,
+    ///             Header = "Additional Notes",
+    ///             Order = 0,
+    ///             Placeholder = "Enter any additional notes here",
+    ///             Value = "",
+    ///         },
+    ///         Page = new PageElement
+    ///         {
+    ///             Description = "Get paid securely",
+    ///             Enabled = true,
+    ///             Header = "Payment Page",
+    ///             Order = 0,
+    ///         },
+    ///         PaymentButton = new LabelElement
+    ///         {
+    ///             Enabled = true,
+    ///             Label = "Pay Now",
+    ///             Order = 0,
+    ///         },
+    ///         PaymentMethods = new MethodElementOut
+    ///         {
+    ///             AllMethodsChecked = true,
+    ///             AllowMultipleMethods = true,
+    ///             DefaultMethod = "vcard",
+    ///             Enabled = true,
+    ///             Header = "Payment Methods",
+    ///             Methods = new MethodsListOut
+    ///             {
+    ///                 Ach = true,
+    ///                 Check = true,
+    ///                 Vcard = true,
+    ///             },
+    ///             Order = 0,
+    ///             ShowPreviewVirtualCard = true,
+    ///         },
+    ///         Review = new HeaderElement
+    ///         {
+    ///             Enabled = true,
+    ///             Header = "Review Payment",
+    ///             Order = 0,
+    ///         },
+    ///         Settings = new PagelinkSetting { Color = "#000000", Language = "en" },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponsePaymentLinks> UpdatePayLinkOutFromIdAsync(
+        string paylinkId,
+        PaymentPageRequestBodyOut request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponsePaymentLinks>(
+            UpdatePayLinkOutFromIdAsyncCore(paylinkId, request, options, cancellationToken)
         );
     }
 }

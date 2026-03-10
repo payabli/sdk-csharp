@@ -1025,7 +1025,33 @@ public partial class BoardingClient : IBoardingClient
     ///         Avgmonthly = 1000,
     ///         Baddress = "123 Walnut Street",
     ///         Baddress1 = "Suite 103",
-    ///         BankData = new ApplicationDataPayInBankData(),
+    ///         BankData = new List&lt;Bank&gt;()
+    ///         {
+    ///             new Bank
+    ///             {
+    ///                 AccountNumber = "123123123",
+    ///                 BankAccountFunction = 1,
+    ///                 BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+    ///                 BankAccountHolderType = BankAccountHolderType.Business,
+    ///                 BankName = "Test Bank",
+    ///                 Nickname = "Withdrawal Account",
+    ///                 RoutingAccount = "123123123",
+    ///                 TypeAccount = TypeAccount.Checking,
+    ///                 AccountId = "123-456",
+    ///             },
+    ///             new Bank
+    ///             {
+    ///                 AccountNumber = "123123123",
+    ///                 BankAccountFunction = 0,
+    ///                 BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+    ///                 BankAccountHolderType = BankAccountHolderType.Business,
+    ///                 BankName = "Test Bank",
+    ///                 Nickname = "Deposit Account",
+    ///                 RoutingAccount = "123123123",
+    ///                 TypeAccount = TypeAccount.Checking,
+    ///                 AccountId = "123-456",
+    ///             },
+    ///         },
     ///         Bcity = "New Vegas",
     ///         Bcountry = "US",
     ///         Binperson = 60,
@@ -1104,8 +1130,12 @@ public partial class BoardingClient : IBoardingClient
     ///             SignedDocumentReference = "https://example.com/signed-document.pdf",
     ///             AttestationDate = "04/20/2025",
     ///             SignDate = "04/20/2025",
-    ///             AdditionalData =
-    ///                 "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}",
+    ///             AdditionalData = new Dictionary&lt;string, string&gt;()
+    ///             {
+    ///                 { "deviceId", "499585-389fj484-3jcj8hj3" },
+    ///                 { "session", "fifji4-fiu443-fn4843" },
+    ///                 { "timeWithCompany", "6 Years" },
+    ///             },
     ///         },
     ///         Startdate = "01/01/1990",
     ///         TaxFillName = "Sunshine LLC",

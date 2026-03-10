@@ -198,7 +198,7 @@ public record ApplicationQueryRecord : IJsonOnDeserialized
     public Whenrefunded? Whenrefund { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("RepCode")]
     public string? RepCode { get; set; }

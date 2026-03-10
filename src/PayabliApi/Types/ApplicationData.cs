@@ -30,7 +30,7 @@ public record ApplicationData : IJsonOnDeserialized
     public string? Baddress1 { get; set; }
 
     [JsonPropertyName("bankData")]
-    public Bank? BankData { get; set; }
+    public IEnumerable<Bank>? BankData { get; set; }
 
     [JsonPropertyName("bcity")]
     public string? Bcity { get; set; }

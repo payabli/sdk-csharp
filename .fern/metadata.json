@@ -5,5 +5,5 @@
   "generatorConfig": {
     "generate-mock-server-tests": false
   },
-  "sdkVersion": "0.0.297"
+  "sdkVersion": "0.0.298"
 }

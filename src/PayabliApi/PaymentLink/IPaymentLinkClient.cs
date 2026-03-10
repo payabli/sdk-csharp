@@ -13,7 +13,7 @@ public partial interface IPaymentLinkClient
     );
 
     /// <summary>
-    /// Generates a payment link for a bill from the bill ID.
+    /// Generates a payment link for a bill from the bill ID. The vendor receives a secure page where they can select their preferred payment method (ACH, virtual card, or check) and complete the payment.
     /// </summary>
     WithRawResponseTask<PayabliApiResponsePaymentLinks> AddPayLinkFromBillAsync(
         int billId,
@@ -86,6 +86,26 @@ public partial interface IPaymentLinkClient
     WithRawResponseTask<PayabliApiResponsePaymentLinks> AddPayLinkFromBillLotNumberAsync(
         string lotNumber,
         PayLinkDataOut request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Partially updates a Pay Out payment link's content, expiration date, and/or status. Use this to modify the payment page configuration, extend or change the expiration, or cancel a link. Updating the expiration date of an expired link reactivates it to Active status.
+    /// </summary>
+    WithRawResponseTask<PayabliApiResponsePaymentLinks> PatchOutPaymentLinkAsync(
+        string paylinkId,
+        PatchOutPaymentLinkRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Updates the payment page content for a Pay Out payment link. Use this to change the branding, messaging, payment methods offered, or other page configuration.
+    /// </summary>
+    WithRawResponseTask<PayabliApiResponsePaymentLinks> UpdatePayLinkOutFromIdAsync(
+        string paylinkId,
+        PaymentPageRequestBodyOut request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

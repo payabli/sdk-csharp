@@ -1830,7 +1830,7 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
-    /// Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`.
+    /// Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`. Payabli doesn't automatically make microdeposits when you add a bank account, you must manually make the requests.
     ///
     /// This feature must be enabled by Payabli on a per-merchant basis. Contact support for help.
     /// </summary>

@@ -32,12 +32,18 @@ public record PayabliCredentials : IJsonOnDeserialized
     [JsonPropertyName("minticket")]
     public double? Minticket { get; set; }
 
+    /// <summary>
+    /// The payment mode supported by this service. `0` for one-time payments, `1` for recurring payments, `2` for both.
+    /// </summary>
     [JsonPropertyName("mode")]
     public int? Mode { get; set; }
 
     [JsonPropertyName("referenceId")]
     public long? ReferenceId { get; set; }
 
+    /// <summary>
+    /// The payment service that this credential applies to. A paypoint can support multiple services, each represented by its own credential object in the array. Possible values are `card` (credit/debit card), `ach` (ACH bank transfer), `check` (paper check), `vcard` (virtual card), `cloud` (card-present), `cash`, `managed` (managed payment service), and `wallet`.
+    /// </summary>
     [JsonPropertyName("service")]
     public string? Service { get; set; }
 

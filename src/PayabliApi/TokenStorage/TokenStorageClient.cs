@@ -371,6 +371,8 @@ public partial class TokenStorageClient : ITokenStorageClient
     ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
     ///             EntryPoint = "f743aed24a",
     ///             FallbackAuth = true,
+    ///             FallbackAuthAmount = 100,
+    ///             MethodDescription = "Primary Visa card",
     ///             PaymentMethod = new TokenizeCard
     ///             {
     ///                 Cardcvv = "123",
@@ -380,6 +382,7 @@ public partial class TokenStorageClient : ITokenStorageClient
     ///                 Cardzip = "12345",
     ///                 Method = "card",
     ///             },
+    ///             Source = "api",
     ///         },
     ///     }
     /// );

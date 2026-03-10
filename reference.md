@@ -848,7 +848,33 @@ await client.Boarding.AddApplicationAsync(
         Avgmonthly = 1000,
         Baddress = "123 Walnut Street",
         Baddress1 = "Suite 103",
-        BankData = new ApplicationDataPayInBankData(),
+        BankData = new List<Bank>()
+        {
+            new Bank
+            {
+                AccountNumber = "123123123",
+                BankAccountFunction = 1,
+                BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+                BankAccountHolderType = BankAccountHolderType.Business,
+                BankName = "Test Bank",
+                Nickname = "Withdrawal Account",
+                RoutingAccount = "123123123",
+                TypeAccount = TypeAccount.Checking,
+                AccountId = "123-456",
+            },
+            new Bank
+            {
+                AccountNumber = "123123123",
+                BankAccountFunction = 0,
+                BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+                BankAccountHolderType = BankAccountHolderType.Business,
+                BankName = "Test Bank",
+                Nickname = "Deposit Account",
+                RoutingAccount = "123123123",
+                TypeAccount = TypeAccount.Checking,
+                AccountId = "123-456",
+            },
+        },
         Bcity = "New Vegas",
         Bcountry = "US",
         Binperson = 60,
@@ -927,8 +953,12 @@ await client.Boarding.AddApplicationAsync(
             SignedDocumentReference = "https://example.com/signed-document.pdf",
             AttestationDate = "04/20/2025",
             SignDate = "04/20/2025",
-            AdditionalData =
-                "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}",
+            AdditionalData = new Dictionary<string, string>()
+            {
+                { "deviceId", "499585-389fj484-3jcj8hj3" },
+                { "session", "fifji4-fiu443-fn4843" },
+                { "timeWithCompany", "6 Years" },
+            },
         },
         Startdate = "01/01/1990",
         TaxFillName = "Sunshine LLC",
@@ -6469,7 +6499,7 @@ await client.MoneyIn.CaptureAuthAsync(
 <dl>
 <dd>
 
-Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`.
+Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`. Payabli doesn't automatically make microdeposits when you add a bank account, you must manually make the requests.
 
 This feature must be enabled by Payabli on a per-merchant basis. Contact support for help. 
 </dd>
@@ -8237,7 +8267,7 @@ await client.Notification.AddNotificationAsync(
         },
         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
         Method = NotificationStandardRequestMethod.Web,
-        OwnerId = "236",
+        OwnerId = 236,
         OwnerType = 0,
         Status = 1,
         Target = "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
@@ -8414,7 +8444,7 @@ await client.Notification.UpdateNotificationAsync(
         },
         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
         Method = NotificationStandardRequestMethod.Email,
-        OwnerId = "136",
+        OwnerId = 136,
         OwnerType = 0,
         Status = 1,
         Target = "newemail@email.com",
@@ -9565,7 +9595,7 @@ await client.PaymentLink.AddPayLinkFromInvoiceAsync(
 <dl>
 <dd>
 
-Generates a payment link for a bill from the bill ID. 
+Generates a payment link for a bill from the bill ID. The vendor receives a secure page where they can select their preferred payment method (ACH, virtual card, or check) and complete the payment.
 </dd>
 </dl>
 </dd>
@@ -9585,7 +9615,7 @@ await client.PaymentLink.AddPayLinkFromBillAsync(
     new PayLinkDataBill
     {
         Mail2 = "jo@example.com; ceo@example.com",
-        Body = new PaymentPageRequestBody
+        Body = new PaymentPageRequestBodyOut
         {
             ContactUs = new ContactElement
             {
@@ -9624,43 +9654,21 @@ await client.PaymentLink.AddPayLinkFromBillAsync(
                 Label = "Pay Now",
                 Order = 0,
             },
-            PaymentMethods = new MethodElement
+            PaymentMethods = new MethodElementOut
             {
                 AllMethodsChecked = true,
+                AllowMultipleMethods = true,
+                DefaultMethod = "vcard",
                 Enabled = true,
                 Header = "Payment Methods",
-                Methods = new MethodsList
+                Methods = new MethodsListOut
                 {
-                    Amex = true,
-                    ApplePay = true,
-                    Discover = true,
-                    ECheck = true,
-                    Mastercard = true,
-                    Visa = true,
+                    Ach = true,
+                    Check = true,
+                    Vcard = true,
                 },
                 Order = 0,
-            },
-            Payor = new PayorElement
-            {
-                Enabled = true,
-                Fields = new List<PayorFields>()
-                {
-                    new PayorFields
-                    {
-                        Display = true,
-                        Fixed = true,
-                        Identifier = true,
-                        Label = "Full Name",
-                        Name = "fullName",
-                        Order = 0,
-                        Required = true,
-                        Validation = "alpha",
-                        Value = "",
-                        Width = 0,
-                    },
-                },
-                Header = "Payor Information",
-                Order = 0,
+                ShowPreviewVirtualCard = true,
             },
             Review = new HeaderElement
             {
@@ -9733,7 +9741,7 @@ Deletes a payment link by ID.
 <dd>
 
 ```csharp
-await client.PaymentLink.DeletePayLinkFromIdAsync("payLinkId");
+await client.PaymentLink.DeletePayLinkFromIdAsync("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234");
 ```
 </dd>
 </dl>
@@ -10122,7 +10130,7 @@ await client.PaymentLink.AddPayLinkFromBillLotNumberAsync(
         VendorNumber = "VENDOR-123",
         Mail2 = "customer@example.com; billing@example.com",
         AmountFixed = "true",
-        Body = new PaymentPageRequestBody
+        Body = new PaymentPageRequestBodyOut
         {
             ContactUs = new ContactElement
             {
@@ -10161,43 +10169,21 @@ await client.PaymentLink.AddPayLinkFromBillLotNumberAsync(
                 Label = "Pay Now",
                 Order = 0,
             },
-            PaymentMethods = new MethodElement
+            PaymentMethods = new MethodElementOut
             {
                 AllMethodsChecked = true,
+                AllowMultipleMethods = true,
+                DefaultMethod = "vcard",
                 Enabled = true,
                 Header = "Payment Methods",
-                Methods = new MethodsList
+                Methods = new MethodsListOut
                 {
-                    Amex = true,
-                    ApplePay = true,
-                    Discover = true,
-                    ECheck = true,
-                    Mastercard = true,
-                    Visa = true,
+                    Ach = true,
+                    Check = true,
+                    Vcard = true,
                 },
                 Order = 0,
-            },
-            Payor = new PayorElement
-            {
-                Enabled = true,
-                Fields = new List<PayorFields>()
-                {
-                    new PayorFields
-                    {
-                        Display = true,
-                        Fixed = true,
-                        Identifier = true,
-                        Label = "Full Name",
-                        Name = "fullName",
-                        Order = 0,
-                        Required = true,
-                        Validation = "alpha",
-                        Value = "",
-                        Width = 0,
-                    },
-                },
-                Header = "Payor Information",
-                Order = 0,
+                ShowPreviewVirtualCard = true,
             },
             Review = new HeaderElement
             {
@@ -10232,6 +10218,202 @@ await client.PaymentLink.AddPayLinkFromBillLotNumberAsync(
 <dd>
 
 **request:** `PayLinkDataOut` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">PatchOutPaymentLinkAsync</a>(paylinkId, PatchOutPaymentLinkRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Partially updates a Pay Out payment link's content, expiration date, and/or status. Use this to modify the payment page configuration, extend or change the expiration, or cancel a link. Updating the expiration date of an expired link reactivates it to Active status.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentLink.PatchOutPaymentLinkAsync(
+    "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+    new PatchOutPaymentLinkRequest
+    {
+        ExpirationDate = "2026-06-01T00:00:00Z",
+        Status = PaymentLinkStatus.Active,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paylinkId:** `string` — ID for the payment link.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PatchOutPaymentLinkRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">UpdatePayLinkOutFromIdAsync</a>(paylinkId, PaymentPageRequestBodyOut { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the payment page content for a Pay Out payment link. Use this to change the branding, messaging, payment methods offered, or other page configuration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentLink.UpdatePayLinkOutFromIdAsync(
+    "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+    new PaymentPageRequestBodyOut
+    {
+        ContactUs = new ContactElement
+        {
+            EmailLabel = "Email",
+            Enabled = true,
+            Header = "Contact Us",
+            Order = 0,
+            PaymentIcons = true,
+            PhoneLabel = "Phone",
+        },
+        Logo = new Element { Enabled = true, Order = 0 },
+        MessageBeforePaying = new LabelElement
+        {
+            Enabled = true,
+            Label = "Please review your payment details",
+            Order = 0,
+        },
+        Notes = new NoteElement
+        {
+            Enabled = true,
+            Header = "Additional Notes",
+            Order = 0,
+            Placeholder = "Enter any additional notes here",
+            Value = "",
+        },
+        Page = new PageElement
+        {
+            Description = "Get paid securely",
+            Enabled = true,
+            Header = "Payment Page",
+            Order = 0,
+        },
+        PaymentButton = new LabelElement
+        {
+            Enabled = true,
+            Label = "Pay Now",
+            Order = 0,
+        },
+        PaymentMethods = new MethodElementOut
+        {
+            AllMethodsChecked = true,
+            AllowMultipleMethods = true,
+            DefaultMethod = "vcard",
+            Enabled = true,
+            Header = "Payment Methods",
+            Methods = new MethodsListOut
+            {
+                Ach = true,
+                Check = true,
+                Vcard = true,
+            },
+            Order = 0,
+            ShowPreviewVirtualCard = true,
+        },
+        Review = new HeaderElement
+        {
+            Enabled = true,
+            Header = "Review Payment",
+            Order = 0,
+        },
+        Settings = new PagelinkSetting { Color = "#000000", Language = "en" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paylinkId:** `string` — ID for the payment link.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PaymentPageRequestBodyOut` 
     
 </dd>
 </dl>
@@ -14604,6 +14786,8 @@ await client.TokenStorage.AddMethodAsync(
             CustomerData = new PayorDataRequest { CustomerId = 4440 },
             EntryPoint = "f743aed24a",
             FallbackAuth = true,
+            FallbackAuthAmount = 100,
+            MethodDescription = "Primary Visa card",
             PaymentMethod = new TokenizeCard
             {
                 Cardcvv = "123",
@@ -14613,6 +14797,7 @@ await client.TokenStorage.AddMethodAsync(
                 Cardzip = "12345",
                 Method = "card",
             },
+            Source = "api",
         },
     }
 );

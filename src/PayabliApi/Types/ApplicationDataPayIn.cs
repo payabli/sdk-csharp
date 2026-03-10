@@ -36,7 +36,7 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     public string? Baddress1 { get; set; }
 
     [JsonPropertyName("bankData")]
-    public required ApplicationDataPayInBankData BankData { get; set; }
+    public IEnumerable<Bank> BankData { get; set; } = new List<Bank>();
 
     [JsonPropertyName("bcity")]
     public string? Bcity { get; set; }
@@ -78,7 +78,7 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     public IEnumerable<ApplicationDataPayInContactsItem>? Contacts { get; set; }
 
     /// <summary>
-    /// The maximum amount of credit that our lending partner, has authorized to your business. It's the upper boundary on how much you can spend or owe on a credit account at any given time.
+    /// The maximum amount of credit that our lending partner has authorized to your business for Pay In processing. It's the upper boundary on how much you can spend or owe on a credit account at any given time. For on-demand payout (Pay Out) credit limits, see `payoutCreditLimit`.
     /// </summary>
     [JsonPropertyName("creditLimit")]
     public string? CreditLimit { get; set; }
@@ -201,7 +201,7 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     public required Whenrefunded WhenRefunded { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("RepCode")]
     public string? RepCode { get; set; }
