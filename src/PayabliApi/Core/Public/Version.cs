@@ -3,5 +3,5 @@ namespace PayabliApi;
 [Serializable]
 internal class Version
 {
-    public const string Current = "0.0.298";
+    public const string Current = "0.0.299";
 }

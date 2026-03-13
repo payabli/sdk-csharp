@@ -108,7 +108,7 @@ public record TransactionDetailInvoiceData : IJsonOnDeserialized
     public IEnumerable<FileContent>? Attachments { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
