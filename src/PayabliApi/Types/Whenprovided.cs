@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<Whenprovided>))]
+[JsonConverter(typeof(Whenprovided.WhenprovidedSerializer))]
 [Serializable]
 public readonly record struct Whenprovided : IStringEnum
 {
@@ -53,6 +54,32 @@ public readonly record struct Whenprovided : IStringEnum
     public static explicit operator string(Whenprovided value) => value.Value;
 
     public static explicit operator Whenprovided(string value) => new(value);
+
+    internal class WhenprovidedSerializer : JsonConverter<Whenprovided>
+    {
+        public override Whenprovided Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Whenprovided(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            Whenprovided value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<ButtonElementSize>))]
+[JsonConverter(typeof(ButtonElementSize.ButtonElementSizeSerializer))]
 [Serializable]
 public readonly record struct ButtonElementSize : IStringEnum
 {
@@ -53,6 +54,32 @@ public readonly record struct ButtonElementSize : IStringEnum
     public static explicit operator string(ButtonElementSize value) => value.Value;
 
     public static explicit operator ButtonElementSize(string value) => new(value);
+
+    internal class ButtonElementSizeSerializer : JsonConverter<ButtonElementSize>
+    {
+        public override ButtonElementSize Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ButtonElementSize(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ButtonElementSize value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

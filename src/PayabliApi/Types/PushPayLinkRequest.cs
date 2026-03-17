@@ -180,13 +180,24 @@ public record PushPayLinkRequest
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'channel' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("channel");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
-                "email" => json.Deserialize<PayabliApi.PushPayLinkRequestEmail?>(options)
-                    ?? throw new JsonException(
-                        "Failed to deserialize PayabliApi.PushPayLinkRequestEmail"
-                    ),
-                "sms" => json.Deserialize<PayabliApi.PushPayLinkRequestSms?>(options)
+                "email" =>
+                    jsonWithoutDiscriminator.Deserialize<PayabliApi.PushPayLinkRequestEmail?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize PayabliApi.PushPayLinkRequestEmail"
+                        ),
+                "sms" => jsonWithoutDiscriminator.Deserialize<PayabliApi.PushPayLinkRequestSms?>(
+                    options
+                )
                     ?? throw new JsonException(
                         "Failed to deserialize PayabliApi.PushPayLinkRequestSms"
                     ),

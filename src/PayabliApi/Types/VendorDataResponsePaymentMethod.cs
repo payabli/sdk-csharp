@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<VendorDataResponsePaymentMethod>))]
+[JsonConverter(typeof(VendorDataResponsePaymentMethod.VendorDataResponsePaymentMethodSerializer))]
 [Serializable]
 public readonly record struct VendorDataResponsePaymentMethod : IStringEnum
 {
@@ -55,6 +56,33 @@ public readonly record struct VendorDataResponsePaymentMethod : IStringEnum
     public static explicit operator string(VendorDataResponsePaymentMethod value) => value.Value;
 
     public static explicit operator VendorDataResponsePaymentMethod(string value) => new(value);
+
+    internal class VendorDataResponsePaymentMethodSerializer
+        : JsonConverter<VendorDataResponsePaymentMethod>
+    {
+        public override VendorDataResponsePaymentMethod Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new VendorDataResponsePaymentMethod(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            VendorDataResponsePaymentMethod value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

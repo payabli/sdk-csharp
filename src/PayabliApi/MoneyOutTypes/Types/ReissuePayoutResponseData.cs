@@ -5,35 +5,29 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record SplitFundingContent : IJsonOnDeserialized
+public record ReissuePayoutResponseData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The accountId for the account the split should be sent to.
+    /// The transaction ID of the newly created payout.
     /// </summary>
-    [JsonPropertyName("accountId")]
-    public string? AccountId { get; set; }
+    [JsonPropertyName("transactionId")]
+    public required string TransactionId { get; set; }
 
     /// <summary>
-    /// Amount from the transaction to send to this recipient.
+    /// The status of the new transaction.
     /// </summary>
-    [JsonPropertyName("amount")]
-    public double? Amount { get; set; }
+    [JsonPropertyName("status")]
+    public required string Status { get; set; }
 
     /// <summary>
-    /// A description for the split.
+    /// The transaction ID of the original payout that was reissued.
     /// </summary>
-    [JsonPropertyName("description")]
-    public string? Description { get; set; }
-
-    /// <summary>
-    /// The entrypoint the split should be sent to.
-    /// </summary>
-    [JsonPropertyName("recipientEntryPoint")]
-    public string? RecipientEntryPoint { get; set; }
+    [JsonPropertyName("originalTransactionId")]
+    public string? OriginalTransactionId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

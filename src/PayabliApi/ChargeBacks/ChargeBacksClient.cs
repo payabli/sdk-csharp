@@ -5,7 +5,7 @@ namespace PayabliApi;
 
 public partial class ChargeBacksClient : IChargeBacksClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal ChargeBacksClient(RawClient client)
     {
@@ -30,7 +30,6 @@ public partial class ChargeBacksClient : IChargeBacksClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "ChargeBacks/response/{0}",
@@ -46,7 +45,9 @@ public partial class ChargeBacksClient : IChargeBacksClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<AddResponseResponse>(responseBody)!;
@@ -72,7 +73,9 @@ public partial class ChargeBacksClient : IChargeBacksClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -117,7 +120,6 @@ public partial class ChargeBacksClient : IChargeBacksClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "ChargeBacks/read/{0}",
@@ -131,7 +133,9 @@ public partial class ChargeBacksClient : IChargeBacksClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ChargebackQueryRecords>(responseBody)!;
@@ -157,7 +161,9 @@ public partial class ChargeBacksClient : IChargeBacksClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -203,7 +209,6 @@ public partial class ChargeBacksClient : IChargeBacksClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "ChargeBacks/getChargebackAttachments/{0}/{1}",
@@ -218,7 +223,9 @@ public partial class ChargeBacksClient : IChargeBacksClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             return new WithRawResponse<string>()
             {
                 Data = responseBody,
@@ -231,7 +238,9 @@ public partial class ChargeBacksClient : IChargeBacksClient
             };
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)

@@ -5,7 +5,7 @@ namespace PayabliApi;
 
 public partial class WalletClient : IWalletClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal WalletClient(RawClient client)
     {
@@ -30,7 +30,6 @@ public partial class WalletClient : IWalletClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "Wallet/applepay/configure-organization",
                     Body = request,
@@ -43,7 +42,9 @@ public partial class WalletClient : IWalletClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ConfigureApplePayOrganizationApiResponse>(
@@ -71,7 +72,9 @@ public partial class WalletClient : IWalletClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -118,7 +121,6 @@ public partial class WalletClient : IWalletClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "Wallet/applepay/configure-paypoint",
                     Body = request,
@@ -131,7 +133,9 @@ public partial class WalletClient : IWalletClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ConfigureApplePaypointApiResponse>(
@@ -159,7 +163,9 @@ public partial class WalletClient : IWalletClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -206,7 +212,6 @@ public partial class WalletClient : IWalletClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "Wallet/googlepay/configure-organization",
                     Body = request,
@@ -219,7 +224,9 @@ public partial class WalletClient : IWalletClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ConfigureApplePayOrganizationApiResponse>(
@@ -247,7 +254,9 @@ public partial class WalletClient : IWalletClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -294,7 +303,6 @@ public partial class WalletClient : IWalletClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "Wallet/googlepay/configure-paypoint",
                     Body = request,
@@ -307,7 +315,9 @@ public partial class WalletClient : IWalletClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ConfigureGooglePaypointApiResponse>(
@@ -335,7 +345,9 @@ public partial class WalletClient : IWalletClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

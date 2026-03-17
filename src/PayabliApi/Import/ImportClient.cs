@@ -5,7 +5,7 @@ namespace PayabliApi;
 
 public partial class ImportClient : IImportClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal ImportClient(RawClient client)
     {
@@ -27,7 +27,6 @@ public partial class ImportClient : IImportClient
             .ConfigureAwait(false);
         var multipartFormRequest_ = new MultipartFormRequest
         {
-            BaseUrl = _client.Options.BaseUrl,
             Method = HttpMethod.Post,
             Path = string.Format("Import/billsForm/{0}", ValueConvert.ToPathParameterString(entry)),
             Headers = _headers,
@@ -39,7 +38,9 @@ public partial class ImportClient : IImportClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
@@ -65,7 +66,9 @@ public partial class ImportClient : IImportClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -113,7 +116,6 @@ public partial class ImportClient : IImportClient
             .ConfigureAwait(false);
         var multipartFormRequest_ = new MultipartFormRequest
         {
-            BaseUrl = _client.Options.BaseUrl,
             Method = HttpMethod.Post,
             Path = string.Format(
                 "Import/customersForm/{0}",
@@ -129,7 +131,9 @@ public partial class ImportClient : IImportClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
@@ -155,7 +159,9 @@ public partial class ImportClient : IImportClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -199,7 +205,6 @@ public partial class ImportClient : IImportClient
             .ConfigureAwait(false);
         var multipartFormRequest_ = new MultipartFormRequest
         {
-            BaseUrl = _client.Options.BaseUrl,
             Method = HttpMethod.Post,
             Path = string.Format(
                 "Import/vendorsForm/{0}",
@@ -214,7 +219,9 @@ public partial class ImportClient : IImportClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponseImport>(responseBody)!;
@@ -240,7 +247,9 @@ public partial class ImportClient : IImportClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

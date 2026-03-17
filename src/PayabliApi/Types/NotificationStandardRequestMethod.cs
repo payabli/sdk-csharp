@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<NotificationStandardRequestMethod>))]
+[JsonConverter(
+    typeof(NotificationStandardRequestMethod.NotificationStandardRequestMethodSerializer)
+)]
 [Serializable]
 public readonly record struct NotificationStandardRequestMethod : IStringEnum
 {
@@ -53,6 +56,33 @@ public readonly record struct NotificationStandardRequestMethod : IStringEnum
     public static explicit operator string(NotificationStandardRequestMethod value) => value.Value;
 
     public static explicit operator NotificationStandardRequestMethod(string value) => new(value);
+
+    internal class NotificationStandardRequestMethodSerializer
+        : JsonConverter<NotificationStandardRequestMethod>
+    {
+        public override NotificationStandardRequestMethod Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new NotificationStandardRequestMethod(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            NotificationStandardRequestMethod value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

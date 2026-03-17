@@ -5,7 +5,7 @@ namespace PayabliApi;
 
 public partial class TokenStorageClient : ITokenStorageClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal TokenStorageClient(RawClient client)
     {
@@ -36,7 +36,6 @@ public partial class TokenStorageClient : ITokenStorageClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "TokenStorage/add",
                     Body = request.Body,
@@ -50,7 +49,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<AddMethodResponse>(responseBody)!;
@@ -76,7 +77,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -127,7 +130,6 @@ public partial class TokenStorageClient : ITokenStorageClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "TokenStorage/{0}",
@@ -142,7 +144,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<GetMethodResponse>(responseBody)!;
@@ -168,7 +172,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -213,7 +219,6 @@ public partial class TokenStorageClient : ITokenStorageClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "TokenStorage/{0}",
@@ -227,7 +232,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponsePaymethodDelete>(
@@ -255,7 +262,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -305,7 +314,6 @@ public partial class TokenStorageClient : ITokenStorageClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
                     Path = string.Format(
                         "TokenStorage/{0}",
@@ -322,7 +330,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponsePaymethodDelete>(
@@ -350,7 +360,9 @@ public partial class TokenStorageClient : ITokenStorageClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

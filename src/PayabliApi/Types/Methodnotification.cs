@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<Methodnotification>))]
+[JsonConverter(typeof(Methodnotification.MethodnotificationSerializer))]
 [Serializable]
 public readonly record struct Methodnotification : IStringEnum
 {
@@ -57,6 +58,32 @@ public readonly record struct Methodnotification : IStringEnum
     public static explicit operator string(Methodnotification value) => value.Value;
 
     public static explicit operator Methodnotification(string value) => new(value);
+
+    internal class MethodnotificationSerializer : JsonConverter<Methodnotification>
+    {
+        public override Methodnotification Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Methodnotification(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            Methodnotification value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

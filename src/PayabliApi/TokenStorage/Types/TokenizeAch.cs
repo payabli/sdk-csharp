@@ -26,6 +26,9 @@ public record TokenizeAch : IJsonOnDeserialized
     [JsonPropertyName("achCode")]
     public string? AchCode { get; set; }
 
+    /// <summary>
+    /// Bank account holder. This field is **required** when `method` is `ach`. Only letters, numbers, spaces, hyphens, apostrophes, and periods are allowed.
+    /// </summary>
     [JsonPropertyName("achHolder")]
     public required string AchHolder { get; set; }
 

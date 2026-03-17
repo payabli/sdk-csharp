@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<BankAccountHolderType>))]
+[JsonConverter(typeof(BankAccountHolderType.BankAccountHolderTypeSerializer))]
 [Serializable]
 public readonly record struct BankAccountHolderType : IStringEnum
 {
@@ -51,6 +52,32 @@ public readonly record struct BankAccountHolderType : IStringEnum
     public static explicit operator string(BankAccountHolderType value) => value.Value;
 
     public static explicit operator BankAccountHolderType(string value) => new(value);
+
+    internal class BankAccountHolderTypeSerializer : JsonConverter<BankAccountHolderType>
+    {
+        public override BankAccountHolderType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new BankAccountHolderType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            BankAccountHolderType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

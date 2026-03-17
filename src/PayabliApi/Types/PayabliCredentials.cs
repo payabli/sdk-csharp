@@ -11,6 +11,9 @@ public record PayabliCredentials : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// The identifier for the payment connector, matching the `accountId` of the linked bank account.
+    /// </summary>
     [JsonPropertyName("accountId")]
     public string? AccountId { get; set; }
 
@@ -46,6 +49,15 @@ public record PayabliCredentials : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("service")]
     public string? Service { get; set; }
+
+    [JsonPropertyName("greaterValueAllowed")]
+    public bool? GreaterValueAllowed { get; set; }
+
+    [JsonPropertyName("absorbDifference")]
+    public bool? AbsorbDifference { get; set; }
+
+    [JsonPropertyName("allowOverride")]
+    public bool? AllowOverride { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

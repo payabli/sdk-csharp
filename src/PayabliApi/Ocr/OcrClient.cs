@@ -5,7 +5,7 @@ namespace PayabliApi;
 
 public partial class OcrClient : IOcrClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal OcrClient(RawClient client)
     {
@@ -29,7 +29,6 @@ public partial class OcrClient : IOcrClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "/Import/ocrDocumentForm/{0}",
@@ -44,7 +43,9 @@ public partial class OcrClient : IOcrClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponseOcr>(responseBody)!;
@@ -70,7 +71,9 @@ public partial class OcrClient : IOcrClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -116,7 +119,6 @@ public partial class OcrClient : IOcrClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "/Import/ocrDocumentJson/{0}",
@@ -131,7 +133,9 @@ public partial class OcrClient : IOcrClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponseOcr>(responseBody)!;
@@ -157,7 +161,9 @@ public partial class OcrClient : IOcrClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

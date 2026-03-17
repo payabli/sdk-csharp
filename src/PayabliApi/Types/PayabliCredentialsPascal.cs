@@ -41,6 +41,9 @@ public record PayabliCredentialsPascal : IJsonOnDeserialized
     [JsonPropertyName("CfeeMax")]
     public double? CfeeMax { get; set; }
 
+    /// <summary>
+    /// The identifier for the payment connector, matching the `accountId` of the linked bank account.
+    /// </summary>
     [JsonPropertyName("AccountId")]
     public string? AccountId { get; set; }
 
@@ -55,6 +58,15 @@ public record PayabliCredentialsPascal : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("Currency")]
     public string? Currency { get; set; }
+
+    [JsonPropertyName("GreaterValueAllowed")]
+    public bool? GreaterValueAllowed { get; set; }
+
+    [JsonPropertyName("AbsorbDifference")]
+    public bool? AbsorbDifference { get; set; }
+
+    [JsonPropertyName("AllowOverride")]
+    public bool? AllowOverride { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

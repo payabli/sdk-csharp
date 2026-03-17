@@ -5,7 +5,7 @@ namespace PayabliApi;
 
 public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal PaymentMethodDomainClient(RawClient client)
     {
@@ -30,7 +30,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "PaymentMethodDomain",
                     Body = request,
@@ -43,7 +42,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<AddPaymentMethodDomainApiResponse>(
@@ -71,7 +72,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -118,7 +121,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "PaymentMethodDomain/{0}/cascade",
@@ -132,7 +134,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PaymentMethodDomainGeneralResponse>(
@@ -160,7 +164,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -207,7 +213,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "PaymentMethodDomain/{0}",
@@ -221,7 +226,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<DeletePaymentMethodDomainResponse>(
@@ -249,7 +256,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -296,7 +305,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "PaymentMethodDomain/{0}",
@@ -310,7 +318,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PaymentMethodDomainApiResponse>(
@@ -338,7 +348,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -392,7 +404,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "PaymentMethodDomain/list",
                     QueryString = _queryString,
@@ -404,7 +415,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ListPaymentMethodDomainsResponse>(
@@ -432,7 +445,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -480,7 +495,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "PaymentMethodDomain/{0}",
@@ -496,7 +510,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PaymentMethodDomainGeneralResponse>(
@@ -524,7 +540,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -571,7 +589,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "PaymentMethodDomain/{0}/verify",
@@ -585,7 +602,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PaymentMethodDomainGeneralResponse>(
@@ -613,7 +632,9 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

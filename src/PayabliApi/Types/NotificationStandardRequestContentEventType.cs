@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<NotificationStandardRequestContentEventType>))]
+[JsonConverter(
+    typeof(NotificationStandardRequestContentEventType.NotificationStandardRequestContentEventTypeSerializer)
+)]
 [Serializable]
 public readonly record struct NotificationStandardRequestContentEventType : IStringEnum
 {
@@ -628,6 +631,33 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
 
     public static explicit operator NotificationStandardRequestContentEventType(string value) =>
         new(value);
+
+    internal class NotificationStandardRequestContentEventTypeSerializer
+        : JsonConverter<NotificationStandardRequestContentEventType>
+    {
+        public override NotificationStandardRequestContentEventType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new NotificationStandardRequestContentEventType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            NotificationStandardRequestContentEventType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

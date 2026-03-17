@@ -22,7 +22,7 @@ public record Bank : IJsonOnDeserialized
     public int? Id { get; set; }
 
     /// <summary>
-    /// A user-defined internal identifier for the bank account. This allows you to specify which bank account should be used for payments in cases where multiple accounts are configured.
+    /// An identifier for the bank account, used to specify which account handles payments when multiple accounts are configured. If not provided during creation or update, the system generates one in the format `acct-{first_digit}xxxxx{last_4_digits}` based on the account number. The mask always uses five `x` characters regardless of account number length. For example, account number `123456789` produces `acct-1xxxxx6789`. If a duplicate exists within the same service at the paypoint, a numeric suffix is appended, such as `acct-1xxxxx6789-2`. This value is also used as the identifier for the bank account's associated payment connector.
     /// </summary>
     [JsonPropertyName("accountId")]
     public string? AccountId { get; set; }

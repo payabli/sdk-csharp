@@ -4,36 +4,27 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Configuration for statement email recipients and the sender address.
+/// </summary>
 [Serializable]
-public record SplitFundingContent : IJsonOnDeserialized
+public record StatementEmailConfig : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The accountId for the account the split should be sent to.
+    /// The email address from which statements are sent. Always uses a Payabli domain, for example `acme-partners@payabli.com`. If `null`, `noreply@payabli.com` is used.
     /// </summary>
-    [JsonPropertyName("accountId")]
-    public string? AccountId { get; set; }
+    [JsonPropertyName("sender")]
+    public string? Sender { get; set; }
 
     /// <summary>
-    /// Amount from the transaction to send to this recipient.
+    /// List of email addresses that receive billing statements. These are merchant or partner contacts.
     /// </summary>
-    [JsonPropertyName("amount")]
-    public double? Amount { get; set; }
-
-    /// <summary>
-    /// A description for the split.
-    /// </summary>
-    [JsonPropertyName("description")]
-    public string? Description { get; set; }
-
-    /// <summary>
-    /// The entrypoint the split should be sent to.
-    /// </summary>
-    [JsonPropertyName("recipientEntryPoint")]
-    public string? RecipientEntryPoint { get; set; }
+    [JsonPropertyName("recipients")]
+    public IEnumerable<string>? Recipients { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

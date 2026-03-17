@@ -17,6 +17,8 @@ The Payabli C# library provides convenient access to the Payabli APIs from C#.
   - [Retries](#retries)
   - [Timeouts](#timeouts)
   - [Raw Response](#raw-response)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query Parameters](#additional-query-parameters)
   - [Forward Compatible Enums](#forward-compatible-enums)
 - [Contributing](#contributing)
 - [Reference](#reference)
@@ -171,6 +173,38 @@ if (headers.TryGetValue("X-Request-Id", out var requestId))
 var data = await client.MoneyIn.GetpaidAsync(...);
 ```
 
+### Additional Headers
+
+If you would like to send additional headers as part of the request, use the `AdditionalHeaders` request option.
+
+```csharp
+var response = await client.MoneyIn.GetpaidAsync(
+    ...,
+    new RequestOptions {
+        AdditionalHeaders = new Dictionary<string, string?>
+        {
+            { "X-Custom-Header", "custom-value" }
+        }
+    }
+);
+```
+
+### Additional Query Parameters
+
+If you would like to send additional query parameters as part of the request, use the `AdditionalQueryParameters` request option.
+
+```csharp
+var response = await client.MoneyIn.GetpaidAsync(
+    ...,
+    new RequestOptions {
+        AdditionalQueryParameters = new Dictionary<string, string>
+        {
+            { "custom_param", "custom-value" }
+        }
+    }
+);
+```
+
 ### Forward Compatible Enums
 
 This SDK uses forward-compatible enums that can handle unknown values gracefully.
@@ -212,3 +246,4 @@ On the other hand, contributions to the README are always very welcome!
 ## Reference
 
 A full reference for this library is available [here](https://github.com/payabli/sdk-csharp/blob/HEAD/./reference.md).
+

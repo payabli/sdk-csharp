@@ -5,7 +5,7 @@ namespace PayabliApi;
 
 public partial class StatisticClient : IStatisticClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal StatisticClient(RawClient client)
     {
@@ -40,7 +40,6 @@ public partial class StatisticClient : IStatisticClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Statistic/basic/{0}/{1}/{2}/{3}",
@@ -58,7 +57,9 @@ public partial class StatisticClient : IStatisticClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<IEnumerable<StatBasicExtendedQueryRecord>>(
@@ -86,7 +87,9 @@ public partial class StatisticClient : IStatisticClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -140,7 +143,6 @@ public partial class StatisticClient : IStatisticClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Statistic/customerbasic/{0}/{1}/{2}",
@@ -157,7 +159,9 @@ public partial class StatisticClient : IStatisticClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<IEnumerable<SubscriptionStatsQueryRecord>>(
@@ -185,7 +189,9 @@ public partial class StatisticClient : IStatisticClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -237,7 +243,6 @@ public partial class StatisticClient : IStatisticClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Statistic/subscriptions/{0}/{1}/{2}",
@@ -254,7 +259,9 @@ public partial class StatisticClient : IStatisticClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<IEnumerable<StatBasicQueryRecord>>(
@@ -282,7 +289,9 @@ public partial class StatisticClient : IStatisticClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -336,7 +345,6 @@ public partial class StatisticClient : IStatisticClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Statistic/vendorbasic/{0}/{1}/{2}",
@@ -353,7 +361,9 @@ public partial class StatisticClient : IStatisticClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<IEnumerable<StatisticsVendorQueryRecord>>(
@@ -381,7 +391,9 @@ public partial class StatisticClient : IStatisticClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

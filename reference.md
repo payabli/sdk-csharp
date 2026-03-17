@@ -8230,6 +8230,81 @@ await client.MoneyOut.UpdateCheckPaymentStatusAsync("TRANS123456", AllowedCheckP
 </dl>
 </details>
 
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">ReissueOutAsync</a>(ReissueOutRequest { ... }) -> WithRawResponseTask&lt;ReissuePayoutResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
+
+The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+
+The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyOut.ReissueOutAsync(
+    new ReissueOutRequest
+    {
+        TransId = "129-219",
+        Body = new ReissuePayoutBody
+        {
+            PaymentMethod = new ReissuePaymentMethod
+            {
+                Method = "ach",
+                AchAccount = "9876543210",
+                AchAccountType = "savings",
+                AchRouting = "021000021",
+                AchHolder = "Acme Corp",
+                AchHolderType = AchHolderType.Business,
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ReissueOutRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Notification
 <details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">AddNotificationAsync</a>(OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> WithRawResponseTask&lt;PayabliApiResponseNotifications&gt;</code></summary>
 <dl>
@@ -16214,3 +16289,4 @@ await client.Wallet.ConfigureGooglePayPaypointAsync(
 </dd>
 </dl>
 </details>
+

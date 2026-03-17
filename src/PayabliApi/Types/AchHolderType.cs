@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<AchHolderType>))]
+[JsonConverter(typeof(AchHolderType.AchHolderTypeSerializer))]
 [Serializable]
 public readonly record struct AchHolderType : IStringEnum
 {
@@ -51,6 +52,32 @@ public readonly record struct AchHolderType : IStringEnum
     public static explicit operator string(AchHolderType value) => value.Value;
 
     public static explicit operator AchHolderType(string value) => new(value);
+
+    internal class AchHolderTypeSerializer : JsonConverter<AchHolderType>
+    {
+        public override AchHolderType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new AchHolderType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            AchHolderType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

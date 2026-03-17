@@ -12,7 +12,7 @@ public record BillDetailResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Events associated to this transaction.
+    /// Bills associated with this transaction.
     /// </summary>
     [JsonPropertyName("Bills")]
     public IEnumerable<BillDetailsResponse>? Bills { get; set; }
@@ -132,7 +132,7 @@ public record BillDetailResponse : IJsonOnDeserialized
     public int? Status { get; set; }
 
     /// <summary>
-    /// Status of payout transaction.
+    /// Text description of the payout transaction status.
     /// </summary>
     [JsonPropertyName("StatusText")]
     public string? StatusText { get; set; }

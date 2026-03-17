@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<Frequencynotification>))]
+[JsonConverter(typeof(Frequencynotification.FrequencynotificationSerializer))]
 [Serializable]
 public readonly record struct Frequencynotification : IStringEnum
 {
@@ -65,6 +66,32 @@ public readonly record struct Frequencynotification : IStringEnum
     public static explicit operator string(Frequencynotification value) => value.Value;
 
     public static explicit operator Frequencynotification(string value) => new(value);
+
+    internal class FrequencynotificationSerializer : JsonConverter<Frequencynotification>
+    {
+        public override Frequencynotification Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Frequencynotification(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            Frequencynotification value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

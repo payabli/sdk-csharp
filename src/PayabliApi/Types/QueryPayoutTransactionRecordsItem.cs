@@ -21,7 +21,7 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     public int? BatchId { get; set; }
 
     /// <summary>
-    /// Events associated with this transaction.
+    /// Bills associated with this transaction.
     /// </summary>
     [JsonPropertyName("Bills")]
     public IEnumerable<BillPayOutData>? Bills { get; set; }
