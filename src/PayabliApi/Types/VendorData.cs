@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -18,13 +18,13 @@ public record VendorData : IJsonOnDeserialized
     public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     /// <summary>
-    /// Vendor's address
+    /// Vendor's street address. If any address field is provided, this field is required along with `city`, `state`, and `zip`. Allowed characters are letters, numbers, spaces, and `. ,
     /// </summary>
     [JsonPropertyName("address1")]
     public string? Address1 { get; set; }
 
     /// <summary>
-    /// Additional line for vendor's address.
+    /// Additional line for vendor's address, such as a suite or unit number. Always optional.
     /// </summary>
     [JsonPropertyName("address2")]
     public string? Address2 { get; set; }
@@ -36,7 +36,7 @@ public record VendorData : IJsonOnDeserialized
     public BillingData? BillingData { get; set; }
 
     /// <summary>
-    /// Vendor's city.
+    /// Vendor's city. Required if any address field is provided.
     /// </summary>
     [JsonPropertyName("city")]
     public string? City { get; set; }
@@ -48,7 +48,7 @@ public record VendorData : IJsonOnDeserialized
     public IEnumerable<Contacts>? Contacts { get; set; }
 
     /// <summary>
-    /// Vendor's country.
+    /// Vendor's country. Must be `US` or `CA`. Defaults to `US` if not provided.
     /// </summary>
     [JsonPropertyName("country")]
     public string? Country { get; set; }
@@ -132,7 +132,7 @@ public record VendorData : IJsonOnDeserialized
     public string? RemitZip { get; set; }
 
     /// <summary>
-    /// Vendor's state. Must be a 2 character state code.
+    /// Vendor's state or province. Required if any address field is provided. Must be a valid US state abbreviation (such as `CA`, `NY`) or Canadian province abbreviation (such as `ON`, `BC`), depending on the `country` value.
     /// </summary>
     [JsonPropertyName("state")]
     public string? State { get; set; }
@@ -141,7 +141,7 @@ public record VendorData : IJsonOnDeserialized
     public int? VendorStatus { get; set; }
 
     /// <summary>
-    /// Vendor's zip code.
+    /// Vendor's ZIP or postal code. Required if any address field is provided. For US addresses, use five digits (`12345`) or ZIP+4 format (`12345-6789`).
     /// </summary>
     [JsonPropertyName("zip")]
     public string? Zip { get; set; }

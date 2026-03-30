@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -550,6 +550,29 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         )
         {
             writer.WriteStringValue(value.Value);
+        }
+
+        public override NotificationStandardRequestContentEventType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new NotificationStandardRequestContentEventType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NotificationStandardRequestContentEventType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
         }
     }
 

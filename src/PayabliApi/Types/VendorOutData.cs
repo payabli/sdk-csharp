@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -15,13 +15,13 @@ public record VendorOutData : IJsonOnDeserialized
     public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
     /// <summary>
-    /// Vendor's address
+    /// Vendor's street address. Allowed characters are letters, numbers, spaces, and `. ,
     /// </summary>
     [JsonPropertyName("Address1")]
     public string? Address1 { get; set; }
 
     /// <summary>
-    /// Additional line for vendor's address.
+    /// Additional line for vendor's address, such as a suite or unit number.
     /// </summary>
     [JsonPropertyName("Address2")]
     public string? Address2 { get; set; }
@@ -45,7 +45,7 @@ public record VendorOutData : IJsonOnDeserialized
     public IEnumerable<Contacts>? Contacts { get; set; }
 
     /// <summary>
-    /// Vendor's country.
+    /// Vendor's country. `US` or `CA`.
     /// </summary>
     [JsonPropertyName("Country")]
     public required string Country { get; set; }
@@ -57,7 +57,7 @@ public record VendorOutData : IJsonOnDeserialized
     public string? CustomerVendorAccount { get; set; }
 
     /// <summary>
-    /// EIN/Tax ID for vendor. In reponses, this field is masked, and looks like: `XXXXX6789`.
+    /// EIN/Tax ID for vendor. Must be nine digits formatted as `XX-XXXXXXX`. In responses, this field is masked and looks like: `XXXXX6789`.
     /// </summary>
     [JsonPropertyName("EIN")]
     public required string Ein { get; set; }
@@ -81,13 +81,13 @@ public record VendorOutData : IJsonOnDeserialized
     public string? Mcc { get; set; }
 
     /// <summary>
-    /// Primary name for vendor. Required for new vendor.
+    /// Primary name for vendor. Required for new vendor. Allowed characters are letters, numbers, spaces, and `. , ' & ( )
     /// </summary>
     [JsonPropertyName("Name1")]
     public required string Name1 { get; set; }
 
     /// <summary>
-    /// Secondary name for vendor.
+    /// Secondary name for vendor. If provided, allowed characters are the same as `Name1`.
     /// </summary>
     [JsonPropertyName("Name2")]
     public string? Name2 { get; set; }
@@ -102,7 +102,7 @@ public record VendorOutData : IJsonOnDeserialized
     public VendorPaymentMethod? PaymentMethod { get; set; }
 
     /// <summary>
-    /// Vendor's phone number
+    /// Vendor's phone number. Digits only when creating or updating a vendor.
     /// </summary>
     [JsonPropertyName("Phone")]
     public required string Phone { get; set; }
@@ -126,7 +126,7 @@ public record VendorOutData : IJsonOnDeserialized
     public string? RemitZip { get; set; }
 
     /// <summary>
-    /// Vendor's state. Must be a 2 character state code.
+    /// Vendor's state or province. Must be a valid US state or Canadian province abbreviation, depending on the `Country` value.
     /// </summary>
     [JsonPropertyName("State")]
     public required string State { get; set; }
@@ -144,7 +144,7 @@ public record VendorOutData : IJsonOnDeserialized
     public int? VendorStatus { get; set; }
 
     /// <summary>
-    /// Vendor's zip code.
+    /// Vendor's ZIP or postal code. For US addresses, five digits (`12345`) or ZIP+4 format (`12345-6789`).
     /// </summary>
     [JsonPropertyName("Zip")]
     public required string Zip { get; set; }

@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -79,6 +79,29 @@ public readonly record struct NotificationContentFileFormat : IStringEnum
         )
         {
             writer.WriteStringValue(value.Value);
+        }
+
+        public override NotificationContentFileFormat ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new NotificationContentFileFormat(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NotificationContentFileFormat value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
         }
     }
 

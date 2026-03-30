@@ -224,12 +224,31 @@ public partial interface IQueryClient
     );
 
     /// <summary>
+    /// Returns a list of payout subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+    /// </summary>
+    WithRawResponseTask<QueryPayoutSubscriptionResponse> ListPayoutSubscriptionsAsync(
+        string entry,
+        ListPayoutSubscriptionsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a list of payout subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+    /// </summary>
+    WithRawResponseTask<QueryPayoutSubscriptionResponse> ListPayoutSubscriptionsOrgAsync(
+        int orgId,
+        ListPayoutSubscriptionsOrgRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
     /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
-    /// ``` curl --request GET \
-    ///   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-    ///   --header 'requestToken: &lt;api-key&gt;'
+    /// ``` curl -X GET https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
+    ///   -H 'requestToken: &lt;API TOKEN&gt;'
     ///
     ///   ```
     /// </summary>
@@ -250,9 +269,8 @@ public partial interface IQueryClient
     /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
     ///
     /// ```
-    /// curl --request GET \
-    ///   --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-    ///   --header 'requestToken: &lt;api-key&gt;'
+    /// curl -X GET "https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59"\
+    ///   -H 'requestToken: &lt;API TOKEN&gt;'
     ///
     ///   ```
     /// </summary>

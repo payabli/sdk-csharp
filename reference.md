@@ -4780,6 +4780,155 @@ await client.Export.ExportVendorsOrgAsync(
 </dl>
 </details>
 
+## GhostCard
+<details><summary><code>client.GhostCard.<a href="/src/PayabliApi/GhostCard/GhostCardClient.cs">CreateGhostCardAsync</a>(entry, CreateGhostCardRequestBody { ... }) -> WithRawResponseTask&lt;CreateGhostCardResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a ghost card, a multi-use virtual debit card issued to a vendor for recurring or discretionary spend.
+
+Unlike single-use virtual cards issued as part of a payout transaction, ghost cards aren't tied to a specific payout. They're issued directly to a vendor and can be reused up to a configurable number of times within the card's spending limits.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.GhostCard.CreateGhostCardAsync(
+    "8cfec2e0fa",
+    new CreateGhostCardRequestBody
+    {
+        VendorId = 42,
+        ExpenseLimit = 500,
+        MaxNumberOfUses = 3,
+        ExactAmount = false,
+        ExpenseLimitPeriod = "monthly",
+        BillingCycle = "monthly",
+        BillingCycleDay = "1",
+        DailyTransactionCount = 5,
+        DailyAmountLimit = 200,
+        TransactionAmountLimit = 100,
+        Mcc = "5411",
+        Tcc = "R",
+        Misc1 = "PO-98765",
+        Misc2 = "Dept-Finance",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CreateGhostCardRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.GhostCard.<a href="/src/PayabliApi/GhostCard/GhostCardClient.cs">UpdateCardAsync</a>(entry, UpdateCardRequestBody { ... }) -> WithRawResponseTask&lt;PayabliApiResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the status of a virtual card (including ghost cards) under a paypoint.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.GhostCard.UpdateCardAsync(
+    "8cfec2e0fa",
+    new UpdateCardRequestBody { CardToken = "gc_abc123def456", Status = CardStatus.Cancelled }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateCardRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## HostedPaymentPages
 <details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">LoadPageAsync</a>(entry, subdomain) -> WithRawResponseTask&lt;PayabliPages&gt;</code></summary>
 <dl>
@@ -10913,6 +11062,273 @@ await client.PaymentMethodDomain.VerifyPaymentMethodDomainAsync(
 </dl>
 </details>
 
+## PayoutSubscription
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">CreatePayoutSubscriptionAsync</a>(RequestPayoutSchedule { ... }) -> WithRawResponseTask&lt;AddPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.CreatePayoutSubscriptionAsync(
+    new RequestPayoutSchedule
+    {
+        Body = new PayoutSubscriptionRequestBody
+        {
+            EntryPoint = "d193cf9a46",
+            PaymentMethod = new AuthorizePaymentMethod
+            {
+                Method = "ach",
+                AchHolder = "Herman Coatings",
+                AchRouting = "021000021",
+                AchAccount = "3453445666",
+                AchAccountType = "checking",
+            },
+            PaymentDetails = new PayoutPaymentDetail
+            {
+                TotalAmount = 500,
+                ServiceFee = 0,
+                Currency = "USD",
+            },
+            VendorData = new RequestOutAuthorizeVendorData { VendorId = 1501 },
+            BillData = new List<BillPayOutDataRequest>()
+            {
+                new BillPayOutDataRequest
+                {
+                    InvoiceNumber = "INV-5001",
+                    NetAmount = "500",
+                    InvoiceDate = new DateOnly(2025, 8, 1),
+                    DueDate = new DateOnly(2025, 8, 15),
+                },
+            },
+            ScheduleDetails = new PayoutScheduleDetail
+            {
+                StartDate = "09/01/2025",
+                EndDate = "09/01/2026",
+                Frequency = Frequency.Monthly,
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `RequestPayoutSchedule` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">GetPayoutSubscriptionAsync</a>(id) -> WithRawResponseTask&lt;GetPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.GetPayoutSubscriptionAsync(42);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `long` — The payout subscription ID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">UpdatePayoutSubscriptionAsync</a>(id, UpdatePayoutSubscriptionBody { ... }) -> WithRawResponseTask&lt;UpdatePayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.UpdatePayoutSubscriptionAsync(
+    42,
+    new UpdatePayoutSubscriptionBody { SetPause = true }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `long` — The payout subscription ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdatePayoutSubscriptionBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">DeletePayoutSubscriptionAsync</a>(id) -> WithRawResponseTask&lt;DeletePayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.DeletePayoutSubscriptionAsync(42);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `long` — The payout subscription ID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Paypoint
 <details><summary><code>client.Paypoint.<a href="/src/PayabliApi/Paypoint/PaypointClient.cs">GetBasicEntryAsync</a>(entry) -> WithRawResponseTask&lt;GetBasicEntryResponse&gt;</code></summary>
 <dl>
@@ -12934,6 +13350,146 @@ await client.Query.ListSubscriptionsOrgAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutSubscriptionsAsync</a>(entry, ListPayoutSubscriptionsRequest { ... }) -> WithRawResponseTask&lt;QueryPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of payout subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListPayoutSubscriptionsAsync(
+    "8cfec329267",
+    new ListPayoutSubscriptionsRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(field_name)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListPayoutSubscriptionsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutSubscriptionsOrgAsync</a>(orgId, ListPayoutSubscriptionsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of payout subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListPayoutSubscriptionsOrgAsync(
+    123,
+    new ListPayoutSubscriptionsOrgRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(field_name)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `int` — The numeric identifier for organization, assigned by Payabli.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListPayoutSubscriptionsOrgRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransactionsAsync</a>(entry, ListTransactionsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseTransactions&gt;</code></summary>
 <dl>
 <dd>
@@ -12949,9 +13505,8 @@ await client.Query.ListSubscriptionsOrgAsync(
 Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
-``` curl --request GET \
-  --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-  --header 'requestToken: <api-key>'
+``` curl -X GET https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
+  -H 'requestToken: <API TOKEN>'
 
   ```
 </dd>
@@ -13033,9 +13588,8 @@ By default, this endpoint returns only transactions from the last 60 days. To qu
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
 
 ```
-curl --request GET \
-  --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-  --header 'requestToken: <api-key>'
+curl -X GET "https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59"\
+  -H 'requestToken: <API TOKEN>'
 
   ```
 </dd>

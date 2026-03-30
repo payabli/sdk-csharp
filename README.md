@@ -1,7 +1,7 @@
 # Payabli C# Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fpayabli%2Fsdk-csharp)
-[![nuget shield](https://img.shields.io/nuget/v/PayabliApi)](https://nuget.org/packages/PayabliApi)
+[![nuget shield](https://img.shields.io/nuget/v/Payabli.SDK)](https://nuget.org/packages/Payabli.SDK)
 
 The Payabli C# library provides convenient access to the Payabli APIs from C#.
 
@@ -12,6 +12,7 @@ The Payabli C# library provides convenient access to the Payabli APIs from C#.
 - [Installation](#installation)
 - [Passing Query Parameters](#passing-query-parameters)
 - [Usage](#usage)
+- [Environments](#environments)
 - [Exception Handling](#exception-handling)
 - [Advanced](#advanced)
   - [Retries](#retries)
@@ -34,7 +35,7 @@ This SDK requires:
 ## Installation
 
 ```sh
-dotnet add package PayabliApi
+dotnet add package Payabli.SDK
 ```
 
 ## Passing Query Parameters
@@ -89,6 +90,19 @@ await client.MoneyIn.GetpaidAsync(
         },
     }
 );
+```
+
+## Environments
+
+This SDK allows you to configure different environments for API requests.
+
+```csharp
+using PayabliApi;
+
+var client = new PayabliApiClient(new ClientOptions
+{
+    BaseUrl = PayabliApiEnvironment.Sandbox
+});
 ```
 
 ## Exception Handling

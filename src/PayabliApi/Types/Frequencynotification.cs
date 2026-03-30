@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -90,6 +90,29 @@ public readonly record struct Frequencynotification : IStringEnum
         )
         {
             writer.WriteStringValue(value.Value);
+        }
+
+        public override Frequencynotification ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new Frequencynotification(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            Frequencynotification value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
         }
     }
 
