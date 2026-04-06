@@ -25,58 +25,58 @@ public record CreateGhostCardRequestBody
     public string? ExpirationDate { get; set; }
 
     /// <summary>
-    /// Initial load amount for the card. Defaults to `0`.
+    /// Initial load amount for the card.
     /// </summary>
     [JsonPropertyName("amount")]
-    public double? Amount { get; set; }
+    public required double Amount { get; set; }
 
     /// <summary>
-    /// Maximum number of times the card can be used. If `0` or negative, defaults to `9999`. Ignored and set to `1` when `exactAmount` is `true`.
+    /// Maximum number of times the card can be used. Ignored and set to `1` when `exactAmount` is `true`.
     /// </summary>
     [JsonPropertyName("maxNumberOfUses")]
-    public int? MaxNumberOfUses { get; set; }
+    public required int MaxNumberOfUses { get; set; }
 
     /// <summary>
     /// When `true`, restricts the card to a single use. `maxNumberOfUses` is automatically set to `1` regardless of any other value provided.
     /// </summary>
     [JsonPropertyName("exactAmount")]
-    public bool? ExactAmount { get; set; }
+    public required bool ExactAmount { get; set; }
 
     /// <summary>
-    /// Time period over which `expenseLimit` applies (for example, `monthly` or `weekly`). No server-side enforcement.
+    /// Time period over which `expenseLimit` applies (for example, `monthly` or `weekly`).
     /// </summary>
     [JsonPropertyName("expenseLimitPeriod")]
-    public string? ExpenseLimitPeriod { get; set; }
+    public required string ExpenseLimitPeriod { get; set; }
 
     /// <summary>
     /// Billing cycle identifier.
     /// </summary>
     [JsonPropertyName("billingCycle")]
-    public string? BillingCycle { get; set; }
+    public required string BillingCycle { get; set; }
 
     /// <summary>
     /// Day within the billing cycle.
     /// </summary>
     [JsonPropertyName("billingCycleDay")]
-    public string? BillingCycleDay { get; set; }
+    public required string BillingCycleDay { get; set; }
 
     /// <summary>
-    /// Maximum number of transactions allowed per day. Defaults to `0` (unlimited).
+    /// Maximum number of transactions allowed per day.
     /// </summary>
     [JsonPropertyName("dailyTransactionCount")]
-    public int? DailyTransactionCount { get; set; }
+    public required int DailyTransactionCount { get; set; }
 
     /// <summary>
-    /// Maximum total spend allowed per day. Defaults to `0` (unlimited).
+    /// Maximum total spend allowed per day.
     /// </summary>
     [JsonPropertyName("dailyAmountLimit")]
-    public double? DailyAmountLimit { get; set; }
+    public required double DailyAmountLimit { get; set; }
 
     /// <summary>
-    /// Maximum spend allowed per single transaction. Defaults to `0` (unlimited).
+    /// Maximum spend allowed per single transaction.
     /// </summary>
     [JsonPropertyName("transactionAmountLimit")]
-    public int? TransactionAmountLimit { get; set; }
+    public required int TransactionAmountLimit { get; set; }
 
     /// <summary>
     /// Merchant Category Code to restrict where the card can be used. Must be a valid MCC if provided.

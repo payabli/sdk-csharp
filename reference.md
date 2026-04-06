@@ -4796,6 +4796,8 @@ await client.Export.ExportVendorsOrgAsync(
 Creates a ghost card, a multi-use virtual debit card issued to a vendor for recurring or discretionary spend.
 
 Unlike single-use virtual cards issued as part of a payout transaction, ghost cards aren't tied to a specific payout. They're issued directly to a vendor and can be reused up to a configurable number of times within the card's spending limits.
+
+Only one ghost card can exist per vendor per paypoint. To issue a new card to the same vendor, cancel the existing card first.
 </dd>
 </dl>
 </dd>
@@ -4816,6 +4818,7 @@ await client.GhostCard.CreateGhostCardAsync(
     {
         VendorId = 42,
         ExpenseLimit = 500,
+        Amount = 500,
         MaxNumberOfUses = 3,
         ExactAmount = false,
         ExpenseLimitPeriod = "monthly",

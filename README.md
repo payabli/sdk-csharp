@@ -10,6 +10,7 @@ The Payabli C# library provides convenient access to the Payabli APIs from C#.
 - [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Changelog](#changelog)
 - [Passing Query Parameters](#passing-query-parameters)
 - [Usage](#usage)
 - [Environments](#environments)
@@ -37,6 +38,11 @@ This SDK requires:
 ```sh
 dotnet add package Payabli.SDK
 ```
+
+## Changelog
+
+The changelog for the official Payabli C# SDK is available on the Payabli Docs site. See [C# SDK Changelog](https://docs.payabli.com/changelog/csharp-sdk) for more information.
+
 
 ## Passing Query Parameters
 
