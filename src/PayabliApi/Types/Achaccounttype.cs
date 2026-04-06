@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<Achaccounttype>))]
+[JsonConverter(typeof(Achaccounttype.AchaccounttypeSerializer))]
 [Serializable]
 public readonly record struct Achaccounttype : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct Achaccounttype : IStringEnum
     public static explicit operator string(Achaccounttype value) => value.Value;
 
     public static explicit operator Achaccounttype(string value) => new(value);
+
+    internal class AchaccounttypeSerializer : JsonConverter<Achaccounttype>
+    {
+        public override Achaccounttype Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Achaccounttype(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            Achaccounttype value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override Achaccounttype ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new Achaccounttype(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            Achaccounttype value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

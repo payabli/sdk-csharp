@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -39,7 +39,7 @@ public record QueryResponseNotificationsRecordsItem : IJsonOnDeserialized
     public long? NotificationId { get; set; }
 
     [JsonPropertyName("ownerId")]
-    public string? OwnerId { get; set; }
+    public int? OwnerId { get; set; }
 
     /// <summary>
     /// Name of entity owner of notification.

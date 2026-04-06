@@ -1,11 +1,11 @@
-using System.Text.Json;
+using global::System.Text.Json;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
 public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal HostedPaymentPagesClient(RawClient client)
     {
@@ -29,7 +29,6 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Paypoint/load/{0}/{1}",
@@ -44,7 +43,9 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliPages>(responseBody)!;
@@ -70,7 +71,9 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -117,7 +120,6 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = string.Format("Paypoint/{0}", ValueConvert.ToPathParameterString(entry)),
                     Body = request.Body,
@@ -130,7 +132,9 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
@@ -158,7 +162,9 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -207,7 +213,6 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
                     Path = string.Format(
                         "Paypoint/{0}/{1}",
@@ -224,7 +229,9 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
@@ -252,7 +259,9 @@ public partial class HostedPaymentPagesClient : IHostedPaymentPagesClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)

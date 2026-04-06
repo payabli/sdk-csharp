@@ -1,4 +1,4 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -28,7 +28,7 @@ public record PayLinkDataOut
     public string? AmountFixed { get; set; }
 
     [JsonIgnore]
-    public required PaymentPageRequestBody Body { get; set; }
+    public required PaymentPageRequestBodyOut Body { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

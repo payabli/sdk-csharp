@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -198,7 +198,7 @@ public record ApplicationQueryRecord : IJsonOnDeserialized
     public Whenrefunded? Whenrefund { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("RepCode")]
     public string? RepCode { get; set; }

@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -21,7 +21,7 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     public int? BatchId { get; set; }
 
     /// <summary>
-    /// Events associated with this transaction.
+    /// Bills associated with this transaction.
     /// </summary>
     [JsonPropertyName("Bills")]
     public IEnumerable<BillPayOutData>? Bills { get; set; }

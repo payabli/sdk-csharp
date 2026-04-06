@@ -1,11 +1,11 @@
-using System.Text.Json;
+using global::System.Text.Json;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
 public partial class CheckCaptureClient : ICheckCaptureClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal CheckCaptureClient(RawClient client)
     {
@@ -28,7 +28,6 @@ public partial class CheckCaptureClient : ICheckCaptureClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "CheckCapture/CheckProcessing",
                     Body = request,
@@ -41,7 +40,9 @@ public partial class CheckCaptureClient : ICheckCaptureClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<CheckCaptureResponse>(responseBody)!;
@@ -67,7 +68,9 @@ public partial class CheckCaptureClient : ICheckCaptureClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)

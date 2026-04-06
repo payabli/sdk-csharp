@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -17,8 +17,11 @@ public record BillingDataResponse : IJsonOnDeserialized
     [JsonPropertyName("id")]
     public required int Id { get; set; }
 
+    /// <summary>
+    /// An identifier for the bank account. If not provided during creation or update, the system generates one in the format `acct-{first_digit}xxxxx{last_4_digits}` based on the account number. If a duplicate exists within the same service at the paypoint, a numeric suffix is appended, such as `-2`. This value is also used as the identifier for the bank account's associated payment connector.
+    /// </summary>
     [JsonPropertyName("accountId")]
-    public object? AccountId { get; set; }
+    public string? AccountId { get; set; }
 
     [JsonPropertyName("nickname")]
     public required string Nickname { get; set; }

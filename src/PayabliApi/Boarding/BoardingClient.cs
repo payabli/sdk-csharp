@@ -1,4 +1,4 @@
-using System.Text.Json;
+using global::System.Text.Json;
 using OneOf;
 using PayabliApi.Core;
 
@@ -6,7 +6,7 @@ namespace PayabliApi;
 
 public partial class BoardingClient : IBoardingClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal BoardingClient(RawClient client)
     {
@@ -36,7 +36,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "Boarding/app",
                     Body = request,
@@ -49,7 +48,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
@@ -77,7 +78,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -124,7 +127,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "Boarding/app/{0}",
@@ -138,7 +140,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
@@ -166,7 +170,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -211,7 +217,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Boarding/read/{0}",
@@ -225,7 +230,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ApplicationDetailsRecord>(responseBody)!;
@@ -251,7 +258,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -297,7 +306,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "Boarding/read/{0}",
@@ -313,7 +321,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<ApplicationQueryRecord>(responseBody)!;
@@ -339,7 +349,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -384,7 +396,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Boarding/linkbyId/{0}",
@@ -398,7 +409,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<BoardingLinkQueryRecord>(responseBody)!;
@@ -424,7 +437,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -471,7 +486,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Boarding/linkbyTemplate/{0}",
@@ -485,7 +499,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<BoardingLinkQueryRecord>(responseBody)!;
@@ -511,7 +527,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -562,7 +580,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
                     Path = string.Format(
                         "Boarding/applink/{0}/{1}",
@@ -578,7 +595,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse00>(responseBody)!;
@@ -604,7 +623,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -649,7 +670,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Boarding/link/{0}",
@@ -663,7 +683,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<BoardingLinkQueryRecord>(responseBody)!;
@@ -689,7 +711,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -743,7 +767,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Query/boarding/{0}",
@@ -758,7 +781,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<QueryBoardingAppsListResponse>(
@@ -786,7 +811,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -839,7 +866,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Query/boardinglinks/{0}",
@@ -854,7 +880,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<QueryBoardingLinksResponse>(responseBody)!;
@@ -880,7 +908,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -928,7 +958,6 @@ public partial class BoardingClient : IBoardingClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
                     Path = string.Format(
                         "Boarding/app/{0}",
@@ -944,7 +973,9 @@ public partial class BoardingClient : IBoardingClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
@@ -972,7 +1003,9 @@ public partial class BoardingClient : IBoardingClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -1025,7 +1058,33 @@ public partial class BoardingClient : IBoardingClient
     ///         Avgmonthly = 1000,
     ///         Baddress = "123 Walnut Street",
     ///         Baddress1 = "Suite 103",
-    ///         BankData = new ApplicationDataPayInBankData(),
+    ///         BankData = new List&lt;Bank&gt;()
+    ///         {
+    ///             new Bank
+    ///             {
+    ///                 AccountNumber = "123123123",
+    ///                 BankAccountFunction = 1,
+    ///                 BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+    ///                 BankAccountHolderType = BankAccountHolderType.Business,
+    ///                 BankName = "Test Bank",
+    ///                 Nickname = "Withdrawal Account",
+    ///                 RoutingAccount = "123123123",
+    ///                 TypeAccount = TypeAccount.Checking,
+    ///                 AccountId = "123-456",
+    ///             },
+    ///             new Bank
+    ///             {
+    ///                 AccountNumber = "123123123",
+    ///                 BankAccountFunction = 0,
+    ///                 BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+    ///                 BankAccountHolderType = BankAccountHolderType.Business,
+    ///                 BankName = "Test Bank",
+    ///                 Nickname = "Deposit Account",
+    ///                 RoutingAccount = "123123123",
+    ///                 TypeAccount = TypeAccount.Checking,
+    ///                 AccountId = "123-456",
+    ///             },
+    ///         },
     ///         Bcity = "New Vegas",
     ///         Bcountry = "US",
     ///         Binperson = 60,
@@ -1104,8 +1163,12 @@ public partial class BoardingClient : IBoardingClient
     ///             SignedDocumentReference = "https://example.com/signed-document.pdf",
     ///             AttestationDate = "04/20/2025",
     ///             SignDate = "04/20/2025",
-    ///             AdditionalData =
-    ///                 "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}",
+    ///             AdditionalData = new Dictionary&lt;string, string&gt;()
+    ///             {
+    ///                 { "deviceId", "499585-389fj484-3jcj8hj3" },
+    ///                 { "session", "fifji4-fiu443-fn4843" },
+    ///                 { "timeWithCompany", "6 Years" },
+    ///             },
     ///         },
     ///         Startdate = "01/01/1990",
     ///         TaxFillName = "Sunshine LLC",

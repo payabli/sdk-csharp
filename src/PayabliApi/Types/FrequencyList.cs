@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -12,43 +12,43 @@ public record FrequencyList : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Enable or disable frequency
+    /// Enable or disable the annual frequency.
     /// </summary>
     [JsonPropertyName("annually")]
     public bool? Annually { get; set; }
 
     /// <summary>
-    /// Enable or disable frequency
+    /// Enable or disable the every-two-weeks frequency.
     /// </summary>
     [JsonPropertyName("every2Weeks")]
     public bool? Every2Weeks { get; set; }
 
     /// <summary>
-    /// Enable or disable frequency
+    /// Enable or disable the every-three-months frequency.
     /// </summary>
     [JsonPropertyName("every3Months")]
     public bool? Every3Months { get; set; }
 
     /// <summary>
-    /// Enable or disable frequency
+    /// Enable or disable the every-six-months frequency.
     /// </summary>
     [JsonPropertyName("every6Months")]
     public bool? Every6Months { get; set; }
 
     /// <summary>
-    /// Enable or disable frequency
+    /// Enable or disable the monthly frequency.
     /// </summary>
     [JsonPropertyName("monthly")]
     public bool? Monthly { get; set; }
 
     /// <summary>
-    /// Enable or disable frequency
+    /// Enable or disable the one-time frequency.
     /// </summary>
     [JsonPropertyName("onetime")]
     public bool? Onetime { get; set; }
 
     /// <summary>
-    /// Enable or disable frequency
+    /// Enable or disable the weekly frequency.
     /// </summary>
     [JsonPropertyName("weekly")]
     public bool? Weekly { get; set; }

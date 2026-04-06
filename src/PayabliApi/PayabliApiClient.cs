@@ -15,7 +15,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/0.0.297" },
+                { "User-Agent", "Payabli.SDK/0.0.302" },
             }
         );
         foreach (var header in platformHeaders)
@@ -41,6 +41,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Cloud = new CloudClient(_client);
         Customer = new CustomerClient(_client);
         Export = new ExportClient(_client);
+        GhostCard = new GhostCardClient(_client);
         HostedPaymentPages = new HostedPaymentPagesClient(_client);
         Import = new ImportClient(_client);
         Invoice = new InvoiceClient(_client);
@@ -53,6 +54,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Organization = new OrganizationClient(_client);
         PaymentLink = new PaymentLinkClient(_client);
         PaymentMethodDomain = new PaymentMethodDomainClient(_client);
+        PayoutSubscription = new PayoutSubscriptionClient(_client);
         Paypoint = new PaypointClient(_client);
         Query = new QueryClient(_client);
         Statistic = new StatisticClient(_client);
@@ -78,6 +80,8 @@ public partial class PayabliApiClient : IPayabliApiClient
 
     public IExportClient Export { get; }
 
+    public IGhostCardClient GhostCard { get; }
+
     public IHostedPaymentPagesClient HostedPaymentPages { get; }
 
     public IImportClient Import { get; }
@@ -101,6 +105,8 @@ public partial class PayabliApiClient : IPayabliApiClient
     public IPaymentLinkClient PaymentLink { get; }
 
     public IPaymentMethodDomainClient PaymentMethodDomain { get; }
+
+    public IPayoutSubscriptionClient PayoutSubscription { get; }
 
     public IPaypointClient Paypoint { get; }
 

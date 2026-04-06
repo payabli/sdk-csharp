@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<OdpSetupProcessingRegion>))]
+[JsonConverter(typeof(OdpSetupProcessingRegion.OdpSetupProcessingRegionSerializer))]
 [Serializable]
 public readonly record struct OdpSetupProcessingRegion : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct OdpSetupProcessingRegion : IStringEnum
     public static explicit operator string(OdpSetupProcessingRegion value) => value.Value;
 
     public static explicit operator OdpSetupProcessingRegion(string value) => new(value);
+
+    internal class OdpSetupProcessingRegionSerializer : JsonConverter<OdpSetupProcessingRegion>
+    {
+        public override OdpSetupProcessingRegion Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new OdpSetupProcessingRegion(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            OdpSetupProcessingRegion value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override OdpSetupProcessingRegion ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new OdpSetupProcessingRegion(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            OdpSetupProcessingRegion value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

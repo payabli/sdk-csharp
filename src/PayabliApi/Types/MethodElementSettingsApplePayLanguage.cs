@@ -1,9 +1,12 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<MethodElementSettingsApplePayLanguage>))]
+[JsonConverter(
+    typeof(MethodElementSettingsApplePayLanguage.MethodElementSettingsApplePayLanguageSerializer)
+)]
 [Serializable]
 public readonly record struct MethodElementSettingsApplePayLanguage : IStringEnum
 {
@@ -127,6 +130,56 @@ public readonly record struct MethodElementSettingsApplePayLanguage : IStringEnu
 
     public static explicit operator MethodElementSettingsApplePayLanguage(string value) =>
         new(value);
+
+    internal class MethodElementSettingsApplePayLanguageSerializer
+        : JsonConverter<MethodElementSettingsApplePayLanguage>
+    {
+        public override MethodElementSettingsApplePayLanguage Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new MethodElementSettingsApplePayLanguage(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            MethodElementSettingsApplePayLanguage value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override MethodElementSettingsApplePayLanguage ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new MethodElementSettingsApplePayLanguage(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            MethodElementSettingsApplePayLanguage value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

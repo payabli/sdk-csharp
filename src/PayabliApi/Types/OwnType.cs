@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<OwnType>))]
+[JsonConverter(typeof(OwnType.OwnTypeSerializer))]
 [Serializable]
 public readonly record struct OwnType : IStringEnum
 {
@@ -61,6 +62,55 @@ public readonly record struct OwnType : IStringEnum
     public static explicit operator string(OwnType value) => value.Value;
 
     public static explicit operator OwnType(string value) => new(value);
+
+    internal class OwnTypeSerializer : JsonConverter<OwnType>
+    {
+        public override OwnType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new OwnType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            OwnType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override OwnType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new OwnType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            OwnType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

@@ -1,11 +1,11 @@
-using System.Text.Json;
+using global::System.Text.Json;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
 public partial class MoneyOutClient : IMoneyOutClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal MoneyOutClient(RawClient client)
     {
@@ -35,7 +35,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "MoneyOut/authorize",
                     Body = request.Body,
@@ -49,7 +48,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<AuthCapturePayoutResponse>(responseBody)!;
@@ -75,7 +76,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -120,7 +123,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "MoneyOut/cancelAll",
                     Body = request,
@@ -133,7 +135,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<CaptureAllOutResponse>(responseBody)!;
@@ -159,7 +163,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -204,7 +210,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "MoneyOut/cancel/{0}",
@@ -218,7 +223,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse0000>(responseBody)!;
@@ -244,7 +251,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -289,7 +298,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "MoneyOut/cancel/{0}",
@@ -303,7 +311,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse0000>(responseBody)!;
@@ -329,7 +339,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -375,7 +387,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "MoneyOut/captureAll",
                     Body = request.Body,
@@ -388,7 +399,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<CaptureAllOutResponse>(responseBody)!;
@@ -414,7 +427,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -461,7 +476,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "MoneyOut/capture/{0}",
@@ -475,7 +489,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<AuthCapturePayoutResponse>(responseBody)!;
@@ -501,7 +517,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -546,7 +564,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "MoneyOut/details/{0}",
@@ -560,7 +577,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<BillDetailResponse>(responseBody)!;
@@ -586,7 +605,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -631,7 +652,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "MoneyOut/vcard/{0}",
@@ -645,7 +665,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<VCardGetResponse>(responseBody)!;
@@ -671,7 +693,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -716,7 +740,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "vcard/send-card-link",
                     Body = request,
@@ -728,7 +751,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<OperationResult>(responseBody)!;
@@ -754,7 +779,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -799,7 +826,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "MoneyOut/checkimage/{0}",
@@ -813,7 +839,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<string>(responseBody)!;
@@ -839,7 +867,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -887,7 +917,6 @@ public partial class MoneyOutClient : IMoneyOutClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "MoneyOut/status/{0}/{1}",
@@ -902,7 +931,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
@@ -930,7 +961,9 @@ public partial class MoneyOutClient : IMoneyOutClient
             }
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
                 switch (response.StatusCode)
@@ -939,6 +972,103 @@ public partial class MoneyOutClient : IMoneyOutClient
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
                         throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<ReissuePayoutResponse>> ReissueOutAsyncCore(
+        ReissueOutRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("transId", request.TransId)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add("idempotencyKey", request.IdempotencyKey)
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Post,
+                    Path = "MoneyOut/reissue",
+                    Body = request.Body,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<ReissuePayoutResponse>(responseBody)!;
+                return new WithRawResponse<ReissuePayoutResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 403:
+                        throw new ForbiddenError(
+                            JsonUtils.Deserialize<PayabliApiResponsePaylinks>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
@@ -1190,6 +1320,44 @@ public partial class MoneyOutClient : IMoneyOutClient
                 options,
                 cancellationToken
             )
+        );
+    }
+
+    /// <summary>
+    /// Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
+    ///
+    /// The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+    ///
+    /// The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyOut.ReissueOutAsync(
+    ///     new ReissueOutRequest
+    ///     {
+    ///         TransId = "129-219",
+    ///         Body = new ReissuePayoutBody
+    ///         {
+    ///             PaymentMethod = new ReissuePaymentMethod
+    ///             {
+    ///                 Method = "ach",
+    ///                 AchAccount = "9876543210",
+    ///                 AchAccountType = "savings",
+    ///                 AchRouting = "021000021",
+    ///                 AchHolder = "Acme Corp",
+    ///                 AchHolderType = AchHolderType.Business,
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<ReissuePayoutResponse> ReissueOutAsync(
+        ReissueOutRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ReissuePayoutResponse>(
+            ReissueOutAsyncCore(request, options, cancellationToken)
         );
     }
 }

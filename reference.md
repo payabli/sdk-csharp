@@ -848,7 +848,33 @@ await client.Boarding.AddApplicationAsync(
         Avgmonthly = 1000,
         Baddress = "123 Walnut Street",
         Baddress1 = "Suite 103",
-        BankData = new ApplicationDataPayInBankData(),
+        BankData = new List<Bank>()
+        {
+            new Bank
+            {
+                AccountNumber = "123123123",
+                BankAccountFunction = 1,
+                BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+                BankAccountHolderType = BankAccountHolderType.Business,
+                BankName = "Test Bank",
+                Nickname = "Withdrawal Account",
+                RoutingAccount = "123123123",
+                TypeAccount = TypeAccount.Checking,
+                AccountId = "123-456",
+            },
+            new Bank
+            {
+                AccountNumber = "123123123",
+                BankAccountFunction = 0,
+                BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
+                BankAccountHolderType = BankAccountHolderType.Business,
+                BankName = "Test Bank",
+                Nickname = "Deposit Account",
+                RoutingAccount = "123123123",
+                TypeAccount = TypeAccount.Checking,
+                AccountId = "123-456",
+            },
+        },
         Bcity = "New Vegas",
         Bcountry = "US",
         Binperson = 60,
@@ -927,8 +953,12 @@ await client.Boarding.AddApplicationAsync(
             SignedDocumentReference = "https://example.com/signed-document.pdf",
             AttestationDate = "04/20/2025",
             SignDate = "04/20/2025",
-            AdditionalData =
-                "{\"deviceId\":\"499585-389fj484-3jcj8hj3\",\"session\":\"fifji4-fiu443-fn4843\",\"timeWithCompany\":\"6 Years\"}",
+            AdditionalData = new Dictionary<string, string>()
+            {
+                { "deviceId", "499585-389fj484-3jcj8hj3" },
+                { "session", "fifji4-fiu443-fn4843" },
+                { "timeWithCompany", "6 Years" },
+            },
         },
         Startdate = "01/01/1990",
         TaxFillName = "Sunshine LLC",
@@ -4750,6 +4780,155 @@ await client.Export.ExportVendorsOrgAsync(
 </dl>
 </details>
 
+## GhostCard
+<details><summary><code>client.GhostCard.<a href="/src/PayabliApi/GhostCard/GhostCardClient.cs">CreateGhostCardAsync</a>(entry, CreateGhostCardRequestBody { ... }) -> WithRawResponseTask&lt;CreateGhostCardResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a ghost card, a multi-use virtual debit card issued to a vendor for recurring or discretionary spend.
+
+Unlike single-use virtual cards issued as part of a payout transaction, ghost cards aren't tied to a specific payout. They're issued directly to a vendor and can be reused up to a configurable number of times within the card's spending limits.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.GhostCard.CreateGhostCardAsync(
+    "8cfec2e0fa",
+    new CreateGhostCardRequestBody
+    {
+        VendorId = 42,
+        ExpenseLimit = 500,
+        MaxNumberOfUses = 3,
+        ExactAmount = false,
+        ExpenseLimitPeriod = "monthly",
+        BillingCycle = "monthly",
+        BillingCycleDay = "1",
+        DailyTransactionCount = 5,
+        DailyAmountLimit = 200,
+        TransactionAmountLimit = 100,
+        Mcc = "5411",
+        Tcc = "R",
+        Misc1 = "PO-98765",
+        Misc2 = "Dept-Finance",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CreateGhostCardRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.GhostCard.<a href="/src/PayabliApi/GhostCard/GhostCardClient.cs">UpdateCardAsync</a>(entry, UpdateCardRequestBody { ... }) -> WithRawResponseTask&lt;PayabliApiResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the status of a virtual card (including ghost cards) under a paypoint.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.GhostCard.UpdateCardAsync(
+    "8cfec2e0fa",
+    new UpdateCardRequestBody { CardToken = "gc_abc123def456", Status = CardStatus.Cancelled }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateCardRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## HostedPaymentPages
 <details><summary><code>client.HostedPaymentPages.<a href="/src/PayabliApi/HostedPaymentPages/HostedPaymentPagesClient.cs">LoadPageAsync</a>(entry, subdomain) -> WithRawResponseTask&lt;PayabliPages&gt;</code></summary>
 <dl>
@@ -6469,7 +6648,7 @@ await client.MoneyIn.CaptureAuthAsync(
 <dl>
 <dd>
 
-Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`.
+Make a temporary microdeposit in a customer account to verify the customer's ownership and access to the target account. Reverse the microdeposit with `reverseCredit`. Payabli doesn't automatically make microdeposits when you add a bank account, you must manually make the requests.
 
 This feature must be enabled by Payabli on a per-merchant basis. Contact support for help. 
 </dd>
@@ -8200,6 +8379,81 @@ await client.MoneyOut.UpdateCheckPaymentStatusAsync("TRANS123456", AllowedCheckP
 </dl>
 </details>
 
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">ReissueOutAsync</a>(ReissueOutRequest { ... }) -> WithRawResponseTask&lt;ReissuePayoutResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
+
+The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+
+The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyOut.ReissueOutAsync(
+    new ReissueOutRequest
+    {
+        TransId = "129-219",
+        Body = new ReissuePayoutBody
+        {
+            PaymentMethod = new ReissuePaymentMethod
+            {
+                Method = "ach",
+                AchAccount = "9876543210",
+                AchAccountType = "savings",
+                AchRouting = "021000021",
+                AchHolder = "Acme Corp",
+                AchHolderType = AchHolderType.Business,
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ReissueOutRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Notification
 <details><summary><code>client.Notification.<a href="/src/PayabliApi/Notification/NotificationClient.cs">AddNotificationAsync</a>(OneOf&lt;NotificationStandardRequest, NotificationReportRequest&gt; { ... }) -> WithRawResponseTask&lt;PayabliApiResponseNotifications&gt;</code></summary>
 <dl>
@@ -8237,7 +8491,7 @@ await client.Notification.AddNotificationAsync(
         },
         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
         Method = NotificationStandardRequestMethod.Web,
-        OwnerId = "236",
+        OwnerId = 236,
         OwnerType = 0,
         Status = 1,
         Target = "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
@@ -8414,7 +8668,7 @@ await client.Notification.UpdateNotificationAsync(
         },
         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
         Method = NotificationStandardRequestMethod.Email,
-        OwnerId = "136",
+        OwnerId = 136,
         OwnerType = 0,
         Status = 1,
         Target = "newemail@email.com",
@@ -9565,7 +9819,7 @@ await client.PaymentLink.AddPayLinkFromInvoiceAsync(
 <dl>
 <dd>
 
-Generates a payment link for a bill from the bill ID. 
+Generates a payment link for a bill from the bill ID. The vendor receives a secure page where they can select their preferred payment method (ACH, virtual card, or check) and complete the payment.
 </dd>
 </dl>
 </dd>
@@ -9585,7 +9839,7 @@ await client.PaymentLink.AddPayLinkFromBillAsync(
     new PayLinkDataBill
     {
         Mail2 = "jo@example.com; ceo@example.com",
-        Body = new PaymentPageRequestBody
+        Body = new PaymentPageRequestBodyOut
         {
             ContactUs = new ContactElement
             {
@@ -9624,43 +9878,21 @@ await client.PaymentLink.AddPayLinkFromBillAsync(
                 Label = "Pay Now",
                 Order = 0,
             },
-            PaymentMethods = new MethodElement
+            PaymentMethods = new MethodElementOut
             {
                 AllMethodsChecked = true,
+                AllowMultipleMethods = true,
+                DefaultMethod = "vcard",
                 Enabled = true,
                 Header = "Payment Methods",
-                Methods = new MethodsList
+                Methods = new MethodsListOut
                 {
-                    Amex = true,
-                    ApplePay = true,
-                    Discover = true,
-                    ECheck = true,
-                    Mastercard = true,
-                    Visa = true,
+                    Ach = true,
+                    Check = true,
+                    Vcard = true,
                 },
                 Order = 0,
-            },
-            Payor = new PayorElement
-            {
-                Enabled = true,
-                Fields = new List<PayorFields>()
-                {
-                    new PayorFields
-                    {
-                        Display = true,
-                        Fixed = true,
-                        Identifier = true,
-                        Label = "Full Name",
-                        Name = "fullName",
-                        Order = 0,
-                        Required = true,
-                        Validation = "alpha",
-                        Value = "",
-                        Width = 0,
-                    },
-                },
-                Header = "Payor Information",
-                Order = 0,
+                ShowPreviewVirtualCard = true,
             },
             Review = new HeaderElement
             {
@@ -9733,7 +9965,7 @@ Deletes a payment link by ID.
 <dd>
 
 ```csharp
-await client.PaymentLink.DeletePayLinkFromIdAsync("payLinkId");
+await client.PaymentLink.DeletePayLinkFromIdAsync("2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234");
 ```
 </dd>
 </dl>
@@ -10122,7 +10354,7 @@ await client.PaymentLink.AddPayLinkFromBillLotNumberAsync(
         VendorNumber = "VENDOR-123",
         Mail2 = "customer@example.com; billing@example.com",
         AmountFixed = "true",
-        Body = new PaymentPageRequestBody
+        Body = new PaymentPageRequestBodyOut
         {
             ContactUs = new ContactElement
             {
@@ -10161,43 +10393,21 @@ await client.PaymentLink.AddPayLinkFromBillLotNumberAsync(
                 Label = "Pay Now",
                 Order = 0,
             },
-            PaymentMethods = new MethodElement
+            PaymentMethods = new MethodElementOut
             {
                 AllMethodsChecked = true,
+                AllowMultipleMethods = true,
+                DefaultMethod = "vcard",
                 Enabled = true,
                 Header = "Payment Methods",
-                Methods = new MethodsList
+                Methods = new MethodsListOut
                 {
-                    Amex = true,
-                    ApplePay = true,
-                    Discover = true,
-                    ECheck = true,
-                    Mastercard = true,
-                    Visa = true,
+                    Ach = true,
+                    Check = true,
+                    Vcard = true,
                 },
                 Order = 0,
-            },
-            Payor = new PayorElement
-            {
-                Enabled = true,
-                Fields = new List<PayorFields>()
-                {
-                    new PayorFields
-                    {
-                        Display = true,
-                        Fixed = true,
-                        Identifier = true,
-                        Label = "Full Name",
-                        Name = "fullName",
-                        Order = 0,
-                        Required = true,
-                        Validation = "alpha",
-                        Value = "",
-                        Width = 0,
-                    },
-                },
-                Header = "Payor Information",
-                Order = 0,
+                ShowPreviewVirtualCard = true,
             },
             Review = new HeaderElement
             {
@@ -10232,6 +10442,202 @@ await client.PaymentLink.AddPayLinkFromBillLotNumberAsync(
 <dd>
 
 **request:** `PayLinkDataOut` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">PatchOutPaymentLinkAsync</a>(paylinkId, PatchOutPaymentLinkRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Partially updates a Pay Out payment link's content, expiration date, and/or status. Use this to modify the payment page configuration, extend or change the expiration, or cancel a link. Updating the expiration date of an expired link reactivates it to Active status.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentLink.PatchOutPaymentLinkAsync(
+    "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+    new PatchOutPaymentLinkRequest
+    {
+        ExpirationDate = "2026-06-01T00:00:00Z",
+        Status = PaymentLinkStatus.Active,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paylinkId:** `string` — ID for the payment link.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PatchOutPaymentLinkRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentLink.<a href="/src/PayabliApi/PaymentLink/PaymentLinkClient.cs">UpdatePayLinkOutFromIdAsync</a>(paylinkId, PaymentPageRequestBodyOut { ... }) -> WithRawResponseTask&lt;PayabliApiResponsePaymentLinks&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the payment page content for a Pay Out payment link. Use this to change the branding, messaging, payment methods offered, or other page configuration.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentLink.UpdatePayLinkOutFromIdAsync(
+    "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
+    new PaymentPageRequestBodyOut
+    {
+        ContactUs = new ContactElement
+        {
+            EmailLabel = "Email",
+            Enabled = true,
+            Header = "Contact Us",
+            Order = 0,
+            PaymentIcons = true,
+            PhoneLabel = "Phone",
+        },
+        Logo = new Element { Enabled = true, Order = 0 },
+        MessageBeforePaying = new LabelElement
+        {
+            Enabled = true,
+            Label = "Please review your payment details",
+            Order = 0,
+        },
+        Notes = new NoteElement
+        {
+            Enabled = true,
+            Header = "Additional Notes",
+            Order = 0,
+            Placeholder = "Enter any additional notes here",
+            Value = "",
+        },
+        Page = new PageElement
+        {
+            Description = "Get paid securely",
+            Enabled = true,
+            Header = "Payment Page",
+            Order = 0,
+        },
+        PaymentButton = new LabelElement
+        {
+            Enabled = true,
+            Label = "Pay Now",
+            Order = 0,
+        },
+        PaymentMethods = new MethodElementOut
+        {
+            AllMethodsChecked = true,
+            AllowMultipleMethods = true,
+            DefaultMethod = "vcard",
+            Enabled = true,
+            Header = "Payment Methods",
+            Methods = new MethodsListOut
+            {
+                Ach = true,
+                Check = true,
+                Vcard = true,
+            },
+            Order = 0,
+            ShowPreviewVirtualCard = true,
+        },
+        Review = new HeaderElement
+        {
+            Enabled = true,
+            Header = "Review Payment",
+            Order = 0,
+        },
+        Settings = new PagelinkSetting { Color = "#000000", Language = "en" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paylinkId:** `string` — ID for the payment link.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PaymentPageRequestBodyOut` 
     
 </dd>
 </dl>
@@ -10645,6 +11051,273 @@ await client.PaymentMethodDomain.VerifyPaymentMethodDomainAsync(
 <dd>
 
 **domainId:** `string` — The payment method domain's ID in Payabli.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PayoutSubscription
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">CreatePayoutSubscriptionAsync</a>(RequestPayoutSchedule { ... }) -> WithRawResponseTask&lt;AddPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.CreatePayoutSubscriptionAsync(
+    new RequestPayoutSchedule
+    {
+        Body = new PayoutSubscriptionRequestBody
+        {
+            EntryPoint = "d193cf9a46",
+            PaymentMethod = new AuthorizePaymentMethod
+            {
+                Method = "ach",
+                AchHolder = "Herman Coatings",
+                AchRouting = "021000021",
+                AchAccount = "3453445666",
+                AchAccountType = "checking",
+            },
+            PaymentDetails = new PayoutPaymentDetail
+            {
+                TotalAmount = 500,
+                ServiceFee = 0,
+                Currency = "USD",
+            },
+            VendorData = new RequestOutAuthorizeVendorData { VendorId = 1501 },
+            BillData = new List<BillPayOutDataRequest>()
+            {
+                new BillPayOutDataRequest
+                {
+                    InvoiceNumber = "INV-5001",
+                    NetAmount = "500",
+                    InvoiceDate = new DateOnly(2025, 8, 1),
+                    DueDate = new DateOnly(2025, 8, 15),
+                },
+            },
+            ScheduleDetails = new PayoutScheduleDetail
+            {
+                StartDate = "09/01/2025",
+                EndDate = "09/01/2026",
+                Frequency = Frequency.Monthly,
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `RequestPayoutSchedule` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">GetPayoutSubscriptionAsync</a>(id) -> WithRawResponseTask&lt;GetPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.GetPayoutSubscriptionAsync(42);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `long` — The payout subscription ID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">UpdatePayoutSubscriptionAsync</a>(id, UpdatePayoutSubscriptionBody { ... }) -> WithRawResponseTask&lt;UpdatePayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.UpdatePayoutSubscriptionAsync(
+    42,
+    new UpdatePayoutSubscriptionBody { SetPause = true }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `long` — The payout subscription ID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdatePayoutSubscriptionBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayoutSubscription.<a href="/src/PayabliApi/PayoutSubscription/PayoutSubscriptionClient.cs">DeletePayoutSubscriptionAsync</a>(id) -> WithRawResponseTask&lt;DeletePayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayoutSubscription.DeletePayoutSubscriptionAsync(42);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `long` — The payout subscription ID.
     
 </dd>
 </dl>
@@ -12677,6 +13350,146 @@ await client.Query.ListSubscriptionsOrgAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutSubscriptionsAsync</a>(entry, ListPayoutSubscriptionsRequest { ... }) -> WithRawResponseTask&lt;QueryPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of payout subscriptions for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListPayoutSubscriptionsAsync(
+    "8cfec329267",
+    new ListPayoutSubscriptionsRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(field_name)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListPayoutSubscriptionsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListPayoutSubscriptionsOrgAsync</a>(orgId, ListPayoutSubscriptionsOrgRequest { ... }) -> WithRawResponseTask&lt;QueryPayoutSubscriptionResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of payout subscriptions for a single org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListPayoutSubscriptionsOrgAsync(
+    123,
+    new ListPayoutSubscriptionsOrgRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(field_name)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `int` — The numeric identifier for organization, assigned by Payabli.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListPayoutSubscriptionsOrgRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListTransactionsAsync</a>(entry, ListTransactionsRequest { ... }) -> WithRawResponseTask&lt;QueryResponseTransactions&gt;</code></summary>
 <dl>
 <dd>
@@ -12692,9 +13505,8 @@ await client.Query.ListSubscriptionsOrgAsync(
 Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
-``` curl --request GET \
-  --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-  --header 'requestToken: <api-key>'
+``` curl -X GET https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
+  -H 'requestToken: <API TOKEN>'
 
   ```
 </dd>
@@ -12776,9 +13588,8 @@ By default, this endpoint returns only transactions from the last 60 days. To qu
 For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024. 
 
 ```
-curl --request GET \
-  --url https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-  --header 'requestToken: <api-key>'
+curl -X GET "https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59"\
+  -H 'requestToken: <API TOKEN>'
 
   ```
 </dd>
@@ -14604,6 +15415,8 @@ await client.TokenStorage.AddMethodAsync(
             CustomerData = new PayorDataRequest { CustomerId = 4440 },
             EntryPoint = "f743aed24a",
             FallbackAuth = true,
+            FallbackAuthAmount = 100,
+            MethodDescription = "Primary Visa card",
             PaymentMethod = new TokenizeCard
             {
                 Cardcvv = "123",
@@ -14613,6 +15426,7 @@ await client.TokenStorage.AddMethodAsync(
                 Cardzip = "12345",
                 Method = "card",
             },
+            Source = "api",
         },
     }
 );
@@ -16029,3 +16843,4 @@ await client.Wallet.ConfigureGooglePayPaypointAsync(
 </dd>
 </dl>
 </details>
+

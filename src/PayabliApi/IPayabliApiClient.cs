@@ -9,6 +9,7 @@ public partial interface IPayabliApiClient
     public ICloudClient Cloud { get; }
     public ICustomerClient Customer { get; }
     public IExportClient Export { get; }
+    public IGhostCardClient GhostCard { get; }
     public IHostedPaymentPagesClient HostedPaymentPages { get; }
     public IImportClient Import { get; }
     public IInvoiceClient Invoice { get; }
@@ -21,6 +22,7 @@ public partial interface IPayabliApiClient
     public IOrganizationClient Organization { get; }
     public IPaymentLinkClient PaymentLink { get; }
     public IPaymentMethodDomainClient PaymentMethodDomain { get; }
+    public IPayoutSubscriptionClient PayoutSubscription { get; }
     public IPaypointClient Paypoint { get; }
     public IQueryClient Query { get; }
     public IStatisticClient Statistic { get; }

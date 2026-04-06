@@ -1,9 +1,12 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<NotificationReportRequestContentReportName>))]
+[JsonConverter(
+    typeof(NotificationReportRequestContentReportName.NotificationReportRequestContentReportNameSerializer)
+)]
 [Serializable]
 public readonly record struct NotificationReportRequestContentReportName : IStringEnum
 {
@@ -69,6 +72,56 @@ public readonly record struct NotificationReportRequestContentReportName : IStri
 
     public static explicit operator NotificationReportRequestContentReportName(string value) =>
         new(value);
+
+    internal class NotificationReportRequestContentReportNameSerializer
+        : JsonConverter<NotificationReportRequestContentReportName>
+    {
+        public override NotificationReportRequestContentReportName Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new NotificationReportRequestContentReportName(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            NotificationReportRequestContentReportName value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override NotificationReportRequestContentReportName ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new NotificationReportRequestContentReportName(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NotificationReportRequestContentReportName value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -79,6 +79,12 @@ public record PaypointData : IJsonOnDeserialized
 
     [JsonPropertyName("zip")]
     public string? Zip { get; set; }
+
+    /// <summary>
+    /// Configuration for billing statement email recipients and sender address. `null` if not configured.
+    /// </summary>
+    [JsonPropertyName("statementEmail")]
+    public StatementEmailConfig? StatementEmail { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

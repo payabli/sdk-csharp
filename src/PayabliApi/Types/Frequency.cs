@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<Frequency>))]
+[JsonConverter(typeof(Frequency.FrequencySerializer))]
 [Serializable]
 public readonly record struct Frequency : IStringEnum
 {
@@ -59,6 +60,55 @@ public readonly record struct Frequency : IStringEnum
     public static explicit operator string(Frequency value) => value.Value;
 
     public static explicit operator Frequency(string value) => new(value);
+
+    internal class FrequencySerializer : JsonConverter<Frequency>
+    {
+        public override Frequency Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Frequency(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            Frequency value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override Frequency ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new Frequency(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            Frequency value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

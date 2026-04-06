@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -11,6 +11,9 @@ public record PayabliCredentials : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// The identifier for the payment connector, matching the `accountId` of the linked bank account.
+    /// </summary>
     [JsonPropertyName("accountId")]
     public string? AccountId { get; set; }
 
@@ -32,14 +35,29 @@ public record PayabliCredentials : IJsonOnDeserialized
     [JsonPropertyName("minticket")]
     public double? Minticket { get; set; }
 
+    /// <summary>
+    /// The payment mode supported by this service. `0` for one-time payments, `1` for recurring payments, `2` for both.
+    /// </summary>
     [JsonPropertyName("mode")]
     public int? Mode { get; set; }
 
     [JsonPropertyName("referenceId")]
     public long? ReferenceId { get; set; }
 
+    /// <summary>
+    /// The payment service that this credential applies to. A paypoint can support multiple services, each represented by its own credential object in the array. Possible values are `card` (credit/debit card), `ach` (ACH bank transfer), `check` (paper check), `vcard` (virtual card), `cloud` (card-present), `cash`, `managed` (managed payment service), and `wallet`.
+    /// </summary>
     [JsonPropertyName("service")]
     public string? Service { get; set; }
+
+    [JsonPropertyName("greaterValueAllowed")]
+    public bool? GreaterValueAllowed { get; set; }
+
+    [JsonPropertyName("absorbDifference")]
+    public bool? AbsorbDifference { get; set; }
+
+    [JsonPropertyName("allowOverride")]
+    public bool? AllowOverride { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

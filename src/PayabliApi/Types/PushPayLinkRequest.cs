@@ -1,9 +1,9 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -67,7 +67,7 @@ public record PushPayLinkRequest
     public PayabliApi.PushPayLinkRequestEmail AsEmail() =>
         IsEmail
             ? (PayabliApi.PushPayLinkRequestEmail)Value!
-            : throw new System.Exception("PushPayLinkRequest.Channel is not 'email'");
+            : throw new global::System.Exception("PushPayLinkRequest.Channel is not 'email'");
 
     /// <summary>
     /// Returns the value as a <see cref="PayabliApi.PushPayLinkRequestSms"/> if <see cref="Channel"/> is 'sms', otherwise throws an exception.
@@ -76,7 +76,7 @@ public record PushPayLinkRequest
     public PayabliApi.PushPayLinkRequestSms AsSms() =>
         IsSms
             ? (PayabliApi.PushPayLinkRequestSms)Value!
-            : throw new System.Exception("PushPayLinkRequest.Channel is not 'sms'");
+            : throw new global::System.Exception("PushPayLinkRequest.Channel is not 'sms'");
 
     public T Match<T>(
         Func<PayabliApi.PushPayLinkRequestEmail, T> onEmail,
@@ -150,12 +150,12 @@ public record PushPayLinkRequest
     [Serializable]
     internal sealed class JsonConverter : JsonConverter<PushPayLinkRequest>
     {
-        public override bool CanConvert(System.Type typeToConvert) =>
+        public override bool CanConvert(global::System.Type typeToConvert) =>
             typeof(PushPayLinkRequest).IsAssignableFrom(typeToConvert);
 
         public override PushPayLinkRequest Read(
             ref Utf8JsonReader reader,
-            System.Type typeToConvert,
+            global::System.Type typeToConvert,
             JsonSerializerOptions options
         )
         {
@@ -180,13 +180,24 @@ public record PushPayLinkRequest
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'channel' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("channel");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
-                "email" => json.Deserialize<PayabliApi.PushPayLinkRequestEmail?>(options)
-                    ?? throw new JsonException(
-                        "Failed to deserialize PayabliApi.PushPayLinkRequestEmail"
-                    ),
-                "sms" => json.Deserialize<PayabliApi.PushPayLinkRequestSms?>(options)
+                "email" =>
+                    jsonWithoutDiscriminator.Deserialize<PayabliApi.PushPayLinkRequestEmail?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize PayabliApi.PushPayLinkRequestEmail"
+                        ),
+                "sms" => jsonWithoutDiscriminator.Deserialize<PayabliApi.PushPayLinkRequestSms?>(
+                    options
+                )
                     ?? throw new JsonException(
                         "Failed to deserialize PayabliApi.PushPayLinkRequestSms"
                     ),
@@ -210,6 +221,27 @@ public record PushPayLinkRequest
                 } ?? new JsonObject();
             json["channel"] = value.Channel;
             json.WriteTo(writer, options);
+        }
+
+        public override PushPayLinkRequest ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new PushPayLinkRequest(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PushPayLinkRequest value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Channel);
         }
     }
 

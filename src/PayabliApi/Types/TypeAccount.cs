@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<TypeAccount>))]
+[JsonConverter(typeof(TypeAccount.TypeAccountSerializer))]
 [Serializable]
 public readonly record struct TypeAccount : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct TypeAccount : IStringEnum
     public static explicit operator string(TypeAccount value) => value.Value;
 
     public static explicit operator TypeAccount(string value) => new(value);
+
+    internal class TypeAccountSerializer : JsonConverter<TypeAccount>
+    {
+        public override TypeAccount Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new TypeAccount(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TypeAccount value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override TypeAccount ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new TypeAccount(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            TypeAccount value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

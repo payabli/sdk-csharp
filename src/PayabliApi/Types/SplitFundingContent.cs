@@ -1,5 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
@@ -18,7 +18,7 @@ public record SplitFundingContent : IJsonOnDeserialized
     public string? AccountId { get; set; }
 
     /// <summary>
-    /// Amount from the transaction to sent to this recipient.
+    /// Amount from the transaction to send to this recipient.
     /// </summary>
     [JsonPropertyName("amount")]
     public double? Amount { get; set; }

@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
-[JsonConverter(typeof(StringEnumSerializer<TransactionDetailRecordMethod>))]
+[JsonConverter(typeof(TransactionDetailRecordMethod.TransactionDetailRecordMethodSerializer))]
 [Serializable]
 public readonly record struct TransactionDetailRecordMethod : IStringEnum
 {
@@ -51,6 +52,56 @@ public readonly record struct TransactionDetailRecordMethod : IStringEnum
     public static explicit operator string(TransactionDetailRecordMethod value) => value.Value;
 
     public static explicit operator TransactionDetailRecordMethod(string value) => new(value);
+
+    internal class TransactionDetailRecordMethodSerializer
+        : JsonConverter<TransactionDetailRecordMethod>
+    {
+        public override TransactionDetailRecordMethod Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new TransactionDetailRecordMethod(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TransactionDetailRecordMethod value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override TransactionDetailRecordMethod ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new TransactionDetailRecordMethod(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            TransactionDetailRecordMethod value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

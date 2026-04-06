@@ -1,7 +1,7 @@
 # Payabli C# Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fpayabli%2Fsdk-csharp)
-[![nuget shield](https://img.shields.io/nuget/v/PayabliApi)](https://nuget.org/packages/PayabliApi)
+[![nuget shield](https://img.shields.io/nuget/v/Payabli.SDK)](https://nuget.org/packages/Payabli.SDK)
 
 The Payabli C# library provides convenient access to the Payabli APIs from C#.
 
@@ -12,11 +12,14 @@ The Payabli C# library provides convenient access to the Payabli APIs from C#.
 - [Installation](#installation)
 - [Passing Query Parameters](#passing-query-parameters)
 - [Usage](#usage)
+- [Environments](#environments)
 - [Exception Handling](#exception-handling)
 - [Advanced](#advanced)
   - [Retries](#retries)
   - [Timeouts](#timeouts)
   - [Raw Response](#raw-response)
+  - [Additional Headers](#additional-headers)
+  - [Additional Query Parameters](#additional-query-parameters)
   - [Forward Compatible Enums](#forward-compatible-enums)
 - [Contributing](#contributing)
 - [Reference](#reference)
@@ -32,7 +35,7 @@ This SDK requires:
 ## Installation
 
 ```sh
-dotnet add package PayabliApi
+dotnet add package Payabli.SDK
 ```
 
 ## Passing Query Parameters
@@ -87,6 +90,19 @@ await client.MoneyIn.GetpaidAsync(
         },
     }
 );
+```
+
+## Environments
+
+This SDK allows you to configure different environments for API requests.
+
+```csharp
+using PayabliApi;
+
+var client = new PayabliApiClient(new ClientOptions
+{
+    BaseUrl = PayabliApiEnvironment.Sandbox
+});
 ```
 
 ## Exception Handling
@@ -171,6 +187,38 @@ if (headers.TryGetValue("X-Request-Id", out var requestId))
 var data = await client.MoneyIn.GetpaidAsync(...);
 ```
 
+### Additional Headers
+
+If you would like to send additional headers as part of the request, use the `AdditionalHeaders` request option.
+
+```csharp
+var response = await client.MoneyIn.GetpaidAsync(
+    ...,
+    new RequestOptions {
+        AdditionalHeaders = new Dictionary<string, string?>
+        {
+            { "X-Custom-Header", "custom-value" }
+        }
+    }
+);
+```
+
+### Additional Query Parameters
+
+If you would like to send additional query parameters as part of the request, use the `AdditionalQueryParameters` request option.
+
+```csharp
+var response = await client.MoneyIn.GetpaidAsync(
+    ...,
+    new RequestOptions {
+        AdditionalQueryParameters = new Dictionary<string, string>
+        {
+            { "custom_param", "custom-value" }
+        }
+    }
+);
+```
+
 ### Forward Compatible Enums
 
 This SDK uses forward-compatible enums that can handle unknown values gracefully.
@@ -212,3 +260,4 @@ On the other hand, contributions to the README are always very welcome!
 ## Reference
 
 A full reference for this library is available [here](https://github.com/payabli/sdk-csharp/blob/HEAD/./reference.md).
+
