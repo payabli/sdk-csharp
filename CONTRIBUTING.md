@@ -27,6 +27,7 @@ Please provide the following information in your bug report:
 
 ## Pull requests
 
-Pull requests are welcome; however, Payabli will implement all code changes.
-We will review your pull request, ask any clarifying questions, and close the pull request.
+Pull requests are welcome; however, Payabli implements all code changes.
+We'll review your pull request and close it. 
+If we have any questions about your pull request, we'll ask you in the comments of the pull request.
 
