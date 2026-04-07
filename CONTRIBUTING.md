@@ -13,7 +13,7 @@ Please provide the following information in your feature request:
 - The use case for the feature
 - Code examples that demonstrate how the feature would be used (if applicable) 
 
-## Bug report
+## Bug reports
 
 If you have found a bug in the SDK, please create a new GitHub issue on this repository.
 See the [Issues](../../issues) page and click **New issue** to get started.
