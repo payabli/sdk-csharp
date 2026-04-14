@@ -143,6 +143,48 @@ public record VendorQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("Zip")]
     public string? Zip { get; set; }
 
+    /// <summary>
+    /// URL for the vendor's online payment portal, if known. Populated by the vendor enrichment pipeline.
+    /// </summary>
+    [JsonPropertyName("PaymentPortalUrl")]
+    public string? PaymentPortalUrl { get; set; }
+
+    /// <summary>
+    /// Whether the vendor accepts card payments. Values are `yes`, `no`, or `unable to determine`. Populated by the vendor enrichment pipeline.
+    /// </summary>
+    [JsonPropertyName("CardAccepted")]
+    public string? CardAccepted { get; set; }
+
+    /// <summary>
+    /// Whether the vendor accepts ACH payments. Values are `yes`, `no`, or `unable to determine`. Populated by the vendor enrichment pipeline.
+    /// </summary>
+    [JsonPropertyName("AchAccepted")]
+    public string? AchAccepted { get; set; }
+
+    /// <summary>
+    /// Current enrichment state of the vendor. Values are `not_enriched`, `partially_enriched`, `fully_enriched`, or `fallback_applied`.
+    /// </summary>
+    [JsonPropertyName("EnrichmentStatus")]
+    public string? EnrichmentStatus { get; set; }
+
+    /// <summary>
+    /// Which enrichment method resolved the vendor's payment acceptance info. Values are `invoice_scan`, `web_search`, `vendor_network`, or `manual`.
+    /// </summary>
+    [JsonPropertyName("EnrichedBy")]
+    public string? EnrichedBy { get; set; }
+
+    /// <summary>
+    /// When the vendor was last enriched (UTC).
+    /// </summary>
+    [JsonPropertyName("EnrichedAt")]
+    public DateTime? EnrichedAt { get; set; }
+
+    /// <summary>
+    /// Identifier for the enrichment request that last updated this vendor.
+    /// </summary>
+    [JsonPropertyName("EnrichmentId")]
+    public string? EnrichmentId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

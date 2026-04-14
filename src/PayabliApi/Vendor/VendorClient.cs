@@ -350,6 +350,97 @@ public partial class VendorClient : IVendorClient
         }
     }
 
+    private async Task<WithRawResponse<VendorEnrichResponse>> EnrichVendorAsyncCore(
+        string entry,
+        VendorEnrichRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "Vendor/enrich/{0}",
+                        ValueConvert.ToPathParameterString(entry)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<VendorEnrichResponse>(responseBody)!;
+                return new WithRawResponse<VendorEnrichResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     /// <summary>
     /// Creates a vendor in an entrypoint.
     /// </summary>
@@ -456,7 +547,7 @@ public partial class VendorClient : IVendorClient
     }
 
     /// <summary>
-    /// Retrieves a vendor's details.
+    /// Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
     /// </summary>
     /// <example><code>
     /// await client.Vendor.GetVendorAsync(1);
@@ -469,6 +560,39 @@ public partial class VendorClient : IVendorClient
     {
         return new WithRawResponseTask<VendorQueryRecord>(
             GetVendorAsyncCore(idVendor, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Triggers AI-powered vendor enrichment for an existing vendor. Runs one or more enrichment stages (invoice scan, web search) based on the `scope` parameter. Can automatically apply extracted payment acceptance info and vendor contact information to the vendor record, or return raw results for manual review. Contact Payabli to enable this feature.
+    /// </summary>
+    /// <example><code>
+    /// await client.Vendor.EnrichVendorAsync(
+    ///     "8cfec329267",
+    ///     new VendorEnrichRequest
+    ///     {
+    ///         VendorId = 3890,
+    ///         Scope = new List&lt;string&gt;() { "invoice_scan" },
+    ///         ApplyEnrichmentData = false,
+    ///         FallbackMethod = "check",
+    ///         InvoiceFile = new FileContent
+    ///         {
+    ///             Ftype = FileContentFtype.Pdf,
+    ///             Filename = "invoice-2026-001.pdf",
+    ///             FContent = "&lt;base64-encoded-pdf&gt;",
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<VendorEnrichResponse> EnrichVendorAsync(
+        string entry,
+        VendorEnrichRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<VendorEnrichResponse>(
+            EnrichVendorAsyncCore(entry, request, options, cancellationToken)
         );
     }
 }

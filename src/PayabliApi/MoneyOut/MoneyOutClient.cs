@@ -1090,7 +1090,7 @@ public partial class MoneyOutClient : IMoneyOutClient
     }
 
     /// <summary>
-    /// Authorizes transaction for payout. Authorized transactions aren't flagged for settlement until captured. Use `referenceId` returned in the response to capture the transaction.
+    /// Authorizes transaction for payout.  If you don't pass the `autoCapture` field with a value of `true`, authorized transactions aren't flagged for settlement until captured.  Use `referenceId` returned in the response to capture the transaction.
     /// </summary>
     /// <example><code>
     /// await client.MoneyOut.AuthorizeOutAsync(
@@ -1099,6 +1099,7 @@ public partial class MoneyOutClient : IMoneyOutClient
     ///         Body = new AuthorizePayoutBody
     ///         {
     ///             EntryPoint = "48acde49",
+    ///             AutoCapture = true,
     ///             InvoiceData = new List&lt;RequestOutAuthorizeInvoiceData&gt;()
     ///             {
     ///                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
@@ -1200,7 +1201,7 @@ public partial class MoneyOutClient : IMoneyOutClient
     }
 
     /// <summary>
-    /// Captures a single authorized payout transaction by ID.
+    /// Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`,  you don't need to call this endpoint to capture the transaction for processing.
     /// </summary>
     /// <example><code>
     /// await client.MoneyOut.CaptureOutAsync("129-219", new CaptureOutRequest());

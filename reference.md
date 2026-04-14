@@ -7733,7 +7733,7 @@ await client.MoneyIn.Voidv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dl>
 <dd>
 
-Authorizes transaction for payout. Authorized transactions aren't flagged for settlement until captured. Use `referenceId` returned in the response to capture the transaction. 
+Authorizes transaction for payout.  If you don't pass the `autoCapture` field with a value of `true`, authorized transactions aren't flagged for settlement until captured.  Use `referenceId` returned in the response to capture the transaction. 
 </dd>
 </dl>
 </dd>
@@ -7754,6 +7754,7 @@ await client.MoneyOut.AuthorizeOutAsync(
         Body = new AuthorizePayoutBody
         {
             EntryPoint = "48acde49",
+            AutoCapture = true,
             InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
             {
                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
@@ -8028,7 +8029,7 @@ await client.MoneyOut.CaptureAllOutAsync(
 <dl>
 <dd>
 
-Captures a single authorized payout transaction by ID.
+Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`,  you don't need to call this endpoint to capture the transaction for processing.
 </dd>
 </dl>
 </dd>
@@ -16570,7 +16571,7 @@ await client.Vendor.EditVendorAsync(1, new VendorData { Name1 = "Theodore's Jani
 <dl>
 <dd>
 
-Retrieves a vendor's details.
+Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
 </dd>
 </dl>
 </dd>
@@ -16601,6 +16602,83 @@ await client.Vendor.GetVendorAsync(1);
 <dd>
 
 **idVendor:** `int` — Vendor ID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">EnrichVendorAsync</a>(entry, VendorEnrichRequest { ... }) -> WithRawResponseTask&lt;VendorEnrichResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Triggers AI-powered vendor enrichment for an existing vendor. Runs one or more enrichment stages (invoice scan, web search) based on the `scope` parameter. Can automatically apply extracted payment acceptance info and vendor contact information to the vendor record, or return raw results for manual review. Contact Payabli to enable this feature.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Vendor.EnrichVendorAsync(
+    "8cfec329267",
+    new VendorEnrichRequest
+    {
+        VendorId = 3890,
+        Scope = new List<string>() { "invoice_scan" },
+        ApplyEnrichmentData = false,
+        FallbackMethod = "check",
+        InvoiceFile = new FileContent
+        {
+            Ftype = FileContentFtype.Pdf,
+            Filename = "invoice-2026-001.pdf",
+            FContent = "<base64-encoded-pdf>",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` — Entrypoint identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `VendorEnrichRequest` 
     
 </dd>
 </dl>

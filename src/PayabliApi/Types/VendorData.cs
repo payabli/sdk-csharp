@@ -146,6 +146,24 @@ public record VendorData : IJsonOnDeserialized
     [JsonPropertyName("zip")]
     public string? Zip { get; set; }
 
+    /// <summary>
+    /// Identifier for the vendor's default stored payment method.
+    /// </summary>
+    [JsonPropertyName("defaultMethodId")]
+    public string? DefaultMethodId { get; set; }
+
+    /// <summary>
+    /// PDF invoice attachment for AI-powered vendor enrichment.
+    /// When this feature is enabled and you include an attachment, the invoice is scanned and extracted vendor information is merged into the request.
+    /// Fields in the request body take precedence over extracted data.
+    /// If the scan fails, vendor creation proceeds with the original request data.
+    ///
+    /// See the [vendor enrichment guide](/guides/pay-out-vendor-enrichment-overview) for details.
+    /// Contact Payabli to enable this feature.
+    /// </summary>
+    [JsonPropertyName("attachment")]
+    public FileContent? Attachment { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

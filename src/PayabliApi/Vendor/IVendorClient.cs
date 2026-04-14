@@ -32,10 +32,20 @@ public partial interface IVendorClient
     );
 
     /// <summary>
-    /// Retrieves a vendor's details.
+    /// Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
     /// </summary>
     WithRawResponseTask<VendorQueryRecord> GetVendorAsync(
         int idVendor,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Triggers AI-powered vendor enrichment for an existing vendor. Runs one or more enrichment stages (invoice scan, web search) based on the `scope` parameter. Can automatically apply extracted payment acceptance info and vendor contact information to the vendor record, or return raw results for manual review. Contact Payabli to enable this feature.
+    /// </summary>
+    WithRawResponseTask<VendorEnrichResponse> EnrichVendorAsync(
+        string entry,
+        VendorEnrichRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

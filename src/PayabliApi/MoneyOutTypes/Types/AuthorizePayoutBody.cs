@@ -54,6 +54,9 @@ public record AuthorizePayoutBody : IJsonOnDeserialized
     [JsonPropertyName("subscriptionId")]
     public long? SubscriptionId { get; set; }
 
+    [JsonPropertyName("autoCapture")]
+    public bool? AutoCapture { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
