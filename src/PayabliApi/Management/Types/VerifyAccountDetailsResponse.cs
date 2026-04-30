@@ -4,30 +4,24 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Response wrapper for the bank account verification details endpoint.
+/// </summary>
 [Serializable]
-public record TemplateElement : IJsonOnDeserialized
+public record VerifyAccountDetailsResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("posCol")]
-    public int? PosCol { get; set; }
+    [JsonPropertyName("isSuccess")]
+    public bool? IsSuccess { get; set; }
 
-    [JsonPropertyName("posRow")]
-    public int? PosRow { get; set; }
+    [JsonPropertyName("responseText")]
+    public required string ResponseText { get; set; }
 
-    [JsonPropertyName("readOnly")]
-    public bool? ReadOnly { get; set; }
-
-    [JsonPropertyName("value")]
-    public string? Value { get; set; }
-
-    [JsonPropertyName("visible")]
-    public bool? Visible { get; set; }
-
-    [JsonPropertyName("required")]
-    public bool? Required { get; set; }
+    [JsonPropertyName("responseData")]
+    public BankAccountVerificationDetailsResponse? ResponseData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

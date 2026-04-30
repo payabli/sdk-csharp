@@ -1993,6 +1993,8 @@ await client.Cloud.HistoryDeviceAsync("WXGDWB", "8cfec329267");
 <dl>
 <dd>
 
+Use [List devices by paypoint](/developers/api-reference/cloud/get-list-of-devices-for-a-paypoint) instead, which supports filters, sorting, and pagination.
+
 Get a list of cloud devices registered to an entrypoint.
 </dd>
 </dl>
@@ -6418,6 +6420,84 @@ await client.LineItem.UpdateItemAsync(700, new LineItem { ItemCost = 12.45, Item
 </dl>
 </details>
 
+## Management
+<details><summary><code>client.Management.<a href="/src/PayabliApi/Management/ManagementClient.cs">VerifyAccountDetailsAsync</a>(entry, VerifyAccountDetailsRequest { ... }) -> WithRawResponseTask&lt;VerifyAccountDetailsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Verifies a bank account and returns detailed verification results from the verification network, including bank name, account status, and response codes. Unlike a pass/fail verification, this endpoint returns granular data to support decision-making and troubleshooting.
+
+When bank authentication is enabled for the paypoint's organization, the endpoint performs an identity verification check on the account holder. Otherwise, it performs an account existence check. When bank authentication is enabled, the `accountHolderType` and `holderName` fields are required.
+
+Requires `inboundpayments_create` or `outboundpayments_create` permission.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Management.VerifyAccountDetailsAsync(
+    "entry752",
+    new VerifyAccountDetailsRequest
+    {
+        RoutingNumber = "122105278",
+        AccountNumber = "0000000016",
+        AccountType = "Checking",
+        Country = "US",
+        AccountHolderType = "personal",
+        HolderName = "Jane Doe",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` — The paypoint's entry name identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `VerifyAccountDetailsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## MoneyIn
 <details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">AuthorizeAsync</a>(RequestPaymentAuthorize { ... }) -> WithRawResponseTask&lt;AuthResponse&gt;</code></summary>
 <dl>
@@ -6860,7 +6940,7 @@ await client.MoneyIn.GetpaidAsync(
 <dl>
 <dd>
 
-A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not.
+A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the v1 API. For v2 transactions, check the transaction's settlement status and call v2 void or v2 refund based on the result.
 </dd>
 </dl>
 </dd>
@@ -12503,6 +12583,146 @@ await client.Query.ListCustomersOrgAsync(
 <dd>
 
 **request:** `ListCustomersOrgRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListDevicesAsync</a>(entry, ListDevicesRequest { ... }) -> WithRawResponseTask&lt;QueryDeviceResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListDevicesAsync(
+    "8cfec329267",
+    new ListDevicesRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(createdAt)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListDevicesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListDevicesOrgAsync</a>(orgId, ListDevicesOrgRequest { ... }) -> WithRawResponseTask&lt;QueryDeviceResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListDevicesOrgAsync(
+    100,
+    new ListDevicesOrgRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(createdAt)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `int` — The numeric identifier for organization, assigned by Payabli.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListDevicesOrgRequest` 
     
 </dd>
 </dl>

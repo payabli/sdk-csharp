@@ -39,7 +39,7 @@ public record TransactionDetailPaymentData : IJsonOnDeserialized
     public string? Sequence { get; set; }
 
     [JsonPropertyName("orderDescription")]
-    public required string OrderDescription { get; set; }
+    public string? OrderDescription { get; set; }
 
     [JsonPropertyName("accountId")]
     public string? AccountId { get; set; }

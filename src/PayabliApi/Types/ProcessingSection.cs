@@ -56,6 +56,21 @@ public record ProcessingSection : IJsonOnDeserialized
     [JsonPropertyName("whenRefunded")]
     public TemplateElement? WhenRefunded { get; set; }
 
+    [JsonPropertyName("CombinedBatches")]
+    public TemplateElement? CombinedBatches { get; set; }
+
+    [JsonPropertyName("payoutAverageMonthlyVolume")]
+    public TemplateElement? PayoutAverageMonthlyVolume { get; set; }
+
+    [JsonPropertyName("payoutHighTicketAmount")]
+    public TemplateElement? PayoutHighTicketAmount { get; set; }
+
+    [JsonPropertyName("payoutAverageTicketAmount")]
+    public TemplateElement? PayoutAverageTicketAmount { get; set; }
+
+    [JsonPropertyName("payoutCreditLimit")]
+    public TemplateElement? PayoutCreditLimit { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

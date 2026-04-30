@@ -14,6 +14,7 @@ public partial interface IPayabliApiClient
     public IImportClient Import { get; }
     public IInvoiceClient Invoice { get; }
     public ILineItemClient LineItem { get; }
+    public IManagementClient Management { get; }
     public IMoneyInClient MoneyIn { get; }
     public IMoneyOutClient MoneyOut { get; }
     public INotificationClient Notification { get; }

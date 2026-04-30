@@ -33,7 +33,8 @@ public record BinData : IJsonOnDeserialized
     public string? BinCardBrand { get; set; }
 
     /// <summary>
-    /// The type of card: Credit or Debit.
+    /// The type of card: `Credit` or `Debit`. Case can vary between
+    /// processors, so compare this value case-insensitively.
     /// </summary>
     [JsonPropertyName("binCardType")]
     public string? BinCardType { get; set; }

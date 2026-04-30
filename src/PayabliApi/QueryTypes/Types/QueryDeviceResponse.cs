@@ -4,30 +4,21 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Response body for queries about cloud devices.
+/// </summary>
 [Serializable]
-public record TemplateElement : IJsonOnDeserialized
+public record QueryDeviceResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("posCol")]
-    public int? PosCol { get; set; }
+    [JsonPropertyName("Summary")]
+    public required QuerySummary Summary { get; set; }
 
-    [JsonPropertyName("posRow")]
-    public int? PosRow { get; set; }
-
-    [JsonPropertyName("readOnly")]
-    public bool? ReadOnly { get; set; }
-
-    [JsonPropertyName("value")]
-    public string? Value { get; set; }
-
-    [JsonPropertyName("visible")]
-    public bool? Visible { get; set; }
-
-    [JsonPropertyName("required")]
-    public bool? Required { get; set; }
+    [JsonPropertyName("Records")]
+    public IEnumerable<DeviceQueryRecord> Records { get; set; } = new List<DeviceQueryRecord>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

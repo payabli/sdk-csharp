@@ -15,7 +15,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/0.0.306" },
+                { "User-Agent", "Payabli.SDK/0.0.307" },
             }
         );
         foreach (var header in platformHeaders)
@@ -46,6 +46,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Import = new ImportClient(_client);
         Invoice = new InvoiceClient(_client);
         LineItem = new LineItemClient(_client);
+        Management = new ManagementClient(_client);
         MoneyIn = new MoneyInClient(_client);
         MoneyOut = new MoneyOutClient(_client);
         Notification = new NotificationClient(_client);
@@ -89,6 +90,8 @@ public partial class PayabliApiClient : IPayabliApiClient
     public IInvoiceClient Invoice { get; }
 
     public ILineItemClient LineItem { get; }
+
+    public IManagementClient Management { get; }
 
     public IMoneyInClient MoneyIn { get; }
 

@@ -17,6 +17,9 @@ public record VCardRecord : IJsonOnDeserialized
     [JsonPropertyName("vcardSent")]
     public bool? VcardSent { get; set; }
 
+    [JsonPropertyName("cardType")]
+    public int? CardType { get; set; }
+
     [JsonPropertyName("cardToken")]
     public string? CardToken { get; set; }
 

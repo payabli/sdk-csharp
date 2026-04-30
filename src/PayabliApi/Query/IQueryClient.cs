@@ -104,6 +104,26 @@ public partial interface IQueryClient
     );
 
     /// <summary>
+    /// Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+    /// </summary>
+    WithRawResponseTask<QueryDeviceResponse> ListDevicesAsync(
+        string entry,
+        ListDevicesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+    /// </summary>
+    WithRawResponseTask<QueryDeviceResponse> ListDevicesOrgAsync(
+        int orgId,
+        ListDevicesOrgRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Returns a list of all reports generated in the last 60 days for a single entrypoint. Use filters to limit results.
     /// </summary>
     WithRawResponseTask<QueryResponseNotificationReports> ListNotificationReportsAsync(
