@@ -5,10 +5,10 @@
   "generatorConfig": {
     "generate-mock-server-tests": false
   },
-  "originGitCommit": "a59c2b2d6ccbf2e800fba96cc3ea9476df69b7b0",
+  "originGitCommit": "0f665390a3f1683396943781707e30c613db2f3d",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "0.0.307",
+  "requestedVersion": "0.0.308",
   "ciProvider": "github",
-  "sdkVersion": "0.0.307"
+  "sdkVersion": "0.0.308"
 }

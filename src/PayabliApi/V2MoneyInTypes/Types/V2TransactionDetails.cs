@@ -135,7 +135,7 @@ public record V2TransactionDetails : IJsonOnDeserialized
     public required long EntrypageId { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
-    public required string ExternalPaypointId { get; set; }
+    public string? ExternalPaypointId { get; set; }
 
     /// <summary>
     /// Indicates if ACH account was validated in real-time.

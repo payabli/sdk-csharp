@@ -24,52 +24,52 @@ public record TransactionDetailCustomer : IJsonOnDeserialized
     public required string LastName { get; set; }
 
     [JsonPropertyName("companyName")]
-    public required string CompanyName { get; set; }
+    public string? CompanyName { get; set; }
 
     [JsonPropertyName("billingAddress1")]
-    public required string BillingAddress1 { get; set; }
+    public string? BillingAddress1 { get; set; }
 
     [JsonPropertyName("billingAddress2")]
-    public required string BillingAddress2 { get; set; }
+    public string? BillingAddress2 { get; set; }
 
     [JsonPropertyName("billingCity")]
-    public required string BillingCity { get; set; }
+    public string? BillingCity { get; set; }
 
     [JsonPropertyName("billingState")]
-    public required string BillingState { get; set; }
+    public string? BillingState { get; set; }
 
     [JsonPropertyName("billingZip")]
-    public required string BillingZip { get; set; }
+    public string? BillingZip { get; set; }
 
     [JsonPropertyName("billingCountry")]
-    public required string BillingCountry { get; set; }
+    public string? BillingCountry { get; set; }
 
     [JsonPropertyName("billingPhone")]
-    public required string BillingPhone { get; set; }
+    public string? BillingPhone { get; set; }
 
     [JsonPropertyName("billingEmail")]
-    public required string BillingEmail { get; set; }
+    public string? BillingEmail { get; set; }
 
     [JsonPropertyName("customerNumber")]
-    public required string CustomerNumber { get; set; }
+    public string? CustomerNumber { get; set; }
 
     [JsonPropertyName("shippingAddress1")]
-    public required string ShippingAddress1 { get; set; }
+    public string? ShippingAddress1 { get; set; }
 
     [JsonPropertyName("shippingAddress2")]
-    public required string ShippingAddress2 { get; set; }
+    public string? ShippingAddress2 { get; set; }
 
     [JsonPropertyName("shippingCity")]
-    public required string ShippingCity { get; set; }
+    public string? ShippingCity { get; set; }
 
     [JsonPropertyName("shippingState")]
-    public required string ShippingState { get; set; }
+    public string? ShippingState { get; set; }
 
     [JsonPropertyName("shippingZip")]
-    public required string ShippingZip { get; set; }
+    public string? ShippingZip { get; set; }
 
     [JsonPropertyName("shippingCountry")]
-    public required string ShippingCountry { get; set; }
+    public string? ShippingCountry { get; set; }
 
     [JsonPropertyName("customerId")]
     public required long CustomerId { get; set; }
