@@ -59,7 +59,7 @@ public record TransactionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("GatewayTransId")]
     public string? GatewayTransId { get; set; }
 
-    [JsonPropertyName("InvoiceData")]
+    [JsonPropertyName("invoiceData")]
     public BillData? InvoiceData { get; set; }
 
     /// <summary>

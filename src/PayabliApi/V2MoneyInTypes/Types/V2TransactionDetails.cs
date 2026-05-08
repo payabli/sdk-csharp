@@ -191,7 +191,7 @@ public record V2TransactionDetails : IJsonOnDeserialized
     public required string AchSecCode { get; set; }
 
     [JsonPropertyName("achHolderType")]
-    public required AchHolderType AchHolderType { get; set; }
+    public AchHolderType? AchHolderType { get; set; }
 
     [JsonPropertyName("ipAddress")]
     public required string IpAddress { get; set; }

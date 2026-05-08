@@ -1608,6 +1608,123 @@ await client.Boarding.UpdateApplicationAsync(352, new ApplicationData());
 </dl>
 </details>
 
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">AddServiceToPaypointFromAppAsync</a>(CreateApplicationFromPaypointRequest { ... }) -> WithRawResponseTask&lt;CreateApplicationFromPaypointResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new boarding application linked to an existing paypoint as part of the multi-product boarding flow. Use this endpoint to add new services to a paypoint without creating a duplicate record. The system copies eligible business, contact, banking, and address data from the paypoint to the new application based on 1:1 field matching. The merchant only needs to provide fields that are specific to the new service. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Boarding.AddServiceToPaypointFromAppAsync(
+    new CreateApplicationFromPaypointRequest
+    {
+        PaypointId = 123,
+        TemplateId = 456,
+        RecipientEmail = "merchant@example.com",
+        ReturnBoardingAccessInfoInLine = true,
+        OnCreate = new List<string>() { "submitApplication" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateApplicationFromPaypointRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">GetApplicationsByPaypointIdAsync</a>(paypointId) -> WithRawResponseTask&lt;QueryBoardingAppsListResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all boarding applications associated with a specific paypoint, including those created through the multi-product boarding flow. Use this endpoint to track underwriting progress across multiple service additions or to build reporting views. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Boarding.GetApplicationsByPaypointIdAsync(12345);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointId:** `long` — ID of the paypoint to retrieve applications for.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ChargeBacks
 <details><summary><code>client.ChargeBacks.<a href="/src/PayabliApi/ChargeBacks/ChargeBacksClient.cs">AddResponseAsync</a>(id, ResponseChargeBack { ... }) -> WithRawResponseTask&lt;AddResponseResponse&gt;</code></summary>
 <dl>
@@ -7813,7 +7930,11 @@ await client.MoneyIn.Voidv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dl>
 <dd>
 
-Authorizes transaction for payout.  If you don't pass the `autoCapture` field with a value of `true`, authorized transactions aren't flagged for settlement until captured.  Use `referenceId` returned in the response to capture the transaction. 
+Authorizes a transaction for payout.
+
+If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
+
+When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
 </dd>
 </dl>
 </dd>

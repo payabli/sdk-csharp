@@ -50,7 +50,7 @@ public record SubscriptionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("IdSub")]
     public long? IdSub { get; set; }
 
-    [JsonPropertyName("InvoiceData")]
+    [JsonPropertyName("invoiceData")]
     public BillData? InvoiceData { get; set; }
 
     /// <summary>

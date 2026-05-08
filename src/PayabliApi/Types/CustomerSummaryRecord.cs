@@ -14,25 +14,25 @@ public record CustomerSummaryRecord : IJsonOnDeserialized
     /// <summary>
     /// Number total of transactions or payments
     /// </summary>
-    [JsonPropertyName("numberofTransactions")]
+    [JsonPropertyName("NumberofTransactions")]
     public int? NumberofTransactions { get; set; }
 
     /// <summary>
     /// List of more recent 5 transactions belonging to the customer
     /// </summary>
-    [JsonPropertyName("recentTransactions")]
+    [JsonPropertyName("RecentTransactions")]
     public IEnumerable<TransactionQueryRecords>? RecentTransactions { get; set; }
 
     /// <summary>
     /// Total amount in transactions
     /// </summary>
-    [JsonPropertyName("totalAmountTransactions")]
+    [JsonPropertyName("TotalAmountTransactions")]
     public double? TotalAmountTransactions { get; set; }
 
     /// <summary>
     /// Total net amount in transactions
     /// </summary>
-    [JsonPropertyName("totalNetAmountTransactions")]
+    [JsonPropertyName("TotalNetAmountTransactions")]
     public double? TotalNetAmountTransactions { get; set; }
 
     [JsonIgnore]

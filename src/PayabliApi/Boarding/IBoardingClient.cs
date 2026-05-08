@@ -113,4 +113,22 @@ public partial interface IBoardingClient
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Creates a new boarding application linked to an existing paypoint as part of the multi-product boarding flow. Use this endpoint to add new services to a paypoint without creating a duplicate record. The system copies eligible business, contact, banking, and address data from the paypoint to the new application based on 1:1 field matching. The merchant only needs to provide fields that are specific to the new service. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
+    /// </summary>
+    WithRawResponseTask<CreateApplicationFromPaypointResponse> AddServiceToPaypointFromAppAsync(
+        CreateApplicationFromPaypointRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Returns all boarding applications associated with a specific paypoint, including those created through the multi-product boarding flow. Use this endpoint to track underwriting progress across multiple service additions or to build reporting views. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
+    /// </summary>
+    WithRawResponseTask<QueryBoardingAppsListResponse> GetApplicationsByPaypointIdAsync(
+        long paypointId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
 }
