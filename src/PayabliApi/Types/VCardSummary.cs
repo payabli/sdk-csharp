@@ -24,6 +24,12 @@ public record VCardSummary : IJsonOnDeserialized
     public required double TotalAmount { get; set; }
 
     /// <summary>
+    /// Total net amount for the records.
+    /// </summary>
+    [JsonPropertyName("totalNetAmount")]
+    public double? TotalNetAmount { get; set; }
+
+    /// <summary>
     /// Total number of active vCards.
     /// </summary>
     [JsonPropertyName("totalactive")]
@@ -32,8 +38,8 @@ public record VCardSummary : IJsonOnDeserialized
     /// <summary>
     /// Total amount of active vCards.
     /// </summary>
-    [JsonPropertyName("totalamounteactive")]
-    public required double Totalamounteactive { get; set; }
+    [JsonPropertyName("totalamountactive")]
+    public required double Totalamountactive { get; set; }
 
     /// <summary>
     /// Total balance of active vCards.
@@ -41,8 +47,8 @@ public record VCardSummary : IJsonOnDeserialized
     [JsonPropertyName("totalbalanceactive")]
     public required double Totalbalanceactive { get; set; }
 
-    [JsonPropertyName("pageIdentifier")]
-    public string? PageIdentifier { get; set; }
+    [JsonPropertyName("pageidentifier")]
+    public string? Pageidentifier { get; set; }
 
     [JsonPropertyName("pageSize")]
     public int? PageSize { get; set; }

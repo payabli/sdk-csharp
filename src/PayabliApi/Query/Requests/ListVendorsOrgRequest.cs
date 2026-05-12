@@ -47,6 +47,7 @@ public record ListVendorsOrgRequest
     /// - `ein` (ct, nct, eq, ne)
     /// - `phone` (ct, nct, eq, ne)
     /// - `email` (ct, nct, eq, ne)
+    /// - `remitEmail` (ct, nct, eq, ne)
     /// - `address` (ct, nct, eq, ne)
     /// - `city` (ct, nct, eq, ne)
     /// - `state` (ct, nct, eq, ne)

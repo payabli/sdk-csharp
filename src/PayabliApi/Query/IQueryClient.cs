@@ -413,6 +413,26 @@ public partial interface IQueryClient
     );
 
     /// <summary>
+    /// Retrieve a list of virtual card transactions for an entrypoint. Use filters to limit results.
+    /// </summary>
+    WithRawResponseTask<VCardTransactionQueryResponse> ListVcardsTransactionsAsync(
+        string entry,
+        ListVcardsTransactionsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Retrieve a list of virtual card transactions for an organization. Use filters to limit results.
+    /// </summary>
+    WithRawResponseTask<VCardTransactionQueryResponse> ListVcardsTransactionsOrgAsync(
+        int orgId,
+        ListVcardsTransactionsOrgRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Retrieve a list of vcards (virtual credit cards) issued for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     WithRawResponseTask<VCardQueryResponse> ListVcardsOrgAsync(

@@ -3850,6 +3850,208 @@ public partial class QueryClient : IQueryClient
         }
     }
 
+    private async Task<
+        WithRawResponse<VCardTransactionQueryResponse>
+    > ListVcardsTransactionsAsyncCore(
+        string entry,
+        ListVcardsTransactionsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 4)
+            .Add("fromRecord", request.FromRecord)
+            .Add("limitRecord", request.LimitRecord)
+            .Add("parameters", request.Parameters)
+            .Add("sortBy", request.SortBy)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Query/vcardsTransactions/{0}",
+                        ValueConvert.ToPathParameterString(entry)
+                    ),
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<VCardTransactionQueryResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<VCardTransactionQueryResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<VCardTransactionQueryResponse>
+    > ListVcardsTransactionsOrgAsyncCore(
+        int orgId,
+        ListVcardsTransactionsOrgRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 4)
+            .Add("fromRecord", request.FromRecord)
+            .Add("limitRecord", request.LimitRecord)
+            .Add("parameters", request.Parameters)
+            .Add("sortBy", request.SortBy)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Query/vcardsTransactions/org/{0}",
+                        ValueConvert.ToPathParameterString(orgId)
+                    ),
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<VCardTransactionQueryResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<VCardTransactionQueryResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     private async Task<WithRawResponse<VCardQueryResponse>> ListVcardsOrgAsyncCore(
         int orgId,
         ListVcardsOrgRequest request,
@@ -4931,6 +5133,58 @@ public partial class QueryClient : IQueryClient
     {
         return new WithRawResponseTask<VCardQueryResponse>(
             ListVcardsAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieve a list of virtual card transactions for an entrypoint. Use filters to limit results.
+    /// </summary>
+    /// <example><code>
+    /// await client.Query.ListVcardsTransactionsAsync(
+    ///     "8cfec329267",
+    ///     new ListVcardsTransactionsRequest
+    ///     {
+    ///         FromRecord = 0,
+    ///         LimitRecord = 20,
+    ///         SortBy = "desc(CreatedOn)",
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<VCardTransactionQueryResponse> ListVcardsTransactionsAsync(
+        string entry,
+        ListVcardsTransactionsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<VCardTransactionQueryResponse>(
+            ListVcardsTransactionsAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieve a list of virtual card transactions for an organization. Use filters to limit results.
+    /// </summary>
+    /// <example><code>
+    /// await client.Query.ListVcardsTransactionsOrgAsync(
+    ///     123,
+    ///     new ListVcardsTransactionsOrgRequest
+    ///     {
+    ///         FromRecord = 0,
+    ///         LimitRecord = 20,
+    ///         SortBy = "desc(CreatedOn)",
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<VCardTransactionQueryResponse> ListVcardsTransactionsOrgAsync(
+        int orgId,
+        ListVcardsTransactionsOrgRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<VCardTransactionQueryResponse>(
+            ListVcardsTransactionsOrgAsyncCore(orgId, request, options, cancellationToken)
         );
     }
 

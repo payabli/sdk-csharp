@@ -132,6 +132,18 @@ public record SubscriptionQueryRecords : IJsonOnDeserialized
     public DateTime? StartDate { get; set; }
 
     /// <summary>
+    /// The full stored payment method record linked to the subscription
+    /// and charged on each billing cycle. Returned as `null` for legacy
+    /// subscriptions that don't have a linked stored method.
+    ///
+    /// The shape is the same across payment vehicles (card, ACH, check).
+    /// Only the populated fields differ. For example, `ABA` is populated
+    /// for ACH, while `ExpDate` and `binData` are populated for card.
+    /// </summary>
+    [JsonPropertyName("StoredMethod")]
+    public VendorResponseStoredMethod? StoredMethod { get; set; }
+
+    /// <summary>
     /// Events associated with the subscription.
     /// </summary>
     [JsonPropertyName("SubEvents")]

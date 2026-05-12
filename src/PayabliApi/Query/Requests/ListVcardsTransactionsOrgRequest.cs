@@ -4,11 +4,8 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record ListVcardsOrgRequest
+public record ListVcardsTransactionsOrgRequest
 {
-    [JsonIgnore]
-    public ExportFormat? ExportFormat { get; set; }
-
     /// <summary>
     /// The number of records to skip before starting to collect the result set.
     /// </summary>
@@ -23,6 +20,7 @@ public record ListVcardsOrgRequest
 
     /// <summary>
     /// Collection of field names, conditions, and values used to filter the query.
+    ///
     /// &lt;Info&gt;
     ///   **You must remove `parameters=` from the request before you send it, otherwise Payabli will ignore the filters.**
     ///
@@ -30,21 +28,27 @@ public record ListVcardsOrgRequest
     ///
     ///   For example:
     ///
-    ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?parameters=totalAmount(gt)=1000&limitRecord=20
+    ///   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/org/236?parameters=transactionAmount(gt)=100&limitRecord=20
     ///
     ///   should become:
     ///
-    ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
+    ///   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/org/236?transactionAmount(gt)=100&limitRecord=20
     /// &lt;/Info&gt;
+    ///
     /// List of field names accepted:
     ///
-    ///   - `status` (eq, ne, ct, nct, sw, ew)
-    ///   - `createdAt` (gt, ge, lt, le, eq, ne)
+    ///   - `identifier` (eq, ne, ct, nct)
+    ///   - `transactionType` (eq, ne, ct, nct)
+    ///   - `transactionStatus` (eq, ne, ct, nct, in, nin)
+    ///   - `transactionAmount` (eq, ne, gt, ge, lt, le, ct, nct)
+    ///   - `transactionCreatedOn` (eq, ne, gt, ge, lt, le)
     ///   - `cardToken` (ct, nct, eq, ne)
     ///   - `lastFour` (ct, nct, eq, ne)
     ///   - `expirationDate` (ct, nct, eq, ne)
-    ///   - `payoutId` (eq, ne, gt, ge, lt, le)
-    ///   - `vendorId` (eq, ne, gt, ge, lt, le)
+    ///   - `mcc` (ct, nct, eq, ne)
+    ///   - `payoutId` (gt, lt, eq, ne)
+    ///   - `customerId` (gt, lt, eq, ne)
+    ///   - `vendorId` (gt, lt, eq, ne)
     ///   - `miscData1` (ct, nct, eq, ne)
     ///   - `miscData2` (ct, nct, eq, ne)
     ///   - `currentUses` (gt, ge, lt, le, eq, ne)
@@ -52,10 +56,9 @@ public record ListVcardsOrgRequest
     ///   - `balance` (gt, ge, lt, le, eq, ne)
     ///   - `paypointLegal` (ne, eq, ct, nct)
     ///   - `paypointDba` (ne, eq, ct, nct)
-    ///   - `orgName` (eq, ne, ct, nct, sw, ew)
-    ///   - `externalPaypointId` (ct, nct, eq, ne)
-    ///   - `paypointId` (eq, ne, gt, ge, lt, le)
-    ///   - `cardType` (eq, ne, gt, ge, lt, le)
+    ///   - `orgName` (ne, eq, ct, nct, in, nin)
+    ///   - `externalPaypointID` (ct, nct, eq, ne)
+    ///   - `paypointId` (gt, lt, eq, ne)
     ///
     /// List of comparison accepted - enclosed between parentheses:
     ///
@@ -67,8 +70,6 @@ public record ListVcardsOrgRequest
     ///   - ne =&gt; not equal
     ///   - ct =&gt; contains
     ///   - nct =&gt; not contains
-    ///   - sw =&gt; starts with
-    ///   - ew =&gt; ends with
     ///   - in =&gt; inside array separated by "|"
     ///   - nin =&gt; not inside array separated by "|"
     /// </summary>

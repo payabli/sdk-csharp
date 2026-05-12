@@ -47,6 +47,7 @@ public record ListTransactionsOrgRequest
     /// - `scheduleId` (ne, eq)
     /// - `returnId` (ne, eq)
     /// - `refundId` (ne, eq)
+    /// - `rejectId` (ne, eq)
     /// - `idTrans` (ne, eq)
     /// - `orgId` (ne, eq)
     /// - `paypointId` (ne, eq)

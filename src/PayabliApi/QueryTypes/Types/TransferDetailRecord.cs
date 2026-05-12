@@ -113,6 +113,12 @@ public record TransferDetailRecord : IJsonOnDeserialized
     [JsonPropertyName("splitFundingAmount")]
     public double? SplitFundingAmount { get; set; }
 
+    /// <summary>
+    /// Total amount rejected by card networks or issuing banks after authorization or settling in this transaction
+    /// </summary>
+    [JsonPropertyName("cardRejectedAmount")]
+    public double? CardRejectedAmount { get; set; }
+
     [JsonPropertyName("billingFeesDetails")]
     public IEnumerable<BillingFeeDetail>? BillingFeesDetails { get; set; }
 

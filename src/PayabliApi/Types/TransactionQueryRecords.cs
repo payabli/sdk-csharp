@@ -155,6 +155,9 @@ public record TransactionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("splitFundingInstructions")]
     public IEnumerable<SplitFundingContent>? SplitFundingInstructions { get; set; }
 
+    [JsonPropertyName("splitCount")]
+    public required int SplitCount { get; set; }
+
     /// <summary>
     /// Transaction total amount (including service fee or sub-charge)
     /// </summary>

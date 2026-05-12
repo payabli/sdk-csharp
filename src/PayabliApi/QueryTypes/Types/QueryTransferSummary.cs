@@ -97,6 +97,12 @@ public record QueryTransferSummary : IJsonOnDeserialized
     public double? HeldAmount { get; set; }
 
     /// <summary>
+    /// Total amount rejected by card networks or issuing banks after authorization or settling. This value is the sum of all rejected amounts for transactions in the transfer.
+    /// </summary>
+    [JsonPropertyName("cardRejectedAmount")]
+    public double? CardRejectedAmount { get; set; }
+
+    /// <summary>
     /// Number of records in the response.
     /// </summary>
     [JsonPropertyName("totalRecords")]

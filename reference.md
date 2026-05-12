@@ -14744,6 +14744,146 @@ await client.Query.ListVcardsAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVcardsTransactionsAsync</a>(entry, ListVcardsTransactionsRequest { ... }) -> WithRawResponseTask&lt;VCardTransactionQueryResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of virtual card transactions for an entrypoint. Use filters to limit results.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListVcardsTransactionsAsync(
+    "8cfec329267",
+    new ListVcardsTransactionsRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(CreatedOn)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListVcardsTransactionsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVcardsTransactionsOrgAsync</a>(orgId, ListVcardsTransactionsOrgRequest { ... }) -> WithRawResponseTask&lt;VCardTransactionQueryResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of virtual card transactions for an organization. Use filters to limit results.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Query.ListVcardsTransactionsOrgAsync(
+    123,
+    new ListVcardsTransactionsOrgRequest
+    {
+        FromRecord = 0,
+        LimitRecord = 20,
+        SortBy = "desc(CreatedOn)",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**orgId:** `int` — The numeric identifier for organization, assigned by Payabli.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListVcardsTransactionsOrgRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Query.<a href="/src/PayabliApi/Query/QueryClient.cs">ListVcardsOrgAsync</a>(orgId, ListVcardsOrgRequest { ... }) -> WithRawResponseTask&lt;VCardQueryResponse&gt;</code></summary>
 <dl>
 <dd>

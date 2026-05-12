@@ -45,7 +45,7 @@ public record VendorResponseStoredMethod : IJsonOnDeserialized
     public string? Bin { get; set; }
 
     [JsonPropertyName("binData")]
-    public string? BinData { get; set; }
+    public BinData? BinData { get; set; }
 
     [JsonPropertyName("ABA")]
     public string? Aba { get; set; }

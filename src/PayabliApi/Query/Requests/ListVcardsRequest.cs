@@ -38,13 +38,13 @@ public record ListVcardsRequest
     /// &lt;/Info&gt;
     /// List of field names accepted:
     ///
-    ///   - `status` (in, nin, eq, ne)
+    ///   - `status` (eq, ne, ct, nct, sw, ew)
     ///   - `createdAt` (gt, ge, lt, le, eq, ne)
     ///   - `cardToken` (ct, nct, eq, ne)
     ///   - `lastFour` (ct, nct, eq, ne)
     ///   - `expirationDate` (ct, nct, eq, ne)
-    ///   - `payoutId` (ct, nct, eq, ne, in, nin)
-    ///   - `vendorId` (ct, nct, eq, ne, in, nin)
+    ///   - `payoutId` (eq, ne, gt, ge, lt, le)
+    ///   - `vendorId` (eq, ne, gt, ge, lt, le)
     ///   - `miscData1` (ct, nct, eq, ne)
     ///   - `miscData2` (ct, nct, eq, ne)
     ///   - `currentUses` (gt, ge, lt, le, eq, ne)
@@ -52,10 +52,10 @@ public record ListVcardsRequest
     ///   - `balance` (gt, ge, lt, le, eq, ne)
     ///   - `paypointLegal` (ne, eq, ct, nct)
     ///   - `paypointDba` (ne, eq, ct, nct)
-    ///   - `orgName` (ne, eq, ct, nct)
+    ///   - `orgName` (eq, ne, ct, nct, sw, ew)
     ///   - `externalPaypointId` (ct, nct, eq, ne)
-    ///   - `paypointId` (in, nin, eq, ne)
-    ///   - `cardType` (eq)
+    ///   - `paypointId` (eq, ne, gt, ge, lt, le)
+    ///   - `cardType` (eq, ne, gt, ge, lt, le)
     ///
     /// List of comparison accepted - enclosed between parentheses:
     ///
@@ -67,6 +67,8 @@ public record ListVcardsRequest
     ///   - ne =&gt; not equal
     ///   - ct =&gt; contains
     ///   - nct =&gt; not contains
+    ///   - sw =&gt; starts with
+    ///   - ew =&gt; ends with
     ///   - in =&gt; inside array separated by "|"
     ///   - nin =&gt; not inside array separated by "|"
     /// </summary>

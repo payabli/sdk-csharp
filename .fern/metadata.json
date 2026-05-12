@@ -1,14 +1,14 @@
 {
   "cliVersion": "5.7.9",
   "generatorName": "fernapi/fern-csharp-sdk",
-  "generatorVersion": "2.59.1",
+  "generatorVersion": "2.65.0",
   "generatorConfig": {
     "generate-mock-server-tests": false
   },
-  "originGitCommit": "72fdff3484316d01ba20c78f02c52cde8b292f54",
+  "originGitCommit": "919e0fd55b82258508b2a0e599e53efa19469522",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "0.0.309",
+  "requestedVersion": "0.0.310",
   "ciProvider": "github",
-  "sdkVersion": "0.0.309"
+  "sdkVersion": "0.0.310"
 }
