@@ -27,7 +27,7 @@ public record GeneralEvents : IJsonOnDeserialized
     /// Extra data.
     /// </summary>
     [JsonPropertyName("extraData")]
-    public Dictionary<string, object?>? ExtraData { get; set; }
+    public string? ExtraData { get; set; }
 
     /// <summary>
     /// Reference data.
