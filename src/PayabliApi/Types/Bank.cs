@@ -14,6 +14,12 @@ public record Bank : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("default")]
+    public bool? Default { get; set; }
+
+    [JsonPropertyName("country")]
+    public string? Country { get; set; }
+
     /// <summary>
     /// The Payabli-assigned internal identifier for the bank account.
     /// </summary>

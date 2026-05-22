@@ -17,19 +17,19 @@ public record PayabliPages : IJsonOnDeserialized
     /// <summary>
     /// Array of credential objects with active services for the page
     /// </summary>
-    [JsonPropertyName("credentials")]
+    [JsonPropertyName("Credentials")]
     public IEnumerable<PayabliCredentials>? Credentials { get; set; }
 
     /// <summary>
     /// Timestamp of last access to page structure
     /// </summary>
-    [JsonPropertyName("lastAccess")]
+    [JsonPropertyName("LastAccess")]
     public DateTime? LastAccess { get; set; }
 
     /// <summary>
     /// Sections of page
     /// </summary>
-    [JsonPropertyName("pageContent")]
+    [JsonPropertyName("PageContent")]
     public PageContent? PageContent { get; set; }
 
     [JsonPropertyName("pageIdentifier")]
@@ -38,7 +38,7 @@ public record PayabliPages : IJsonOnDeserialized
     /// <summary>
     /// Settings of page
     /// </summary>
-    [JsonPropertyName("pageSettings")]
+    [JsonPropertyName("PageSettings")]
     public PageSetting? PageSettings { get; set; }
 
     /// <summary>
@@ -50,13 +50,13 @@ public record PayabliPages : IJsonOnDeserialized
     /// <summary>
     /// Sections of payment receipt
     /// </summary>
-    [JsonPropertyName("receiptContent")]
+    [JsonPropertyName("ReceiptContent")]
     public ReceiptContent? ReceiptContent { get; set; }
 
     /// <summary>
     /// Page identifier. Must be unique in platform.
     /// </summary>
-    [JsonPropertyName("subdomain")]
+    [JsonPropertyName("Subdomain")]
     public string? Subdomain { get; set; }
 
     /// <summary>

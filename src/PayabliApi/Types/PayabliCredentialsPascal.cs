@@ -57,7 +57,7 @@ public record PayabliCredentialsPascal : IJsonOnDeserialized
     /// The default currency for the paypoint, either `USD` or `CAD`.
     /// </summary>
     [JsonPropertyName("Currency")]
-    public string? Currency { get; set; }
+    public IEnumerable<string>? Currency { get; set; }
 
     [JsonPropertyName("GreaterValueAllowed")]
     public bool? GreaterValueAllowed { get; set; }

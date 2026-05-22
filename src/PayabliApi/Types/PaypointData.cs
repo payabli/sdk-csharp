@@ -11,31 +11,31 @@ public record PaypointData : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("address1")]
+    [JsonPropertyName("Address1")]
     public string? Address1 { get; set; }
 
-    [JsonPropertyName("address2")]
+    [JsonPropertyName("Address2")]
     public string? Address2 { get; set; }
 
-    [JsonPropertyName("bankData")]
+    [JsonPropertyName("BankData")]
     public IEnumerable<Bank>? BankData { get; set; }
 
-    [JsonPropertyName("boardingId")]
+    [JsonPropertyName("BoardingId")]
     public long? BoardingId { get; set; }
 
-    [JsonPropertyName("city")]
+    [JsonPropertyName("City")]
     public string? City { get; set; }
 
-    [JsonPropertyName("contacts")]
+    [JsonPropertyName("Contacts")]
     public IEnumerable<Contacts>? Contacts { get; set; }
 
-    [JsonPropertyName("country")]
+    [JsonPropertyName("Country")]
     public string? Country { get; set; }
 
-    [JsonPropertyName("credentials")]
+    [JsonPropertyName("Credentials")]
     public IEnumerable<PayabliCredentialsPascal>? Credentials { get; set; }
 
-    [JsonPropertyName("dbaName")]
+    [JsonPropertyName("DbaName")]
     public string? DbaName { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
@@ -44,46 +44,46 @@ public record PaypointData : IJsonOnDeserialized
     /// <summary>
     /// Fax number
     /// </summary>
-    [JsonPropertyName("fax")]
+    [JsonPropertyName("Fax")]
     public string? Fax { get; set; }
 
-    [JsonPropertyName("idPaypoint")]
+    [JsonPropertyName("IdPaypoint")]
     public long? IdPaypoint { get; set; }
 
-    [JsonPropertyName("legalName")]
+    [JsonPropertyName("LegalName")]
     public string? LegalName { get; set; }
 
-    [JsonPropertyName("parentOrg")]
+    [JsonPropertyName("ParentOrg")]
     public OrgData? ParentOrg { get; set; }
 
-    [JsonPropertyName("paypointStatus")]
+    [JsonPropertyName("PaypointStatus")]
     public int? PaypointStatus { get; set; }
 
-    [JsonPropertyName("phone")]
+    [JsonPropertyName("Phone")]
     public string? Phone { get; set; }
 
-    [JsonPropertyName("serviceData")]
+    [JsonPropertyName("ServiceData")]
     public Services? ServiceData { get; set; }
 
-    [JsonPropertyName("state")]
+    [JsonPropertyName("State")]
     public string? State { get; set; }
 
     [JsonPropertyName("summary")]
     public PaypointSummary? Summary { get; set; }
 
-    [JsonPropertyName("timeZone")]
+    [JsonPropertyName("TimeZone")]
     public int? TimeZone { get; set; }
 
-    [JsonPropertyName("websiteAddress")]
+    [JsonPropertyName("WebsiteAddress")]
     public string? WebsiteAddress { get; set; }
 
-    [JsonPropertyName("zip")]
+    [JsonPropertyName("Zip")]
     public string? Zip { get; set; }
 
     /// <summary>
     /// Configuration for billing statement email recipients and sender address. `null` if not configured.
     /// </summary>
-    [JsonPropertyName("statementEmail")]
+    [JsonPropertyName("StatementEmail")]
     public StatementEmailConfig? StatementEmail { get; set; }
 
     [JsonIgnore]
