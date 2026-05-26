@@ -5,8 +5,8 @@
   "generatorConfig": {
     "generate-mock-server-tests": false
   },
-  "originGitCommit": "c6c28108fffb727fd29f8ae1bf0a2d6d4600c751",
+  "originGitCommit": "bcf09d71ae08eeda4b1efaa50a1e7a6c6145b6bf",
   "originGitCommitIsDirty": false,
   "invokedBy": "manual",
-  "sdkVersion": "0.0.314"
+  "sdkVersion": "0.0.315"
 }

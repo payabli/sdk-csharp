@@ -217,6 +217,9 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("customerConsent")]
     public CustomerQueryRecordsCustomerConsent? CustomerConsent { get; set; }
 
+    [JsonPropertyName("customerPortal")]
+    public object? CustomerPortal { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

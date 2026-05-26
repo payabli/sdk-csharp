@@ -12,46 +12,94 @@ public record MethodQueryRecords : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The bank identification number (BIN). Null when method is ACH.
+    /// The stored payment method's identifier in Payabli.
     /// </summary>
-    [JsonPropertyName("bin")]
+    [JsonPropertyName("IdPmethod")]
+    public string? IdPmethod { get; set; }
+
+    /// <summary>
+    /// Type of payment vehicle: `ach` or `card`
+    /// </summary>
+    [JsonPropertyName("Method")]
+    public string? Method { get; set; }
+
+    [JsonPropertyName("Descriptor")]
+    public string? Descriptor { get; set; }
+
+    [JsonPropertyName("MaskedAccount")]
+    public string? MaskedAccount { get; set; }
+
+    /// <summary>
+    /// Expiration date for the card in format MMYY. Null for ACH methods.
+    /// </summary>
+    [JsonPropertyName("ExpDate")]
+    public string? ExpDate { get; set; }
+
+    [JsonPropertyName("HolderName")]
+    public string? HolderName { get; set; }
+
+    /// <summary>
+    /// ACH Standard Entry Class code (for example, `WEB`, `PPD`, `CCD`). Null for non-ACH methods.
+    /// </summary>
+    [JsonPropertyName("AchSecCode")]
+    public string? AchSecCode { get; set; }
+
+    /// <summary>
+    /// Classification of the ACH account holder. Possible values include `personal`, `business`. Null for non-ACH methods.
+    /// </summary>
+    [JsonPropertyName("AchHolderType")]
+    public string? AchHolderType { get; set; }
+
+    /// <summary>
+    /// Whether the ACH account has been validated. Null for non-ACH methods.
+    /// </summary>
+    [JsonPropertyName("IsValidatedACH")]
+    public bool? IsValidatedAch { get; set; }
+
+    /// <summary>
+    /// The bank identification number (BIN). Null for ACH methods.
+    /// </summary>
+    [JsonPropertyName("BIN")]
     public string? Bin { get; set; }
 
     [JsonPropertyName("binData")]
     public BinData? BinData { get; set; }
 
-    [JsonPropertyName("descriptor")]
-    public string? Descriptor { get; set; }
+    /// <summary>
+    /// Bank routing number for ACH payment methods. Null for non-ACH methods.
+    /// </summary>
+    [JsonPropertyName("ABA")]
+    public string? Aba { get; set; }
 
     /// <summary>
-    /// Expiration date associated to the method (only for card) in format MMYY.
+    /// Billing postal code associated with the stored payment method, when available.
     /// </summary>
-    [JsonPropertyName("expDate")]
-    public string? ExpDate { get; set; }
-
-    [JsonPropertyName("holderName")]
-    public string? HolderName { get; set; }
+    [JsonPropertyName("PostalCode")]
+    public string? PostalCode { get; set; }
 
     /// <summary>
-    /// Method internal ID
+    /// Token type for the stored method (for example, `Single Merchant` or `Multiple Universal`).
     /// </summary>
-    [JsonPropertyName("idPmethod")]
-    public string? IdPmethod { get; set; }
+    [JsonPropertyName("MethodType")]
+    public string? MethodType { get; set; }
 
     /// <summary>
-    /// Date of last update
+    /// Digital wallet source for the stored payment method. Possible values include `apple_pay`, `google_pay`. Null for non-wallet methods.
     /// </summary>
-    [JsonPropertyName("lastUpdated")]
+    [JsonPropertyName("WalletType")]
+    public string? WalletType { get; set; }
+
+    /// <summary>
+    /// Date and time of last update.
+    /// </summary>
+    [JsonPropertyName("LastUpdated")]
     public DateTime? LastUpdated { get; set; }
 
-    [JsonPropertyName("maskedAccount")]
-    public string? MaskedAccount { get; set; }
-
     /// <summary>
-    /// Type of payment vehicle: **ach** or **card**
+    /// Date and time the card was last updated.
     /// </summary>
-    [JsonPropertyName("method")]
-    public string? Method { get; set; }
+    [JsonPropertyName("CardUpdatedOn")]
+    public DateTime? CardUpdatedOn { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
