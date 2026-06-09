@@ -87,12 +87,14 @@ public partial class TokenStorageClient : ITokenStorageClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -182,102 +184,14 @@ public partial class TokenStorageClient : ITokenStorageClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<WithRawResponse<PayabliApiResponsePaymethodDelete>> RemoveMethodAsyncCore(
-        string methodId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "TokenStorage/{0}",
-                        ValueConvert.ToPathParameterString(methodId)
-                    ),
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<PayabliApiResponsePaymethodDelete>(
-                    responseBody
-                )!;
-                return new WithRawResponse<PayabliApiResponsePaymethodDelete>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -371,6 +285,98 @@ public partial class TokenStorageClient : ITokenStorageClient
         }
     }
 
+    private async Task<WithRawResponse<PayabliApiResponsePaymethodDelete>> RemoveMethodAsyncCore(
+        string methodId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "TokenStorage/{0}",
+                        ValueConvert.ToPathParameterString(methodId)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PayabliApiResponsePaymethodDelete>(
+                    responseBody
+                )!;
+                return new WithRawResponse<PayabliApiResponsePaymethodDelete>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     /// <summary>
     /// Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `ReferenceId` value in the response is the `storedMethodId` to use with transactions.
     /// </summary>
@@ -381,7 +387,7 @@ public partial class TokenStorageClient : ITokenStorageClient
     ///         Body = new RequestTokenStorage
     ///         {
     ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "f743aed24a",
+    ///             EntryPoint = "8cfec329267",
     ///             FallbackAuth = true,
     ///             FallbackAuthAmount = 100,
     ///             MethodDescription = "Primary Visa card",
@@ -432,23 +438,6 @@ public partial class TokenStorageClient : ITokenStorageClient
     }
 
     /// <summary>
-    /// Deletes a saved payment method.
-    /// </summary>
-    /// <example><code>
-    /// await client.TokenStorage.RemoveMethodAsync("32-8877drt00045632-678");
-    /// </code></example>
-    public WithRawResponseTask<PayabliApiResponsePaymethodDelete> RemoveMethodAsync(
-        string methodId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<PayabliApiResponsePaymethodDelete>(
-            RemoveMethodAsyncCore(methodId, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
     /// Updates a saved payment method.
     /// </summary>
     /// <example><code>
@@ -459,7 +448,7 @@ public partial class TokenStorageClient : ITokenStorageClient
     ///         Body = new RequestTokenStorage
     ///         {
     ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "f743aed24a",
+    ///             EntryPoint = "8cfec329267",
     ///             FallbackAuth = true,
     ///             PaymentMethod = new TokenizeCard
     ///             {
@@ -483,6 +472,23 @@ public partial class TokenStorageClient : ITokenStorageClient
     {
         return new WithRawResponseTask<PayabliApiResponsePaymethodDelete>(
             UpdateMethodAsyncCore(methodId, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Deletes a saved payment method.
+    /// </summary>
+    /// <example><code>
+    /// await client.TokenStorage.RemoveMethodAsync("32-8877drt00045632-678");
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponsePaymethodDelete> RemoveMethodAsync(
+        string methodId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponsePaymethodDelete>(
+            RemoveMethodAsyncCore(methodId, options, cancellationToken)
         );
     }
 }

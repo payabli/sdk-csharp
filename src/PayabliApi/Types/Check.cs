@@ -21,7 +21,7 @@ public record Check : IJsonOnDeserialized
     /// Method to use for the transaction. Use `check` for a paper check transaction. When the method is `check`, then `paymentDetails.checkNumber` is required.
     /// </summary>
     [JsonPropertyName("method")]
-    public string Method { get; set; } = "check";
+    public required CheckMethod Method { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

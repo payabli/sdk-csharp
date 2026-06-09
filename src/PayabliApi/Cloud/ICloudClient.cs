@@ -13,6 +13,16 @@ public partial interface ICloudClient
     );
 
     /// <summary>
+    /// Remove a cloud device from an entrypoint.
+    /// </summary>
+    WithRawResponseTask<RemoveDeviceResponse> RemoveDeviceAsync(
+        string entry,
+        string deviceId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Retrieve the registration history for a device.
     /// </summary>
     WithRawResponseTask<CloudQueryApiResponse> HistoryDeviceAsync(
@@ -30,16 +40,6 @@ public partial interface ICloudClient
     WithRawResponseTask<CloudQueryApiResponse> ListDeviceAsync(
         string entry,
         ListDeviceRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Remove a cloud device from an entrypoint.
-    /// </summary>
-    WithRawResponseTask<RemoveDeviceResponse> RemoveDeviceAsync(
-        string entry,
-        string deviceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

@@ -89,12 +89,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -110,7 +112,7 @@ public partial class QueryClient : IQueryClient
         }
     }
 
-    private async Task<WithRawResponse<QueryResponseSettlements>> ListBatchDetailsOrgAsyncCore(
+    private async Task<WithRawResponse<QueryBatchesDetailResponse>> ListBatchDetailsOrgAsyncCore(
         int orgId,
         ListBatchDetailsOrgRequest request,
         RequestOptions? options = null,
@@ -154,8 +156,8 @@ public partial class QueryClient : IQueryClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<QueryResponseSettlements>(responseBody)!;
-                return new WithRawResponse<QueryResponseSettlements>()
+                var responseData = JsonUtils.Deserialize<QueryBatchesDetailResponse>(responseBody)!;
+                return new WithRawResponse<QueryBatchesDetailResponse>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -187,12 +189,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -285,12 +289,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -383,12 +389,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -481,12 +489,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -579,12 +589,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -677,12 +689,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -775,12 +789,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -873,12 +889,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -971,12 +989,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1069,12 +1089,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1167,12 +1189,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1268,12 +1292,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1369,12 +1395,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1466,12 +1494,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1563,12 +1593,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1661,12 +1693,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1759,12 +1793,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1857,12 +1893,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1955,12 +1993,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2053,12 +2093,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2151,12 +2193,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2249,12 +2293,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2347,12 +2393,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2449,12 +2497,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2551,12 +2601,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2649,12 +2701,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2747,12 +2801,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2849,12 +2905,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2947,12 +3005,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2969,6 +3029,7 @@ public partial class QueryClient : IQueryClient
     }
 
     private async Task<WithRawResponse<TransferQueryResponse>> ListTransfersOrgAsyncCore(
+        long orgId,
         ListTransfersRequestOrg request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -2995,7 +3056,7 @@ public partial class QueryClient : IQueryClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "Query/transfers/org/{0}",
-                        ValueConvert.ToPathParameterString(request.OrgId)
+                        ValueConvert.ToPathParameterString(orgId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -3044,12 +3105,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3141,12 +3204,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3238,12 +3303,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3341,12 +3408,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3438,12 +3507,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3535,12 +3606,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3633,12 +3706,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3731,12 +3806,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3829,12 +3906,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -3930,12 +4009,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -4031,12 +4112,14 @@ public partial class QueryClient : IQueryClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -4171,14 +4254,14 @@ public partial class QueryClient : IQueryClient
     ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<QueryResponseSettlements> ListBatchDetailsOrgAsync(
+    public WithRawResponseTask<QueryBatchesDetailResponse> ListBatchDetailsOrgAsync(
         int orgId,
         ListBatchDetailsOrgRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<QueryResponseSettlements>(
+        return new WithRawResponseTask<QueryBatchesDetailResponse>(
             ListBatchDetailsOrgAsyncCore(orgId, request, options, cancellationToken)
         );
     }
@@ -4422,7 +4505,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListDevicesOrgAsync(
-    ///     100,
+    ///     123,
     ///     new ListDevicesOrgRequest
     ///     {
     ///         FromRecord = 0,
@@ -4809,12 +4892,15 @@ public partial class QueryClient : IQueryClient
 
     /// <summary>
     /// Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-    /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
-    /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
-    /// ``` curl -X GET https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-    ///   -H 'requestToken: &lt;API TOKEN&gt;'
     ///
-    ///   ```
+    /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
+    ///
+    /// These request parameters filter for transactions between April 1, 2024 and April 9, 2024.
+    ///
+    /// ```bash
+    /// curl -X GET https://api-sandbox.payabli.com/api/Query/transactions/8cfec329267?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59 \
+    ///   -H 'requestToken: &lt;API TOKEN&gt;'
+    /// ```
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransactionsAsync(
@@ -4840,19 +4926,16 @@ public partial class QueryClient : IQueryClient
     }
 
     /// <summary>
-    /// Retrieve a list of transactions for an organization. Use filters to
-    /// limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-    ///
+    /// Retrieve a list of transactions for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     ///
     /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
     ///
-    /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
+    /// These request parameters filter for transactions between April 1, 2024 and April 9, 2024.
     ///
-    /// ```
-    /// curl -X GET "https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59"\
+    /// ```bash
+    /// curl -X GET "https://api-sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59" \
     ///   -H 'requestToken: &lt;API TOKEN&gt;'
-    ///
-    ///   ```
+    /// ```
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransactionsOrgAsync(
@@ -4881,7 +4964,11 @@ public partial class QueryClient : IQueryClient
     /// Retrieve a list of transfer details records for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     /// <example><code>
-    /// await client.Query.ListTransferDetailsAsync("47862acd", 123456, new ListTransfersPaypointRequest());
+    /// await client.Query.ListTransferDetailsAsync(
+    ///     "8cfec329267",
+    ///     4521,
+    ///     new ListTransfersPaypointRequest()
+    /// );
     /// </code></example>
     public WithRawResponseTask<QueryTransferDetailResponse> ListTransferDetailsAsync(
         string entry,
@@ -4901,7 +4988,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransfersAsync(
-    ///     "47862acd",
+    ///     "8cfec329267",
     ///     new ListTransfersRequest { FromRecord = 0, LimitRecord = 20 }
     /// );
     /// </code></example>
@@ -4922,22 +5009,19 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransfersOrgAsync(
-    ///     new ListTransfersRequestOrg
-    ///     {
-    ///         OrgId = 123,
-    ///         FromRecord = 0,
-    ///         LimitRecord = 20,
-    ///     }
+    ///     123,
+    ///     new ListTransfersRequestOrg { FromRecord = 0, LimitRecord = 20 }
     /// );
     /// </code></example>
     public WithRawResponseTask<TransferQueryResponse> ListTransfersOrgAsync(
+        long orgId,
         ListTransfersRequestOrg request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<TransferQueryResponse>(
-            ListTransfersOrgAsyncCore(request, options, cancellationToken)
+            ListTransfersOrgAsyncCore(orgId, request, options, cancellationToken)
         );
     }
 
@@ -4946,7 +5030,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransfersOutOrgAsync(
-    ///     77,
+    ///     123,
     ///     new ListTransfersOutOrgRequest { FromRecord = 0, LimitRecord = 20 }
     /// );
     /// </code></example>
@@ -4967,7 +5051,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransfersOutPaypointAsync(
-    ///     "47cade237",
+    ///     "8cfec329267",
     ///     new ListTransfersOutPaypointRequest { FromRecord = 0, LimitRecord = 20 }
     /// );
     /// </code></example>
@@ -4988,7 +5072,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransferDetailsOutAsync(
-    ///     "47ace2b25",
+    ///     "8cfec329267",
     ///     4521,
     ///     new ListTransferDetailsOutRequest { FromRecord = 0, LimitRecord = 20 }
     /// );

@@ -135,7 +135,6 @@ public record SubscriptionQueryRecords : IJsonOnDeserialized
     /// The full stored payment method record linked to the subscription
     /// and charged on each billing cycle. Returned as `null` for legacy
     /// subscriptions that don't have a linked stored method.
-    ///
     /// The shape is the same across payment vehicles (card, ACH, check).
     /// Only the populated fields differ. For example, `ABA` is populated
     /// for ACH, while `ExpDate` and `binData` are populated for card.
@@ -156,6 +155,12 @@ public record SubscriptionQueryRecords : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("SubStatus")]
     public int? SubStatus { get; set; }
+
+    /// <summary>
+    /// Subscription type or category. Returns `null` when no type is assigned.
+    /// </summary>
+    [JsonPropertyName("SubscriptionType")]
+    public SubscriptionType? SubscriptionType { get; set; }
 
     /// <summary>
     /// The subscription amount, including any fees.

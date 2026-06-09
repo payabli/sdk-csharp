@@ -15,7 +15,8 @@ public record FileContent : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Content of file, Base64-encoded. Ignored if furl is specified. Max upload size is 30 MB.
+    /// Content of file, Base64-encoded. Ignored if `furl` is specified. Max
+    /// upload size is 30 MB.
     /// </summary>
     [JsonPropertyName("fContent")]
     public string? FContent { get; set; }
@@ -26,14 +27,11 @@ public record FileContent : IJsonOnDeserialized
     [JsonPropertyName("filename")]
     public string? Filename { get; set; }
 
-    /// <summary>
-    /// The MIME type of the file (if content is provided)
-    /// </summary>
     [JsonPropertyName("ftype")]
     public FileContentFtype? Ftype { get; set; }
 
     /// <summary>
-    /// Optional URL provided to show or download the file remotely
+    /// Optional URL provided to show or download the file remotely.
     /// </summary>
     [JsonPropertyName("furl")]
     public string? Furl { get; set; }

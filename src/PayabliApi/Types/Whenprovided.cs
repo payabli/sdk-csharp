@@ -12,8 +12,6 @@ public readonly record struct Whenprovided : IStringEnum
 
     public static readonly Whenprovided ThirtyOneTo60Days = new(Values.ThirtyOneTo60Days);
 
-    public static readonly Whenprovided SixtyDays = new(Values.SixtyDays);
-
     public Whenprovided(string value)
     {
         Value = value;
@@ -113,7 +111,5 @@ public readonly record struct Whenprovided : IStringEnum
         public const string ThirtyDaysOrLess = "30 Days or Less";
 
         public const string ThirtyOneTo60Days = "31 to 60 Days";
-
-        public const string SixtyDays = "60+ Days";
     }
 }

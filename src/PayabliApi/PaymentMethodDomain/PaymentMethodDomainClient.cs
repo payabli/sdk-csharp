@@ -82,12 +82,14 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -174,104 +176,14 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<DeletePaymentMethodDomainResponse>
-    > DeletePaymentMethodDomainAsyncCore(
-        string domainId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "PaymentMethodDomain/{0}",
-                        ValueConvert.ToPathParameterString(domainId)
-                    ),
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<DeletePaymentMethodDomainResponse>(
-                    responseBody
-                )!;
-                return new WithRawResponse<DeletePaymentMethodDomainResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -358,12 +270,205 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<DeletePaymentMethodDomainResponse>
+    > DeletePaymentMethodDomainAsyncCore(
+        string domainId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "PaymentMethodDomain/{0}",
+                        ValueConvert.ToPathParameterString(domainId)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<DeletePaymentMethodDomainResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<DeletePaymentMethodDomainResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<PaymentMethodDomainGeneralResponse>
+    > UpdatePaymentMethodDomainAsyncCore(
+        string domainId,
+        UpdatePaymentMethodDomainRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "PaymentMethodDomain/{0}",
+                        ValueConvert.ToPathParameterString(domainId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PaymentMethodDomainGeneralResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<PaymentMethodDomainGeneralResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -455,107 +560,14 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<PaymentMethodDomainGeneralResponse>
-    > UpdatePaymentMethodDomainAsyncCore(
-        string domainId,
-        UpdatePaymentMethodDomainRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "PaymentMethodDomain/{0}",
-                        ValueConvert.ToPathParameterString(domainId)
-                    ),
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<PaymentMethodDomainGeneralResponse>(
-                    responseBody
-                )!;
-                return new WithRawResponse<PaymentMethodDomainGeneralResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -689,25 +701,6 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
     }
 
     /// <summary>
-    /// Delete a payment method domain. You can't delete an inherited domain, you must delete a domain at the organization level.
-    /// </summary>
-    /// <example><code>
-    /// await client.PaymentMethodDomain.DeletePaymentMethodDomainAsync(
-    ///     "pmd_b8237fa45c964d8a9ef27160cd42b8c5"
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<DeletePaymentMethodDomainResponse> DeletePaymentMethodDomainAsync(
-        string domainId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<DeletePaymentMethodDomainResponse>(
-            DeletePaymentMethodDomainAsyncCore(domainId, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
     /// Get the details for a payment method domain.
     /// </summary>
     /// <example><code>
@@ -727,21 +720,21 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
     }
 
     /// <summary>
-    /// Get a list of payment method domains that belong to a PSP, organization, or paypoint.
+    /// Delete a payment method domain. You can't delete an inherited domain, you must delete a domain at the organization level.
     /// </summary>
     /// <example><code>
-    /// await client.PaymentMethodDomain.ListPaymentMethodDomainsAsync(
-    ///     new ListPaymentMethodDomainsRequest { EntityId = 1147, EntityType = "paypoint" }
+    /// await client.PaymentMethodDomain.DeletePaymentMethodDomainAsync(
+    ///     "pmd_b8237fa45c964d8a9ef27160cd42b8c5"
     /// );
     /// </code></example>
-    public WithRawResponseTask<ListPaymentMethodDomainsResponse> ListPaymentMethodDomainsAsync(
-        ListPaymentMethodDomainsRequest request,
+    public WithRawResponseTask<DeletePaymentMethodDomainResponse> DeletePaymentMethodDomainAsync(
+        string domainId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<ListPaymentMethodDomainsResponse>(
-            ListPaymentMethodDomainsAsyncCore(request, options, cancellationToken)
+        return new WithRawResponseTask<DeletePaymentMethodDomainResponse>(
+            DeletePaymentMethodDomainAsyncCore(domainId, options, cancellationToken)
         );
     }
 
@@ -767,6 +760,25 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
     {
         return new WithRawResponseTask<PaymentMethodDomainGeneralResponse>(
             UpdatePaymentMethodDomainAsyncCore(domainId, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Get a list of payment method domains that belong to a PSP, organization, or paypoint.
+    /// </summary>
+    /// <example><code>
+    /// await client.PaymentMethodDomain.ListPaymentMethodDomainsAsync(
+    ///     new ListPaymentMethodDomainsRequest { EntityId = 1147, EntityType = "paypoint" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<ListPaymentMethodDomainsResponse> ListPaymentMethodDomainsAsync(
+        ListPaymentMethodDomainsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ListPaymentMethodDomainsResponse>(
+            ListPaymentMethodDomainsAsyncCore(request, options, cancellationToken)
         );
     }
 

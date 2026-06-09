@@ -78,12 +78,14 @@ public partial class CheckCaptureClient : ICheckCaptureClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -106,7 +108,7 @@ public partial class CheckCaptureClient : ICheckCaptureClient
     /// await client.CheckCapture.CheckProcessingAsync(
     ///     new CheckCaptureRequestBody
     ///     {
-    ///         EntryPoint = "47abcfea12",
+    ///         EntryPoint = "8cfec329267",
     ///         FrontImage = "/9j/4AAQSkZJRgABAQEASABIAAD...",
     ///         RearImage = "/9j/4AAQSkZJRgABAQEASABIAAD...",
     ///         CheckAmount = 12550,

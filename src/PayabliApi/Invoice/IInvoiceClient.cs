@@ -13,7 +13,18 @@ public partial interface IInvoiceClient
     );
 
     /// <summary>
-    /// Deletes an invoice that's attached to a file.
+    /// Retrieves a file attached to an invoice.
+    /// </summary>
+    WithRawResponseTask<FileContent> GetAttachedFileFromInvoiceAsync(
+        int idInvoice,
+        string filename,
+        GetAttachedFileFromInvoiceRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Deletes a file attached to an invoice.
     /// </summary>
     WithRawResponseTask<InvoiceResponseWithoutData> DeleteAttachedFromInvoiceAsync(
         int idInvoice,
@@ -23,9 +34,9 @@ public partial interface IInvoiceClient
     );
 
     /// <summary>
-    /// Deletes a single invoice from an entrypoint.
+    /// Retrieves a single invoice by ID.
     /// </summary>
-    WithRawResponseTask<InvoiceResponseWithoutData> DeleteInvoiceAsync(
+    WithRawResponseTask<GetInvoiceRecord> GetInvoiceAsync(
         int idInvoice,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -42,20 +53,9 @@ public partial interface IInvoiceClient
     );
 
     /// <summary>
-    /// Retrieves a file attached to an invoice.
+    /// Deletes a single invoice from an entrypoint.
     /// </summary>
-    WithRawResponseTask<FileContent> GetAttachedFileFromInvoiceAsync(
-        int idInvoice,
-        string filename,
-        GetAttachedFileFromInvoiceRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Retrieves a single invoice by ID.
-    /// </summary>
-    WithRawResponseTask<GetInvoiceRecord> GetInvoiceAsync(
+    WithRawResponseTask<InvoiceResponseWithoutData> DeleteInvoiceAsync(
         int idInvoice,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

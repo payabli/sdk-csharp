@@ -21,6 +21,34 @@ public partial interface IPaypointClient
     );
 
     /// <summary>
+    /// Updates a paypoint logo.
+    /// </summary>
+    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> SaveLogoAsync(
+        string entry,
+        FileContent request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Migrates a paypoint to a new parent organization.
+    /// </summary>
+    WithRawResponseTask<MigratePaypointResponse> MigrateAsync(
+        PaypointMoveRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Retrieves a paypoint's basic settings like custom fields, identifiers, and invoicing settings.
+    /// </summary>
+    WithRawResponseTask<SettingsQueryRecord> SettingsPageAsync(
+        string entry,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Gets the details for a single paypoint.
     /// </summary>
     WithRawResponseTask<GetEntryConfigResponse> GetEntryConfigAsync(
@@ -31,7 +59,7 @@ public partial interface IPaypointClient
     );
 
     /// <summary>
-    /// Gets the details for single payment page for a paypoint.
+    /// Gets the details for a single payment page for a paypoint.
     /// </summary>
     WithRawResponseTask<PayabliPages> GetPageAsync(
         string entry,
@@ -46,34 +74,6 @@ public partial interface IPaypointClient
     WithRawResponseTask<PayabliApiResponseGeneric2Part> RemovePageAsync(
         string entry,
         string subdomain,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Updates a paypoint logo.
-    /// </summary>
-    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> SaveLogoAsync(
-        string entry,
-        FileContent request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Retrieves an paypoint's basic settings like custom fields, identifiers, and invoicing settings.
-    /// </summary>
-    WithRawResponseTask<SettingsQueryRecord> SettingsPageAsync(
-        string entry,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Migrates a paypoint to a new parent organization.
-    /// </summary>
-    WithRawResponseTask<MigratePaypointResponse> MigrateAsync(
-        PaypointMoveRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

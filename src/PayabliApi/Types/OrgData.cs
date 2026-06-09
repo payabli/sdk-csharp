@@ -25,9 +25,7 @@ public record OrgData : IJsonOnDeserialized
 
     /// <summary>
     /// The paypoint's status.
-    ///
     /// Active - `1`
-    ///
     /// Inactive - 0
     /// </summary>
     [JsonPropertyName("orgStatus")]

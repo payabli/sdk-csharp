@@ -81,104 +81,14 @@ public partial class NotificationClient : INotificationClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<PayabliApiResponseNotifications>
-    > DeleteNotificationAsyncCore(
-        string nId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "Notification/{0}",
-                        ValueConvert.ToPathParameterString(nId)
-                    ),
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<PayabliApiResponseNotifications>(
-                    responseBody
-                )!;
-                return new WithRawResponse<PayabliApiResponseNotifications>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -261,12 +171,14 @@ public partial class NotificationClient : INotificationClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -356,12 +268,108 @@ public partial class NotificationClient : INotificationClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<PayabliApiResponseNotifications>
+    > DeleteNotificationAsyncCore(
+        string nId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "Notification/{0}",
+                        ValueConvert.ToPathParameterString(nId)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PayabliApiResponseNotifications>(
+                    responseBody
+                )!;
+                return new WithRawResponse<PayabliApiResponseNotifications>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -448,7 +456,7 @@ public partial class NotificationClient : INotificationClient
     }
 
     /// <summary>
-    /// Create a new notification or autogenerated report.
+    /// Create a new notification or auto-generated report.
     /// </summary>
     /// <example><code>
     /// await client.Notification.AddNotificationAsync(
@@ -479,24 +487,7 @@ public partial class NotificationClient : INotificationClient
     }
 
     /// <summary>
-    /// Deletes a single notification or autogenerated report.
-    /// </summary>
-    /// <example><code>
-    /// await client.Notification.DeleteNotificationAsync("1717");
-    /// </code></example>
-    public WithRawResponseTask<PayabliApiResponseNotifications> DeleteNotificationAsync(
-        string nId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<PayabliApiResponseNotifications>(
-            DeleteNotificationAsyncCore(nId, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Retrieves a single notification or autogenerated report's details.
+    /// Retrieves a single notification or auto-generated report's details.
     /// </summary>
     /// <example><code>
     /// await client.Notification.GetNotificationAsync("1717");
@@ -513,7 +504,7 @@ public partial class NotificationClient : INotificationClient
     }
 
     /// <summary>
-    /// Update a notification or autogenerated report.
+    /// Update a notification or auto-generated report.
     /// </summary>
     /// <example><code>
     /// await client.Notification.UpdateNotificationAsync(
@@ -542,6 +533,23 @@ public partial class NotificationClient : INotificationClient
     {
         return new WithRawResponseTask<PayabliApiResponseNotifications>(
             UpdateNotificationAsyncCore(nId, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Deletes a single notification or auto-generated report.
+    /// </summary>
+    /// <example><code>
+    /// await client.Notification.DeleteNotificationAsync("1717");
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponseNotifications> DeleteNotificationAsync(
+        string nId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponseNotifications>(
+            DeleteNotificationAsyncCore(nId, options, cancellationToken)
         );
     }
 

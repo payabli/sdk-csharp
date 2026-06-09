@@ -19,6 +19,16 @@ public partial interface IBoardingClient
     );
 
     /// <summary>
+    /// Updates a boarding application by ID. This endpoint requires an application API token.
+    /// </summary>
+    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> UpdateApplicationAsync(
+        int appId,
+        ApplicationData request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Deletes a boarding application by ID.
     /// </summary>
     WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> DeleteApplicationAsync(
@@ -100,16 +110,6 @@ public partial interface IBoardingClient
     WithRawResponseTask<QueryBoardingLinksResponse> ListBoardingLinksAsync(
         int orgId,
         ListBoardingLinksRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Updates a boarding application by ID. This endpoint requires an application API token.
-    /// </summary>
-    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> UpdateApplicationAsync(
-        int appId,
-        ApplicationData request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

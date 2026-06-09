@@ -21,7 +21,7 @@ public record BillQueryRecord2 : IJsonOnDeserialized
     /// Additional data associated with the bill.
     /// </summary>
     [JsonPropertyName("AdditionalData")]
-    public Dictionary<string, string>? AdditionalData { get; set; }
+    public Dictionary<string, string?>? AdditionalData { get; set; }
 
     /// <summary>
     /// Batch number associated with the bill.
@@ -192,7 +192,7 @@ public record BillQueryRecord2 : IJsonOnDeserialized
     /// The payment terms for invoice. If no terms were defined initially, then response data for this field will default to `N30`.
     /// </summary>
     [JsonPropertyName("Terms")]
-    public string? Terms { get; set; }
+    public Terms? Terms { get; set; }
 
     /// <summary>
     /// Total amount of the bill including taxes and fees.

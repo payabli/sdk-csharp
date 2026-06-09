@@ -13,12 +13,16 @@ public record ScheduleDetail : IJsonOnDeserialized
 
     /// <summary>
     /// Subscription end date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY or the value `untilcancelled` to indicate a scheduled payment with infinite cycle.
+    ///
+    /// Not applicable for `BalanceDriven` subscriptions, which run until cancelled.
     /// </summary>
     [JsonPropertyName("endDate")]
     public string? EndDate { get; set; }
 
     /// <summary>
     /// Frequency of the subscription.
+    ///
+    /// `BalanceDriven` subscriptions only accept the monthly cadences `firstofmonth`, `fifteenthofmonth`, and `endofmonth`.
     /// </summary>
     [JsonPropertyName("frequency")]
     public Frequency? Frequency { get; set; }
@@ -31,6 +35,8 @@ public record ScheduleDetail : IJsonOnDeserialized
 
     /// <summary>
     /// Subscription start date in any of the accepted formats: YYYY-MM-DD, MM/DD/YYYY. This must be a future date.
+    ///
+    /// Not applicable for `BalanceDriven` subscriptions, where the start date is calculated automatically from `frequency`.
     /// </summary>
     [JsonPropertyName("startDate")]
     public string? StartDate { get; set; }

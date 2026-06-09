@@ -22,20 +22,20 @@ public partial interface ITokenStorageClient
     );
 
     /// <summary>
-    /// Deletes a saved payment method.
-    /// </summary>
-    WithRawResponseTask<PayabliApiResponsePaymethodDelete> RemoveMethodAsync(
-        string methodId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Updates a saved payment method.
     /// </summary>
     WithRawResponseTask<PayabliApiResponsePaymethodDelete> UpdateMethodAsync(
         string methodId,
         UpdateMethodRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Deletes a saved payment method.
+    /// </summary>
+    WithRawResponseTask<PayabliApiResponsePaymethodDelete> RemoveMethodAsync(
+        string methodId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

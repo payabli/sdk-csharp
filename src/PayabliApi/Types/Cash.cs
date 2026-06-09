@@ -15,7 +15,7 @@ public record Cash : IJsonOnDeserialized
     /// Method to use for the transaction. For cash transactions, use `cash`.
     /// </summary>
     [JsonPropertyName("method")]
-    public string Method { get; set; } = "cash";
+    public required CashMethod Method { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

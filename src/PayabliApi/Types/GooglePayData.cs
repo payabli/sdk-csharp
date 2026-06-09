@@ -15,14 +15,13 @@ public record GooglePayData : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This object is only returned when the domain verification check fails. If a domain has failed validation, this object contains information about the failure.
+    /// This object is only returned when the domain verification check
+    /// fails. If a domain has failed validation, this object contains
+    /// information about the failure.
     /// </summary>
     [JsonPropertyName("data")]
     public GooglePayStatusData? Data { get; set; }
 
-    /// <summary>
-    /// When `true`, Google Pay is enabled.
-    /// </summary>
     [JsonPropertyName("isEnabled")]
     public bool? IsEnabled { get; set; }
 

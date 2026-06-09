@@ -30,7 +30,7 @@ public record QueryResponseItemsRecordsItem : IJsonOnDeserialized
     public string? PaypointEntryname { get; set; }
 
     /// <summary>
-    /// the Paypoint's legal name.
+    /// The paypoint's legal name.
     /// </summary>
     [JsonPropertyName("PaypointLegalname")]
     public string? PaypointLegalname { get; set; }

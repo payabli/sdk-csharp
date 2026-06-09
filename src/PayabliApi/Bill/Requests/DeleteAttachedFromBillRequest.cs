@@ -7,7 +7,7 @@ namespace PayabliApi;
 public record DeleteAttachedFromBillRequest
 {
     /// <summary>
-    /// When `true`, the request returns the file content as a Base64-encoded string.
+    /// When `true`, the response includes the full bill object.
     /// </summary>
     [JsonIgnore]
     public bool? ReturnObject { get; set; }

@@ -9,12 +9,12 @@ namespace PayabliApi;
 public readonly record struct ExportFormat : IStringEnum
 {
     /// <summary>
-    /// Comma-separated values file
+    /// Comma-separated values file.
     /// </summary>
     public static readonly ExportFormat Csv = new(Values.Csv);
 
     /// <summary>
-    /// Excel spreadsheet file
+    /// Excel spreadsheet file.
     /// </summary>
     public static readonly ExportFormat Xlsx = new(Values.Xlsx);
 
@@ -115,12 +115,12 @@ public readonly record struct ExportFormat : IStringEnum
     public static class Values
     {
         /// <summary>
-        /// Comma-separated values file
+        /// Comma-separated values file.
         /// </summary>
         public const string Csv = "csv";
 
         /// <summary>
-        /// Excel spreadsheet file
+        /// Excel spreadsheet file.
         /// </summary>
         public const string Xlsx = "xlsx";
     }

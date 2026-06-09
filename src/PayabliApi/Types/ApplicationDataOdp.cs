@@ -60,7 +60,7 @@ public record ApplicationDataOdp : IJsonOnDeserialized
     /// List of contacts for the business.
     /// </summary>
     [JsonPropertyName("contacts")]
-    public IEnumerable<ApplicationDataOdpContactsItem>? Contacts { get; set; }
+    public IEnumerable<Contacts>? Contacts { get; set; }
 
     [JsonPropertyName("dbaname")]
     public string? Dbaname { get; set; }
@@ -111,7 +111,7 @@ public record ApplicationDataOdp : IJsonOnDeserialized
     /// List of Owners with at least a 25% ownership.
     /// </summary>
     [JsonPropertyName("ownership")]
-    public IEnumerable<ApplicationDataOdpOwnershipItem>? Ownership { get; set; }
+    public IEnumerable<Owners>? Ownership { get; set; }
 
     [JsonPropertyName("payoutAverageMonthlyVolume")]
     public required double PayoutAverageMonthlyVolume { get; set; }

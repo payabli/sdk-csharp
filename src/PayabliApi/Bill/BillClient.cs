@@ -83,12 +83,14 @@ public partial class BillClient : IBillClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -104,103 +106,7 @@ public partial class BillClient : IBillClient
         }
     }
 
-    private async Task<WithRawResponse<BillResponse>> DeleteAttachedFromBillAsyncCore(
-        int idBill,
-        string filename,
-        DeleteAttachedFromBillRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("returnObject", request.ReturnObject)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "Bill/attachedFileFromBill/{0}/{1}",
-                        ValueConvert.ToPathParameterString(idBill),
-                        ValueConvert.ToPathParameterString(filename)
-                    ),
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<BillResponse>(responseBody)!;
-                return new WithRawResponse<BillResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
-                        );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<WithRawResponse<BillResponse>> DeleteBillAsyncCore(
+    private async Task<WithRawResponse<GetBillResponse>> GetBillAsyncCore(
         int idBill,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -216,7 +122,7 @@ public partial class BillClient : IBillClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    Method = HttpMethod.Delete,
+                    Method = HttpMethod.Get,
                     Path = string.Format("Bill/{0}", ValueConvert.ToPathParameterString(idBill)),
                     Headers = _headers,
                     Options = options,
@@ -231,8 +137,8 @@ public partial class BillClient : IBillClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<BillResponse>(responseBody)!;
-                return new WithRawResponse<BillResponse>()
+                var responseData = JsonUtils.Deserialize<GetBillResponse>(responseBody)!;
+                return new WithRawResponse<GetBillResponse>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -264,12 +170,14 @@ public partial class BillClient : IBillClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -352,12 +260,101 @@ public partial class BillClient : IBillClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<BillResponse>> DeleteBillAsyncCore(
+        int idBill,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Delete,
+                    Path = string.Format("Bill/{0}", ValueConvert.ToPathParameterString(idBill)),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<BillResponse>(responseBody)!;
+                return new WithRawResponse<BillResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -448,12 +445,14 @@ public partial class BillClient : IBillClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -469,12 +468,18 @@ public partial class BillClient : IBillClient
         }
     }
 
-    private async Task<WithRawResponse<GetBillResponse>> GetBillAsyncCore(
+    private async Task<WithRawResponse<BillResponse>> DeleteAttachedFromBillAsyncCore(
         int idBill,
+        string filename,
+        DeleteAttachedFromBillRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("returnObject", request.ReturnObject)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -485,8 +490,13 @@ public partial class BillClient : IBillClient
             .SendRequestAsync(
                 new JsonRequest
                 {
-                    Method = HttpMethod.Get,
-                    Path = string.Format("Bill/{0}", ValueConvert.ToPathParameterString(idBill)),
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "Bill/attachedFileFromBill/{0}/{1}",
+                        ValueConvert.ToPathParameterString(idBill),
+                        ValueConvert.ToPathParameterString(filename)
+                    ),
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -500,8 +510,8 @@ public partial class BillClient : IBillClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<GetBillResponse>(responseBody)!;
-                return new WithRawResponse<GetBillResponse>()
+                var responseData = JsonUtils.Deserialize<BillResponse>(responseBody)!;
+                return new WithRawResponse<BillResponse>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -533,12 +543,304 @@ public partial class BillClient : IBillClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<BillResponse>> SendToApprovalBillAsyncCore(
+        int idBill,
+        SendToApprovalBillRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("autocreateUser", request.AutocreateUser)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add("idempotencyKey", request.IdempotencyKey)
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "Bill/approval/{0}",
+                        ValueConvert.ToPathParameterString(idBill)
+                    ),
+                    Body = request.Body,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<BillResponse>(responseBody)!;
+                return new WithRawResponse<BillResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<ModifyApprovalBillResponse>> ModifyApprovalBillAsyncCore(
+        int idBill,
+        IEnumerable<string> request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "Bill/approval/{0}",
+                        ValueConvert.ToPathParameterString(idBill)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<ModifyApprovalBillResponse>(responseBody)!;
+                return new WithRawResponse<ModifyApprovalBillResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<SetApprovedBillResponse>> SetApprovedBillAsyncCore(
+        int idBill,
+        string approved,
+        SetApprovedBillRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("email", request.Email)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Bill/approval/{0}/{1}",
+                        ValueConvert.ToPathParameterString(idBill),
+                        ValueConvert.ToPathParameterString(approved)
+                    ),
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<SetApprovedBillResponse>(responseBody)!;
+                return new WithRawResponse<SetApprovedBillResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -631,12 +933,14 @@ public partial class BillClient : IBillClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -729,296 +1033,14 @@ public partial class BillClient : IBillClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<WithRawResponse<ModifyApprovalBillResponse>> ModifyApprovalBillAsyncCore(
-        int idBill,
-        IEnumerable<string> request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Put,
-                    Path = string.Format(
-                        "Bill/approval/{0}",
-                        ValueConvert.ToPathParameterString(idBill)
-                    ),
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<ModifyApprovalBillResponse>(responseBody)!;
-                return new WithRawResponse<ModifyApprovalBillResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
-                        );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<WithRawResponse<BillResponse>> SendToApprovalBillAsyncCore(
-        int idBill,
-        SendToApprovalBillRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("autocreateUser", request.AutocreateUser)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add("idempotencyKey", request.IdempotencyKey)
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Post,
-                    Path = string.Format(
-                        "Bill/approval/{0}",
-                        ValueConvert.ToPathParameterString(idBill)
-                    ),
-                    Body = request.Body,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<BillResponse>(responseBody)!;
-                return new WithRawResponse<BillResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
-                        );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<WithRawResponse<SetApprovedBillResponse>> SetApprovedBillAsyncCore(
-        int idBill,
-        string approved,
-        SetApprovedBillRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("email", request.Email)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "Bill/approval/{0}/{1}",
-                        ValueConvert.ToPathParameterString(idBill),
-                        ValueConvert.ToPathParameterString(approved)
-                    ),
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<SetApprovedBillResponse>(responseBody)!;
-                return new WithRawResponse<SetApprovedBillResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1069,11 +1091,11 @@ public partial class BillClient : IBillClient
     ///             },
     ///             Mode = 0,
     ///             AccountingField1 = "MyInternalId",
-    ///             Vendor = new VendorData { VendorNumber = "1234-A" },
+    ///             Vendor = new BillOutDataVendor { VendorNumber = "VEN-123" },
     ///             EndDate = new DateOnly(2024, 7, 1),
     ///             Frequency = Frequency.Monthly,
-    ///             Terms = "NET30",
-    ///             Status = -99,
+    ///             Terms = Terms.Net30,
+    ///             Status = 1,
     ///             Attachments = new List&lt;FileContent&gt;()
     ///             {
     ///                 new FileContent
@@ -1100,42 +1122,19 @@ public partial class BillClient : IBillClient
     }
 
     /// <summary>
-    /// Delete a file attached to a bill.
+    /// Retrieves a bill by ID from an entrypoint.
     /// </summary>
     /// <example><code>
-    /// await client.Bill.DeleteAttachedFromBillAsync(
-    ///     "0_Bill.pdf",
-    ///     285,
-    ///     new DeleteAttachedFromBillRequest()
-    /// );
+    /// await client.Bill.GetBillAsync(285);
     /// </code></example>
-    public WithRawResponseTask<BillResponse> DeleteAttachedFromBillAsync(
-        int idBill,
-        string filename,
-        DeleteAttachedFromBillRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<BillResponse>(
-            DeleteAttachedFromBillAsyncCore(idBill, filename, request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Deletes a bill by ID.
-    /// </summary>
-    /// <example><code>
-    /// await client.Bill.DeleteBillAsync(285);
-    /// </code></example>
-    public WithRawResponseTask<BillResponse> DeleteBillAsync(
+    public WithRawResponseTask<GetBillResponse> GetBillAsync(
         int idBill,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<BillResponse>(
-            DeleteBillAsyncCore(idBill, options, cancellationToken)
+        return new WithRawResponseTask<GetBillResponse>(
+            GetBillAsyncCore(idBill, options, cancellationToken)
         );
     }
 
@@ -1157,6 +1156,23 @@ public partial class BillClient : IBillClient
     {
         return new WithRawResponseTask<EditBillResponse>(
             EditBillAsyncCore(idBill, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Deletes a bill by ID.
+    /// </summary>
+    /// <example><code>
+    /// await client.Bill.DeleteBillAsync(285);
+    /// </code></example>
+    public WithRawResponseTask<BillResponse> DeleteBillAsync(
+        int idBill,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<BillResponse>(
+            DeleteBillAsyncCore(idBill, options, cancellationToken)
         );
     }
 
@@ -1184,19 +1200,90 @@ public partial class BillClient : IBillClient
     }
 
     /// <summary>
-    /// Retrieves a bill by ID from an entrypoint.
+    /// Delete a file attached to a bill.
     /// </summary>
     /// <example><code>
-    /// await client.Bill.GetBillAsync(285);
+    /// await client.Bill.DeleteAttachedFromBillAsync(
+    ///     "0_Bill.pdf",
+    ///     285,
+    ///     new DeleteAttachedFromBillRequest()
+    /// );
     /// </code></example>
-    public WithRawResponseTask<GetBillResponse> GetBillAsync(
+    public WithRawResponseTask<BillResponse> DeleteAttachedFromBillAsync(
         int idBill,
+        string filename,
+        DeleteAttachedFromBillRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<GetBillResponse>(
-            GetBillAsyncCore(idBill, options, cancellationToken)
+        return new WithRawResponseTask<BillResponse>(
+            DeleteAttachedFromBillAsyncCore(idBill, filename, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Send a bill to a user or list of users to approve.
+    /// </summary>
+    /// <example><code>
+    /// await client.Bill.SendToApprovalBillAsync(
+    ///     285,
+    ///     new SendToApprovalBillRequest
+    ///     {
+    ///         IdempotencyKey = "6B29FC40-CA47-1067-B31D-00DD010662DA",
+    ///         Body = new List&lt;string&gt;() { "approver@example.com" },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<BillResponse> SendToApprovalBillAsync(
+        int idBill,
+        SendToApprovalBillRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<BillResponse>(
+            SendToApprovalBillAsyncCore(idBill, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Modify the list of users the bill is sent to for approval.
+    /// </summary>
+    /// <example><code>
+    /// await client.Bill.ModifyApprovalBillAsync(
+    ///     285,
+    ///     new List&lt;string&gt;() { "approver1@example.com", "approver2@example.com" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<ModifyApprovalBillResponse> ModifyApprovalBillAsync(
+        int idBill,
+        IEnumerable<string> request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ModifyApprovalBillResponse>(
+            ModifyApprovalBillAsyncCore(idBill, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Approve or disapprove a bill by ID.
+    /// </summary>
+    /// <example><code>
+    /// await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest());
+    /// </code></example>
+    public WithRawResponseTask<SetApprovedBillResponse> SetApprovedBillAsync(
+        int idBill,
+        string approved,
+        SetApprovedBillRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<SetApprovedBillResponse>(
+            SetApprovedBillAsyncCore(idBill, approved, request, options, cancellationToken)
         );
     }
 
@@ -1249,68 +1336,6 @@ public partial class BillClient : IBillClient
     {
         return new WithRawResponseTask<BillQueryResponse>(
             ListBillsOrgAsyncCore(orgId, request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Modify the list of users the bill is sent to for approval.
-    /// </summary>
-    /// <example><code>
-    /// await client.Bill.ModifyApprovalBillAsync(285, new List&lt;string&gt;() { "string" });
-    /// </code></example>
-    public WithRawResponseTask<ModifyApprovalBillResponse> ModifyApprovalBillAsync(
-        int idBill,
-        IEnumerable<string> request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<ModifyApprovalBillResponse>(
-            ModifyApprovalBillAsyncCore(idBill, request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Send a bill to a user or list of users to approve.
-    /// </summary>
-    /// <example><code>
-    /// await client.Bill.SendToApprovalBillAsync(
-    ///     285,
-    ///     new SendToApprovalBillRequest
-    ///     {
-    ///         IdempotencyKey = "6B29FC40-CA47-1067-B31D-00DD010662DA",
-    ///         Body = new List&lt;string&gt;() { "string" },
-    ///     }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<BillResponse> SendToApprovalBillAsync(
-        int idBill,
-        SendToApprovalBillRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<BillResponse>(
-            SendToApprovalBillAsyncCore(idBill, request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Approve or disapprove a bill by ID.
-    /// </summary>
-    /// <example><code>
-    /// await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest());
-    /// </code></example>
-    public WithRawResponseTask<SetApprovedBillResponse> SetApprovedBillAsync(
-        int idBill,
-        string approved,
-        SetApprovedBillRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<SetApprovedBillResponse>(
-            SetApprovedBillAsyncCore(idBill, approved, request, options, cancellationToken)
         );
     }
 }

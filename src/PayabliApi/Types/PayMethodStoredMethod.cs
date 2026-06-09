@@ -18,7 +18,7 @@ public record PayMethodStoredMethod : IJsonOnDeserialized
     public string? Initiator { get; set; }
 
     /// <summary>
-    /// Method to use for the transaction. Use either `card` or `ach`, depending on what kind of method was tokenized to use a saved payment method for this transaction.
+    /// Method to use for the transaction. Use `card`, `ach`, or `wallet` depending on what kind of method was tokenized to use a saved payment method for this transaction.
     /// </summary>
     [JsonPropertyName("method")]
     public required PayMethodStoredMethodMethod Method { get; set; }

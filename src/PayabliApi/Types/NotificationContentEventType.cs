@@ -92,6 +92,10 @@ public readonly record struct NotificationContentEventType : IStringEnum
         Values.RecoveredTransaction
     );
 
+    public static readonly NotificationContentEventType CardUpdaterComplete = new(
+        Values.CardUpdaterComplete
+    );
+
     public static readonly NotificationContentEventType CreatedApplication = new(
         Values.CreatedApplication
     );
@@ -408,6 +412,8 @@ public readonly record struct NotificationContentEventType : IStringEnum
         public const string SendReceipt = "SendReceipt";
 
         public const string RecoveredTransaction = "RecoveredTransaction";
+
+        public const string CardUpdaterComplete = "CardUpdaterComplete";
 
         public const string CreatedApplication = "CreatedApplication";
 

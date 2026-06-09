@@ -84,12 +84,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -174,12 +176,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -219,6 +223,7 @@ public partial class MoneyInClient : IMoneyInClient
                     ),
                     Body = request,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -264,12 +269,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -357,12 +364,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -447,12 +456,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -543,12 +554,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -633,12 +646,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -723,12 +738,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -819,12 +836,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -907,12 +926,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1001,12 +1022,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1089,12 +1112,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1177,12 +1202,14 @@ public partial class MoneyInClient : IMoneyInClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1272,21 +1299,19 @@ public partial class MoneyInClient : IMoneyInClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestAuthResponseErrorV2(
-                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
-                        );
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 402:
-                        throw new DeclinedAuthResponseErrorV2(
+                        throw new PaymentRequiredError(
                             JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
                                 responseBody
                             )
                         );
                     case 500:
-                        throw new InternalServerResponseErrorV2(
-                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
-                        );
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                 }
             }
             catch (JsonException)
@@ -1373,21 +1398,19 @@ public partial class MoneyInClient : IMoneyInClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestAuthResponseErrorV2(
-                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
-                        );
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 402:
-                        throw new DeclinedAuthResponseErrorV2(
+                        throw new PaymentRequiredError(
                             JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
                                 responseBody
                             )
                         );
                     case 500:
-                        throw new InternalServerResponseErrorV2(
-                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
-                        );
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                 }
             }
             catch (JsonException)
@@ -1472,21 +1495,19 @@ public partial class MoneyInClient : IMoneyInClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestCaptureResponseErrorV2(
-                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
-                        );
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 402:
-                        throw new DeclinedCaptureResponseErrorV2(
+                        throw new PaymentRequiredError(
                             JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
                                 responseBody
                             )
                         );
                     case 500:
-                        throw new InternalServerResponseErrorV2(
-                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
-                        );
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                 }
             }
             catch (JsonException)
@@ -1568,21 +1589,19 @@ public partial class MoneyInClient : IMoneyInClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestRefundResponseErrorV2(
-                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
-                        );
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 402:
-                        throw new DeclinedRefundResponseErrorV2(
+                        throw new PaymentRequiredError(
                             JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
                                 responseBody
                             )
                         );
                     case 500:
-                        throw new InternalServerResponseErrorV2(
-                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
-                        );
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                 }
             }
             catch (JsonException)
@@ -1666,21 +1685,19 @@ public partial class MoneyInClient : IMoneyInClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestRefundResponseErrorV2(
-                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
-                        );
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 402:
-                        throw new DeclinedRefundResponseErrorV2(
+                        throw new PaymentRequiredError(
                             JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
                                 responseBody
                             )
                         );
                     case 500:
-                        throw new InternalServerResponseErrorV2(
-                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
-                        );
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                 }
             }
             catch (JsonException)
@@ -1762,21 +1779,19 @@ public partial class MoneyInClient : IMoneyInClient
                 switch (response.StatusCode)
                 {
                     case 400:
-                        throw new BadRequestVoidResponseErrorV2(
-                            JsonUtils.Deserialize<V2BadRequestError>(responseBody)
-                        );
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 402:
-                        throw new DeclinedVoidResponseErrorV2(
+                        throw new PaymentRequiredError(
                             JsonUtils.Deserialize<V2DeclinedTransactionResponseWrapper>(
                                 responseBody
                             )
                         );
                     case 500:
-                        throw new InternalServerResponseErrorV2(
-                            JsonUtils.Deserialize<V2InternalServerError>(responseBody)
-                        );
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                 }
             }
             catch (JsonException)
@@ -1805,7 +1820,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///         Body = new TransRequestBody
     ///         {
     ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "f743aed24a",
+    ///             EntryPoint = "8cfec329267",
     ///             Ipaddress = "255.255.255.255",
     ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
     ///             PaymentMethod = new PayMethodCredit
@@ -1816,7 +1831,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///                 Cardnumber = "4111111111111111",
     ///                 Cardzip = "12345",
     ///                 Initiator = "payor",
-    ///                 Method = "card",
+    ///                 Method = PayMethodCreditMethod.Card,
     ///             },
     ///         },
     ///     }
@@ -1899,9 +1914,9 @@ public partial class MoneyInClient : IMoneyInClient
     ///         CustomerData = new PayorDataRequest
     ///         {
     ///             BillingAddress1 = "5127 Linkwood ave",
-    ///             CustomerNumber = "100",
+    ///             CustomerNumber = "C-90010",
     ///         },
-    ///         Entrypoint = "my-entrypoint",
+    ///         Entrypoint = "8cfec329267",
     ///         PaymentDetails = new PaymentDetailCredit { ServiceFee = 0, TotalAmount = 1 },
     ///         PaymentMethod = new RequestCreditPaymentMethod
     ///         {
@@ -1909,7 +1924,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///             AchAccountType = Achaccounttype.Checking,
     ///             AchHolder = "John Smith",
     ///             AchRouting = "021000021",
-    ///             Method = "ach",
+    ///             Method = RequestCreditPaymentMethodMethod.Ach,
     ///         },
     ///     }
     /// );
@@ -1956,7 +1971,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///         Body = new TransRequestBody
     ///         {
     ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "f743aed24a",
+    ///             EntryPoint = "8cfec329267",
     ///             Ipaddress = "255.255.255.255",
     ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
     ///             PaymentMethod = new PayMethodCredit
@@ -1967,7 +1982,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///                 Cardnumber = "4111111111111111",
     ///                 Cardzip = "12345",
     ///                 Initiator = "payor",
-    ///                 Method = "card",
+    ///                 Method = PayMethodCreditMethod.Card,
     ///             },
     ///         },
     ///     }
@@ -2117,7 +2132,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///     new RequestPaymentValidate
     ///     {
     ///         IdempotencyKey = "6B29FC40-CA47-1067-B31D-00DD010662DA",
-    ///         EntryPoint = "entry132",
+    ///         EntryPoint = "8cfec329267",
     ///         PaymentMethod = new RequestPaymentValidatePaymentMethod
     ///         {
     ///             Method = RequestPaymentValidatePaymentMethodMethod.Card,
@@ -2171,7 +2186,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///         Body = new TransRequestBody
     ///         {
     ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "f743aed24a",
+    ///             EntryPoint = "8cfec329267",
     ///             Ipaddress = "255.255.255.255",
     ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
     ///             PaymentMethod = new PayMethodCredit
@@ -2182,7 +2197,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///                 Cardnumber = "4111111111111111",
     ///                 Cardzip = "12345",
     ///                 Initiator = "payor",
-    ///                 Method = "card",
+    ///                 Method = PayMethodCreditMethod.Card,
     ///             },
     ///         },
     ///     }
@@ -2211,7 +2226,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///         Body = new TransRequestBody
     ///         {
     ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "f743aed24a",
+    ///             EntryPoint = "8cfec329267",
     ///             Ipaddress = "255.255.255.255",
     ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
     ///             PaymentMethod = new PayMethodCredit
@@ -2222,7 +2237,7 @@ public partial class MoneyInClient : IMoneyInClient
     ///                 Cardnumber = "4111111111111111",
     ///                 Cardzip = "12345",
     ///                 Initiator = "payor",
-    ///                 Method = "card",
+    ///                 Method = PayMethodCreditMethod.Card,
     ///             },
     ///         },
     ///     }

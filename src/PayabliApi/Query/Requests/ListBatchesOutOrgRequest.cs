@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record ListBatchesOutOrgRequest
 {
+    /// <summary>
+    /// Export format for file downloads. When specified, returns data as a file instead of JSON.
+    /// </summary>
     [JsonIgnore]
     public ExportFormat? ExportFormat { get; set; }
 
@@ -54,7 +57,7 @@ public record ListBatchesOutOrgRequest
     /// - `externalPaypointID` (ct, nct, eq, ne)
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string>? Parameters { get; set; }
+    public Dictionary<string, string?>? Parameters { get; set; }
 
     /// <summary>
     /// The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.

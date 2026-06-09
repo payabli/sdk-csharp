@@ -13,9 +13,9 @@ public partial interface IVendorClient
     );
 
     /// <summary>
-    /// Delete a vendor.
+    /// Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
     /// </summary>
-    WithRawResponseTask<PayabliApiResponseVendors> DeleteVendorAsync(
+    WithRawResponseTask<VendorQueryRecord> GetVendorAsync(
         int idVendor,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -32,9 +32,9 @@ public partial interface IVendorClient
     );
 
     /// <summary>
-    /// Retrieves a vendor's details, including enrichment status and payment acceptance info when available.
+    /// Delete a vendor.
     /// </summary>
-    WithRawResponseTask<VendorQueryRecord> GetVendorAsync(
+    WithRawResponseTask<PayabliApiResponseVendors> DeleteVendorAsync(
         int idVendor,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

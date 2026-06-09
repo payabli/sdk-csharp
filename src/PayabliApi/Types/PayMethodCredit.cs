@@ -33,7 +33,7 @@ public record PayMethodCredit : IJsonOnDeserialized
     /// Method to use for the transaction. For transactions with a credit or debit card, or a tokenized card, use `card`.
     /// </summary>
     [JsonPropertyName("method")]
-    public string Method { get; set; } = "card";
+    public required PayMethodCreditMethod Method { get; set; }
 
     [JsonPropertyName("saveIfSuccess")]
     public bool? SaveIfSuccess { get; set; }

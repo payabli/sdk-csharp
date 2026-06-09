@@ -84,12 +84,14 @@ public partial class ManagementClient : IManagementClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -114,7 +116,7 @@ public partial class ManagementClient : IManagementClient
     /// </summary>
     /// <example><code>
     /// await client.Management.VerifyAccountDetailsAsync(
-    ///     "entry752",
+    ///     "8cfec329267",
     ///     new VerifyAccountDetailsRequest
     ///     {
     ///         RoutingNumber = "122105278",

@@ -5,7 +5,8 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// This metadata appears only when the domain verification check fails. It gives more information about why the check failed.
+/// This metadata appears only when the domain verification check fails. It
+/// gives more information about why the check failed.
 /// </summary>
 [Serializable]
 public record GooglePayMetadata : IJsonOnDeserialized
@@ -15,13 +16,17 @@ public record GooglePayMetadata : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The status code return by the domain verification URL.
+    /// The status code returned by the domain verification URL.
     /// </summary>
     [JsonPropertyName("statusCode")]
     public int? StatusCode { get; set; }
 
     /// <summary>
-    /// If the domain verification URL is redirected, this is the URL it's redirected to.  For example, www.partner.com could redirect to www.partners-new-home-page.com. In this case, you should add www.partners-new-home-page.com as a domain instead of www.partner.com.
+    /// If the domain verification URL is redirected, this is the URL it's
+    /// redirected to. For example, `www.partner.com` could redirect to
+    /// `www.partners-new-home-page.com`. In this case, you should add
+    /// `www.partners-new-home-page.com` as a domain instead of
+    /// `www.partner.com`.
     /// </summary>
     [JsonPropertyName("redirectUrl")]
     public string? RedirectUrl { get; set; }

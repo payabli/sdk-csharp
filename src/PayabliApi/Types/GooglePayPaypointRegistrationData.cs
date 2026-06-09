@@ -18,7 +18,7 @@ public record GooglePayPaypointRegistrationData : IJsonOnDeserialized
     public bool? IsEnabled { get; set; }
 
     /// <summary>
-    /// The wallet type. In this context it will always be `googlePay`.
+    /// The wallet type. In this context it will always be `googlepay`.
     /// </summary>
     [JsonPropertyName("walletType")]
     public string? WalletType { get; set; }

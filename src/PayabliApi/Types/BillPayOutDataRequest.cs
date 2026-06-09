@@ -57,7 +57,7 @@ public record BillPayOutDataRequest : IJsonOnDeserialized
     /// Description of payment terms.
     /// </summary>
     [JsonPropertyName("terms")]
-    public string? Terms { get; set; }
+    public Terms? Terms { get; set; }
 
     [JsonPropertyName("accountingField1")]
     public string? AccountingField1 { get; set; }

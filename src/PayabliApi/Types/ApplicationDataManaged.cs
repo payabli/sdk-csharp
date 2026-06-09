@@ -57,7 +57,7 @@ public record ApplicationDataManaged : IJsonOnDeserialized
     /// List of contacts for the business.
     /// </summary>
     [JsonPropertyName("contacts")]
-    public IEnumerable<ApplicationDataManagedContactsItem>? Contacts { get; set; }
+    public IEnumerable<Contacts>? Contacts { get; set; }
 
     [JsonPropertyName("dbaname")]
     public string? Dbaname { get; set; }
@@ -105,7 +105,7 @@ public record ApplicationDataManaged : IJsonOnDeserialized
     /// List of Owners with at least a 25% ownership.
     /// </summary>
     [JsonPropertyName("ownership")]
-    public IEnumerable<ApplicationDataManagedOwnershipItem>? Ownership { get; set; }
+    public IEnumerable<Owners>? Ownership { get; set; }
 
     [JsonPropertyName("phonenumber")]
     public string? Phonenumber { get; set; }

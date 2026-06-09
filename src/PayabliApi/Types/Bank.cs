@@ -23,7 +23,6 @@ public record Bank : IJsonOnDeserialized
     /// <summary>
     /// The Payabli-assigned internal identifier for the bank account.
     /// </summary>
-    [JsonAccess(JsonAccessType.ReadOnly)]
     [JsonPropertyName("id")]
     public int? Id { get; set; }
 

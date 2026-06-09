@@ -24,7 +24,7 @@ public record ApplePayOrganizationUpdateData : IJsonOnDeserialized
     public string? JobId { get; set; }
 
     [JsonPropertyName("jobStatus")]
-    public string? JobStatus { get; set; }
+    public JobStatus? JobStatus { get; set; }
 
     [JsonPropertyName("organizationId")]
     public long? OrganizationId { get; set; }

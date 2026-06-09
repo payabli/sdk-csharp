@@ -12,20 +12,20 @@ public partial interface IOrganizationClient
     );
 
     /// <summary>
-    /// Delete an organization by ID.
-    /// </summary>
-    WithRawResponseTask<DeleteOrganizationResponse> DeleteOrganizationAsync(
-        int orgId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Updates an organization's details by ID.
     /// </summary>
     WithRawResponseTask<EditOrganizationResponse> EditOrganizationAsync(
         int orgId,
         OrganizationData request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Delete an organization by ID.
+    /// </summary>
+    WithRawResponseTask<DeleteOrganizationResponse> DeleteOrganizationAsync(
+        int orgId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -40,7 +40,7 @@ public partial interface IOrganizationClient
     );
 
     /// <summary>
-    /// Gets an organizations basic details by org ID.
+    /// Gets an organization's basic details by org ID.
     /// </summary>
     WithRawResponseTask<OrganizationQueryRecord> GetBasicOrganizationByIdAsync(
         int orgId,

@@ -36,10 +36,11 @@ public partial class NotificationlogsClient : INotificationlogsClient
                 new JsonRequest
                 {
                     Method = HttpMethod.Post,
-                    Path = "/v2/notificationlogs",
-                    Body = request.Body,
+                    Path = "v2/notificationlogs",
+                    Body = request,
                     QueryString = _queryString,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -87,12 +88,14 @@ public partial class NotificationlogsClient : INotificationlogsClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -126,7 +129,7 @@ public partial class NotificationlogsClient : INotificationlogsClient
                 {
                     Method = HttpMethod.Get,
                     Path = string.Format(
-                        "/v2/notificationlogs/{0}",
+                        "v2/notificationlogs/{0}",
                         ValueConvert.ToPathParameterString(uuid)
                     ),
                     Headers = _headers,
@@ -175,12 +178,14 @@ public partial class NotificationlogsClient : INotificationlogsClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -214,7 +219,7 @@ public partial class NotificationlogsClient : INotificationlogsClient
                 {
                     Method = HttpMethod.Get,
                     Path = string.Format(
-                        "/v2/notificationlogs/{0}/retry",
+                        "v2/notificationlogs/{0}/retry",
                         ValueConvert.ToPathParameterString(uuid)
                     ),
                     Headers = _headers,
@@ -263,12 +268,14 @@ public partial class NotificationlogsClient : INotificationlogsClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -296,14 +303,11 @@ public partial class NotificationlogsClient : INotificationlogsClient
     ///     new SearchNotificationLogsRequest
     ///     {
     ///         PageSize = 20,
-    ///         Body = new NotificationLogSearchRequest
-    ///         {
-    ///             StartDate = new DateTime(2024, 01, 01, 00, 00, 00, 000),
-    ///             EndDate = new DateTime(2024, 01, 31, 23, 59, 59, 000),
-    ///             OrgId = 12345,
-    ///             NotificationEvent = "ActivatedMerchant",
-    ///             Succeeded = true,
-    ///         },
+    ///         StartDate = new DateTime(2024, 01, 01, 00, 00, 00, 000),
+    ///         EndDate = new DateTime(2024, 01, 31, 23, 59, 59, 000),
+    ///         OrgId = 123,
+    ///         NotificationEvent = "ActivatedMerchant",
+    ///         Succeeded = true,
     ///     }
     /// );
     /// </code></example>
@@ -388,9 +392,10 @@ public partial class NotificationlogsClient : INotificationlogsClient
                 new JsonRequest
                 {
                     Method = HttpMethod.Post,
-                    Path = "/v2/notificationlogs/retry",
+                    Path = "v2/notificationlogs/retry",
                     Body = request,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

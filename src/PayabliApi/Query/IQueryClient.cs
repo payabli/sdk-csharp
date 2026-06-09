@@ -16,7 +16,7 @@ public partial interface IQueryClient
     /// <summary>
     /// Retrieve a list of batches and their details, including settled and unsettled transactions for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
-    WithRawResponseTask<QueryResponseSettlements> ListBatchDetailsOrgAsync(
+    WithRawResponseTask<QueryBatchesDetailResponse> ListBatchDetailsOrgAsync(
         int orgId,
         ListBatchDetailsOrgRequest request,
         RequestOptions? options = null,
@@ -265,12 +265,15 @@ public partial interface IQueryClient
 
     /// <summary>
     /// Retrieve a list of transactions for a paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-    /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
-    /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
-    /// ``` curl -X GET https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59\
-    ///   -H 'requestToken: &lt;API TOKEN&gt;'
     ///
-    ///   ```
+    /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
+    ///
+    /// These request parameters filter for transactions between April 1, 2024 and April 9, 2024.
+    ///
+    /// ```bash
+    /// curl -X GET https://api-sandbox.payabli.com/api/Query/transactions/8cfec329267?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59 \
+    ///   -H 'requestToken: &lt;API TOKEN&gt;'
+    /// ```
     /// </summary>
     WithRawResponseTask<QueryResponseTransactions> ListTransactionsAsync(
         string entry,
@@ -280,19 +283,16 @@ public partial interface IQueryClient
     );
 
     /// <summary>
-    /// Retrieve a list of transactions for an organization. Use filters to
-    /// limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
-    ///
+    /// Retrieve a list of transactions for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     ///
     /// By default, this endpoint returns only transactions from the last 60 days. To query transactions outside of this period, include `transactionDate` filters.
     ///
-    /// For example, this request parameters filter for transactions between April 01, 2024 and April 09, 2024.
+    /// These request parameters filter for transactions between April 1, 2024 and April 9, 2024.
     ///
-    /// ```
-    /// curl -X GET "https://sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59"\
+    /// ```bash
+    /// curl -X GET "https://api-sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59" \
     ///   -H 'requestToken: &lt;API TOKEN&gt;'
-    ///
-    ///   ```
+    /// ```
     /// </summary>
     WithRawResponseTask<QueryResponseTransactions> ListTransactionsOrgAsync(
         int orgId,
@@ -326,6 +326,7 @@ public partial interface IQueryClient
     /// Retrieve a list of transfers for an org. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     WithRawResponseTask<TransferQueryResponse> ListTransfersOrgAsync(
+        long orgId,
         ListTransfersRequestOrg request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

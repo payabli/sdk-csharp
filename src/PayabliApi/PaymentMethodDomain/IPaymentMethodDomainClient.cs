@@ -21,15 +21,6 @@ public partial interface IPaymentMethodDomainClient
     );
 
     /// <summary>
-    /// Delete a payment method domain. You can't delete an inherited domain, you must delete a domain at the organization level.
-    /// </summary>
-    WithRawResponseTask<DeletePaymentMethodDomainResponse> DeletePaymentMethodDomainAsync(
-        string domainId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Get the details for a payment method domain.
     /// </summary>
     WithRawResponseTask<PaymentMethodDomainApiResponse> GetPaymentMethodDomainAsync(
@@ -39,10 +30,10 @@ public partial interface IPaymentMethodDomainClient
     );
 
     /// <summary>
-    /// Get a list of payment method domains that belong to a PSP, organization, or paypoint.
+    /// Delete a payment method domain. You can't delete an inherited domain, you must delete a domain at the organization level.
     /// </summary>
-    WithRawResponseTask<ListPaymentMethodDomainsResponse> ListPaymentMethodDomainsAsync(
-        ListPaymentMethodDomainsRequest request,
+    WithRawResponseTask<DeletePaymentMethodDomainResponse> DeletePaymentMethodDomainAsync(
+        string domainId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -53,6 +44,15 @@ public partial interface IPaymentMethodDomainClient
     WithRawResponseTask<PaymentMethodDomainGeneralResponse> UpdatePaymentMethodDomainAsync(
         string domainId,
         UpdatePaymentMethodDomainRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Get a list of payment method domains that belong to a PSP, organization, or paypoint.
+    /// </summary>
+    WithRawResponseTask<ListPaymentMethodDomainsResponse> ListPaymentMethodDomainsAsync(
+        ListPaymentMethodDomainsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

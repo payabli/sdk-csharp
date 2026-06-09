@@ -5,7 +5,7 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// Information about the standard notification configuration (email, sms, web).
+/// Information about the standard notification configuration (email, SMS, web).
 /// </summary>
 [Serializable]
 public record NotificationStandardRequest : IJsonOnDeserialized
@@ -21,7 +21,7 @@ public record NotificationStandardRequest : IJsonOnDeserialized
     public required NotificationStandardRequestFrequency Frequency { get; set; }
 
     /// <summary>
-    /// Get near-instant notifications via email, SMS, or webhooks for important events like new payment disputes, merchant activations, fraud alerts, approved transactions, settlement history, vendor payouts, and more. Use webhooks with notifications to get real-time updates and automate operations based on key those key events. See [Notifications](/developers/developer-guides/notifications-and-webhooks-overview#notifications) for more.
+    /// Get near-instant notifications via email, SMS, or webhooks for important events like new payment disputes, merchant activations, fraud alerts, approved transactions, settlement history, vendor payouts, and more. Use webhooks with notifications to get real-time updates and automate operations based on those key events. See [Notifications](/developers/developer-guides/notifications-and-webhooks-overview#notifications) for more.
     /// </summary>
     [JsonPropertyName("method")]
     public required NotificationStandardRequestMethod Method { get; set; }
@@ -37,7 +37,6 @@ public record NotificationStandardRequest : IJsonOnDeserialized
 
     /// <summary>
     /// Specify the notification target.
-    ///
     /// - For method=email the expected value is a list of email addresses separated by semicolon.
     /// - For method=sms the expected value is a list of phone numbers separated by semicolon.
     /// - For method=web the expected value is a valid and complete URL. Webhooks support only standard HTTP ports: 80, 443, 8080, or 4443.

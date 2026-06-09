@@ -14,15 +14,6 @@ public partial interface ICustomerClient
     );
 
     /// <summary>
-    /// Delete a customer record.
-    /// </summary>
-    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> DeleteCustomerAsync(
-        int customerId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Retrieves a customer's record and details.
     /// </summary>
     WithRawResponseTask<CustomerQueryRecords> GetCustomerAsync(
@@ -32,11 +23,20 @@ public partial interface ICustomerClient
     );
 
     /// <summary>
-    /// Links a customer to a transaction by ID.
+    /// Update a customer record. Include only the fields you want to change.
     /// </summary>
-    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> LinkCustomerTransactionAsync(
+    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> UpdateCustomerAsync(
         int customerId,
-        string transId,
+        CustomerData request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Delete a customer record.
+    /// </summary>
+    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> DeleteCustomerAsync(
+        int customerId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -51,11 +51,11 @@ public partial interface ICustomerClient
     );
 
     /// <summary>
-    /// Update a customer record. Include only the fields you want to change.
+    /// Links a customer to a transaction by ID.
     /// </summary>
-    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> UpdateCustomerAsync(
+    WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> LinkCustomerTransactionAsync(
         int customerId,
-        CustomerData request,
+        string transId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

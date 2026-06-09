@@ -22,6 +22,12 @@ public readonly record struct Frequency : IStringEnum
 
     public static readonly Frequency Annually = new(Values.Annually);
 
+    public static readonly Frequency FirstOfMonth = new(Values.FirstOfMonth);
+
+    public static readonly Frequency FifteenthOfMonth = new(Values.FifteenthOfMonth);
+
+    public static readonly Frequency EndOfMonth = new(Values.EndOfMonth);
+
     public Frequency(string value)
     {
         Value = value;
@@ -129,5 +135,11 @@ public readonly record struct Frequency : IStringEnum
         public const string Every3Months = "every3months";
 
         public const string Annually = "annually";
+
+        public const string FirstOfMonth = "firstofmonth";
+
+        public const string FifteenthOfMonth = "fifteenthofmonth";
+
+        public const string EndOfMonth = "endofmonth";
     }
 }

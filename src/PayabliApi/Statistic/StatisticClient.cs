@@ -97,12 +97,14 @@ public partial class StatisticClient : IStatisticClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -199,12 +201,14 @@ public partial class StatisticClient : IStatisticClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -299,12 +303,14 @@ public partial class StatisticClient : IStatisticClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -394,6 +400,28 @@ public partial class StatisticClient : IStatisticClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
             throw new PayabliApiApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -409,9 +437,9 @@ public partial class StatisticClient : IStatisticClient
     /// await client.Statistic.BasicStatsAsync(
     ///     1000000,
     ///     "m",
-    ///     1,
-    ///     "ytd",
-    ///     new BasicStatsRequest { EndDate = "2025-11-01", StartDate = "2025-11-30" }
+    ///     2,
+    ///     "custom",
+    ///     new BasicStatsRequest { StartDate = "2025-11-01", EndDate = "2025-11-30" }
     /// );
     /// </code></example>
     public WithRawResponseTask<IEnumerable<StatBasicExtendedQueryRecord>> BasicStatsAsync(
@@ -433,7 +461,7 @@ public partial class StatisticClient : IStatisticClient
     /// Retrieves the basic statistics for a customer for a specific time period, grouped by a selected frequency.
     /// </summary>
     /// <example><code>
-    /// await client.Statistic.CustomerBasicStatsAsync(998, "m", "ytd", new CustomerBasicStatsRequest());
+    /// await client.Statistic.CustomerBasicStatsAsync(4440, "m", "ytd", new CustomerBasicStatsRequest());
     /// </code></example>
     public WithRawResponseTask<IEnumerable<SubscriptionStatsQueryRecord>> CustomerBasicStatsAsync(
         string mode,
@@ -453,7 +481,7 @@ public partial class StatisticClient : IStatisticClient
     /// Retrieves the subscription statistics for a given interval for a paypoint or organization.
     /// </summary>
     /// <example><code>
-    /// await client.Statistic.SubStatsAsync(1000000, "30", 1, new SubStatsRequest());
+    /// await client.Statistic.SubStatsAsync(1000000, "30", 2, new SubStatsRequest());
     /// </code></example>
     public WithRawResponseTask<IEnumerable<StatBasicQueryRecord>> SubStatsAsync(
         string interval,

@@ -127,13 +127,9 @@ public record CustomerQueryRecords : IJsonOnDeserialized
 
     /// <summary>
     /// Social network linked to customer. Possible values:
-    ///
     /// - `facebook`
-    ///
     /// - `google`
-    ///
     /// - `twitter`
-    ///
     /// - `microsoft`
     /// </summary>
     [JsonPropertyName("snProvider")]
@@ -218,7 +214,7 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     public CustomerQueryRecordsCustomerConsent? CustomerConsent { get; set; }
 
     [JsonPropertyName("customerPortal")]
-    public object? CustomerPortal { get; set; }
+    public string? CustomerPortal { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

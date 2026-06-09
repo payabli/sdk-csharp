@@ -12,10 +12,10 @@ public record ApplicationDataPayInServices : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("ach")]
-    public required ApplicationDataPayInServicesAch Ach { get; set; }
+    public required AchSetup Ach { get; set; }
 
     [JsonPropertyName("card")]
-    public required ApplicationDataPayInServicesCard Card { get; set; }
+    public required CardSetup Card { get; set; }
 
     [JsonPropertyName("odp")]
     public OdpSetup? Odp { get; set; }

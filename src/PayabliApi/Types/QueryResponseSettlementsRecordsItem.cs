@@ -52,9 +52,7 @@ public record QueryResponseSettlementsRecordsItem : IJsonOnDeserialized
 
     /// <summary>
     /// Describes whether the transaction is being held or not.
-    ///
     /// 1 - Transaction is held
-    ///
     /// 0 - Transaction isn't being held
     /// </summary>
     [JsonPropertyName("isHold")]

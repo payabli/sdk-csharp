@@ -82,12 +82,14 @@ public partial class GhostCardClient : IGhostCardClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -173,12 +175,14 @@ public partial class GhostCardClient : IGhostCardClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -203,10 +207,10 @@ public partial class GhostCardClient : IGhostCardClient
     /// </summary>
     /// <example><code>
     /// await client.GhostCard.CreateGhostCardAsync(
-    ///     "8cfec2e0fa",
+    ///     "8cfec329267",
     ///     new CreateGhostCardRequestBody
     ///     {
-    ///         VendorId = 42,
+    ///         VendorId = 456,
     ///         ExpenseLimit = 500,
     ///         Amount = 500,
     ///         MaxNumberOfUses = 3,
@@ -241,7 +245,7 @@ public partial class GhostCardClient : IGhostCardClient
     /// </summary>
     /// <example><code>
     /// await client.GhostCard.UpdateCardAsync(
-    ///     "8cfec2e0fa",
+    ///     "8cfec329267",
     ///     new UpdateCardRequestBody { CardToken = "gc_abc123def456", Status = CardStatus.Cancelled }
     /// );
     /// </code></example>

@@ -18,7 +18,7 @@ public record ApplePayPaypointRegistrationData : IJsonOnDeserialized
     public bool? IsEnabled { get; set; }
 
     /// <summary>
-    /// The wallet type. In this context it will always be `applePay`.
+    /// The wallet type. In this context it will always be `applepay`.
     /// </summary>
     [JsonPropertyName("walletType")]
     public string? WalletType { get; set; }

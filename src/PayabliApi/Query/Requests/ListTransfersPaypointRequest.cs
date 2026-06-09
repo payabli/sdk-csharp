@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record ListTransfersPaypointRequest
 {
+    /// <summary>
+    /// Export format for file downloads. When specified, returns data as a file instead of JSON.
+    /// </summary>
     [JsonIgnore]
     public ExportFormat? ExportFormat { get; set; }
 
@@ -15,6 +18,9 @@ public record ListTransfersPaypointRequest
     [JsonIgnore]
     public int? FromRecord { get; set; }
 
+    /// <summary>
+    /// Max number of records to return for the query. Use `0` or negative value to return all records. Defaults to 20.
+    /// </summary>
     [JsonIgnore]
     public int? LimitRecord { get; set; }
 
@@ -58,7 +64,7 @@ public record ListTransfersPaypointRequest
     ///   - `method` (eq, ne, in, nin)
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string>? Parameters { get; set; }
+    public Dictionary<string, string?>? Parameters { get; set; }
 
     /// <summary>
     /// The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.

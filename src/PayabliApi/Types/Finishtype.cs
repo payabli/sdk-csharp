@@ -12,13 +12,13 @@ public record Finishtype : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Flag to enable 'calendar' option
+    /// Flag to enable the 'calendar' option.
     /// </summary>
     [JsonPropertyName("calendar")]
     public bool? Calendar { get; set; }
 
     /// <summary>
-    /// Flag to enable 'untilCancelled' option
+    /// Flag to enable the 'untilCancelled' option.
     /// </summary>
     [JsonPropertyName("untilCancelled")]
     public bool? UntilCancelled { get; set; }

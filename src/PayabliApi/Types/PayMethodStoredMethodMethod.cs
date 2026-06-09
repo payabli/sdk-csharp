@@ -12,6 +12,8 @@ public readonly record struct PayMethodStoredMethodMethod : IStringEnum
 
     public static readonly PayMethodStoredMethodMethod Ach = new(Values.Ach);
 
+    public static readonly PayMethodStoredMethodMethod Wallet = new(Values.Wallet);
+
     public PayMethodStoredMethodMethod(string value)
     {
         Value = value;
@@ -112,5 +114,7 @@ public readonly record struct PayMethodStoredMethodMethod : IStringEnum
         public const string Card = "card";
 
         public const string Ach = "ach";
+
+        public const string Wallet = "wallet";
     }
 }

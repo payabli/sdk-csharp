@@ -6,7 +6,7 @@ public partial class PayabliApiClient : IPayabliApiClient
 {
     private readonly RawClient _client;
 
-    public PayabliApiClient(string apiKey, ClientOptions? clientOptions = null)
+    public PayabliApiClient(string? apiKey = null, ClientOptions? clientOptions = null)
     {
         clientOptions ??= new ClientOptions();
         var platformHeaders = new Headers(
@@ -15,7 +15,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/0.0.315" },
+                { "User-Agent", "Payabli.SDK/1.0.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -27,7 +27,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         }
         var clientOptionsWithAuth = clientOptions.Clone();
         var authHeaders = new Headers(
-            new Dictionary<string, string>() { { "requestToken", apiKey } }
+            new Dictionary<string, string>() { { "requestToken", apiKey ?? "" } }
         );
         foreach (var header in authHeaders)
         {
@@ -35,97 +35,97 @@ public partial class PayabliApiClient : IPayabliApiClient
         }
         _client = new RawClient(clientOptionsWithAuth);
         Bill = new BillClient(_client);
-        Boarding = new BoardingClient(_client);
-        ChargeBacks = new ChargeBacksClient(_client);
-        CheckCapture = new CheckCaptureClient(_client);
-        Cloud = new CloudClient(_client);
         Customer = new CustomerClient(_client);
-        Export = new ExportClient(_client);
-        GhostCard = new GhostCardClient(_client);
-        HostedPaymentPages = new HostedPaymentPagesClient(_client);
-        Import = new ImportClient(_client);
-        Invoice = new InvoiceClient(_client);
-        LineItem = new LineItemClient(_client);
-        Management = new ManagementClient(_client);
+        CheckCapture = new CheckCaptureClient(_client);
         MoneyIn = new MoneyInClient(_client);
-        MoneyOut = new MoneyOutClient(_client);
-        Notification = new NotificationClient(_client);
-        Notificationlogs = new NotificationlogsClient(_client);
-        Ocr = new OcrClient(_client);
-        Organization = new OrganizationClient(_client);
-        PaymentLink = new PaymentLinkClient(_client);
-        PaymentMethodDomain = new PaymentMethodDomainClient(_client);
-        PayoutSubscription = new PayoutSubscriptionClient(_client);
-        Paypoint = new PaypointClient(_client);
-        Query = new QueryClient(_client);
-        Statistic = new StatisticClient(_client);
         Subscription = new SubscriptionClient(_client);
-        Templates = new TemplatesClient(_client);
+        Invoice = new InvoiceClient(_client);
+        PaymentLink = new PaymentLinkClient(_client);
         TokenStorage = new TokenStorageClient(_client);
+        Paypoint = new PaypointClient(_client);
+        HostedPaymentPages = new HostedPaymentPagesClient(_client);
+        PaymentMethodDomain = new PaymentMethodDomainClient(_client);
+        Import = new ImportClient(_client);
+        Query = new QueryClient(_client);
+        Ocr = new OcrClient(_client);
+        Notificationlogs = new NotificationlogsClient(_client);
+        Cloud = new CloudClient(_client);
+        LineItem = new LineItemClient(_client);
+        Boarding = new BoardingClient(_client);
+        Templates = new TemplatesClient(_client);
+        Export = new ExportClient(_client);
+        Organization = new OrganizationClient(_client);
+        Management = new ManagementClient(_client);
+        Statistic = new StatisticClient(_client);
+        Notification = new NotificationClient(_client);
         User = new UserClient(_client);
         Vendor = new VendorClient(_client);
+        GhostCard = new GhostCardClient(_client);
+        MoneyOut = new MoneyOutClient(_client);
         Wallet = new WalletClient(_client);
+        PayoutSubscription = new PayoutSubscriptionClient(_client);
+        ChargeBacks = new ChargeBacksClient(_client);
     }
 
     public IBillClient Bill { get; }
 
-    public IBoardingClient Boarding { get; }
-
-    public IChargeBacksClient ChargeBacks { get; }
+    public ICustomerClient Customer { get; }
 
     public ICheckCaptureClient CheckCapture { get; }
 
-    public ICloudClient Cloud { get; }
-
-    public ICustomerClient Customer { get; }
-
-    public IExportClient Export { get; }
-
-    public IGhostCardClient GhostCard { get; }
-
-    public IHostedPaymentPagesClient HostedPaymentPages { get; }
-
-    public IImportClient Import { get; }
-
-    public IInvoiceClient Invoice { get; }
-
-    public ILineItemClient LineItem { get; }
-
-    public IManagementClient Management { get; }
-
     public IMoneyInClient MoneyIn { get; }
-
-    public IMoneyOutClient MoneyOut { get; }
-
-    public INotificationClient Notification { get; }
-
-    public INotificationlogsClient Notificationlogs { get; }
-
-    public IOcrClient Ocr { get; }
-
-    public IOrganizationClient Organization { get; }
-
-    public IPaymentLinkClient PaymentLink { get; }
-
-    public IPaymentMethodDomainClient PaymentMethodDomain { get; }
-
-    public IPayoutSubscriptionClient PayoutSubscription { get; }
-
-    public IPaypointClient Paypoint { get; }
-
-    public IQueryClient Query { get; }
-
-    public IStatisticClient Statistic { get; }
 
     public ISubscriptionClient Subscription { get; }
 
-    public ITemplatesClient Templates { get; }
+    public IInvoiceClient Invoice { get; }
+
+    public IPaymentLinkClient PaymentLink { get; }
 
     public ITokenStorageClient TokenStorage { get; }
+
+    public IPaypointClient Paypoint { get; }
+
+    public IHostedPaymentPagesClient HostedPaymentPages { get; }
+
+    public IPaymentMethodDomainClient PaymentMethodDomain { get; }
+
+    public IImportClient Import { get; }
+
+    public IQueryClient Query { get; }
+
+    public IOcrClient Ocr { get; }
+
+    public INotificationlogsClient Notificationlogs { get; }
+
+    public ICloudClient Cloud { get; }
+
+    public ILineItemClient LineItem { get; }
+
+    public IBoardingClient Boarding { get; }
+
+    public ITemplatesClient Templates { get; }
+
+    public IExportClient Export { get; }
+
+    public IOrganizationClient Organization { get; }
+
+    public IManagementClient Management { get; }
+
+    public IStatisticClient Statistic { get; }
+
+    public INotificationClient Notification { get; }
 
     public IUserClient User { get; }
 
     public IVendorClient Vendor { get; }
 
+    public IGhostCardClient GhostCard { get; }
+
+    public IMoneyOutClient MoneyOut { get; }
+
     public IWalletClient Wallet { get; }
+
+    public IPayoutSubscriptionClient PayoutSubscription { get; }
+
+    public IChargeBacksClient ChargeBacks { get; }
 }

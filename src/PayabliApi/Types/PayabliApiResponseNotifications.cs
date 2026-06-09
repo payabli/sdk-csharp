@@ -14,7 +14,6 @@ public record PayabliApiResponseNotifications : IJsonOnDeserialized
 
     /// <summary>
     /// If `isSuccess` = true, `responseData` contains the notification identifier.
-    ///
     /// If `isSuccess` = false, `responseData` contains the reason for the error.
     /// </summary>
     [JsonPropertyName("isSuccess")]

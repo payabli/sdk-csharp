@@ -24,13 +24,15 @@ public record BillItem : IJsonOnDeserialized
     /// Item or product price per unit.
     /// </summary>
     [JsonPropertyName("itemCost")]
-    public required double ItemCost { get; set; }
+    public double? ItemCost { get; set; }
 
     [JsonPropertyName("itemDescription")]
     public string? ItemDescription { get; set; }
 
     /// <summary>
-    /// Internal class of item or product: value '0' is only for invoices , '1' for bills and, '2' common for both.
+    /// Internal class of item or product: value `0` is only for invoices,
+    /// `1` for bills, and `2` is common for both. Required on invoice line
+    /// items — invoice creation fails with `Invalid item data` if it's omitted.
     /// </summary>
     [JsonPropertyName("itemMode")]
     public int? ItemMode { get; set; }
@@ -60,7 +62,8 @@ public record BillItem : IJsonOnDeserialized
     public double? ItemTaxRate { get; set; }
 
     /// <summary>
-    /// Total amount in item or product.
+    /// Per-line total for this item (unit cost times quantity). Distinct from
+    /// the invoice's overall total, `invoiceAmount`. Required on invoice line items.
     /// </summary>
     [JsonPropertyName("itemTotalAmount")]
     public double? ItemTotalAmount { get; set; }

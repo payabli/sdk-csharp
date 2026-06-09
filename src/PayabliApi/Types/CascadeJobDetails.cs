@@ -27,7 +27,7 @@ public record CascadeJobDetails : IJsonOnDeserialized
     public string? JobId { get; set; }
 
     [JsonPropertyName("jobStatus")]
-    public string? JobStatus { get; set; }
+    public JobStatus? JobStatus { get; set; }
 
     [JsonPropertyName("updatedAt")]
     public DateTime? UpdatedAt { get; set; }

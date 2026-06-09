@@ -86,13 +86,13 @@ await client.MoneyIn.Getpaidv2Async(
         Body = new TransRequestBody
         {
             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-            EntryPoint = "f743aed24a",
+            EntryPoint = "8cfec329267",
             Ipaddress = "255.255.255.255",
             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
             PaymentMethod = new PayMethodCloud
             {
                 Device = "6c361c7d-674c-44cc-b790-382b75d1xxx",
-                Method = "cloud",
+                Method = PayMethodCloudMethod.Cloud,
                 SaveIfSuccess = true,
             },
         },
@@ -243,25 +243,25 @@ This SDK uses forward-compatible enums that can handle unknown values gracefully
 using PayabliApi;
 
 // Using a built-in value
-var achaccounttype = Achaccounttype.Checking;
+var fileContentFtype = FileContentFtype.Pdf;
 
 // Using a custom value
-var customAchaccounttype = Achaccounttype.FromCustom("custom-value");
+var customFileContentFtype = FileContentFtype.FromCustom("custom-value");
 
 // Using in a switch statement
-switch (achaccounttype.Value)
+switch (fileContentFtype.Value)
 {
-    case Achaccounttype.Values.Checking:
-        Console.WriteLine("Checking");
+    case FileContentFtype.Values.Pdf:
+        Console.WriteLine("Pdf");
         break;
     default:
-        Console.WriteLine($"Unknown value: {achaccounttype.Value}");
+        Console.WriteLine($"Unknown value: {fileContentFtype.Value}");
         break;
 }
 
 // Explicit casting
-string achaccounttypeString = (string)Achaccounttype.Checking;
-Achaccounttype achaccounttypeFromString = (Achaccounttype)"Checking";
+string fileContentFtypeString = (string)FileContentFtype.Pdf;
+FileContentFtype fileContentFtypeFromString = (FileContentFtype)"pdf";
 ```
 
 ## Contributing

@@ -13,7 +13,7 @@ public partial class MoneyOutClient : IMoneyOutClient
     }
 
     private async Task<WithRawResponse<AuthCapturePayoutResponse>> AuthorizeOutAsyncCore(
-        MoneyOutTypesRequestOutAuthorize request,
+        RequestOutAuthorize request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -37,7 +37,7 @@ public partial class MoneyOutClient : IMoneyOutClient
                 {
                     Method = HttpMethod.Post,
                     Path = "MoneyOut/authorize",
-                    Body = request.Body,
+                    Body = request,
                     QueryString = _queryString,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -86,12 +86,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -173,12 +175,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -261,12 +265,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -349,12 +355,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -437,12 +445,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -527,12 +537,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -615,12 +627,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -703,12 +717,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -744,6 +760,7 @@ public partial class MoneyOutClient : IMoneyOutClient
                     Path = "vcard/send-card-link",
                     Body = request,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -789,12 +806,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -877,12 +896,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -971,12 +992,14 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1015,7 +1038,7 @@ public partial class MoneyOutClient : IMoneyOutClient
                 {
                     Method = HttpMethod.Post,
                     Path = "MoneyOut/reissue",
-                    Body = request.Body,
+                    Body = request,
                     QueryString = _queryString,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -1064,16 +1087,18 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 403:
                         throw new ForbiddenError(
-                            JsonUtils.Deserialize<PayabliApiResponsePaylinks>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1098,30 +1123,27 @@ public partial class MoneyOutClient : IMoneyOutClient
     /// </summary>
     /// <example><code>
     /// await client.MoneyOut.AuthorizeOutAsync(
-    ///     new MoneyOutTypesRequestOutAuthorize
+    ///     new RequestOutAuthorize
     ///     {
-    ///         Body = new AuthorizePayoutBody
+    ///         EntryPoint = "8cfec329267",
+    ///         AutoCapture = true,
+    ///         InvoiceData = new List&lt;RequestOutAuthorizeInvoiceData&gt;()
     ///         {
-    ///             EntryPoint = "48acde49",
-    ///             AutoCapture = true,
-    ///             InvoiceData = new List&lt;RequestOutAuthorizeInvoiceData&gt;()
-    ///             {
-    ///                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
-    ///             },
-    ///             OrderDescription = "Window Painting",
-    ///             PaymentDetails = new RequestOutAuthorizePaymentDetails
-    ///             {
-    ///                 TotalAmount = 47,
-    ///                 Unbundled = false,
-    ///             },
-    ///             PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
-    ///             VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
+    ///             new RequestOutAuthorizeInvoiceData { BillId = 54323 },
     ///         },
+    ///         OrderDescription = "Window Painting",
+    ///         PaymentDetails = new RequestOutAuthorizePaymentDetails
+    ///         {
+    ///             TotalAmount = 47,
+    ///             Unbundled = false,
+    ///         },
+    ///         PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
+    ///         VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
     ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<AuthCapturePayoutResponse> AuthorizeOutAsync(
-        MoneyOutTypesRequestOutAuthorize request,
+        RequestOutAuthorize request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -1340,17 +1362,14 @@ public partial class MoneyOutClient : IMoneyOutClient
     ///     new ReissueOutRequest
     ///     {
     ///         TransId = "129-219",
-    ///         Body = new ReissuePayoutBody
+    ///         PaymentMethod = new ReissuePaymentMethod
     ///         {
-    ///             PaymentMethod = new ReissuePaymentMethod
-    ///             {
-    ///                 Method = "ach",
-    ///                 AchAccount = "9876543210",
-    ///                 AchAccountType = "savings",
-    ///                 AchRouting = "021000021",
-    ///                 AchHolder = "Acme Corp",
-    ///                 AchHolderType = AchHolderType.Business,
-    ///             },
+    ///             Method = "ach",
+    ///             AchAccount = "9876543210",
+    ///             AchAccountType = "savings",
+    ///             AchRouting = "021000021",
+    ///             AchHolder = "Acme Corp",
+    ///             AchHolderType = AchHolderType.Business,
     ///         },
     ///     }
     /// );

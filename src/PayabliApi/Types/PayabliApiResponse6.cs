@@ -22,7 +22,7 @@ public record PayabliApiResponse6 : IJsonOnDeserialized
     public string? PageIdentifier { get; set; }
 
     /// <summary>
-    /// If `isSuccess` = true, this contains the line item identifier. If `isSuccess` = false, this contains the reason of the error.
+    /// If `isSuccess` = true, this contains the line item identifier. If `isSuccess` = false, this contains the reason for the error.
     /// </summary>
     [JsonPropertyName("responseData")]
     public OneOf<string, int>? ResponseData { get; set; }

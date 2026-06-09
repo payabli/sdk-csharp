@@ -42,7 +42,7 @@ public record PayMethodAch : IJsonOnDeserialized
     public string? Device { get; set; }
 
     [JsonPropertyName("method")]
-    public string Method { get; set; } = "ach";
+    public required PayMethodAchMethod Method { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

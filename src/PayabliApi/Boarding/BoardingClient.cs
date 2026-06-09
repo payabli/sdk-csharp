@@ -88,12 +88,111 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<PayabliApiResponse00Responsedatanonobject>
+    > UpdateApplicationAsyncCore(
+        int appId,
+        ApplicationData request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "Boarding/app/{0}",
+                        ValueConvert.ToPathParameterString(appId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
+                    responseBody
+                )!;
+                return new WithRawResponse<PayabliApiResponse00Responsedatanonobject>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -180,12 +279,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -268,12 +369,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -359,12 +462,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -447,12 +552,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -537,12 +644,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -633,12 +742,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -721,12 +832,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -821,12 +934,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -918,107 +1033,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new PayabliApiApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<PayabliApiResponse00Responsedatanonobject>
-    > UpdateApplicationAsyncCore(
-        int appId,
-        ApplicationData request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Put,
-                    Path = string.Format(
-                        "Boarding/app/{0}",
-                        ValueConvert.ToPathParameterString(appId)
-                    ),
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<PayabliApiResponse00Responsedatanonobject>(
-                    responseBody
-                )!;
-                return new WithRawResponse<PayabliApiResponse00Responsedatanonobject>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new PayabliApiApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 400:
-                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1104,12 +1126,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1196,12 +1220,14 @@ public partial class BoardingClient : IBoardingClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1226,8 +1252,8 @@ public partial class BoardingClient : IBoardingClient
     ///     {
     ///         Services = new ApplicationDataPayInServices
     ///         {
-    ///             Ach = new ApplicationDataPayInServicesAch(),
-    ///             Card = new ApplicationDataPayInServicesCard
+    ///             Ach = new AchSetup(),
+    ///             Card = new CardSetup
     ///             {
     ///                 AcceptAmex = true,
     ///                 AcceptDiscover = true,
@@ -1245,11 +1271,11 @@ public partial class BoardingClient : IBoardingClient
     ///         {
     ///             new Bank
     ///             {
-    ///                 AccountNumber = "123123123",
+    ///                 AccountNumber = "123123100",
     ///                 BankAccountFunction = 1,
     ///                 BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
     ///                 BankAccountHolderType = BankAccountHolderType.Business,
-    ///                 BankName = "Test Bank",
+    ///                 BankName = "Test Bank 1",
     ///                 Nickname = "Withdrawal Account",
     ///                 RoutingAccount = "123123123",
     ///                 TypeAccount = TypeAccount.Checking,
@@ -1257,15 +1283,15 @@ public partial class BoardingClient : IBoardingClient
     ///             },
     ///             new Bank
     ///             {
-    ///                 AccountNumber = "123123123",
+    ///                 AccountNumber = "123123200",
     ///                 BankAccountFunction = 0,
     ///                 BankAccountHolderName = "Gruzya Adventure Outfitters LLC",
     ///                 BankAccountHolderType = BankAccountHolderType.Business,
-    ///                 BankName = "Test Bank",
+    ///                 BankName = "Test Bank 2",
     ///                 Nickname = "Deposit Account",
-    ///                 RoutingAccount = "123123123",
+    ///                 RoutingAccount = "321321321",
     ///                 TypeAccount = TypeAccount.Checking,
-    ///                 AccountId = "123-456",
+    ///                 AccountId = "123-789",
     ///             },
     ///         },
     ///         Bcity = "New Vegas",
@@ -1277,9 +1303,9 @@ public partial class BoardingClient : IBoardingClient
     ///         Bsummary = "Brick and mortar store that sells office supplies",
     ///         Btype = OwnType.LimitedLiabilityCompany,
     ///         Bzip = "33000",
-    ///         Contacts = new List&lt;ApplicationDataPayInContactsItem&gt;()
+    ///         Contacts = new List&lt;Contacts&gt;()
     ///         {
-    ///             new ApplicationDataPayInContactsItem
+    ///             new Contacts
     ///             {
     ///                 ContactEmail = "herman@hermanscoatings.com",
     ///                 ContactName = "Herman Martinez",
@@ -1303,9 +1329,9 @@ public partial class BoardingClient : IBoardingClient
     ///         Mstate = "TN",
     ///         Mzip = "37615",
     ///         OrgId = 123,
-    ///         Ownership = new List&lt;ApplicationDataPayInOwnershipItem&gt;()
+    ///         Ownership = new List&lt;Owners&gt;()
     ///         {
-    ///             new ApplicationDataPayInOwnershipItem
+    ///             new Owners
     ///             {
     ///                 Oaddress = "33 North St",
     ///                 Ocity = "Any City",
@@ -1382,6 +1408,24 @@ public partial class BoardingClient : IBoardingClient
     }
 
     /// <summary>
+    /// Updates a boarding application by ID. This endpoint requires an application API token.
+    /// </summary>
+    /// <example><code>
+    /// await client.Boarding.UpdateApplicationAsync(352, new ApplicationData());
+    /// </code></example>
+    public WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> UpdateApplicationAsync(
+        int appId,
+        ApplicationData request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PayabliApiResponse00Responsedatanonobject>(
+            UpdateApplicationAsyncCore(appId, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
     /// Deletes a boarding application by ID.
     /// </summary>
     /// <example><code>
@@ -1421,7 +1465,7 @@ public partial class BoardingClient : IBoardingClient
     /// <example><code>
     /// await client.Boarding.GetApplicationByAuthAsync(
     ///     "17E",
-    ///     new RequestAppByAuth { Email = "admin@email.com", ReferenceId = "n6UCd1f1ygG7" }
+    ///     new RequestAppByAuth { Email = "admin@email.com", ReferenceId = "129-219" }
     /// );
     /// </code></example>
     public WithRawResponseTask<ApplicationQueryRecord> GetApplicationByAuthAsync(
@@ -1563,31 +1607,13 @@ public partial class BoardingClient : IBoardingClient
     }
 
     /// <summary>
-    /// Updates a boarding application by ID. This endpoint requires an application API token.
-    /// </summary>
-    /// <example><code>
-    /// await client.Boarding.UpdateApplicationAsync(352, new ApplicationData());
-    /// </code></example>
-    public WithRawResponseTask<PayabliApiResponse00Responsedatanonobject> UpdateApplicationAsync(
-        int appId,
-        ApplicationData request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<PayabliApiResponse00Responsedatanonobject>(
-            UpdateApplicationAsyncCore(appId, request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
     /// Creates a new boarding application linked to an existing paypoint as part of the multi-product boarding flow. Use this endpoint to add new services to a paypoint without creating a duplicate record. The system copies eligible business, contact, banking, and address data from the paypoint to the new application based on 1:1 field matching. The merchant only needs to provide fields that are specific to the new service. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
     /// </summary>
     /// <example><code>
     /// await client.Boarding.AddServiceToPaypointFromAppAsync(
     ///     new CreateApplicationFromPaypointRequest
     ///     {
-    ///         PaypointId = 123,
+    ///         PaypointId = 3040,
     ///         TemplateId = 456,
     ///         RecipientEmail = "merchant@example.com",
     ///         ReturnBoardingAccessInfoInLine = true,
@@ -1610,7 +1636,7 @@ public partial class BoardingClient : IBoardingClient
     /// Returns all boarding applications associated with a specific paypoint, including those created through the multi-product boarding flow. Use this endpoint to track underwriting progress across multiple service additions or to build reporting views. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
     /// </summary>
     /// <example><code>
-    /// await client.Boarding.GetApplicationsByPaypointIdAsync(12345);
+    /// await client.Boarding.GetApplicationsByPaypointIdAsync(3040);
     /// </code></example>
     public WithRawResponseTask<QueryBoardingAppsListResponse> GetApplicationsByPaypointIdAsync(
         long paypointId,

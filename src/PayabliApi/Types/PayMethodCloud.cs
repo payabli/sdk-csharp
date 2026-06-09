@@ -18,7 +18,7 @@ public record PayMethodCloud : IJsonOnDeserialized
     /// Method to use for the transaction. For cloud device transactions, the method is `cloud`.
     /// </summary>
     [JsonPropertyName("method")]
-    public string Method { get; set; } = "cloud";
+    public required PayMethodCloudMethod Method { get; set; }
 
     [JsonPropertyName("saveIfSuccess")]
     public bool? SaveIfSuccess { get; set; }

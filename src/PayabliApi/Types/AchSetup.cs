@@ -3,6 +3,9 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Configuration for which ACH SEC codes the user is allowed to use.
+/// </summary>
 [Serializable]
 public record AchSetup : IJsonOnDeserialized, IJsonOnSerializing
 {
@@ -11,19 +14,25 @@ public record AchSetup : IJsonOnDeserialized, IJsonOnSerializing
         new Dictionary<string, object?>();
 
     /// <summary>
-    /// CCD is an ACH SEC Code that can be used in ACH transactions by the user that indicates the transaction is a Corporate Credit or Debit Entry. Options are: `true` and `false`
+    /// CCD is an ACH SEC Code that can be used in ACH transactions by the
+    /// user that indicates the transaction is a Corporate Credit or Debit
+    /// Entry.
     /// </summary>
     [JsonPropertyName("acceptCCD")]
     public bool? AcceptCcd { get; set; }
 
     /// <summary>
-    /// PPD is an ACH SEC Code that can be used in ACH transactions by the user that indicates the transaction is a Prearranged Payment and Deposit.
+    /// PPD is an ACH SEC Code that can be used in ACH transactions by the
+    /// user that indicates the transaction is a Prearranged Payment and
+    /// Deposit.
     /// </summary>
     [JsonPropertyName("acceptPPD")]
     public bool? AcceptPpd { get; set; }
 
     /// <summary>
-    /// Web is an ACH SEC Code that can be used in ACH transactions by the user that indicates the transaction is a Internet Initiated/Mobile Entry Options are `true` and `false`.
+    /// Web is an ACH SEC Code that can be used in ACH transactions by the
+    /// user that indicates the transaction is an Internet-Initiated/Mobile
+    /// Entry.
     /// </summary>
     [JsonPropertyName("acceptWeb")]
     public bool? AcceptWeb { get; set; }

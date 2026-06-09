@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record PayLinkDataOut
 {
+    /// <summary>
+    /// The entity's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+    /// </summary>
     [JsonIgnore]
     public required string EntryPoint { get; set; }
 

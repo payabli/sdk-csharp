@@ -19,18 +19,19 @@ public record LinkData : IJsonOnDeserialized
 
     /// <summary>
     /// The type of validation applied to the field. Available values:
-    /// - text
-    /// - alpha
-    /// - ein
-    /// - url
-    /// - phone
-    /// - alphanumeric
-    /// - zipcode
-    /// - numbers
-    /// - float
-    /// - ssn
-    /// - email
-    /// - routing
+    ///
+    /// - `text`
+    /// - `alpha`
+    /// - `ein`
+    /// - `url`
+    /// - `phone`
+    /// - `alphanumeric`
+    /// - `zipcode`
+    /// - `numbers`
+    /// - `float`
+    /// - `ssn`
+    /// - `email`
+    /// - `routing`
     /// </summary>
     [JsonPropertyName("validator")]
     public string? Validator { get; set; }

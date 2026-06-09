@@ -4,9 +4,6 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-/// <summary>
-///
-/// </summary>
 [Serializable]
 public record BoardingLinkApiResponse : IJsonOnDeserialized
 {

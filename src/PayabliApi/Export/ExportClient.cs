@@ -92,12 +92,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -193,12 +195,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -294,12 +298,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -395,12 +401,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -496,12 +504,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -597,12 +607,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -698,12 +710,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -799,12 +813,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -900,12 +916,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1001,12 +1019,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1102,12 +1122,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1203,12 +1225,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1304,12 +1328,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1405,12 +1431,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1506,12 +1534,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1607,12 +1637,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1708,12 +1740,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1809,12 +1843,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -1910,12 +1946,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2011,12 +2049,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2112,12 +2152,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2213,12 +2255,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2316,12 +2360,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2417,12 +2463,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2518,12 +2566,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2622,12 +2672,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2722,12 +2774,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2823,12 +2877,14 @@ public partial class ExportClient : IExportClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -2926,6 +2982,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List all apps for org](/developers/api-reference/boarding/get-list-of-applications-for-an-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of boarding applications for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -2954,7 +3014,11 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
-    /// This endpoint is deprecated. Export batch details for a paypoint. Use filters to limit results.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List batch details](/developers/api-reference/query/get-list-of-batchdetails-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
+    /// Export batch details for a paypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportBatchDetailsAsync(
@@ -2982,7 +3046,11 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
-    /// This endpoint is deprecated. Export batch details for an organization. Use filters to limit results.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List batch details for org](/developers/api-reference/query/get-list-of-batchdetails-for-an-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
+    /// Export batch details for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportBatchDetailsOrgAsync(
@@ -3010,6 +3078,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List batches for paypoint](/developers/api-reference/query/get-list-of-batches-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of batches for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3038,6 +3110,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List batches for org](/developers/api-reference/query/get-list-of-batches-for-an-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of batches for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3066,6 +3142,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List payout batches for paypoint](/developers/api-reference/query/get-list-of-moneyout-batches-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of money out batches for a paypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3094,6 +3174,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List payout batches for org](/developers/api-reference/query/get-list-of-moneyout-batches-for-an-org) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of money out batches for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3122,6 +3206,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List bills by paypoint](/developers/api-reference/bill/get-list-of-bills-for-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of bills for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3150,6 +3238,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List bills by organization](/developers/api-reference/bill/get-list-of-bills-for-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of bills for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3178,6 +3270,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List disputes by paypoint](/developers/api-reference/chargebacks/get-list-of-chargebacks-and-returned-transactions-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of chargebacks and ACH returns for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3206,6 +3302,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List disputes by organization](/developers/api-reference/chargebacks/get-list-of-chargebacks-and-returned-transactions-for-an-org) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of chargebacks and ACH returns for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3234,6 +3334,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List customers by paypoint](/developers/api-reference/customer/get-list-of-customers-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of customers for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3262,6 +3366,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List customers by organization](/developers/api-reference/customer/get-list-of-customers-for-an-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Exports a list of customers for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3290,6 +3398,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List invoices by paypoint](/developers/api-reference/invoice/get-list-of-invoices-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export list of invoices for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3318,6 +3430,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List invoices by organization](/developers/api-reference/invoice/get-list-of-invoices-for-an-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of invoices for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3346,6 +3462,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List suborganizations by organization](/developers/api-reference/organization/get-list-of-organizations-for-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of child organizations (suborganizations) for a parent organization.
     /// </summary>
     /// <example><code>
@@ -3374,6 +3494,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List payouts by paypoint](/developers/api-reference/query/get-list-of-payouts-for-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of payouts and their statuses for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3402,6 +3526,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List payouts by org](/developers/api-reference/query/get-list-of-payouts-for-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of payouts and their details for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3430,6 +3558,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List paypoints by organization](/developers/api-reference/paypoint/get-list-of-paypoints-for-an-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of paypoints in an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3458,6 +3590,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List settled transactions for paypoint](/developers/api-reference/query/get-list-of-settled-transactions-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of settled transactions for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3486,6 +3622,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List settled transactions for org](/developers/api-reference/query/get-list-of-settled-transactions-for-an-org) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of settled transactions for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3514,6 +3654,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List subscriptions by paypoint](/developers/api-reference/subscription/get-list-of-subscriptions-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of subscriptions for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3542,6 +3686,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List subscriptions by organization](/developers/api-reference/subscription/get-list-of-subscriptions-for-an-org) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of subscriptions for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3570,7 +3718,11 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
-    /// Export a list of transactions for an entrypoint in a file in XLXS or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List transactions for paypoint](/developers/api-reference/query/get-list-of-transactions-for-an-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
+    /// Export a list of transactions for an entrypoint in a file in XLSX or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportTransactionsAsync(
@@ -3598,6 +3750,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List transactions for org](/developers/api-reference/query/get-list-of-transactions-for-an-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of transactions for an org in a file in XLSX or CSV format. Use filters to limit results. If you don't specify a date range in the request, the last two months of data are returned.
     /// </summary>
     /// <example><code>
@@ -3626,13 +3782,17 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [Get transfer details](/developers/api-reference/query/get-list-of-transfer-details) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of transfer details for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportTransferDetailsAsync(
     ///     "8cfec329267",
     ///     ExportFormat1.Csv,
-    ///     1000000,
+    ///     4521,
     ///     new ExportTransferDetailsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -3664,6 +3824,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List transfers](/developers/api-reference/query/get-list-of-transfers) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Get a list of transfers for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3691,6 +3855,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List vendors by paypoint](/developers/api-reference/vendor/get-list-of-vendors-for-entrypoint) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of vendors for an entrypoint. Use filters to limit results.
     /// </summary>
     /// <example><code>
@@ -3719,6 +3887,10 @@ public partial class ExportClient : IExportClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. To export this data, use [List vendors by organization](/developers/api-reference/vendor/get-list-of-vendors-for-organization) with the `exportFormat` query parameter instead.
+    /// &lt;/Warning&gt;
+    ///
     /// Export a list of vendors for an organization. Use filters to limit results.
     /// </summary>
     /// <example><code>

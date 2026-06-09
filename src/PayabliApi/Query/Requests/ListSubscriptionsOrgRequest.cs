@@ -6,6 +6,9 @@ namespace PayabliApi;
 [Serializable]
 public record ListSubscriptionsOrgRequest
 {
+    /// <summary>
+    /// Export format for file downloads. When specified, returns data as a file instead of JSON.
+    /// </summary>
     [JsonIgnore]
     public ExportFormat? ExportFormat { get; set; }
 
@@ -50,6 +53,7 @@ public record ListSubscriptionsOrgRequest
     /// - `feeAmount` (gt, ge, lt, le, eq, ne)
     /// - `status` (in, nin, eq, ne)
     /// - `untilcancelled` (eq, ne)
+    /// - `subscriptionType` (eq, ne, in, nin). Filters by subscription type. Accepts `Regular` or `BalanceDriven`. Case-insensitive. Example: `subscriptionType(in)=Regular|BalanceDriven`.
     /// - `payaccountLastfour` (nct, ct)
     /// - `payaccountType` (ne, eq, in, nin)
     /// - `payaccountCurrency` (ne, eq, in, nin)
@@ -100,7 +104,7 @@ public record ListSubscriptionsOrgRequest
     /// - `nin` =&gt; not inside array
     /// </summary>
     [JsonIgnore]
-    public Dictionary<string, string>? Parameters { get; set; }
+    public Dictionary<string, string?>? Parameters { get; set; }
 
     /// <summary>
     /// The field name to use for sorting results. Use `desc(field_name)` to sort descending by `field_name`, and use `asc(field_name)` to sort ascending by `field_name`.

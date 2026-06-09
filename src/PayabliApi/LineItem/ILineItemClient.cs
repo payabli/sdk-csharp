@@ -13,18 +13,28 @@ public partial interface ILineItemClient
     );
 
     /// <summary>
-    /// Deletes an item.
+    /// Gets an item by ID.
     /// </summary>
-    WithRawResponseTask<DeleteItemResponse> DeleteItemAsync(
+    WithRawResponseTask<LineItemQueryRecord> GetItemAsync(
         int lineItemId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
     /// <summary>
-    /// Gets an item by ID.
+    /// Updates an item.
     /// </summary>
-    WithRawResponseTask<LineItemQueryRecord> GetItemAsync(
+    WithRawResponseTask<PayabliApiResponse6> UpdateItemAsync(
+        int lineItemId,
+        LineItem request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Deletes an item.
+    /// </summary>
+    WithRawResponseTask<DeleteItemResponse> DeleteItemAsync(
         int lineItemId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -36,16 +46,6 @@ public partial interface ILineItemClient
     WithRawResponseTask<QueryResponseItems> ListLineItemsAsync(
         string entry,
         ListLineItemsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Updates an item.
-    /// </summary>
-    WithRawResponseTask<PayabliApiResponse6> UpdateItemAsync(
-        int lineItemId,
-        LineItem request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

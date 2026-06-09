@@ -10,7 +10,7 @@ public partial interface IMoneyOutClient
     /// When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
     /// </summary>
     WithRawResponseTask<AuthCapturePayoutResponse> AuthorizeOutAsync(
-        MoneyOutTypesRequestOutAuthorize request,
+        RequestOutAuthorize request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

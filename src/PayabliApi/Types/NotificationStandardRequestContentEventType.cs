@@ -265,6 +265,10 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         Values.RecoveredTransaction
     );
 
+    public static readonly NotificationStandardRequestContentEventType CardUpdaterComplete = new(
+        Values.CardUpdaterComplete
+    );
+
     public static readonly NotificationStandardRequestContentEventType CreatedApplication = new(
         Values.CreatedApplication
     );
@@ -723,6 +727,8 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         public const string SendReceipt = "SendReceipt";
 
         public const string RecoveredTransaction = "RecoveredTransaction";
+
+        public const string CardUpdaterComplete = "CardUpdaterComplete";
 
         public const string CreatedApplication = "CreatedApplication";
 

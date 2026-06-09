@@ -12,10 +12,11 @@ public partial interface ISubscriptionClient
     );
 
     /// <summary>
-    /// Creates a subscription or scheduled payment to run at a specified time and frequency.
+    /// Updates a subscription's details.
     /// </summary>
-    WithRawResponseTask<AddSubscriptionResponse> NewSubscriptionAsync(
-        RequestSchedule request,
+    WithRawResponseTask<UpdateSubscriptionResponse> UpdateSubscriptionAsync(
+        int subId,
+        RequestUpdateSchedule request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -30,11 +31,10 @@ public partial interface ISubscriptionClient
     );
 
     /// <summary>
-    /// Updates a subscription's details.
+    /// Creates a subscription or scheduled payment to run at a specified time and frequency. You can use stored payment method tokens for card, ACH, and digital wallets by passing them into the `paymentMethod.storedMethodId` field.
     /// </summary>
-    WithRawResponseTask<UpdateSubscriptionResponse> UpdateSubscriptionAsync(
-        int subId,
-        RequestUpdateSchedule request,
+    WithRawResponseTask<AddSubscriptionResponse> NewSubscriptionAsync(
+        RequestSchedule request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

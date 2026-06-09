@@ -12,7 +12,7 @@ public record CardService : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Controls how to present the `batchCutoffTime` field on the application. If this field isn't sent, batch cut off time defaults to 5 ET.
+    /// Controls how to present the `batchCutoffTime` field on the application. If this field isn't sent, batch cutoff time defaults to 5 ET.
     /// </summary>
     [JsonPropertyName("batchCutoffTime")]
     public TemplateElement? BatchCutoffTime { get; set; }

@@ -33,7 +33,7 @@ public partial class PayoutSubscriptionClient : IPayoutSubscriptionClient
                 {
                     Method = HttpMethod.Post,
                     Path = "PayoutSubscription",
-                    Body = request.Body,
+                    Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
@@ -83,12 +83,14 @@ public partial class PayoutSubscriptionClient : IPayoutSubscriptionClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -175,12 +177,14 @@ public partial class PayoutSubscriptionClient : IPayoutSubscriptionClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -270,12 +274,14 @@ public partial class PayoutSubscriptionClient : IPayoutSubscriptionClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -362,12 +368,14 @@ public partial class PayoutSubscriptionClient : IPayoutSubscriptionClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -390,40 +398,37 @@ public partial class PayoutSubscriptionClient : IPayoutSubscriptionClient
     /// await client.PayoutSubscription.CreatePayoutSubscriptionAsync(
     ///     new RequestPayoutSchedule
     ///     {
-    ///         Body = new PayoutSubscriptionRequestBody
+    ///         EntryPoint = "8cfec329267",
+    ///         PaymentMethod = new AuthorizePaymentMethod
     ///         {
-    ///             EntryPoint = "d193cf9a46",
-    ///             PaymentMethod = new AuthorizePaymentMethod
+    ///             Method = "ach",
+    ///             AchHolder = "Herman Coatings",
+    ///             AchRouting = "021000021",
+    ///             AchAccount = "3453445666",
+    ///             AchAccountType = "checking",
+    ///         },
+    ///         PaymentDetails = new PayoutPaymentDetail
+    ///         {
+    ///             TotalAmount = 500,
+    ///             ServiceFee = 0,
+    ///             Currency = "USD",
+    ///         },
+    ///         VendorData = new RequestOutAuthorizeVendorData { VendorId = 456 },
+    ///         BillData = new List&lt;BillPayOutDataRequest&gt;()
+    ///         {
+    ///             new BillPayOutDataRequest
     ///             {
-    ///                 Method = "ach",
-    ///                 AchHolder = "Herman Coatings",
-    ///                 AchRouting = "021000021",
-    ///                 AchAccount = "3453445666",
-    ///                 AchAccountType = "checking",
+    ///                 InvoiceNumber = "INV-2345",
+    ///                 NetAmount = "500",
+    ///                 InvoiceDate = new DateOnly(2025, 8, 1),
+    ///                 DueDate = new DateOnly(2025, 8, 15),
     ///             },
-    ///             PaymentDetails = new PayoutPaymentDetail
-    ///             {
-    ///                 TotalAmount = 500,
-    ///                 ServiceFee = 0,
-    ///                 Currency = "USD",
-    ///             },
-    ///             VendorData = new RequestOutAuthorizeVendorData { VendorId = 1501 },
-    ///             BillData = new List&lt;BillPayOutDataRequest&gt;()
-    ///             {
-    ///                 new BillPayOutDataRequest
-    ///                 {
-    ///                     InvoiceNumber = "INV-5001",
-    ///                     NetAmount = "500",
-    ///                     InvoiceDate = new DateOnly(2025, 8, 1),
-    ///                     DueDate = new DateOnly(2025, 8, 15),
-    ///                 },
-    ///             },
-    ///             ScheduleDetails = new PayoutScheduleDetail
-    ///             {
-    ///                 StartDate = "09/01/2025",
-    ///                 EndDate = "09/01/2026",
-    ///                 Frequency = Frequency.Monthly,
-    ///             },
+    ///         },
+    ///         ScheduleDetails = new PayoutScheduleDetail
+    ///         {
+    ///             StartDate = "09/01/2027",
+    ///             EndDate = "09/01/2026",
+    ///             Frequency = Frequency.Monthly,
     ///         },
     ///     }
     /// );

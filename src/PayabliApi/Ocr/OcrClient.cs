@@ -31,11 +31,12 @@ public partial class OcrClient : IOcrClient
                 {
                     Method = HttpMethod.Post,
                     Path = string.Format(
-                        "/Import/ocrDocumentForm/{0}",
+                        "Import/ocrDocumentForm/{0}",
                         ValueConvert.ToPathParameterString(typeResult)
                     ),
                     Body = request,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -81,12 +82,14 @@ public partial class OcrClient : IOcrClient
                     case 400:
                         throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
                     case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
                         throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<PayabliApiResponse>(responseBody)
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
                 }
             }
@@ -121,11 +124,12 @@ public partial class OcrClient : IOcrClient
                 {
                     Method = HttpMethod.Post,
                     Path = string.Format(
-                        "/Import/ocrDocumentJson/{0}",
+                        "Import/ocrDocumentJson/{0}",
                         ValueConvert.ToPathParameterString(typeResult)
                     ),
                     Body = request,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -176,16 +180,7 @@ public partial class OcrClient : IOcrClient
     /// Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
     /// </summary>
     /// <example><code>
-    /// await client.Ocr.OcrDocumentFormAsync(
-    ///     "typeResult",
-    ///     new FileContentImageOnly
-    ///     {
-    ///         Ftype = null,
-    ///         Filename = null,
-    ///         Furl = null,
-    ///         FContent = null,
-    ///     }
-    /// );
+    /// await client.Ocr.OcrDocumentFormAsync("typeResult", new FileContentImageOnly());
     /// </code></example>
     public WithRawResponseTask<PayabliApiResponseOcr> OcrDocumentFormAsync(
         string typeResult,
@@ -203,16 +198,7 @@ public partial class OcrClient : IOcrClient
     /// Use this endpoint to submit a Base64-encoded image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
     /// </summary>
     /// <example><code>
-    /// await client.Ocr.OcrDocumentJsonAsync(
-    ///     "typeResult",
-    ///     new FileContentImageOnly
-    ///     {
-    ///         Ftype = null,
-    ///         Filename = null,
-    ///         Furl = null,
-    ///         FContent = null,
-    ///     }
-    /// );
+    /// await client.Ocr.OcrDocumentJsonAsync("typeResult", new FileContentImageOnly());
     /// </code></example>
     public WithRawResponseTask<PayabliApiResponseOcr> OcrDocumentJsonAsync(
         string typeResult,

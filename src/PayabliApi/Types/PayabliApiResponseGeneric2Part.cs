@@ -4,6 +4,10 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Minimal response wrapper used by approval-style endpoints that don't carry
+/// the standard response envelope.
+/// </summary>
 [Serializable]
 public record PayabliApiResponseGeneric2Part : IJsonOnDeserialized
 {

@@ -57,7 +57,7 @@ public record VendorResponseStoredMethod : IJsonOnDeserialized
     public string? MethodType { get; set; }
 
     /// <summary>
-    /// Digital wallet source for the stored payment method. Possible values `apple_pay`, `google_pay`. Null for non-wallet methods.
+    /// Digital wallet type if applicable.
     /// </summary>
     [JsonPropertyName("WalletType")]
     public string? WalletType { get; set; }
@@ -65,6 +65,9 @@ public record VendorResponseStoredMethod : IJsonOnDeserialized
     [JsonPropertyName("LastUpdated")]
     public DateTime? LastUpdated { get; set; }
 
+    /// <summary>
+    /// Date and time the card was last updated.
+    /// </summary>
     [JsonPropertyName("CardUpdatedOn")]
     public DateTime? CardUpdatedOn { get; set; }
 

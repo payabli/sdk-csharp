@@ -75,7 +75,7 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     /// List of contacts for the business.
     /// </summary>
     [JsonPropertyName("contacts")]
-    public IEnumerable<ApplicationDataPayInContactsItem>? Contacts { get; set; }
+    public IEnumerable<Contacts>? Contacts { get; set; }
 
     /// <summary>
     /// The maximum amount of credit that our lending partner has authorized to your business for Pay In processing. It's the upper boundary on how much you can spend or owe on a credit account at any given time. For on-demand payout (Pay Out) credit limits, see `payoutCreditLimit`.
@@ -141,7 +141,7 @@ public record ApplicationDataPayIn : IJsonOnDeserialized
     /// List of Owners with at least a 25% ownership.
     /// </summary>
     [JsonPropertyName("ownership")]
-    public IEnumerable<ApplicationDataPayInOwnershipItem>? Ownership { get; set; }
+    public IEnumerable<Owners>? Ownership { get; set; }
 
     /// <summary>
     /// The business's phone number.
