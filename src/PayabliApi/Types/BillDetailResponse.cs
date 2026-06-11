@@ -157,7 +157,7 @@ public record BillDetailResponse : IJsonOnDeserialized
     /// Identifier for the batch in which this transaction was processed. Used to track and reconcile batch-level operations.
     /// </summary>
     [JsonPropertyName("BatchId")]
-    public string? BatchId { get; set; }
+    public double? BatchId { get; set; }
 
     [JsonPropertyName("HasVcardTransactions")]
     public bool? HasVcardTransactions { get; set; }
@@ -169,7 +169,10 @@ public record BillDetailResponse : IJsonOnDeserialized
     public long? ScheduleId { get; set; }
 
     [JsonPropertyName("SettlementStatus")]
-    public int? SettlementStatus { get; set; }
+    public string? SettlementStatus { get; set; }
+
+    [JsonPropertyName("SettlementStatusName")]
+    public string? SettlementStatusName { get; set; }
 
     [JsonPropertyName("RiskFlagged")]
     public bool? RiskFlagged { get; set; }
@@ -188,6 +191,9 @@ public record BillDetailResponse : IJsonOnDeserialized
 
     [JsonPropertyName("RiskActionCode")]
     public int? RiskActionCode { get; set; }
+
+    [JsonPropertyName("EntityId")]
+    public string? EntityId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

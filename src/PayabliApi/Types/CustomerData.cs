@@ -51,7 +51,7 @@ public record CustomerData : IJsonOnDeserialized
     public string? Lastname { get; set; }
 
     /// <summary>
-    /// Customer phone number
+    /// Customer phone number. Payabli normalizes this value when it's stored. For example, `(555) 555-0100` is stored as `+15555550100`.
     /// </summary>
     [JsonPropertyName("phone")]
     public string? Phone { get; set; }

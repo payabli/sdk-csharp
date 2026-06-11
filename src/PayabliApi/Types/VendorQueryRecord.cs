@@ -26,8 +26,11 @@ public record VendorQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("City")]
     public string? City { get; set; }
 
+    /// <summary>
+    /// Array of objects describing the vendor's contacts.
+    /// </summary>
     [JsonPropertyName("Contacts")]
-    public ContactsResponse? Contacts { get; set; }
+    public IEnumerable<ContactsResponse>? Contacts { get; set; }
 
     [JsonPropertyName("Country")]
     public string? Country { get; set; }

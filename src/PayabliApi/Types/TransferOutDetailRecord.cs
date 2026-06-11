@@ -332,9 +332,6 @@ public record TransferOutDetailRecord : IJsonOnDeserialized
     [JsonPropertyName("SettlementStatus")]
     public string? SettlementStatus { get; set; }
 
-    /// <summary>
-    /// Name of the settlement status.
-    /// </summary>
     [JsonPropertyName("SettlementStatusName")]
     public string? SettlementStatusName { get; set; }
 
