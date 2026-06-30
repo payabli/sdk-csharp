@@ -4,12 +4,21 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// Response data for canceling a single payout transaction. Mirrors the general response data, with `VendorId` added alongside `CustomerId`.
+/// </summary>
 [Serializable]
-public record CaptureAllOutResponseResponseDataItem : IJsonOnDeserialized
+public record CancelPayoutResponseData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("AuthCode")]
+    public string? AuthCode { get; set; }
+
+    [JsonPropertyName("avsResponseText")]
+    public string? AvsResponseText { get; set; }
 
     /// <summary>
     /// Payabli-generated unique ID of the vendor on the payout. Returns the same value as `VendorId`, or `0` when no vendor is associated.
@@ -23,17 +32,18 @@ public record CaptureAllOutResponseResponseDataItem : IJsonOnDeserialized
     [JsonPropertyName("VendorId")]
     public long? VendorId { get; set; }
 
+    [JsonPropertyName("cvvResponseText")]
+    public string? CvvResponseText { get; set; }
+
+    [JsonPropertyName("methodReferenceId")]
+    public string? MethodReferenceId { get; set; }
+
     [JsonPropertyName("ReferenceId")]
     public string? ReferenceId { get; set; }
 
     [JsonPropertyName("ResultCode")]
     public int? ResultCode { get; set; }
 
-    /// <summary>
-    /// Text describing the result.
-    /// If `ResultCode` = 1, returns 'Authorized'.
-    /// If `ResultCode` = 2 or 3, this contains the cause of the decline.
-    /// </summary>
     [JsonPropertyName("ResultText")]
     public string? ResultText { get; set; }
 

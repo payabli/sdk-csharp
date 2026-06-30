@@ -4,6 +4,8 @@ public partial interface IPaymentLinkClient
 {
     /// <summary>
     /// Generates a payment link for an invoice from the invoice ID.
+    ///
+    /// The payment page configuration blocks (`logo`, `page`, `paymentMethods`, `review`, `messageBeforePaying`, `paymentButton`, `notes`, `contactUs`, and `settings`) are optional. When you omit a block, Payabli applies a default rather than hiding it. The block is enabled at a fixed display order, so the generated page stays complete and branded. To hide a section, send the block explicitly with `enabled` set to `false`. An explicit value is always honored and is never replaced by a default. For each block's default, see its description in the request body.
     /// </summary>
     WithRawResponseTask<PayabliApiResponsePaymentLinks> AddPayLinkFromInvoiceAsync(
         int idInvoice,

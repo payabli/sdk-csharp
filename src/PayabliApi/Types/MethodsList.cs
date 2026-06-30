@@ -53,6 +53,24 @@ public record MethodsList : IJsonOnDeserialized
     [JsonPropertyName("visa")]
     public bool? Visa { get; set; }
 
+    /// <summary>
+    /// When `true`, Diners Club is accepted.
+    /// </summary>
+    [JsonPropertyName("diners")]
+    public bool? Diners { get; set; }
+
+    /// <summary>
+    /// When `true`, JCB is accepted.
+    /// </summary>
+    [JsonPropertyName("jcb")]
+    public bool? Jcb { get; set; }
+
+    /// <summary>
+    /// When `true`, Remote Deposit Capture (RDC) is accepted.
+    /// </summary>
+    [JsonPropertyName("rdc")]
+    public bool? Rdc { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

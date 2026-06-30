@@ -47,6 +47,8 @@ public record ListTransfersOutOrgRequest
     ///   - `paypointDbaName` (ne, eq, ct, nct)
     ///   - `batchNumber` (ne, eq, ct, nct)
     ///   - `batchId` (ne, eq, in, nin)
+    ///   - `detailType` (eq, ne, in, nin, ct, nct)
+    ///   - `detailMethod` (eq, ne, in, nin, ct, nct)
     /// </summary>
     [JsonIgnore]
     public Dictionary<string, string?>? Parameters { get; set; }

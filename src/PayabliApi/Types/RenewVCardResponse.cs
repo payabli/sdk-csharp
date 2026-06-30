@@ -4,30 +4,21 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-/// <summary>
-/// The response for canceling a single payout transaction.
-/// </summary>
 [Serializable]
-public record PayabliApiResponse0000 : IJsonOnDeserialized
+public record RenewVCardResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("isSuccess")]
-    public bool? IsSuccess { get; set; }
-
     [JsonPropertyName("responseText")]
     public required string ResponseText { get; set; }
 
-    [JsonPropertyName("pageIdentifier")]
-    public string? PageIdentifier { get; set; }
-
-    [JsonPropertyName("responseCode")]
-    public int? ResponseCode { get; set; }
+    [JsonPropertyName("isSuccess")]
+    public required bool IsSuccess { get; set; }
 
     [JsonPropertyName("responseData")]
-    public CancelPayoutResponseData? ResponseData { get; set; }
+    public required RenewVCardResponseData ResponseData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

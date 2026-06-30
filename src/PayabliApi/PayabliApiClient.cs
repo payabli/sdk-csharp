@@ -15,7 +15,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/1.0.2" },
+                { "User-Agent", "Payabli.SDK/1.0.3" },
             }
         );
         foreach (var header in platformHeaders)
@@ -62,6 +62,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Vendor = new VendorClient(_client);
         GhostCard = new GhostCardClient(_client);
         MoneyOut = new MoneyOutClient(_client);
+        Funding = new FundingClient(_client);
         Wallet = new WalletClient(_client);
         PayoutSubscription = new PayoutSubscriptionClient(_client);
         ChargeBacks = new ChargeBacksClient(_client);
@@ -122,6 +123,8 @@ public partial class PayabliApiClient : IPayabliApiClient
     public IGhostCardClient GhostCard { get; }
 
     public IMoneyOutClient MoneyOut { get; }
+
+    public IFundingClient Funding { get; }
 
     public IWalletClient Wallet { get; }
 

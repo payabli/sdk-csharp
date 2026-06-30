@@ -218,7 +218,6 @@ public partial class PaypointClient : IPaypointClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

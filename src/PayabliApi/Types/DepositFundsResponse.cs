@@ -5,10 +5,10 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// The response for canceling a single payout transaction.
+/// Response for a deposit funds request.
 /// </summary>
 [Serializable]
-public record PayabliApiResponse0000 : IJsonOnDeserialized
+public record DepositFundsResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -20,14 +20,17 @@ public record PayabliApiResponse0000 : IJsonOnDeserialized
     [JsonPropertyName("responseText")]
     public required string ResponseText { get; set; }
 
+    /// <summary>
+    /// The object containing the response data.
+    /// </summary>
+    [JsonPropertyName("responseData")]
+    public Dictionary<string, object?>? ResponseData { get; set; }
+
+    /// <summary>
+    /// Auxiliary validation used internally by payment pages and components.
+    /// </summary>
     [JsonPropertyName("pageIdentifier")]
     public string? PageIdentifier { get; set; }
-
-    [JsonPropertyName("responseCode")]
-    public int? ResponseCode { get; set; }
-
-    [JsonPropertyName("responseData")]
-    public CancelPayoutResponseData? ResponseData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

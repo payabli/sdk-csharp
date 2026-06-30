@@ -218,6 +218,18 @@ public record TransferOutRecord : IJsonOnDeserialized
     [JsonPropertyName("messages")]
     public IEnumerable<TransferOutMessage>? Messages { get; set; }
 
+    /// <summary>
+    /// The transfer type. One of `debit`, `credit`, or `billing`.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string? Type { get; set; }
+
+    /// <summary>
+    /// The payment method for the transfer, such as `ach`, `vcard`, or `check`.
+    /// </summary>
+    [JsonPropertyName("method")]
+    public string? Method { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

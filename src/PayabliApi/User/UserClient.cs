@@ -32,7 +32,6 @@ public partial class UserClient : IUserClient
                     Path = "User",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -216,7 +215,6 @@ public partial class UserClient : IUserClient
                     Path = string.Format("User/{0}", ValueConvert.ToPathParameterString(userId)),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -906,7 +904,6 @@ public partial class UserClient : IUserClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

@@ -36,7 +36,6 @@ public partial class OcrClient : IOcrClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -129,7 +128,6 @@ public partial class OcrClient : IOcrClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

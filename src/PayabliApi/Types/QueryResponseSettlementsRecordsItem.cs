@@ -139,6 +139,12 @@ public record QueryResponseSettlementsRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("Source")]
     public string? Source { get; set; }
 
+    /// <summary>
+    /// Split funding instructions for the settled transaction, each enriched with the batch and transfer that paid out the split. Null when the transaction has no splits.
+    /// </summary>
+    [JsonPropertyName("splitFundingInstructions")]
+    public IEnumerable<SettlementSplitFundingDetail>? SplitFundingInstructions { get; set; }
+
     [JsonPropertyName("Status")]
     public int? Status { get; set; }
 

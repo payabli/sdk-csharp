@@ -33,7 +33,6 @@ public partial class NotificationClient : INotificationClient
                     Path = "Notification",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -220,7 +219,6 @@ public partial class NotificationClient : INotificationClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

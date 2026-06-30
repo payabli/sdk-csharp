@@ -30,6 +30,7 @@ public partial interface IPayabliApiClient
     public IVendorClient Vendor { get; }
     public IGhostCardClient GhostCard { get; }
     public IMoneyOutClient MoneyOut { get; }
+    public IFundingClient Funding { get; }
     public IWalletClient Wallet { get; }
     public IPayoutSubscriptionClient PayoutSubscription { get; }
     public IChargeBacksClient ChargeBacks { get; }

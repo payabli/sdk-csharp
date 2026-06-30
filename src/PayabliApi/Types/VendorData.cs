@@ -15,7 +15,7 @@ public record VendorData : IJsonOnDeserialized
     public string? VendorNumber { get; set; }
 
     [JsonPropertyName("AdditionalData")]
-    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     /// <summary>
     /// Vendor's street address. If any address field is provided, this field is required along with `city`, `state`, and `zip`. Allowed characters are letters, numbers, spaces, and `. ,

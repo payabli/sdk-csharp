@@ -5,14 +5,23 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// The response for canceling a single payout transaction.
+/// Response from the schedule outreach call endpoint.
 /// </summary>
 [Serializable]
-public record PayabliApiResponse0000 : IJsonOnDeserialized
+public record VendorScheduleCallResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("responseCode")]
+    public int? ResponseCode { get; set; }
+
+    [JsonPropertyName("pageIdentifier")]
+    public string? PageIdentifier { get; set; }
+
+    [JsonPropertyName("roomId")]
+    public long? RoomId { get; set; }
 
     [JsonPropertyName("isSuccess")]
     public bool? IsSuccess { get; set; }
@@ -20,14 +29,8 @@ public record PayabliApiResponse0000 : IJsonOnDeserialized
     [JsonPropertyName("responseText")]
     public required string ResponseText { get; set; }
 
-    [JsonPropertyName("pageIdentifier")]
-    public string? PageIdentifier { get; set; }
-
-    [JsonPropertyName("responseCode")]
-    public int? ResponseCode { get; set; }
-
     [JsonPropertyName("responseData")]
-    public CancelPayoutResponseData? ResponseData { get; set; }
+    public VendorScheduleCallResponseData? ResponseData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

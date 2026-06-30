@@ -5,15 +5,21 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record AuthCapturePayoutResponseData : IJsonOnDeserialized
+public record RenewVCardResponseData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Not used for virtual card renewal; always returns `null`.
+    /// </summary>
     [JsonPropertyName("authCode")]
     public string? AuthCode { get; set; }
 
+    /// <summary>
+    /// Reference identifier for the renewed virtual card returned by the card processor.
+    /// </summary>
     [JsonPropertyName("referenceId")]
     public required string ReferenceId { get; set; }
 
@@ -23,24 +29,33 @@ public record AuthCapturePayoutResponseData : IJsonOnDeserialized
     [JsonPropertyName("resultText")]
     public required string ResultText { get; set; }
 
+    /// <summary>
+    /// Not used for virtual card renewal; always returns `null`.
+    /// </summary>
     [JsonPropertyName("avsResponseText")]
     public string? AvsResponseText { get; set; }
 
+    /// <summary>
+    /// Not used for virtual card renewal; always returns `null`.
+    /// </summary>
     [JsonPropertyName("cvvResponseText")]
     public string? CvvResponseText { get; set; }
 
     /// <summary>
-    /// Payabli-generated unique ID of the vendor on the payout. Returns the same value as `vendorId`, or `0` when no vendor is associated.
+    /// Not used for virtual card renewal; always returns `null`.
     /// </summary>
     [JsonPropertyName("customerId")]
-    public required long CustomerId { get; set; }
+    public long? CustomerId { get; set; }
 
     /// <summary>
-    /// Payabli-generated unique ID of the vendor on the payout. Returns the same value as `customerId`, or `0` when no vendor is associated.
+    /// Not used for virtual card renewal; always returns `null`.
     /// </summary>
     [JsonPropertyName("vendorId")]
-    public required long VendorId { get; set; }
+    public long? VendorId { get; set; }
 
+    /// <summary>
+    /// Not used for virtual card renewal; always returns `null`.
+    /// </summary>
     [JsonPropertyName("methodReferenceId")]
     public string? MethodReferenceId { get; set; }
 

@@ -25,7 +25,7 @@ public record VendorEnrichRequest
     public bool? ApplyEnrichmentData { get; set; }
 
     /// <summary>
-    /// When `true`, triggers an AI outreach call if enrichment stages return insufficient payment acceptance info. This feature is currently in development.
+    /// When `true`, Payabli schedules an AI outreach call to the vendor if the enrichment stages return insufficient payment acceptance info. The call collects the vendor's preferred payment method and contact email. This is the third enrichment stage and is opt-in at the org level. See the schedule outreach call endpoint for behavior and requirements.
     /// </summary>
     [JsonPropertyName("scheduleCallIfNeeded")]
     public bool? ScheduleCallIfNeeded { get; set; }

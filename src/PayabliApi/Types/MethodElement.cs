@@ -33,10 +33,22 @@ public record MethodElement : IJsonOnDeserialized
     public int? Order { get; set; }
 
     /// <summary>
+    /// Description text shown in the payment methods section.
+    /// </summary>
+    [JsonPropertyName("paymentDescription")]
+    public string? PaymentDescription { get; set; }
+
+    /// <summary>
     /// Settings for wallet payment methods.
     /// </summary>
     [JsonPropertyName("settings")]
     public MethodElementSettings? Settings { get; set; }
+
+    /// <summary>
+    /// Controls whether the "Save payment details for future use" checkbox appears on the hosted payment page. Set to `false` to hide the checkbox. Defaults to `true`.
+    /// </summary>
+    [JsonPropertyName("showSaveMethod")]
+    public bool? ShowSaveMethod { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -214,7 +214,6 @@ public partial class BillClient : IBillClient
                     Path = string.Format("Bill/{0}", ValueConvert.ToPathParameterString(idBill)),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -689,7 +688,6 @@ public partial class BillClient : IBillClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

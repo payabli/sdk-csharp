@@ -72,6 +72,30 @@ public record StatBasicExtendedQueryRecord : IJsonOnDeserialized
     public required int OutPendingMethodTransactions { get; set; }
 
     /// <summary>
+    /// Outbound (payout) RTP transactions count.
+    /// </summary>
+    [JsonPropertyName("outRTPTransactions")]
+    public required int OutRtpTransactions { get; set; }
+
+    /// <summary>
+    /// Outbound (payout) RTP transactions volume.
+    /// </summary>
+    [JsonPropertyName("outRTPVolume")]
+    public required double OutRtpVolume { get; set; }
+
+    /// <summary>
+    /// Outbound (payout) wire transactions count.
+    /// </summary>
+    [JsonPropertyName("outWireTransactions")]
+    public required int OutWireTransactions { get; set; }
+
+    /// <summary>
+    /// Outbound (payout) wire transactions volume.
+    /// </summary>
+    [JsonPropertyName("outWireVolume")]
+    public required double OutWireVolume { get; set; }
+
+    /// <summary>
     /// Outbound (payout) volume.
     /// </summary>
     [JsonPropertyName("outTransactionsVolume")]

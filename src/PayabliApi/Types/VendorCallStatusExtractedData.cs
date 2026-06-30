@@ -5,29 +5,26 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// The response for canceling a single payout transaction.
+/// Data extracted from a completed outreach call.
 /// </summary>
 [Serializable]
-public record PayabliApiResponse0000 : IJsonOnDeserialized
+public record VendorCallStatusExtractedData : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("isSuccess")]
-    public bool? IsSuccess { get; set; }
+    /// <summary>
+    /// Payment method the vendor said they accept. Values are `card`, `ach`, or `check`.
+    /// </summary>
+    [JsonPropertyName("selectedPaymentMethod")]
+    public string? SelectedPaymentMethod { get; set; }
 
-    [JsonPropertyName("responseText")]
-    public required string ResponseText { get; set; }
-
-    [JsonPropertyName("pageIdentifier")]
-    public string? PageIdentifier { get; set; }
-
-    [JsonPropertyName("responseCode")]
-    public int? ResponseCode { get; set; }
-
-    [JsonPropertyName("responseData")]
-    public CancelPayoutResponseData? ResponseData { get; set; }
+    /// <summary>
+    /// Contact email collected during the call.
+    /// </summary>
+    [JsonPropertyName("contactEmail")]
+    public string? ContactEmail { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -223,7 +223,6 @@ public partial class MoneyInClient : IMoneyInClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -1449,7 +1448,6 @@ public partial class MoneyInClient : IMoneyInClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -1524,6 +1522,7 @@ public partial class MoneyInClient : IMoneyInClient
 
     private async Task<WithRawResponse<V2TransactionResponseWrapper>> Refundv2AsyncCore(
         string transId,
+        RefundV2Request request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -1543,6 +1542,7 @@ public partial class MoneyInClient : IMoneyInClient
                         "v2/MoneyIn/refund/{0}",
                         ValueConvert.ToPathParameterString(transId)
                     ),
+                    Body = request,
                     Headers = _headers,
                     Options = options,
                 },
@@ -1619,6 +1619,7 @@ public partial class MoneyInClient : IMoneyInClient
     private async Task<WithRawResponse<V2TransactionResponseWrapper>> Refundv2AmountAsyncCore(
         string transId,
         double amount,
+        RefundV2Request request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -1639,6 +1640,7 @@ public partial class MoneyInClient : IMoneyInClient
                         ValueConvert.ToPathParameterString(transId),
                         ValueConvert.ToPathParameterString(amount)
                     ),
+                    Body = request,
                     Headers = _headers,
                     Options = options,
                 },
@@ -1807,11 +1809,14 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. New integrations should use the [Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction), then capture, void, or refund the resulting transaction with the corresponding endpoints. Transactions created with this legacy endpoint must be managed with the legacy lifecycle endpoints — they aren't interchangeable with the current ones.
+    /// &lt;/Warning&gt;
+    ///
+    ///
     /// Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/developers/api-reference/moneyin/capture-an-authorized-transaction).
+    ///
     /// Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
-    /// &lt;Tip&gt;
-    ///   Consider migrating to the [v2 Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction) to take advantage of unified response codes and improved response consistency.
-    /// &lt;/Tip&gt;
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.AuthorizeAsync(
@@ -1850,7 +1855,7 @@ public partial class MoneyInClient : IMoneyInClient
 
     /// <summary>
     /// &lt;Warning&gt;
-    ///   This endpoint is deprecated and will be sunset on November 24, 2025. Migrate to [POST `/capture/{transId}`](/developers/api-reference/moneyin/capture-an-authorized-transaction)`.
+    ///   This endpoint is deprecated. Use [POST `/capture/{transId}`](/developers/api-reference/moneyin/capture-an-authorized-transaction) instead, which supports partial captures and service fee adjustments.
     /// &lt;/Warning&gt;
     ///
     ///   Capture an [authorized
@@ -1872,13 +1877,13 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. Use it only to capture transactions originally authorized with the legacy [Authorize endpoint](/developers/api-reference/moneyin/authorize-a-transaction). New integrations should use the [Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction), which only works on transactions authorized with the current [Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction).
+    /// &lt;/Warning&gt;
+    ///
     /// Capture an [authorized transaction](/developers/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
     ///
     /// You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
-    ///
-    /// &lt;Tip&gt;
-    /// Consider migrating to the [v2 Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction) to take advantage of unified response codes and improved response consistency.
-    /// &lt;/Tip&gt;
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.CaptureAuthAsync(
@@ -1958,11 +1963,11 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
-    /// Make a single transaction. This method authorizes and captures a payment in one step.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. New integrations should use the [Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) and manage the resulting transaction with the corresponding void or refund endpoints. Transactions created with this legacy endpoint must be managed with the legacy lifecycle endpoints — they aren't interchangeable with the current ones.
+    /// &lt;/Warning&gt;
     ///
-    ///   &lt;Tip&gt;
-    ///   Consider migrating to the [v2 Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) to take advantage of unified response codes and improved response consistency.
-    ///   &lt;/Tip&gt;
+    /// Make a single transaction. This method authorizes and captures a payment in one step.
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.GetpaidAsync(
@@ -2000,7 +2005,11 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
-    /// A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the v1 API. For v2 transactions, check the transaction's settlement status and call v2 void or v2 refund based on the result.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated and only works on transactions created with the legacy endpoints. There's no equivalent in the current endpoints. For transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction), check the transaction's settlement status and call [Void](/developers/api-reference/moneyinV2/void-a-transaction) or [Refund](/developers/api-reference/moneyinV2/refund-a-settled-transaction) based on the result.
+    /// &lt;/Warning&gt;
+    ///
+    /// A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the legacy endpoints. For transactions made with the current endpoints, check the transaction's settlement status and call void or refund based on the result.
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.ReverseAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
@@ -2018,11 +2027,11 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
-    /// Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. Use it only to refund transactions originally created with the legacy endpoints. New integrations should use the [Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction), which only works on transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction).
+    /// &lt;/Warning&gt;
     ///
-    ///   &lt;Tip&gt;
-    ///   Consider migrating to the [v2 Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) to take advantage of unified response codes and improved response consistency.
-    ///   &lt;/Tip&gt;
+    /// Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.RefundAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
@@ -2040,6 +2049,10 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. Use it only to refund transactions originally created with the legacy endpoints. To refund a split-funded transaction created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction), use the [Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) with split instructions in the request body.
+    /// &lt;/Warning&gt;
+    ///
     /// Refunds a settled transaction with split instructions.
     /// </summary>
     /// <example><code>
@@ -2156,11 +2169,11 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
-    /// Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
+    /// &lt;Warning&gt;
+    ///   This endpoint is deprecated. Use it only to void transactions originally created with the legacy endpoints. New integrations should use the [Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction), which only works on transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction).
+    /// &lt;/Warning&gt;
     ///
-    ///   &lt;Tip&gt;
-    ///   Consider migrating to the [v2 Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction) to take advantage of unified response codes and improved response consistency.
-    ///   &lt;/Tip&gt;
+    /// Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.VoidAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
@@ -2279,41 +2292,58 @@ public partial class MoneyInClient : IMoneyInClient
     }
 
     /// <summary>
-    /// Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+    /// Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](/developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
     ///
     /// This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
+    ///
+    /// &lt;Note&gt;
+    ///   To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+    /// &lt;/Note&gt;
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+    /// await client.MoneyIn.Refundv2Async(
+    ///     "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
+    ///     new RefundV2Request()
+    /// );
     /// </code></example>
     public WithRawResponseTask<V2TransactionResponseWrapper> Refundv2Async(
         string transId,
+        RefundV2Request request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V2TransactionResponseWrapper>(
-            Refundv2AsyncCore(transId, options, cancellationToken)
+            Refundv2AsyncCore(transId, request, options, cancellationToken)
         );
     }
 
     /// <summary>
-    /// Refund a transaction that has settled and send money back to the account holder. If `amount` is omitted or set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+    /// Refund a transaction that has settled and send money back to the account holder. If `amount` is set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
     ///
     /// This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
+    ///
+    /// &lt;Note&gt;
+    ///   To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+    /// &lt;/Note&gt;
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.Refundv2AmountAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+    /// await client.MoneyIn.Refundv2AmountAsync(
+    ///     "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
+    ///     0,
+    ///     new RefundV2Request()
+    /// );
     /// </code></example>
     public WithRawResponseTask<V2TransactionResponseWrapper> Refundv2AmountAsync(
         string transId,
         double amount,
+        RefundV2Request request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V2TransactionResponseWrapper>(
-            Refundv2AmountAsyncCore(transId, amount, options, cancellationToken)
+            Refundv2AmountAsyncCore(transId, amount, request, options, cancellationToken)
         );
     }
 

@@ -40,7 +40,6 @@ public partial class BoardingClient : IBoardingClient
                     Path = "Boarding/app",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -137,7 +136,6 @@ public partial class BoardingClient : IBoardingClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

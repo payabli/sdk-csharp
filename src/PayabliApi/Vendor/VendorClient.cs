@@ -36,7 +36,6 @@ public partial class VendorClient : IVendorClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -197,7 +196,6 @@ public partial class VendorClient : IVendorClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -449,6 +447,191 @@ public partial class VendorClient : IVendorClient
         }
     }
 
+    private async Task<WithRawResponse<VendorScheduleCallResponse>> ScheduleEnrichmentCallAsyncCore(
+        string entry,
+        ScheduleEnrichmentCallRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "Vendor/enrich/schedule_call/{0}",
+                        ValueConvert.ToPathParameterString(entry)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<VendorScheduleCallResponse>(responseBody)!;
+                return new WithRawResponse<VendorScheduleCallResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<VendorCallStatusResponse>> GetEnrichmentCallStatusAsyncCore(
+        long idVendor,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "Vendor/{0}/enrichment/call-status",
+                        ValueConvert.ToPathParameterString(idVendor)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<VendorCallStatusResponse>(responseBody)!;
+                return new WithRawResponse<VendorCallStatusResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     /// <summary>
     /// Creates a vendor in an entrypoint.
     /// </summary>
@@ -601,6 +784,53 @@ public partial class VendorClient : IVendorClient
     {
         return new WithRawResponseTask<VendorEnrichResponse>(
             EnrichVendorAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Schedules an AI outreach call to a vendor to collect their preferred payment method and contact email. This is the third enrichment stage. Calls are scheduled for the next business day at around 9 AM in the vendor's timezone, with retries on no-answer and a fallback payment method applied when retries are exhausted. This feature is opt-in at the org level. Contact your Payabli representative to enable it, provision a phone number, and discuss pricing.
+    /// </summary>
+    /// <example><code>
+    /// await client.Vendor.ScheduleEnrichmentCallAsync(
+    ///     "8cfec329267",
+    ///     new ScheduleEnrichmentCallRequest
+    ///     {
+    ///         VendorId = 456,
+    ///         Phone = "5555550200",
+    ///         EnrichmentId = "enrich-3890-a1b2c3d4",
+    ///         BillId = 54323,
+    ///         FallbackMethod = "check",
+    ///         MaxRetries = 3,
+    ///         Timezone = "America/New_York",
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<VendorScheduleCallResponse> ScheduleEnrichmentCallAsync(
+        string entry,
+        ScheduleEnrichmentCallRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<VendorScheduleCallResponse>(
+            ScheduleEnrichmentCallAsyncCore(entry, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Returns the latest AI outreach call activity for a vendor. The response is a composite object with a `state` discriminator (`none`, `scheduled`, `successful`, or `failed`); the block that matches the current state is populated. When the vendor has no call activity, `state` is `none` and the response returns HTTP 200.
+    /// </summary>
+    /// <example><code>
+    /// await client.Vendor.GetEnrichmentCallStatusAsync(456);
+    /// </code></example>
+    public WithRawResponseTask<VendorCallStatusResponse> GetEnrichmentCallStatusAsync(
+        long idVendor,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<VendorCallStatusResponse>(
+            GetEnrichmentCallStatusAsyncCore(idVendor, options, cancellationToken)
         );
     }
 }

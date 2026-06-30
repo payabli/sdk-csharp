@@ -395,7 +395,6 @@ public partial class NotificationlogsClient : INotificationlogsClient
                     Path = "v2/notificationlogs/retry",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken

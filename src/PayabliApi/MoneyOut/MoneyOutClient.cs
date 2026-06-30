@@ -89,6 +89,10 @@ public partial class MoneyOutClient : IMoneyOutClient
                         throw new UnauthorizedError(
                             JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
+                    case 422:
+                        throw new UnprocessableEntityError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
@@ -129,7 +133,6 @@ public partial class MoneyOutClient : IMoneyOutClient
                     Path = "MoneyOut/cancelAll",
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -540,6 +543,10 @@ public partial class MoneyOutClient : IMoneyOutClient
                         throw new UnauthorizedError(
                             JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
                         );
+                    case 422:
+                        throw new UnprocessableEntityError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
                     case 500:
                         throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
                     case 503:
@@ -686,6 +693,99 @@ public partial class MoneyOutClient : IMoneyOutClient
             {
                 var responseData = JsonUtils.Deserialize<VCardGetResponse>(responseBody)!;
                 return new WithRawResponse<VCardGetResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(JsonUtils.Deserialize<object>(responseBody));
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody)
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<RenewVCardResponse>> RenewVCardAsyncCore(
+        string cardToken,
+        RenewVCardRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "MoneyOutCard/vcard/{0}/renew",
+                        ValueConvert.ToPathParameterString(cardToken)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<RenewVCardResponse>(responseBody)!;
+                return new WithRawResponse<RenewVCardResponse>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -1120,6 +1220,8 @@ public partial class MoneyOutClient : IMoneyOutClient
     /// If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
     ///
     /// When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
+    ///
+    /// If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
     /// </summary>
     /// <example><code>
     /// await client.MoneyOut.AuthorizeOutAsync(
@@ -1227,7 +1329,9 @@ public partial class MoneyOutClient : IMoneyOutClient
     }
 
     /// <summary>
-    /// Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`,  you don't need to call this endpoint to capture the transaction for processing.
+    /// Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`, you don't need to call this endpoint to capture the transaction for processing.
+    ///
+    /// If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the capture is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
     /// </summary>
     /// <example><code>
     /// await client.MoneyOut.CaptureOutAsync("129-219", new CaptureOutRequest());
@@ -1275,6 +1379,31 @@ public partial class MoneyOutClient : IMoneyOutClient
     {
         return new WithRawResponseTask<VCardGetResponse>(
             VCardGetAsyncCore(cardToken, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Renews an expired or expiring virtual card by extending its expiration date to a future month.
+    ///
+    /// The card must be a virtual card that hasn't been fully used. The new expiration date must be in `MM-YYYY` or `MM/YYYY` format and no more than 2 years and 363 days in the future. The card expires on the last day of the month you specify.
+    ///
+    /// On success, `referenceId` holds the renewed card's token (the card processor may issue a new token). The response reuses the standard payout result object, so the payment-transaction fields it carries don't apply to renewal and always return `null`.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyOut.RenewVCardAsync(
+    ///     "20231206142225226104",
+    ///     new RenewVCardRequest { ExpirationDate = "12-2027" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<RenewVCardResponse> RenewVCardAsync(
+        string cardToken,
+        RenewVCardRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<RenewVCardResponse>(
+            RenewVCardAsyncCore(cardToken, request, options, cancellationToken)
         );
     }
 

@@ -1239,11 +1239,14 @@ await client.CheckCapture.CheckProcessingAsync(
 <dl>
 <dd>
 
+<Warning>
+  This endpoint is deprecated. New integrations should use the [Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction), then capture, void, or refund the resulting transaction with the corresponding endpoints. Transactions created with this legacy endpoint must be managed with the legacy lifecycle endpoints — they aren't interchangeable with the current ones.
+</Warning>
+
+
 Authorize a card transaction. This returns an authorization code and reserves funds for the merchant. Authorized transactions aren't flagged for settlement until [captured](/developers/api-reference/moneyin/capture-an-authorized-transaction).
+
 Only card transactions can be authorized. This endpoint can't be used for ACH transactions.
-<Tip>
-  Consider migrating to the [v2 Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction) to take advantage of unified response codes and improved response consistency.
-</Tip>
 </dd>
 </dl>
 </dd>
@@ -1319,7 +1322,7 @@ await client.MoneyIn.AuthorizeAsync(
 <dd>
 
 <Warning>
-  This endpoint is deprecated and will be sunset on November 24, 2025. Migrate to [POST `/capture/{transId}`](/developers/api-reference/moneyin/capture-an-authorized-transaction)`.
+  This endpoint is deprecated. Use [POST `/capture/{transId}`](/developers/api-reference/moneyin/capture-an-authorized-transaction) instead, which supports partial captures and service fee adjustments.
 </Warning>
 
   Capture an [authorized
@@ -1385,13 +1388,13 @@ await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
 <dl>
 <dd>
 
+<Warning>
+  This endpoint is deprecated. Use it only to capture transactions originally authorized with the legacy [Authorize endpoint](/developers/api-reference/moneyin/authorize-a-transaction). New integrations should use the [Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction), which only works on transactions authorized with the current [Authorize endpoint](/developers/api-reference/moneyinV2/authorize-a-transaction).
+</Warning>
+
 Capture an [authorized transaction](/developers/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
 
 You can use this endpoint to capture both full and partial amounts of the original authorized transaction. See [Capture an authorized transaction](/developers/developer-guides/pay-in-auth-and-capture) for more information about this endpoint.
-
-<Tip>
-Consider migrating to the [v2 Capture endpoint](/developers/api-reference/moneyinV2/capture-an-authorized-transaction) to take advantage of unified response codes and improved response consistency.
-</Tip>
 </dd>
 </dl>
 </dd>
@@ -1589,11 +1592,11 @@ await client.MoneyIn.DetailsAsync("45-as456777hhhhhhhhhh77777777-324");
 <dl>
 <dd>
 
-Make a single transaction. This method authorizes and captures a payment in one step.
+<Warning>
+  This endpoint is deprecated. New integrations should use the [Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) and manage the resulting transaction with the corresponding void or refund endpoints. Transactions created with this legacy endpoint must be managed with the legacy lifecycle endpoints — they aren't interchangeable with the current ones.
+</Warning>
 
-  <Tip>
-  Consider migrating to the [v2 Make a transaction endpoint](/developers/api-reference/moneyinV2/make-a-transaction) to take advantage of unified response codes and improved response consistency.
-  </Tip>
+Make a single transaction. This method authorizes and captures a payment in one step.
 </dd>
 </dl>
 </dd>
@@ -1668,7 +1671,11 @@ await client.MoneyIn.GetpaidAsync(
 <dl>
 <dd>
 
-A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the v1 API. For v2 transactions, check the transaction's settlement status and call v2 void or v2 refund based on the result.
+<Warning>
+  This endpoint is deprecated and only works on transactions created with the legacy endpoints. There's no equivalent in the current endpoints. For transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction), check the transaction's settlement status and call [Void](/developers/api-reference/moneyinV2/void-a-transaction) or [Refund](/developers/api-reference/moneyinV2/refund-a-settled-transaction) based on the result.
+</Warning>
+
+A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the legacy endpoints. For transactions made with the current endpoints, check the transaction's settlement status and call void or refund based on the result.
 </dd>
 </dl>
 </dd>
@@ -1736,11 +1743,11 @@ An amount equal to zero will refunds the total amount authorized minus any servi
 <dl>
 <dd>
 
-Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
+<Warning>
+  This endpoint is deprecated. Use it only to refund transactions originally created with the legacy endpoints. New integrations should use the [Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction), which only works on transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction).
+</Warning>
 
-  <Tip>
-  Consider migrating to the [v2 Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) to take advantage of unified response codes and improved response consistency.
-  </Tip>
+Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
 </dd>
 </dl>
 </dd>
@@ -1807,6 +1814,10 @@ An amount equal to zero will refund the total amount authorized minus any servic
 
 <dl>
 <dd>
+
+<Warning>
+  This endpoint is deprecated. Use it only to refund transactions originally created with the legacy endpoints. To refund a split-funded transaction created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction), use the [Refund endpoint](/developers/api-reference/moneyinV2/refund-a-settled-transaction) with split instructions in the request body.
+</Warning>
 
 Refunds a settled transaction with split instructions.
 </dd>
@@ -2086,11 +2097,11 @@ await client.MoneyIn.ValidateAsync(
 <dl>
 <dd>
 
-Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
+<Warning>
+  This endpoint is deprecated. Use it only to void transactions originally created with the legacy endpoints. New integrations should use the [Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction), which only works on transactions created with [Make a transaction](/developers/api-reference/moneyinV2/make-a-transaction) or [Authorize](/developers/api-reference/moneyinV2/authorize-a-transaction).
+</Warning>
 
-  <Tip>
-  Consider migrating to the [v2 Void endpoint](/developers/api-reference/moneyinV2/void-a-transaction) to take advantage of unified response codes and improved response consistency.
-  </Tip>
+Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
 </dd>
 </dl>
 </dd>
@@ -2352,7 +2363,7 @@ await client.MoneyIn.Capturev2Async(
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2Async</a>(transId) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2Async</a>(transId, RefundV2Request { ... }) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2364,9 +2375,13 @@ await client.MoneyIn.Capturev2Async(
 <dl>
 <dd>
 
-Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
+Give a full refund for a transaction that has settled and send money back to the account holder. To perform a partial refund, see [Partially refund a transaction](/developers/api-reference/moneyinV2/partial-refund-a-settled-transaction).
 
 This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
+
+<Note>
+  To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -2381,7 +2396,10 @@ This is the v2 version of the refund endpoint, and returns the unified response 
 <dd>
 
 ```csharp
-await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+await client.MoneyIn.Refundv2Async(
+    "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
+    new RefundV2Request()
+);
 ```
 </dd>
 </dl>
@@ -2397,6 +2415,14 @@ await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dd>
 
 **transId:** `string` — ReferenceId for the transaction (PaymentId).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `RefundV2Request` 
     
 </dd>
 </dl>
@@ -2408,7 +2434,7 @@ await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 </dl>
 </details>
 
-<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2AmountAsync</a>(transId, amount) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
+<details><summary><code>client.MoneyIn.<a href="/src/PayabliApi/MoneyIn/MoneyInClient.cs">Refundv2AmountAsync</a>(transId, amount, RefundV2Request { ... }) -> WithRawResponseTask&lt;V2TransactionResponseWrapper&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2420,9 +2446,13 @@ await client.MoneyIn.Refundv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 <dl>
 <dd>
 
-Refund a transaction that has settled and send money back to the account holder. If `amount` is omitted or set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
+Refund a transaction that has settled and send money back to the account holder. If `amount` is set to 0, performs a full refund. When a non-zero `amount` is provided, this endpoint performs a partial refund.
 
 This is the v2 version of the refund endpoint, and returns the unified response format. See [Pay In unified response codes reference](/guides/pay-in-unified-response-codes-reference) for more information.
+
+<Note>
+  To refund a split-funded transaction, include split instructions in the request body. Omit the body for a standard refund.
+</Note>
 </dd>
 </dl>
 </dd>
@@ -2437,7 +2467,11 @@ This is the v2 version of the refund endpoint, and returns the unified response 
 <dd>
 
 ```csharp
-await client.MoneyIn.Refundv2AmountAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+await client.MoneyIn.Refundv2AmountAsync(
+    "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
+    0,
+    new RefundV2Request()
+);
 ```
 </dd>
 </dl>
@@ -2460,7 +2494,15 @@ await client.MoneyIn.Refundv2AmountAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a72
 <dl>
 <dd>
 
-**amount:** `double` — Amount to refund from original transaction, minus any service fees charged on the original transaction. If omitted or set to 0, performs a full refund.
+**amount:** `double` — Amount to refund from original transaction, minus any service fees charged on the original transaction. If set to 0, performs a full refund.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `RefundV2Request` 
     
 </dd>
 </dl>
@@ -3551,6 +3593,8 @@ await client.Invoice.GetInvoicePdfAsync(23548884);
 <dd>
 
 Generates a payment link for an invoice from the invoice ID.
+
+The payment page configuration blocks (`logo`, `page`, `paymentMethods`, `review`, `messageBeforePaying`, `paymentButton`, `notes`, `contactUs`, and `settings`) are optional. When you omit a block, Payabli applies a default rather than hiding it. The block is enabled at a fixed display order, so the generated page stays complete and branded. To hide a section, send the block explicitly with `enabled` set to `false`. An explicit value is always honored and is never replaced by a default. For each block's default, see its description in the request body.
 </dd>
 </dl>
 </dd>
@@ -15888,6 +15932,134 @@ await client.Vendor.EnrichVendorAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">ScheduleEnrichmentCallAsync</a>(entry, ScheduleEnrichmentCallRequest { ... }) -> WithRawResponseTask&lt;VendorScheduleCallResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Schedules an AI outreach call to a vendor to collect their preferred payment method and contact email. This is the third enrichment stage. Calls are scheduled for the next business day at around 9 AM in the vendor's timezone, with retries on no-answer and a fallback payment method applied when retries are exhausted. This feature is opt-in at the org level. Contact your Payabli representative to enable it, provision a phone number, and discuss pricing.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Vendor.ScheduleEnrichmentCallAsync(
+    "8cfec329267",
+    new ScheduleEnrichmentCallRequest
+    {
+        VendorId = 456,
+        Phone = "5555550200",
+        EnrichmentId = "enrich-3890-a1b2c3d4",
+        BillId = 54323,
+        FallbackMethod = "check",
+        MaxRetries = 3,
+        Timezone = "America/New_York",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` — Entrypoint identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ScheduleEnrichmentCallRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Vendor.<a href="/src/PayabliApi/Vendor/VendorClient.cs">GetEnrichmentCallStatusAsync</a>(idVendor) -> WithRawResponseTask&lt;VendorCallStatusResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the latest AI outreach call activity for a vendor. The response is a composite object with a `state` discriminator (`none`, `scheduled`, `successful`, or `failed`); the block that matches the current state is populated. When the vendor has no call activity, `state` is `none` and the response returns HTTP 200.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Vendor.GetEnrichmentCallStatusAsync(456);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**idVendor:** `long` — ID of the vendor to read call status for.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## GhostCard
 <details><summary><code>client.GhostCard.<a href="/src/PayabliApi/GhostCard/GhostCardClient.cs">CreateGhostCardAsync</a>(entry, CreateGhostCardRequestBody { ... }) -> WithRawResponseTask&lt;CreateGhostCardResponse&gt;</code></summary>
 <dl>
@@ -16058,6 +16230,8 @@ Authorizes a transaction for payout.
 If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
 
 When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
+
+If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
 </dd>
 </dl>
 </dd>
@@ -16350,7 +16524,9 @@ await client.MoneyOut.CaptureAllOutAsync(
 <dl>
 <dd>
 
-Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`,  you don't need to call this endpoint to capture the transaction for processing.
+Captures a single authorized payout transaction by ID. If the transaction was authorized with `autoCapture` set to `true`, you don't need to call this endpoint to capture the transaction for processing.
+
+If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the capture is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
 </dd>
 </dl>
 </dd>
@@ -16497,6 +16673,75 @@ await client.MoneyOut.VCardGetAsync("20230403315245421165");
 <dd>
 
 **cardToken:** `string` — ID for a virtual card.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">RenewVCardAsync</a>(cardToken, RenewVCardRequest { ... }) -> WithRawResponseTask&lt;RenewVCardResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Renews an expired or expiring virtual card by extending its expiration date to a future month.
+
+The card must be a virtual card that hasn't been fully used. The new expiration date must be in `MM-YYYY` or `MM/YYYY` format and no more than 2 years and 363 days in the future. The card expires on the last day of the month you specify.
+
+On success, `referenceId` holds the renewed card's token (the card processor may issue a new token). The response reuses the standard payout result object, so the payment-transaction fields it carries don't apply to renewal and always return `null`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyOut.RenewVCardAsync(
+    "20231206142225226104",
+    new RenewVCardRequest { ExpirationDate = "12-2027" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cardToken:** `string` — ID for the virtual card to renew.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `RenewVCardRequest` 
     
 </dd>
 </dl>
@@ -16765,6 +17010,68 @@ await client.MoneyOut.ReissueOutAsync(
 <dd>
 
 **request:** `ReissueOutRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Funding
+<details><summary><code>client.Funding.<a href="/src/PayabliApi/Funding/FundingClient.cs">DepositFundsAsync</a>(DepositFundsRequest { ... }) -> WithRawResponseTask&lt;DepositFundsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deposits funds into a paypoint's available payout balance. Deposited funds enter a pending state and aren't available for instant payouts until confirmed through FBO reconciliation.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Funding.DepositFundsAsync(
+    new DepositFundsRequest
+    {
+        Amount = 10,
+        Entrypoint = "48acde49",
+        AccountId = "333",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DepositFundsRequest` 
     
 </dd>
 </dl>

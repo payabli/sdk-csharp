@@ -230,7 +230,6 @@ public partial class CustomerClient : ICustomerClient
                     ),
                     Body = request,
                     Headers = _headers,
-                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
