@@ -6,10 +6,8 @@
     "generate-mock-server-tests": false,
     "inline-path-parameters": false
   },
-  "originGitCommit": "628ffb8f2b68a020cd11c502ae0ad7a1bc79c74b",
-  "originGitCommitIsDirty": true,
-  "invokedBy": "ci",
-  "requestedVersion": "1.0.4",
-  "ciProvider": "github",
-  "sdkVersion": "1.0.4"
+  "originGitCommit": "f415c302d82f244bbc6897657fbd521b6dcbf099",
+  "originGitCommitIsDirty": false,
+  "invokedBy": "manual",
+  "sdkVersion": "1.0.5"
 }
