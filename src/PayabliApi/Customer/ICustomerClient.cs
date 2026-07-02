@@ -3,7 +3,7 @@ namespace PayabliApi;
 public partial interface ICustomerClient
 {
     /// <summary>
-    /// Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings &gt; Custom Fields in PartnerHub.
+    /// Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings &gt; Custom Fields in the Payabli Portal.
     /// If you don't include an identifier, the record is rejected.
     /// </summary>
     WithRawResponseTask<PayabliApiResponseCustomerQuery> AddCustomerAsync(

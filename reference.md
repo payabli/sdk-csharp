@@ -795,7 +795,7 @@ await client.Bill.ListBillsOrgAsync(
 <dl>
 <dd>
 
-Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings > Custom Fields in PartnerHub.
+Creates a customer in an entrypoint. An identifier is required to create customer records. Change your identifier settings in Settings > Custom Fields in the Payabli Portal.
 If you don't include an identifier, the record is rejected.
 </dd>
 </dl>
@@ -907,7 +907,7 @@ await client.Customer.GetCustomerAsync(4440);
 <dl>
 <dd>
 
-**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -973,7 +973,7 @@ await client.Customer.UpdateCustomerAsync(
 <dl>
 <dd>
 
-**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -1035,7 +1035,7 @@ await client.Customer.DeleteCustomerAsync(4440);
 <dl>
 <dd>
 
-**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -1089,7 +1089,7 @@ await client.Customer.RequestConsentAsync(4440);
 <dl>
 <dd>
 
-**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -1143,7 +1143,7 @@ await client.Customer.LinkCustomerTransactionAsync(4440, "45-as456777hhhhhhhhhh7
 <dl>
 <dd>
 
-**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>
@@ -9431,7 +9431,7 @@ await client.Notificationlogs.RetryNotificationLogAsync("550e8400-e29b-41d4-a716
 </dl>
 </details>
 
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">BulkRetryNotificationLogsAsync</a>(IEnumerable&lt;string&gt; { ... })</code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">BulkRetryNotificationLogsAsync</a>(IEnumerable&lt;string&gt; { ... }) -> WithRawResponseTask</code></summary>
 <dl>
 <dd>
 
@@ -10596,7 +10596,7 @@ await client.Boarding.GetByTemplateIdLinkApplicationAsync(80);
 <dl>
 <dd>
 
-**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -11036,7 +11036,7 @@ await client.Templates.DeleteTemplateAsync(80);
 <dl>
 <dd>
 
-**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -11090,7 +11090,7 @@ await client.Templates.GetlinkTemplateAsync(true, 80);
 <dl>
 <dd>
 
-**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -11152,7 +11152,7 @@ await client.Templates.GetTemplateAsync(80);
 <dl>
 <dd>
 
-**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in PartnerHub. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
+**templateId:** `double` — The boarding template ID. You can find this at the end of the boarding template URL in the Payabli Portal. Example: `https://partner-sandbox.payabli.com/myorganization/boarding/edittemplate/80`. Here, the template ID is `80`.
     
 </dd>
 </dl>
@@ -14384,7 +14384,7 @@ For example, `w` groups the results by week.
 <dl>
 <dd>
 
-**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in PartnerHub.
+**customerId:** `int` — Payabli-generated customer ID. Maps to "Customer ID" column in the Payabli Portal.
     
 </dd>
 </dl>

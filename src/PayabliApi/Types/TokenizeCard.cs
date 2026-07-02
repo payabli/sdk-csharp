@@ -32,6 +32,9 @@ public record TokenizeCard : IJsonOnDeserialized
     [JsonPropertyName("cardzip")]
     public string? Cardzip { get; set; }
 
+    [JsonPropertyName("device")]
+    public string? Device { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

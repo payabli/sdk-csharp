@@ -42,7 +42,7 @@ public partial interface INotificationlogsClient
     ///
     /// This endpoint requires the `notifications_create` permission.
     /// </summary>
-    Task BulkRetryNotificationLogsAsync(
+    WithRawResponseTask BulkRetryNotificationLogsAsync(
         IEnumerable<string> request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

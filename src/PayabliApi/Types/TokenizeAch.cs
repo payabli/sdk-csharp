@@ -38,9 +38,6 @@ public record TokenizeAch : IJsonOnDeserialized
     [JsonPropertyName("achRouting")]
     public required string AchRouting { get; set; }
 
-    [JsonPropertyName("device")]
-    public string? Device { get; set; }
-
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
