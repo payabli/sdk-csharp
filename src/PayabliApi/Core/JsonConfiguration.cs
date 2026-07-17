@@ -19,6 +19,7 @@ internal static partial class JsonOptions
             Converters =
             {
                 new DateTimeSerializer(),
+                new FlexibleDateOnlyConverter(),
 #if USE_PORTABLE_DATE_ONLY
                 new DateOnlyConverter(),
 #endif
