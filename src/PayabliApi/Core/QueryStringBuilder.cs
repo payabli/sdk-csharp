@@ -19,7 +19,8 @@ namespace PayabliApi.Core;
 /// Three encoding contexts are distinguished:
 ///   Path segment (pchar): unreserved + sub-delims + ":" + "@"
 ///   Query key:   query chars minus "&amp;", "=", "+", "#"
-///   Query value: query chars minus "&amp;", "+", "#"
+///   Query value: query chars minus "&amp;", "+", "#", ";" (";" is additionally percent-encoded
+///     for interop with parsers that still treat it as a legacy query delimiter)
 /// </summary>
 internal static class QueryStringBuilder
 {
@@ -27,7 +28,7 @@ internal static class QueryStringBuilder
     // RFC 3986 character sets
     //
     // Query key safe:    unreserved + (sub-delims \ {& = +}) + : @ / ?
-    // Query value safe:  unreserved + (sub-delims \ {& +})   + : @ / ?
+    // Query value safe:  unreserved + (sub-delims \ {& + ;}) + : @ / ?
     // Path segment safe: unreserved + sub-delims + : @
     // ──────────────────────────────────────────────────────────────────────
 
@@ -36,8 +37,11 @@ internal static class QueryStringBuilder
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~!$'()*,;:@/?"
     );
 
+    // Semicolon is excluded even though RFC 3986 allows it unencoded: some HTTP
+    // intermediaries (and test tooling such as WireMock.Net) still split query
+    // strings on ";" as a legacy delimiter, so we percent-encode it defensively.
     private static readonly SearchValues<char> SafeQueryValueChars = SearchValues.Create(
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~!$'()*,;=:@/?"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~!$'()*,=:@/?"
     );
 
     private static readonly SearchValues<char> SafePathChars = SearchValues.Create(
@@ -47,8 +51,11 @@ internal static class QueryStringBuilder
     private const string SafeQueryKeyChars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~!$'()*,;:@/?";
 
+    // Semicolon is excluded even though RFC 3986 allows it unencoded: some HTTP
+    // intermediaries (and test tooling such as WireMock.Net) still split query
+    // strings on ";" as a legacy delimiter, so we percent-encode it defensively.
     private const string SafeQueryValueChars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~!$'()*,;=:@/?";
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~!$'()*,=:@/?";
 
     private const string SafePathChars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~!$&'()*+,;=:@";
@@ -444,7 +451,9 @@ internal static class QueryStringBuilder
 #if NET8_0_OR_GREATER
         return SafeQueryValueChars.Contains(c);
 #else
-        // query = *( pchar / "/" / "?" )  minus "&", "+", "#"
+        // query = *( pchar / "/" / "?" )  minus "&", "+", "#", ";"
+        // Semicolon is percent-encoded even though RFC 3986 allows it unencoded:
+        // some HTTP intermediaries still split query strings on ";" as a legacy delimiter.
         return (c >= 'A' && c <= 'Z')
             || (c >= 'a' && c <= 'z')
             || (c >= '0' && c <= '9')
@@ -459,7 +468,6 @@ internal static class QueryStringBuilder
             || c == ')'
             || c == '*'
             || c == ','
-            || c == ';'
             || c == '='
             || c == ':'
             || c == '@'

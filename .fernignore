@@ -4,3 +4,6 @@ CONTRIBUTING.md
 src/PayabliApi/Core/FlexibleDateOnlyConverter.cs
 src/PayabliApi/Core/JsonConfiguration.cs
 src/PayabliApi.Test/Core/Json/DateOnlyJsonTests.cs
+src/PayabliApi/Core/QueryStringBuilder.cs
+src/PayabliApi.Test/Unit/MockServer/Cloud/HistoryDeviceTest.cs
+src/PayabliApi.Test/Unit/MockServer/Cloud/RemoveDeviceTest.cs
