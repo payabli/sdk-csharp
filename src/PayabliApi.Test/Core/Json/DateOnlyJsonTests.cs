@@ -75,6 +75,32 @@ public class DateOnlyJsonTests
     }
 
     [Test]
+    public void DeserializeDateOnly_ShouldAcceptNonIsoMmDdYyyyFormat()
+    {
+        // Some API responses (e.g. MoneyOut/details) return dueDate as MM-dd-yyyy
+        // instead of ISO 8601, while sibling fields on the same object use ISO 8601.
+        (DateOnly expected, string json)[] testCases =
+        [
+            (new DateOnly(2026, 7, 15), "\"07-15-2026\""),
+            (new DateOnly(2023, 1, 1), "\"01-01-2023\""),
+            (new DateOnly(2023, 12, 31), "\"12-31-2023\""),
+        ];
+
+        foreach (var (expected, json) in testCases)
+        {
+            var dateOnly = JsonUtils.Deserialize<DateOnly>(json);
+            Assert.That(dateOnly, Is.EqualTo(expected));
+        }
+    }
+
+    [Test]
+    public void DeserializeNullableDateOnly_ShouldAcceptNonIsoMmDdYyyyFormat()
+    {
+        var dateOnly = JsonUtils.Deserialize<DateOnly?>("\"07-15-2026\"");
+        Assert.That(dateOnly, Is.EqualTo(new DateOnly(2026, 7, 15)));
+    }
+
+    [Test]
     public void ShouldSerializeDictionaryWithDateOnlyKey()
     {
         var key = new DateOnly(2023, 10, 5);
