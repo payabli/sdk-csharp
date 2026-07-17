@@ -45,8 +45,8 @@ public class HistoryDeviceTest : BaseMockServerTest
             );
 
         var response = await Client.Cloud.HistoryDeviceAsync(
-            "499585-389fj484-3jcj8hj3",
-            "8cfec329267"
+            "8cfec329267",
+            "499585-389fj484-3jcj8hj3"
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

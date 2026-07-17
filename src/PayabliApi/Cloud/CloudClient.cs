@@ -615,7 +615,7 @@ public partial class CloudClient : ICloudClient
     /// Remove a cloud device from an entrypoint.
     /// </summary>
     /// <example><code>
-    /// await client.Cloud.RemoveDeviceAsync("499585-389fj484-3jcj8hj3", "8cfec329267");
+    /// await client.Cloud.RemoveDeviceAsync("8cfec329267", "499585-389fj484-3jcj8hj3");
     /// </code></example>
     public WithRawResponseTask<RemoveDeviceResponse> RemoveDeviceAsync(
         string entry,
@@ -633,7 +633,7 @@ public partial class CloudClient : ICloudClient
     /// Retrieve the registration history for a device.
     /// </summary>
     /// <example><code>
-    /// await client.Cloud.HistoryDeviceAsync("499585-389fj484-3jcj8hj3", "8cfec329267");
+    /// await client.Cloud.HistoryDeviceAsync("8cfec329267", "499585-389fj484-3jcj8hj3");
     /// </code></example>
     public WithRawResponseTask<CloudQueryApiResponse> HistoryDeviceAsync(
         string entry,
