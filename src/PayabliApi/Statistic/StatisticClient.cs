@@ -627,10 +627,10 @@ public partial class StatisticClient : IStatisticClient
     /// </summary>
     /// <example><code>
     /// await client.Statistic.BasicStatsAsync(
-    ///     1000000,
+    ///     "custom",
     ///     "m",
     ///     2,
-    ///     "custom",
+    ///     1000000,
     ///     new BasicStatsRequest { StartDate = "2025-11-01", EndDate = "2025-11-30" }
     /// );
     /// </code></example>
@@ -653,7 +653,7 @@ public partial class StatisticClient : IStatisticClient
     /// Retrieves the basic statistics for a customer for a specific time period, grouped by a selected frequency.
     /// </summary>
     /// <example><code>
-    /// await client.Statistic.CustomerBasicStatsAsync(4440, "m", "ytd", new CustomerBasicStatsRequest());
+    /// await client.Statistic.CustomerBasicStatsAsync("ytd", "m", 4440, new CustomerBasicStatsRequest());
     /// </code></example>
     public WithRawResponseTask<IEnumerable<SubscriptionStatsQueryRecord>> CustomerBasicStatsAsync(
         string mode,
@@ -673,7 +673,7 @@ public partial class StatisticClient : IStatisticClient
     /// Retrieves the subscription statistics for a given interval for a paypoint or organization.
     /// </summary>
     /// <example><code>
-    /// await client.Statistic.SubStatsAsync(1000000, "30", 2, new SubStatsRequest());
+    /// await client.Statistic.SubStatsAsync("30", 2, 1000000, new SubStatsRequest());
     /// </code></example>
     public WithRawResponseTask<IEnumerable<StatBasicQueryRecord>> SubStatsAsync(
         string interval,
@@ -693,7 +693,7 @@ public partial class StatisticClient : IStatisticClient
     /// Retrieve the basic statistics about a vendor for a given time period, grouped by frequency.
     /// </summary>
     /// <example><code>
-    /// await client.Statistic.VendorBasicStatsAsync("m", 1, "ytd", new VendorBasicStatsRequest());
+    /// await client.Statistic.VendorBasicStatsAsync("ytd", "m", 1, new VendorBasicStatsRequest());
     /// </code></example>
     public WithRawResponseTask<IEnumerable<StatisticsVendorQueryRecord>> VendorBasicStatsAsync(
         string mode,

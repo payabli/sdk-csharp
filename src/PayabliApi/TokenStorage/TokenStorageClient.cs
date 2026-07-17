@@ -554,7 +554,7 @@ public partial class TokenStorageClient : ITokenStorageClient
     ///             PaymentMethod = new TokenizeCard
     ///             {
     ///                 Cardcvv = "123",
-    ///                 Cardexp = "02/25",
+    ///                 Cardexp = "12/29",
     ///                 CardHolder = "John Doe",
     ///                 Cardnumber = "4111111111111111",
     ///                 Cardzip = "12345",
@@ -613,7 +613,7 @@ public partial class TokenStorageClient : ITokenStorageClient
     ///             PaymentMethod = new TokenizeCard
     ///             {
     ///                 Cardcvv = "123",
-    ///                 Cardexp = "02/25",
+    ///                 Cardexp = "12/29",
     ///                 CardHolder = "John Doe",
     ///                 Cardnumber = "4111111111111111",
     ///                 Cardzip = "12345",

@@ -610,7 +610,7 @@ public partial class TemplatesClient : ITemplatesClient
     /// Generates a boarding link from a boarding template.
     /// </summary>
     /// <example><code>
-    /// await client.Templates.GetlinkTemplateAsync(true, 80);
+    /// await client.Templates.GetlinkTemplateAsync(80, true);
     /// </code></example>
     public WithRawResponseTask<BoardingLinkApiResponse> GetlinkTemplateAsync(
         double templateId,

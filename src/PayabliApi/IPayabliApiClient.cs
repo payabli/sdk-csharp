@@ -6,6 +6,7 @@ public partial interface IPayabliApiClient
     public ICustomerClient Customer { get; }
     public ICheckCaptureClient CheckCapture { get; }
     public IMoneyInClient MoneyIn { get; }
+    public ITokenClient Token { get; }
     public ISubscriptionClient Subscription { get; }
     public IInvoiceClient Invoice { get; }
     public IPaymentLinkClient PaymentLink { get; }

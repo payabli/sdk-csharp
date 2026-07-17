@@ -1701,7 +1701,7 @@ public partial class InvoiceClient : IInvoiceClient
     /// Deletes a file attached to an invoice.
     /// </summary>
     /// <example><code>
-    /// await client.Invoice.DeleteAttachedFromInvoiceAsync("0_Bill.pdf", 23548884);
+    /// await client.Invoice.DeleteAttachedFromInvoiceAsync(23548884, "0_Bill.pdf");
     /// </code></example>
     public WithRawResponseTask<InvoiceResponseWithoutData> DeleteAttachedFromInvoiceAsync(
         int idInvoice,

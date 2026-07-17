@@ -4378,8 +4378,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportBatchDetailsAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportBatchDetailsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4442,8 +4442,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportBatchesAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportBatchesRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4506,8 +4506,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportBatchesOutAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportBatchesOutRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4570,8 +4570,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportBillsAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportBillsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4634,8 +4634,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportChargebacksAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportChargebacksRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4698,8 +4698,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportCustomersAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportCustomersRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4762,8 +4762,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportInvoicesAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportInvoicesRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4858,8 +4858,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportPayoutAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportPayoutRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4954,8 +4954,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportSettlementsAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportSettlementsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5018,8 +5018,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportSubscriptionsAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportSubscriptionsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5082,8 +5082,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportTransactionsAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportTransactionsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5146,8 +5146,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportTransferDetailsAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     4521,
     ///     new ExportTransferDetailsRequest
     ///     {
@@ -5219,8 +5219,8 @@ public partial class ExportClient : IExportClient
     /// </summary>
     /// <example><code>
     /// await client.Export.ExportVendorsAsync(
-    ///     "8cfec329267",
     ///     ExportFormat1.Csv,
+    ///     "8cfec329267",
     ///     new ExportVendorsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",

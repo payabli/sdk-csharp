@@ -6,7 +6,7 @@ public partial class PayabliApiClient : IPayabliApiClient
 {
     private readonly RawClient _client;
 
-    public PayabliApiClient(string? apiKey = null, ClientOptions? clientOptions = null)
+    public PayabliApiClient(string apiKey, ClientOptions? clientOptions = null)
     {
         clientOptions ??= new ClientOptions();
         var platformHeaders = new Headers(
@@ -15,7 +15,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/1.0.8" },
+                { "User-Agent", "Payabli.SDK/1.0.9" },
             }
         );
         foreach (var header in platformHeaders)
@@ -27,7 +27,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         }
         var clientOptionsWithAuth = clientOptions.Clone();
         var authHeaders = new Headers(
-            new Dictionary<string, string>() { { "requestToken", apiKey ?? "" } }
+            new Dictionary<string, string>() { { "requestToken", apiKey } }
         );
         foreach (var header in authHeaders)
         {
@@ -38,6 +38,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Customer = new CustomerClient(_client);
         CheckCapture = new CheckCaptureClient(_client);
         MoneyIn = new MoneyInClient(_client);
+        Token = new TokenClient(_client);
         Subscription = new SubscriptionClient(_client);
         Invoice = new InvoiceClient(_client);
         PaymentLink = new PaymentLinkClient(_client);
@@ -75,6 +76,8 @@ public partial class PayabliApiClient : IPayabliApiClient
     public ICheckCaptureClient CheckCapture { get; }
 
     public IMoneyInClient MoneyIn { get; }
+
+    public ITokenClient Token { get; }
 
     public ISubscriptionClient Subscription { get; }
 

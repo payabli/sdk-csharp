@@ -1843,7 +1843,7 @@ public partial class UserClient : IUserClient
     /// Resends the MFA code to the user via the selected MFA mode (email or SMS).
     /// </summary>
     /// <example><code>
-    /// await client.User.ResendMfaCodeAsync("8cfec329267", 1, "usrname");
+    /// await client.User.ResendMfaCodeAsync("usrname", "8cfec329267", 1);
     /// </code></example>
     public WithRawResponseTask<PayabliApiResponseMfaBasic> ResendMfaCodeAsync(
         string usrname,

@@ -12,28 +12,28 @@ public record ContactsResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Contact email address.
-    /// </summary>
-    [JsonPropertyName("ContactEmail")]
-    public string? ContactEmail { get; set; }
-
-    /// <summary>
     /// Contact name.
     /// </summary>
     [JsonPropertyName("ContactName")]
     public string? ContactName { get; set; }
 
     /// <summary>
-    /// Contact phone number.
+    /// Contact email address.
     /// </summary>
-    [JsonPropertyName("ContactPhone")]
-    public string? ContactPhone { get; set; }
+    [JsonPropertyName("ContactEmail")]
+    public string? ContactEmail { get; set; }
 
     /// <summary>
     /// Contact title.
     /// </summary>
     [JsonPropertyName("ContactTitle")]
     public string? ContactTitle { get; set; }
+
+    /// <summary>
+    /// Contact phone number.
+    /// </summary>
+    [JsonPropertyName("ContactPhone")]
+    public string? ContactPhone { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

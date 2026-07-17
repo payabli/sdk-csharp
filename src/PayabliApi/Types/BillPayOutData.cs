@@ -18,22 +18,31 @@ public record BillPayOutData : IJsonOnDeserialized
     public long? BillId { get; set; }
 
     /// <summary>
-    /// Any comments about bill. **For managed payouts, this field has a limit of 100 characters**.
+    /// Lot number associated with the bill.
     /// </summary>
-    [JsonPropertyName("comments")]
-    public string? Comments { get; set; }
+    [JsonPropertyName("LotNumber")]
+    public string? LotNumber { get; set; }
+
+    [JsonPropertyName("AccountingField1")]
+    public string? AccountingField1 { get; set; }
+
+    [JsonPropertyName("AccountingField2")]
+    public string? AccountingField2 { get; set; }
 
     /// <summary>
-    /// Bill due date in format YYYY-MM-DD or MM/DD/YYYY.
+    /// Description of payment terms.
     /// </summary>
-    [JsonPropertyName("dueDate")]
-    public DateOnly? DueDate { get; set; }
+    [JsonPropertyName("Terms")]
+    public Terms? Terms { get; set; }
+
+    [JsonPropertyName("AdditionalData")]
+    public string? AdditionalData { get; set; }
 
     /// <summary>
-    /// Bill date in format YYYY-MM-DD or MM/DD/YYYY.
+    /// Bill image attachment. Send the bill image as Base64-encoded string, or as a publicly accessible link. For full details on using this field with a payout authorization, see [the documentation](/developers/developer-guides/pay-out-manage-payouts).
     /// </summary>
-    [JsonPropertyName("invoiceDate")]
-    public DateOnly? InvoiceDate { get; set; }
+    [JsonPropertyName("attachments")]
+    public IEnumerable<FileContent>? Attachments { get; set; }
 
     /// <summary>
     /// Custom number identifying the bill. Must be unique in paypoint. **Required** for new bill and when `billId` isn't provided.
@@ -48,31 +57,40 @@ public record BillPayOutData : IJsonOnDeserialized
     public string? NetAmount { get; set; }
 
     /// <summary>
+    /// Bill date in format YYYY-MM-DD or MM/DD/YYYY.
+    /// </summary>
+    [JsonPropertyName("invoiceDate")]
+    public DateOnly? InvoiceDate { get; set; }
+
+    /// <summary>
+    /// Bill due date in format YYYY-MM-DD or MM/DD/YYYY.
+    /// </summary>
+    [JsonPropertyName("dueDate")]
+    public DateOnly? DueDate { get; set; }
+
+    /// <summary>
+    /// Any comments about bill. **For managed payouts, this field has a limit of 100 characters**.
+    /// </summary>
+    [JsonPropertyName("comments")]
+    public string? Comments { get; set; }
+
+    /// <summary>
+    /// Custom identifier for the bill.
+    /// </summary>
+    [JsonPropertyName("identifier")]
+    public string? Identifier { get; set; }
+
+    /// <summary>
     /// Bill discount amount.
     /// </summary>
     [JsonPropertyName("discount")]
     public string? Discount { get; set; }
 
     /// <summary>
-    /// Description of payment terms.
+    /// Total amount of the bill.
     /// </summary>
-    [JsonPropertyName("Terms")]
-    public Terms? Terms { get; set; }
-
-    [JsonPropertyName("AccountingField1")]
-    public string? AccountingField1 { get; set; }
-
-    [JsonPropertyName("AccountingField2")]
-    public string? AccountingField2 { get; set; }
-
-    [JsonPropertyName("AdditionalData")]
-    public string? AdditionalData { get; set; }
-
-    /// <summary>
-    /// Bill image attachment. Send the bill image as Base64-encoded string, or as a publicly accessible link. For full details on using this field with a payout authorization, see [the documentation](/developers/developer-guides/pay-out-manage-payouts).
-    /// </summary>
-    [JsonPropertyName("attachments")]
-    public IEnumerable<FileContent>? Attachments { get; set; }
+    [JsonPropertyName("totalAmount")]
+    public string? TotalAmount { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

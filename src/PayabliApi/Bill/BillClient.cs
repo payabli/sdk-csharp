@@ -1727,8 +1727,8 @@ public partial class BillClient : IBillClient
     /// </summary>
     /// <example><code>
     /// await client.Bill.GetAttachedFromBillAsync(
-    ///     "0_Bill.pdf",
     ///     285,
+    ///     "0_Bill.pdf",
     ///     new GetAttachedFromBillRequest { ReturnObject = true }
     /// );
     /// </code></example>
@@ -1750,8 +1750,8 @@ public partial class BillClient : IBillClient
     /// </summary>
     /// <example><code>
     /// await client.Bill.DeleteAttachedFromBillAsync(
-    ///     "0_Bill.pdf",
     ///     285,
+    ///     "0_Bill.pdf",
     ///     new DeleteAttachedFromBillRequest()
     /// );
     /// </code></example>
@@ -1818,7 +1818,7 @@ public partial class BillClient : IBillClient
     /// Approve or disapprove a bill by ID.
     /// </summary>
     /// <example><code>
-    /// await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest());
+    /// await client.Bill.SetApprovedBillAsync(285, "true", new SetApprovedBillRequest());
     /// </code></example>
     public WithRawResponseTask<SetApprovedBillResponse> SetApprovedBillAsync(
         int idBill,

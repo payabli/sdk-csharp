@@ -2976,7 +2976,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the legacy endpoints. For transactions made with the current endpoints, check the transaction's settlement status and call void or refund based on the result.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.ReverseAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+    /// await client.MoneyIn.ReverseAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
     /// </code></example>
     public WithRawResponseTask<ReverseResponse> ReverseAsync(
         string transId,
@@ -2998,7 +2998,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.RefundAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+    /// await client.MoneyIn.RefundAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
     /// </code></example>
     public WithRawResponseTask<RefundResponse> RefundAsync(
         string transId,

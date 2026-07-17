@@ -310,8 +310,8 @@ Retrieves a file attached to a bill, either as a binary file or as a Base64-enco
 
 ```csharp
 await client.Bill.GetAttachedFromBillAsync(
-    "0_Bill.pdf",
     285,
+    "0_Bill.pdf",
     new GetAttachedFromBillRequest { ReturnObject = true }
 );
 ```
@@ -388,8 +388,8 @@ Delete a file attached to a bill.
 
 ```csharp
 await client.Bill.DeleteAttachedFromBillAsync(
-    "0_Bill.pdf",
     285,
+    "0_Bill.pdf",
     new DeleteAttachedFromBillRequest()
 );
 ```
@@ -599,7 +599,7 @@ Approve or disapprove a bill by ID.
 <dd>
 
 ```csharp
-await client.Bill.SetApprovedBillAsync("true", 285, new SetApprovedBillRequest());
+await client.Bill.SetApprovedBillAsync(285, "true", new SetApprovedBillRequest());
 ```
 </dd>
 </dl>
@@ -1690,7 +1690,7 @@ A reversal either refunds or voids a transaction independent of the transaction'
 <dd>
 
 ```csharp
-await client.MoneyIn.ReverseAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+await client.MoneyIn.ReverseAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
 ```
 </dd>
 </dl>
@@ -1762,7 +1762,7 @@ Refund a transaction that has settled and send money back to the account holder.
 <dd>
 
 ```csharp
-await client.MoneyIn.RefundAsync(0, "10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+await client.MoneyIn.RefundAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
 ```
 </dd>
 </dl>
@@ -2568,6 +2568,67 @@ await client.MoneyIn.Voidv2Async("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
 </dl>
 </details>
 
+## Token
+<details><summary><code>client.Token.<a href="/src/PayabliApi/Token/TokenClient.cs">CreateServerSideTokenAsync</a>(CreateServerSideTokenRequest { ... }) -> WithRawResponseTask&lt;PayabliAccessTokenResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchanges a client ID and client secret for a short-lived Bearer access token using the OAuth2 client-credentials flow. Designed for server-to-server use: the credentials and the returned token stay on your backend. Send the returned `access_token` in the `Authorization` header as `Bearer <access_token>` on subsequent API calls. See the [OAuth authentication guide](/developers/oauth-authentication) for the full flow.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Token.CreateServerSideTokenAsync(
+    new CreateServerSideTokenRequest
+    {
+        ClientId = "YOUR_CLIENT_ID",
+        ClientSecret = "YOUR_CLIENT_SECRET",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateServerSideTokenRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Subscription
 <details><summary><code>client.Subscription.<a href="/src/PayabliApi/Subscription/SubscriptionClient.cs">GetSubscriptionAsync</a>(subId) -> WithRawResponseTask&lt;SubscriptionQueryRecords&gt;</code></summary>
 <dl>
@@ -2778,7 +2839,7 @@ await client.Subscription.NewSubscriptionAsync(
         PaymentMethod = new PayMethodCredit
         {
             Cardcvv = "123",
-            Cardexp = "02/25",
+            Cardexp = "12/29",
             CardHolder = "John Cassian",
             Cardnumber = "4111111111111111",
             Cardzip = "37615",
@@ -3033,7 +3094,7 @@ Deletes a file attached to an invoice.
 <dd>
 
 ```csharp
-await client.Invoice.DeleteAttachedFromInvoiceAsync("0_Bill.pdf", 23548884);
+await client.Invoice.DeleteAttachedFromInvoiceAsync(23548884, "0_Bill.pdf");
 ```
 </dd>
 </dl>
@@ -4659,7 +4720,7 @@ await client.TokenStorage.AddMethodAsync(
             PaymentMethod = new TokenizeCard
             {
                 Cardcvv = "123",
-                Cardexp = "02/25",
+                Cardexp = "12/29",
                 CardHolder = "John Doe",
                 Cardnumber = "4111111111111111",
                 Cardzip = "12345",
@@ -4799,7 +4860,7 @@ await client.TokenStorage.UpdateMethodAsync(
             PaymentMethod = new TokenizeCard
             {
                 Cardcvv = "123",
-                Cardexp = "02/25",
+                Cardexp = "12/29",
                 CardHolder = "John Doe",
                 Cardnumber = "4111111111111111",
                 Cardzip = "12345",
@@ -11075,7 +11136,7 @@ Generates a boarding link from a boarding template.
 <dd>
 
 ```csharp
-await client.Templates.GetlinkTemplateAsync(true, 80);
+await client.Templates.GetlinkTemplateAsync(80, true);
 ```
 </dd>
 </dl>
@@ -11350,8 +11411,8 @@ Export batch details for a paypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportBatchDetailsAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportBatchDetailsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -11516,8 +11577,8 @@ Export a list of batches for an entrypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportBatchesAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportBatchesRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -11682,8 +11743,8 @@ Export a list of money out batches for a paypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportBatchesOutAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportBatchesOutRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -11848,8 +11909,8 @@ Export a list of bills for an entrypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportBillsAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportBillsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -12014,8 +12075,8 @@ Export a list of chargebacks and ACH returns for an entrypoint. Use filters to l
 
 ```csharp
 await client.Export.ExportChargebacksAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportChargebacksRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -12180,8 +12241,8 @@ Export a list of customers for an entrypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportCustomersAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportCustomersRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -12346,8 +12407,8 @@ Export list of invoices for an entrypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportInvoicesAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportInvoicesRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -12595,8 +12656,8 @@ Export a list of payouts and their statuses for an entrypoint. Use filters to li
 
 ```csharp
 await client.Export.ExportPayoutAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportPayoutRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -12844,8 +12905,8 @@ Export a list of settled transactions for an entrypoint. Use filters to limit re
 
 ```csharp
 await client.Export.ExportSettlementsAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportSettlementsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -13010,8 +13071,8 @@ Export a list of subscriptions for an entrypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportSubscriptionsAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportSubscriptionsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -13176,8 +13237,8 @@ Export a list of transactions for an entrypoint in a file in XLSX or CSV format.
 
 ```csharp
 await client.Export.ExportTransactionsAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportTransactionsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -13342,8 +13403,8 @@ Export a list of transfer details for an entrypoint. Use filters to limit result
 
 ```csharp
 await client.Export.ExportTransferDetailsAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     4521,
     new ExportTransferDetailsRequest
     {
@@ -13510,8 +13571,8 @@ Export a list of vendors for an entrypoint. Use filters to limit results.
 
 ```csharp
 await client.Export.ExportVendorsAsync(
-    "8cfec329267",
     ExportFormat1.Csv,
+    "8cfec329267",
     new ExportVendorsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -14211,10 +14272,10 @@ Retrieves the basic statistics for an organization or a paypoint, for a given ti
 
 ```csharp
 await client.Statistic.BasicStatsAsync(
-    1000000,
+    "custom",
     "m",
     2,
-    "custom",
+    1000000,
     new BasicStatsRequest { StartDate = "2025-11-01", EndDate = "2025-11-30" }
 );
 ```
@@ -14330,7 +14391,7 @@ Retrieves the basic statistics for a customer for a specific time period, groupe
 <dd>
 
 ```csharp
-await client.Statistic.CustomerBasicStatsAsync(4440, "m", "ytd", new CustomerBasicStatsRequest());
+await client.Statistic.CustomerBasicStatsAsync("ytd", "m", 4440, new CustomerBasicStatsRequest());
 ```
 </dd>
 </dl>
@@ -14431,7 +14492,7 @@ Retrieves the subscription statistics for a given interval for a paypoint or org
 <dd>
 
 ```csharp
-await client.Statistic.SubStatsAsync(1000000, "30", 2, new SubStatsRequest());
+await client.Statistic.SubStatsAsync("30", 2, 1000000, new SubStatsRequest());
 ```
 </dd>
 </dl>
@@ -14521,7 +14582,7 @@ Retrieve the basic statistics about a vendor for a given time period, grouped by
 <dd>
 
 ```csharp
-await client.Statistic.VendorBasicStatsAsync("m", 1, "ytd", new VendorBasicStatsRequest());
+await client.Statistic.VendorBasicStatsAsync("ytd", "m", 1, new VendorBasicStatsRequest());
 ```
 </dd>
 </dl>
@@ -15527,7 +15588,7 @@ Resends the MFA code to the user via the selected MFA mode (email or SMS).
 <dd>
 
 ```csharp
-await client.User.ResendMfaCodeAsync("8cfec329267", 1, "usrname");
+await client.User.ResendMfaCodeAsync("usrname", "8cfec329267", 1);
 ```
 </dd>
 </dl>
@@ -16229,9 +16290,11 @@ Authorizes a transaction for payout.
 
 If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
 
-When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
+When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/api-reference/webhooks-overview/payout-transaction-approved-captured) webhook event.
 
 If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
+
+For check payouts, Payabli validates the remit (mailing) address at authorization. If the address fails deliverability validation, the endpoint returns a `422` response and doesn't charge the paypoint. Correct the address and re-authorize. Other payout rails (ACH, RTP, virtual card, wire, and managed payables) aren't affected.
 </dd>
 </dl>
 </dd>

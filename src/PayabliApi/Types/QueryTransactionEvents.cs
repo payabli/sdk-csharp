@@ -13,6 +13,12 @@ public record QueryTransactionEvents : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details.
+    /// </summary>
+    [JsonPropertyName("TransEvent")]
+    public string? TransEvent { get; set; }
+
+    /// <summary>
     /// Any data associated to the event received from processor. Contents vary by event type.
     /// </summary>
     [JsonPropertyName("EventData")]
@@ -23,12 +29,6 @@ public record QueryTransactionEvents : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("EventTime")]
     public DateTime? EventTime { get; set; }
-
-    /// <summary>
-    /// Event descriptor. See [TransEvent Reference](/guides/pay-in-transevents-reference) for more details.
-    /// </summary>
-    [JsonPropertyName("TransEvent")]
-    public string? TransEvent { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

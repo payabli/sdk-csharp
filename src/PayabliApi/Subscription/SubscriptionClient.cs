@@ -594,7 +594,7 @@ public partial class SubscriptionClient : ISubscriptionClient
     ///         PaymentMethod = new PayMethodCredit
     ///         {
     ///             Cardcvv = "123",
-    ///             Cardexp = "02/25",
+    ///             Cardexp = "12/29",
     ///             CardHolder = "John Cassian",
     ///             Cardnumber = "4111111111111111",
     ///             Cardzip = "37615",
