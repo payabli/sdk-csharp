@@ -1,3 +1,6 @@
 # Specify files that shouldn't be modified by Fern
 LICENSE.md
 CONTRIBUTING.md
+src/PayabliApi/Core/FlexibleDateOnlyConverter.cs
+src/PayabliApi/Core/JsonConfiguration.cs
+src/PayabliApi.Test/Core/Json/DateOnlyJsonTests.cs
