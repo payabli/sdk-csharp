@@ -80,7 +80,7 @@ Instantiate and use the client with the following:
 ```csharp
 using PayabliApi;
 
-var client = new PayabliApiClient("API_KEY");
+var client = new PayabliApiClient("client_id", "client_secret", "API_KEY");
 await client.MoneyIn.Getpaidv2Async(
     new RequestPaymentV2
     {

@@ -9649,7 +9649,7 @@ Remove a cloud device from an entrypoint.
 <dd>
 
 ```csharp
-await client.Cloud.RemoveDeviceAsync("499585-389fj484-3jcj8hj3", "8cfec329267");
+await client.Cloud.RemoveDeviceAsync("8cfec329267", "499585-389fj484-3jcj8hj3");
 ```
 </dd>
 </dl>
@@ -9711,7 +9711,7 @@ Retrieve the registration history for a device.
 <dd>
 
 ```csharp
-await client.Cloud.HistoryDeviceAsync("499585-389fj484-3jcj8hj3", "8cfec329267");
+await client.Cloud.HistoryDeviceAsync("8cfec329267", "499585-389fj484-3jcj8hj3");
 ```
 </dd>
 </dl>

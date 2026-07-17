@@ -6,8 +6,15 @@ public partial class PayabliApiClient : IPayabliApiClient
 {
     private readonly RawClient _client;
 
-    public PayabliApiClient(string apiKey, ClientOptions? clientOptions = null)
+    public PayabliApiClient(
+        string? clientId = null,
+        string? clientSecret = null,
+        string? apiKey = null,
+        ClientOptions? clientOptions = null
+    )
     {
+        clientId ??= Environment.GetEnvironmentVariable("OAUTH_CLIENT_ID");
+        clientSecret ??= Environment.GetEnvironmentVariable("OAUTH_CLIENT_SECRET");
         clientOptions ??= new ClientOptions();
         var platformHeaders = new Headers(
             new Dictionary<string, string>()
@@ -15,7 +22,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/1.0.10" },
+                { "User-Agent", "Payabli.SDK/1.0.11" },
             }
         );
         foreach (var header in platformHeaders)
@@ -26,12 +33,21 @@ public partial class PayabliApiClient : IPayabliApiClient
             }
         }
         var clientOptionsWithAuth = clientOptions.Clone();
-        var authHeaders = new Headers(
-            new Dictionary<string, string>() { { "requestToken", apiKey } }
-        );
-        foreach (var header in authHeaders)
+        if (apiKey != null)
         {
-            clientOptionsWithAuth.Headers[header.Key] = header.Value;
+            clientOptionsWithAuth.Headers["requestToken"] = apiKey;
+        }
+        if (clientId != null && clientSecret != null)
+        {
+            var tokenProvider = new OAuthTokenProvider(
+                clientId,
+                clientSecret,
+                new TokenClient(new RawClient(clientOptions))
+            );
+            clientOptionsWithAuth.Headers["Authorization"] =
+                new Func<global::System.Threading.Tasks.ValueTask<string>>(async () =>
+                    await tokenProvider.GetAccessTokenAsync().ConfigureAwait(false)
+                );
         }
         _client = new RawClient(clientOptionsWithAuth);
         Bill = new BillClient(_client);
