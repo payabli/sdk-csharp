@@ -192,7 +192,7 @@ public record VendorQueryRecord : IJsonOnDeserialized
     public string? EnrichmentId { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }

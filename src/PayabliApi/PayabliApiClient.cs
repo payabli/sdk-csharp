@@ -22,7 +22,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/1.0.11" },
+                { "User-Agent", "Payabli.SDK/1.0.12" },
             }
         );
         foreach (var header in platformHeaders)
