@@ -53,8 +53,8 @@ public record PayMethodBodyAllFields : IJsonOnDeserialized
     [JsonPropertyName("device")]
     public string? Device { get; set; }
 
-    [JsonPropertyName("initator")]
-    public string? Initator { get; set; }
+    [JsonPropertyName("initiator")]
+    public string? Initiator { get; set; }
 
     [JsonPropertyName("method")]
     public Methodall? Method { get; set; }

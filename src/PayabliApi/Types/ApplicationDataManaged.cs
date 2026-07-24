@@ -150,7 +150,7 @@ public record ApplicationDataManaged : IJsonOnDeserialized
     public string? RepOffice { get; set; }
 
     [JsonPropertyName("onCreate")]
-    public string? OnCreate { get; set; }
+    public IEnumerable<string>? OnCreate { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
