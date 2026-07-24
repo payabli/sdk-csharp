@@ -52,6 +52,8 @@ public class OcrDocumentJsonTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Import/ocrDocumentJson/typeResult")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )

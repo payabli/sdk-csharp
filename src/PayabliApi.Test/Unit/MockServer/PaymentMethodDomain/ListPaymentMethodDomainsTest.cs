@@ -83,6 +83,8 @@ public class ListPaymentMethodDomainsTest : BaseMockServerTest
                     .WithPath("/PaymentMethodDomain/list")
                     .WithParam("entityId", "1147")
                     .WithParam("entityType", "paypoint")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(
@@ -155,6 +157,8 @@ public class ListPaymentMethodDomainsTest : BaseMockServerTest
                     .WithPath("/PaymentMethodDomain/list")
                     .WithParam("entityId", "39")
                     .WithParam("entityType", "organization")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

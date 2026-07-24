@@ -59,6 +59,8 @@ public class ListDevicesTest : BaseMockServerTest
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
                     .WithParam("sortBy", "desc(createdAt)")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

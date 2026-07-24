@@ -24,6 +24,11 @@ public partial class OrganizationClient : IOrganizationClient
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add("idempotencyKey", request.IdempotencyKey)
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -166,6 +171,11 @@ public partial class OrganizationClient : IOrganizationClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -310,6 +320,11 @@ public partial class OrganizationClient : IOrganizationClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -452,6 +467,11 @@ public partial class OrganizationClient : IOrganizationClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -594,6 +614,11 @@ public partial class OrganizationClient : IOrganizationClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -736,6 +761,11 @@ public partial class OrganizationClient : IOrganizationClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -878,6 +908,11 @@ public partial class OrganizationClient : IOrganizationClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()

@@ -31,6 +31,8 @@ public class UpdateItemTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/LineItem/700")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPut()
                     .WithBodyAsJson(requestJson)
             )

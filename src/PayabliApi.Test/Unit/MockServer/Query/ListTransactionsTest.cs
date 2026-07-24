@@ -204,6 +204,8 @@ public class ListTransactionsTest : BaseMockServerTest
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(
@@ -316,6 +318,8 @@ public class ListTransactionsTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/Query/transactions/8cfec329267")
                     .WithParam("limitRecord", "1")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

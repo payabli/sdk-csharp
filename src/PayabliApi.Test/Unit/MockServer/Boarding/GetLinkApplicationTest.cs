@@ -44,6 +44,8 @@ public class GetLinkApplicationTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Boarding/link/myorgaccountname-00091")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

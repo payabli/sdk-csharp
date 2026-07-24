@@ -162,6 +162,8 @@ public class Refundv2Test : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
@@ -352,6 +354,8 @@ public class Refundv2Test : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/v2/MoneyIn/refund/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )

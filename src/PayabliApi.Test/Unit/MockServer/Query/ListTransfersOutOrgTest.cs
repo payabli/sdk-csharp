@@ -82,6 +82,8 @@ public class ListTransfersOutOrgTest : BaseMockServerTest
                     .WithPath("/Query/transfersOut/org/123")
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

@@ -30,6 +30,8 @@ public class UpdateApplicationTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Boarding/app/352")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPut()
                     .WithBodyAsJson(requestJson)
             )

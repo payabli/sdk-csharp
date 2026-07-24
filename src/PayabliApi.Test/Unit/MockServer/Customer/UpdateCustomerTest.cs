@@ -38,6 +38,8 @@ public class UpdateCustomerTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Customer/4440")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPut()
                     .WithBodyAsJson(requestJson)
             )

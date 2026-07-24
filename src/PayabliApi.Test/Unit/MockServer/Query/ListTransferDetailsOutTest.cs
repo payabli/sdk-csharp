@@ -172,6 +172,8 @@ public class ListTransferDetailsOutTest : BaseMockServerTest
                     .WithPath("/Query/transferDetailsOut/8cfec329267/4521")
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

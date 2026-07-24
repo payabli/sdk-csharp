@@ -28,6 +28,8 @@ public class RemoveMethodTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/TokenStorage/32-8877drt00045632-678")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingDelete()
             )
             .RespondWith(

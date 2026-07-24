@@ -47,6 +47,8 @@ public class SearchNotificationLogsTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/v2/notificationlogs")
                     .WithParam("PageSize", "20")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)

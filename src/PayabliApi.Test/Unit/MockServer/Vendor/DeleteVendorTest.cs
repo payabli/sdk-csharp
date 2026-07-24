@@ -21,7 +21,14 @@ public class DeleteVendorTest : BaseMockServerTest
             """;
 
         Server
-            .Given(WireMock.RequestBuilders.Request.Create().WithPath("/Vendor/1").UsingDelete())
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Vendor/1")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingDelete()
+            )
             .RespondWith(
                 WireMock
                     .ResponseBuilders.Response.Create()

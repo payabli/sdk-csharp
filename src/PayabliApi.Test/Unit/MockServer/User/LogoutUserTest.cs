@@ -20,7 +20,12 @@ public class LogoutUserTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/User/authlogout").UsingGet()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/User/authlogout")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock

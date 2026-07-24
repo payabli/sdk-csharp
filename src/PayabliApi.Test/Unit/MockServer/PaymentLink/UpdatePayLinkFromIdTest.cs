@@ -42,6 +42,8 @@ public class UpdatePayLinkFromIdTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/update/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
                     .UsingPut()
                     .WithBodyAsJson(requestJson)

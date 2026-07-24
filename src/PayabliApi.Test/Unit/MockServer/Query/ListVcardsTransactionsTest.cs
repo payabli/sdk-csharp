@@ -62,6 +62,8 @@ public class ListVcardsTransactionsTest : BaseMockServerTest
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
                     .WithParam("sortBy", "desc(CreatedOn)")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

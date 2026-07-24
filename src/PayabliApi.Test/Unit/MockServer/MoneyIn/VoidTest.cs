@@ -31,6 +31,8 @@ public class VoidTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/MoneyIn/void/10-3ffa27df-b171-44e0-b251-e95fbfc7a723")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

@@ -27,6 +27,8 @@ public class UpdateCheckPaymentStatusTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/MoneyOut/status/TRANS123456/5")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPatch()
             )
             .RespondWith(
@@ -61,6 +63,8 @@ public class UpdateCheckPaymentStatusTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/MoneyOut/status/TRANS123456/0")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPatch()
             )
             .RespondWith(

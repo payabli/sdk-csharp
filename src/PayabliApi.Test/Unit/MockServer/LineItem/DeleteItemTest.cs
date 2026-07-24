@@ -20,7 +20,12 @@ public class DeleteItemTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/LineItem/700").UsingDelete()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/LineItem/700")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingDelete()
             )
             .RespondWith(
                 WireMock

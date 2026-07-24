@@ -26,6 +26,8 @@ public class DeleteAttachedFromInvoiceTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Invoice/attachedFileFromInvoice/23548884/0_Bill.pdf")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingDelete()
             )
             .RespondWith(

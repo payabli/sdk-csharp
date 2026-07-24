@@ -166,7 +166,12 @@ public class GetSubscriptionTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/Subscription/231").UsingGet()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Subscription/231")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock
@@ -314,7 +319,12 @@ public class GetSubscriptionTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/Subscription/231").UsingGet()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Subscription/231")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock

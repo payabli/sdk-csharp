@@ -92,6 +92,8 @@ public class AddPayLinkFromBillLotNumberTest : BaseMockServerTest
                     .WithParam("vendorNumber", "VEN-123")
                     .WithParam("mail2", "customer@example.com; billing@example.com")
                     .WithParam("amountFixed", "true")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)

@@ -32,6 +32,8 @@ public class ReverseCreditTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/MoneyIn/reverseCredit/45-as456777hhhhhhhhhh77777777-324")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

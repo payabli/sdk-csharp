@@ -28,6 +28,8 @@ public class EditMfaUserTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/User/mfa/1000000")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPut()
                     .WithBodyAsJson(requestJson)
             )

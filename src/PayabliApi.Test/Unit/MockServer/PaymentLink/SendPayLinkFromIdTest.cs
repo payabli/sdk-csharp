@@ -26,6 +26,8 @@ public class SendPayLinkFromIdTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/send/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
                     .WithParam("mail2", "jo@example.com; ceo@example.com")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

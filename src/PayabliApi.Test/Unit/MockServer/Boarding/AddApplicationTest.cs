@@ -158,6 +158,8 @@ public class AddApplicationTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Boarding/app")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
@@ -451,6 +453,8 @@ public class AddApplicationTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Boarding/app")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
@@ -758,6 +762,8 @@ public class AddApplicationTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Boarding/app")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
@@ -1100,6 +1106,8 @@ public class AddApplicationTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Boarding/app")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )

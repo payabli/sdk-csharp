@@ -32,7 +32,12 @@ public class GetNotificationTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/Notification/1717").UsingGet()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Notification/1717")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock

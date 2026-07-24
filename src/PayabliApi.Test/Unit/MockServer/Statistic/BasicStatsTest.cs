@@ -67,6 +67,8 @@ public class BasicStatsTest : BaseMockServerTest
                     .WithPath("/Statistic/basic/custom/m/2/1000000")
                     .WithParam("startDate", "2025-11-01")
                     .WithParam("endDate", "2025-11-30")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

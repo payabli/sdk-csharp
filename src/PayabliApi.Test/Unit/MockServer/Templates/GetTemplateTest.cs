@@ -80,7 +80,12 @@ public class GetTemplateTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/Templates/get/80").UsingGet()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Templates/get/80")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock

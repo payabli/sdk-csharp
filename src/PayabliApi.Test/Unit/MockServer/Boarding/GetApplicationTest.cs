@@ -644,7 +644,12 @@ public class GetApplicationTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/Boarding/read/352").UsingGet()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Boarding/read/352")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock

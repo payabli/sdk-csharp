@@ -29,6 +29,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -177,6 +182,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -325,6 +335,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -473,6 +488,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -621,6 +641,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -769,6 +794,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -917,6 +947,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -1065,6 +1100,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -1213,6 +1253,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -1361,6 +1406,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -1509,6 +1559,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -1657,6 +1712,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -1806,6 +1866,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -1957,6 +2022,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -2106,6 +2176,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -2253,6 +2328,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -2401,6 +2481,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -2549,6 +2634,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -2697,6 +2787,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -2845,6 +2940,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -2993,6 +3093,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -3141,6 +3246,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -3289,6 +3399,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -3437,6 +3552,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -3587,6 +3707,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -3739,6 +3864,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -3889,6 +4019,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -4037,6 +4172,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -4186,6 +4326,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -4337,6 +4482,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -4485,6 +4635,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -4632,6 +4787,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -4779,6 +4939,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -4929,6 +5094,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -5079,6 +5249,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -5226,6 +5401,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -5374,6 +5554,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -5522,6 +5707,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -5670,6 +5860,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -5819,6 +6014,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -5970,6 +6170,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
@@ -6120,6 +6325,11 @@ public partial class QueryClient : IQueryClient
             .Build();
         var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
             .Add(_client.Options.AdditionalHeaders)
             .Add(options?.AdditionalHeaders)
             .BuildAsync()

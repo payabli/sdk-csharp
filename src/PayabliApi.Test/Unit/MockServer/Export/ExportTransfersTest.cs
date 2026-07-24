@@ -27,6 +27,8 @@ public class ExportTransfersTest : BaseMockServerTest
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "1000")
                     .WithParam("sortBy", "desc(field_name)")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

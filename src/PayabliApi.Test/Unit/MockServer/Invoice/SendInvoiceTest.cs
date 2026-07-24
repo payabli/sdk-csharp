@@ -25,6 +25,8 @@ public class SendInvoiceTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/Invoice/send/23548884")
                     .WithParam("mail2", "tamara@example.com")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

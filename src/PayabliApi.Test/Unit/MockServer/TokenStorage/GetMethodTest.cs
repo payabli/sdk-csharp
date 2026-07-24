@@ -94,6 +94,8 @@ public class GetMethodTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/TokenStorage/32-8877drt00045632-678")
                     .WithParam("cardExpirationFormat", "1")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(
@@ -184,6 +186,8 @@ public class GetMethodTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/TokenStorage/32-8877drt00045632-678")
                     .WithParam("cardExpirationFormat", "1")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(
@@ -278,6 +282,8 @@ public class GetMethodTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/TokenStorage/32-8877drt00045632-678")
                     .WithParam("cardExpirationFormat", "1")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

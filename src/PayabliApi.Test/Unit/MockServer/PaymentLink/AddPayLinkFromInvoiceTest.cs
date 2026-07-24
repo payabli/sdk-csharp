@@ -138,6 +138,8 @@ public class AddPayLinkFromInvoiceTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/23548884")
                     .WithParam("mail2", "jo@example.com; ceo@example.com")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -309,6 +311,8 @@ public class AddPayLinkFromInvoiceTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/23548884")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)

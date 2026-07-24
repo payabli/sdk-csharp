@@ -27,6 +27,8 @@ public class ResendMfaCodeTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/User/resendmfa/usrname/8cfec329267/1")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
             )
             .RespondWith(

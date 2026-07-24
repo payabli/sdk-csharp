@@ -24,6 +24,8 @@ public class DeletePayLinkFromIdTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingDelete()
             )
             .RespondWith(

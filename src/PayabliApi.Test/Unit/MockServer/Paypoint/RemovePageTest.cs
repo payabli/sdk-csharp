@@ -23,6 +23,8 @@ public class RemovePageTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/Paypoint/8cfec329267/pay-your-fees-1")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingDelete()
             )
             .RespondWith(

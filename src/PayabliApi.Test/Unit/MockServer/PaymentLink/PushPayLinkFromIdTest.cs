@@ -31,6 +31,8 @@ public class PushPayLinkFromIdTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/push/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
@@ -75,6 +77,8 @@ public class PushPayLinkFromIdTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/push/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )

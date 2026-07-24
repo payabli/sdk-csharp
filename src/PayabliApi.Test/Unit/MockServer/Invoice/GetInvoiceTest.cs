@@ -119,7 +119,12 @@ public class GetInvoiceTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/Invoice/23548884").UsingGet()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Invoice/23548884")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock

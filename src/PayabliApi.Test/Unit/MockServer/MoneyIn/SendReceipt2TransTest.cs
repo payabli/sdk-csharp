@@ -26,6 +26,8 @@ public class SendReceipt2TransTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/MoneyIn/sendreceipt/45-as456777hhhhhhhhhh77777777-324")
                     .WithParam("email", "example@email.com")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(

@@ -30,6 +30,8 @@ public class AddResponseTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/ChargeBacks/response/1000000")
                     .WithHeader("idempotencyKey", "6B29FC40-CA47-1067-B31D-00DD010662DA")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)

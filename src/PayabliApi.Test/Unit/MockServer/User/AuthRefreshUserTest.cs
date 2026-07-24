@@ -23,7 +23,12 @@ public class AuthRefreshUserTest : BaseMockServerTest
 
         Server
             .Given(
-                WireMock.RequestBuilders.Request.Create().WithPath("/User/authrefresh").UsingPost()
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/User/authrefresh")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingPost()
             )
             .RespondWith(
                 WireMock

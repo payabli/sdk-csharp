@@ -122,6 +122,8 @@ public class GetPayLinkFromIdTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/PaymentLink/load/2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
             )
             .RespondWith(
