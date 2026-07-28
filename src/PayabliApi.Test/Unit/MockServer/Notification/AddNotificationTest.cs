@@ -15,7 +15,7 @@ public class AddNotificationTest : BaseMockServerTest
         const string requestJson = """
             {
               "content": {
-                "eventType": "CreatedApplication"
+                "eventType": "createdapplication"
               },
               "frequency": "untilcancelled",
               "method": "web",
@@ -57,7 +57,7 @@ public class AddNotificationTest : BaseMockServerTest
             {
                 Content = new NotificationStandardRequestContent
                 {
-                    EventType = NotificationStandardRequestContentEventType.CreatedApplication,
+                    EventType = NotificationStandardRequestContentEventType.Createdapplication,
                 },
                 Frequency = NotificationStandardRequestFrequency.Untilcancelled,
                 Method = NotificationStandardRequestMethod.Web,
@@ -76,7 +76,7 @@ public class AddNotificationTest : BaseMockServerTest
         const string requestJson = """
             {
               "content": {
-                "eventType": "ApprovedPayment"
+                "eventType": "approvedpayment"
               },
               "frequency": "untilcancelled",
               "method": "web",
@@ -118,7 +118,7 @@ public class AddNotificationTest : BaseMockServerTest
             {
                 Content = new NotificationStandardRequestContent
                 {
-                    EventType = NotificationStandardRequestContentEventType.ApprovedPayment,
+                    EventType = NotificationStandardRequestContentEventType.Approvedpayment,
                 },
                 Frequency = NotificationStandardRequestFrequency.Untilcancelled,
                 Method = NotificationStandardRequestMethod.Web,

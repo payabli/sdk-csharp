@@ -711,7 +711,7 @@ public partial class NotificationClient : INotificationClient
     ///     {
     ///         Content = new NotificationStandardRequestContent
     ///         {
-    ///             EventType = NotificationStandardRequestContentEventType.CreatedApplication,
+    ///             EventType = NotificationStandardRequestContentEventType.Createdapplication,
     ///         },
     ///         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
     ///         Method = NotificationStandardRequestMethod.Web,
@@ -760,7 +760,7 @@ public partial class NotificationClient : INotificationClient
     ///     {
     ///         Content = new NotificationStandardRequestContent
     ///         {
-    ///             EventType = NotificationStandardRequestContentEventType.ApprovedPayment,
+    ///             EventType = NotificationStandardRequestContentEventType.Approvedpayment,
     ///         },
     ///         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
     ///         Method = NotificationStandardRequestMethod.Email,

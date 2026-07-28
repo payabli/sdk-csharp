@@ -10,8 +10,37 @@ namespace PayabliApi;
 [Serializable]
 public readonly record struct NotificationStandardRequestContentEventType : IStringEnum
 {
-    public static readonly NotificationStandardRequestContentEventType PayinTransactionRejected =
-        new(Values.PayinTransactionRejected);
+    public static readonly NotificationStandardRequestContentEventType Approvedpayment = new(
+        Values.Approvedpayment
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Authorizedpayment = new(
+        Values.Authorizedpayment
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Declinedpayment = new(
+        Values.Declinedpayment
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Fundedpayment = new(
+        Values.Fundedpayment
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Originatedpayment = new(
+        Values.Originatedpayment
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Refundedpayment = new(
+        Values.Refundedpayment
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Settledpayment = new(
+        Values.Settledpayment
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Voidedpayment = new(
+        Values.Voidedpayment
+    );
 
     public static readonly NotificationStandardRequestContentEventType PayinTransactionOnhold = new(
         Values.PayinTransactionOnhold
@@ -23,37 +52,89 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
     public static readonly NotificationStandardRequestContentEventType PayinTransactionRecovered =
         new(Values.PayinTransactionRecovered);
 
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionInitiated =
-        new(Values.PayoutTransactionInitiated);
+    public static readonly NotificationStandardRequestContentEventType PayinTransactionRejected =
+        new(Values.PayinTransactionRejected);
 
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionAuthorized =
-        new(Values.PayoutTransactionAuthorized);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionApprovedcaptured =
-        new(Values.PayoutTransactionApprovedcaptured);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionDeclined =
-        new(Values.PayoutTransactionDeclined);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionTechnicaldecline =
-        new(Values.PayoutTransactionTechnicaldecline);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionFailed =
-        new(Values.PayoutTransactionFailed);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionError = new(
-        Values.PayoutTransactionError
+    public static readonly NotificationStandardRequestContentEventType PayinBatchOnhold = new(
+        Values.PayinBatchOnhold
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionPaid = new(
-        Values.PayoutTransactionPaid
+    public static readonly NotificationStandardRequestContentEventType PayinBatchReleased = new(
+        Values.PayinBatchReleased
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionReturned =
-        new(Values.PayoutTransactionReturned);
+    public static readonly NotificationStandardRequestContentEventType Transfersuccess = new(
+        Values.Transfersuccess
+    );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutTransactionRejected =
-        new(Values.PayoutTransactionRejected);
+    public static readonly NotificationStandardRequestContentEventType Transferadjusted = new(
+        Values.Transferadjusted
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Transferreturn = new(
+        Values.Transferreturn
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Transfererror = new(
+        Values.Transfererror
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Transferbalanceunavailable =
+        new(Values.Transferbalanceunavailable);
+
+    public static readonly NotificationStandardRequestContentEventType Transferreadyforretry = new(
+        Values.Transferreadyforretry
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Transferresolved = new(
+        Values.Transferresolved
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Transfersuspended = new(
+        Values.Transfersuspended
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Transferdisabledcreditfund =
+        new(Values.Transferdisabledcreditfund);
+
+    public static readonly NotificationStandardRequestContentEventType Transferdisableddebitfund =
+        new(Values.Transferdisableddebitfund);
+
+    public static readonly NotificationStandardRequestContentEventType Invoicecreated = new(
+        Values.Invoicecreated
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Invoicesent = new(
+        Values.Invoicesent
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Invoicepaid = new(
+        Values.Invoicepaid
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Subscriptioncreated = new(
+        Values.Subscriptioncreated
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Subscriptionupdated = new(
+        Values.Subscriptionupdated
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Subscriptioncanceled = new(
+        Values.Subscriptioncanceled
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Subscriptioncompleted = new(
+        Values.Subscriptioncompleted
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Savedmethodupdated = new(
+        Values.Savedmethodupdated
+    );
+
+    public static readonly NotificationStandardRequestContentEventType Nocreceived = new(
+        Values.Nocreceived
+    );
 
     public static readonly NotificationStandardRequestContentEventType PayoutTransactionVoidedcancelled =
         new(Values.PayoutTransactionVoidedcancelled);
@@ -73,36 +154,62 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
     public static readonly NotificationStandardRequestContentEventType PayoutTransactionRecovered =
         new(Values.PayoutTransactionRecovered);
 
-    public static readonly NotificationStandardRequestContentEventType PayinBatchOnhold = new(
-        Values.PayinBatchOnhold
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionAuthorized =
+        new(Values.PayoutTransactionAuthorized);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionApprovedcaptured =
+        new(Values.PayoutTransactionApprovedcaptured);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionDeclined =
+        new(Values.PayoutTransactionDeclined);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionTechnicaldecline =
+        new(Values.PayoutTransactionTechnicaldecline);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionError = new(
+        Values.PayoutTransactionError
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayinBatchReleased = new(
-        Values.PayinBatchReleased
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionPaid = new(
+        Values.PayoutTransactionPaid
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchOpen = new(
-        Values.PayoutBatchOpen
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionReturned =
+        new(Values.PayoutTransactionReturned);
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchOnhold = new(
-        Values.PayoutBatchOnhold
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionRejected =
+        new(Values.PayoutTransactionRejected);
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchReleased = new(
-        Values.PayoutBatchReleased
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionDuplicated =
+        new(Values.PayoutTransactionDuplicated);
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchProcessed = new(
-        Values.PayoutBatchProcessed
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionFunded =
+        new(Values.PayoutTransactionFunded);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutTransactionReissued =
+        new(Values.PayoutTransactionReissued);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementPending =
+        new(Values.PayoutBatchSettlementPending);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementIntransit =
+        new(Values.PayoutBatchSettlementIntransit);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementFunded =
+        new(Values.PayoutBatchSettlementFunded);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementException =
+        new(Values.PayoutBatchSettlementException);
+
+    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementAchreturn =
+        new(Values.PayoutBatchSettlementAchreturn);
 
     public static readonly NotificationStandardRequestContentEventType PayoutBatchPaid = new(
         Values.PayoutBatchPaid
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchFunded = new(
-        Values.PayoutBatchFunded
+    public static readonly NotificationStandardRequestContentEventType PayoutBatchFundpending = new(
+        Values.PayoutBatchFundpending
     );
 
     public static readonly NotificationStandardRequestContentEventType PayoutBatchClosed = new(
@@ -113,372 +220,206 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
         Values.PayoutBatchNotclosed
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchFundpending = new(
-        Values.PayoutBatchFundpending
-    );
-
     public static readonly NotificationStandardRequestContentEventType PayoutBatchCancelled = new(
         Values.PayoutBatchCancelled
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchTransferred = new(
-        Values.PayoutBatchTransferred
+    public static readonly NotificationStandardRequestContentEventType PayoutFundsAdded = new(
+        Values.PayoutFundsAdded
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchResolved = new(
-        Values.PayoutBatchResolved
+    public static readonly NotificationStandardRequestContentEventType PayoutFundsAvailable = new(
+        Values.PayoutFundsAvailable
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementPending =
-        new(Values.PayoutBatchSettlementPending);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementIntransit =
-        new(Values.PayoutBatchSettlementIntransit);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementTransferred =
-        new(Values.PayoutBatchSettlementTransferred);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementFunded =
-        new(Values.PayoutBatchSettlementFunded);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementResolved =
-        new(Values.PayoutBatchSettlementResolved);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementException =
-        new(Values.PayoutBatchSettlementException);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementAchreturn =
-        new(Values.PayoutBatchSettlementAchreturn);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementHeld =
-        new(Values.PayoutBatchSettlementHeld);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutBatchSettlementReleased =
-        new(Values.PayoutBatchSettlementReleased);
-
-    public static readonly NotificationStandardRequestContentEventType ApprovedPayment = new(
-        Values.ApprovedPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType AuthorizedPayment = new(
-        Values.AuthorizedPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType DeclinedPayment = new(
-        Values.DeclinedPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType OriginatedPayment = new(
-        Values.OriginatedPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType SettledPayment = new(
-        Values.SettledPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType SubscriptionCreated = new(
-        Values.SubscriptionCreated
-    );
-
-    public static readonly NotificationStandardRequestContentEventType SubscriptionUpdated = new(
-        Values.SubscriptionUpdated
-    );
-
-    public static readonly NotificationStandardRequestContentEventType SubscriptionCanceled = new(
-        Values.SubscriptionCanceled
-    );
-
-    public static readonly NotificationStandardRequestContentEventType SubscriptionCompleted = new(
-        Values.SubscriptionCompleted
-    );
-
-    public static readonly NotificationStandardRequestContentEventType FundedPayment = new(
-        Values.FundedPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType VoidedPayment = new(
-        Values.VoidedPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType RefundedPayment = new(
-        Values.RefundedPayment
-    );
-
-    public static readonly NotificationStandardRequestContentEventType HoldTransaction = new(
-        Values.HoldTransaction
-    );
-
-    public static readonly NotificationStandardRequestContentEventType ReleasedTransaction = new(
-        Values.ReleasedTransaction
-    );
-
-    public static readonly NotificationStandardRequestContentEventType HoldBatch = new(
-        Values.HoldBatch
-    );
-
-    public static readonly NotificationStandardRequestContentEventType ReleasedBatch = new(
-        Values.ReleasedBatch
+    public static readonly NotificationStandardRequestContentEventType PayoutFundsReturned = new(
+        Values.PayoutFundsReturned
     );
 
-    public static readonly NotificationStandardRequestContentEventType TransferAdjusted = new(
-        Values.TransferAdjusted
-    );
-
-    public static readonly NotificationStandardRequestContentEventType TransferDisabledCreditFund =
-        new(Values.TransferDisabledCreditFund);
-
-    public static readonly NotificationStandardRequestContentEventType TransferDisabledDebitFund =
-        new(Values.TransferDisabledDebitFund);
-
-    public static readonly NotificationStandardRequestContentEventType TransferNotAvailableBalance =
-        new(Values.TransferNotAvailableBalance);
-
-    public static readonly NotificationStandardRequestContentEventType TransferReadyforRetry = new(
-        Values.TransferReadyforRetry
-    );
-
-    public static readonly NotificationStandardRequestContentEventType TransferResolved = new(
-        Values.TransferResolved
-    );
-
-    public static readonly NotificationStandardRequestContentEventType TransferReturn = new(
-        Values.TransferReturn
-    );
-
-    public static readonly NotificationStandardRequestContentEventType TransferSuccess = new(
-        Values.TransferSuccess
-    );
-
-    public static readonly NotificationStandardRequestContentEventType TransferSuspended = new(
-        Values.TransferSuspended
-    );
-
-    public static readonly NotificationStandardRequestContentEventType TransferError = new(
-        Values.TransferError
-    );
-
-    public static readonly NotificationStandardRequestContentEventType SendReceipt = new(
-        Values.SendReceipt
-    );
-
-    public static readonly NotificationStandardRequestContentEventType RecoveredTransaction = new(
-        Values.RecoveredTransaction
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutVirtualcardTransactionAccepted =
+        new(Values.PayoutVirtualcardTransactionAccepted);
 
-    public static readonly NotificationStandardRequestContentEventType CardUpdaterComplete = new(
-        Values.CardUpdaterComplete
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutVirtualcardTransactionDeclined =
+        new(Values.PayoutVirtualcardTransactionDeclined);
 
-    public static readonly NotificationStandardRequestContentEventType CreatedApplication = new(
-        Values.CreatedApplication
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutGhostcardTransactionAccepted =
+        new(Values.PayoutGhostcardTransactionAccepted);
 
-    public static readonly NotificationStandardRequestContentEventType ApprovedApplication = new(
-        Values.ApprovedApplication
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutGhostcardTransactionDeclined =
+        new(Values.PayoutGhostcardTransactionDeclined);
 
-    public static readonly NotificationStandardRequestContentEventType FailedBoardingApplication =
-        new(Values.FailedBoardingApplication);
+    public static readonly NotificationStandardRequestContentEventType PayoutFundVirtualcardTransactionSuccess =
+        new(Values.PayoutFundVirtualcardTransactionSuccess);
 
-    public static readonly NotificationStandardRequestContentEventType SubmittedApplication = new(
-        Values.SubmittedApplication
-    );
+    public static readonly NotificationStandardRequestContentEventType PayoutFundVirtualcardTransactionError =
+        new(Values.PayoutFundVirtualcardTransactionError);
 
-    public static readonly NotificationStandardRequestContentEventType ActivatedMerchant = new(
-        Values.ActivatedMerchant
+    public static readonly NotificationStandardRequestContentEventType Vcardcreated = new(
+        Values.Vcardcreated
     );
 
-    public static readonly NotificationStandardRequestContentEventType ReceivedChargeBack = new(
-        Values.ReceivedChargeBack
+    public static readonly NotificationStandardRequestContentEventType Vcardsent = new(
+        Values.Vcardsent
     );
 
-    public static readonly NotificationStandardRequestContentEventType ChargebackUpdated = new(
-        Values.ChargebackUpdated
+    public static readonly NotificationStandardRequestContentEventType Billapproved = new(
+        Values.Billapproved
     );
 
-    public static readonly NotificationStandardRequestContentEventType ReceivedRetrieval = new(
-        Values.ReceivedRetrieval
+    public static readonly NotificationStandardRequestContentEventType Billdisapproved = new(
+        Values.Billdisapproved
     );
 
-    public static readonly NotificationStandardRequestContentEventType RetrievalUpdated = new(
-        Values.RetrievalUpdated
+    public static readonly NotificationStandardRequestContentEventType Billpaid = new(
+        Values.Billpaid
     );
 
-    public static readonly NotificationStandardRequestContentEventType ReceivedAchReturn = new(
-        Values.ReceivedAchReturn
+    public static readonly NotificationStandardRequestContentEventType Billprocessing = new(
+        Values.Billprocessing
     );
 
-    public static readonly NotificationStandardRequestContentEventType HoldingApplication = new(
-        Values.HoldingApplication
+    public static readonly NotificationStandardRequestContentEventType Billsent = new(
+        Values.Billsent
     );
 
-    public static readonly NotificationStandardRequestContentEventType DeclinedApplication = new(
-        Values.DeclinedApplication
+    public static readonly NotificationStandardRequestContentEventType Billcanceled = new(
+        Values.Billcanceled
     );
 
-    public static readonly NotificationStandardRequestContentEventType BoardingApplication = new(
-        Values.BoardingApplication
+    public static readonly NotificationStandardRequestContentEventType VendorCreated = new(
+        Values.VendorCreated
     );
 
-    public static readonly NotificationStandardRequestContentEventType PaypointMoved = new(
-        Values.PaypointMoved
+    public static readonly NotificationStandardRequestContentEventType VendorUpdated = new(
+        Values.VendorUpdated
     );
 
-    public static readonly NotificationStandardRequestContentEventType FraudAlert = new(
-        Values.FraudAlert
-    );
+    public static readonly NotificationStandardRequestContentEventType VendorAchPaymentMethodCreated =
+        new(Values.VendorAchPaymentMethodCreated);
 
-    public static readonly NotificationStandardRequestContentEventType InvoiceSent = new(
-        Values.InvoiceSent
-    );
+    public static readonly NotificationStandardRequestContentEventType Payoutsubscriptioncreated =
+        new(Values.Payoutsubscriptioncreated);
 
-    public static readonly NotificationStandardRequestContentEventType InvoicePaid = new(
-        Values.InvoicePaid
-    );
+    public static readonly NotificationStandardRequestContentEventType Payoutsubscriptionupdated =
+        new(Values.Payoutsubscriptionupdated);
 
-    public static readonly NotificationStandardRequestContentEventType InvoiceCreated = new(
-        Values.InvoiceCreated
-    );
+    public static readonly NotificationStandardRequestContentEventType Payoutsubscriptionreminder =
+        new(Values.Payoutsubscriptionreminder);
 
-    public static readonly NotificationStandardRequestContentEventType BillPaid = new(
-        Values.BillPaid
-    );
+    public static readonly NotificationStandardRequestContentEventType Payoutsubscriptioncompleted =
+        new(Values.Payoutsubscriptioncompleted);
 
-    public static readonly NotificationStandardRequestContentEventType BillApproved = new(
-        Values.BillApproved
-    );
+    public static readonly NotificationStandardRequestContentEventType Payoutsubscriptioncanceled =
+        new(Values.Payoutsubscriptioncanceled);
 
-    public static readonly NotificationStandardRequestContentEventType BillDisApproved = new(
-        Values.BillDisApproved
-    );
+    public static readonly NotificationStandardRequestContentEventType Payoutsavedmethodupdated =
+        new(Values.Payoutsavedmethodupdated);
 
-    public static readonly NotificationStandardRequestContentEventType BillCanceled = new(
-        Values.BillCanceled
+    public static readonly NotificationStandardRequestContentEventType Payoutnocreceived = new(
+        Values.Payoutnocreceived
     );
 
-    public static readonly NotificationStandardRequestContentEventType BillProcessing = new(
-        Values.BillProcessing
+    public static readonly NotificationStandardRequestContentEventType Approvedapplication = new(
+        Values.Approvedapplication
     );
 
-    public static readonly NotificationStandardRequestContentEventType CardCreated = new(
-        Values.CardCreated
+    public static readonly NotificationStandardRequestContentEventType Boardingapplication = new(
+        Values.Boardingapplication
     );
 
-    public static readonly NotificationStandardRequestContentEventType CardActivated = new(
-        Values.CardActivated
+    public static readonly NotificationStandardRequestContentEventType Createdapplication = new(
+        Values.Createdapplication
     );
 
-    public static readonly NotificationStandardRequestContentEventType CardDeactivated = new(
-        Values.CardDeactivated
+    public static readonly NotificationStandardRequestContentEventType Declinedapplication = new(
+        Values.Declinedapplication
     );
 
-    public static readonly NotificationStandardRequestContentEventType CardExpired = new(
-        Values.CardExpired
+    public static readonly NotificationStandardRequestContentEventType Holdingapplication = new(
+        Values.Holdingapplication
     );
 
-    public static readonly NotificationStandardRequestContentEventType CardExpiring = new(
-        Values.CardExpiring
+    public static readonly NotificationStandardRequestContentEventType Submittedapplication = new(
+        Values.Submittedapplication
     );
 
-    public static readonly NotificationStandardRequestContentEventType CardLimitUpdated = new(
-        Values.CardLimitUpdated
-    );
+    public static readonly NotificationStandardRequestContentEventType Failedboardingapplication =
+        new(Values.Failedboardingapplication);
 
-    public static readonly NotificationStandardRequestContentEventType BatchClosed = new(
-        Values.BatchClosed
+    public static readonly NotificationStandardRequestContentEventType Activatedmerchant = new(
+        Values.Activatedmerchant
     );
 
-    public static readonly NotificationStandardRequestContentEventType BatchNotClosed = new(
-        Values.BatchNotClosed
+    public static readonly NotificationStandardRequestContentEventType Cardupdatercomplete = new(
+        Values.Cardupdatercomplete
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayOutFunded = new(
-        Values.PayOutFunded
+    public static readonly NotificationStandardRequestContentEventType Updatedmerchant = new(
+        Values.Updatedmerchant
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayOutProcessed = new(
-        Values.PayOutProcessed
+    public static readonly NotificationStandardRequestContentEventType Receivedchargeback = new(
+        Values.Receivedchargeback
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayOutCanceled = new(
-        Values.PayOutCanceled
+    public static readonly NotificationStandardRequestContentEventType Chargebackupdated = new(
+        Values.Chargebackupdated
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayOutPaid = new(
-        Values.PayOutPaid
+    public static readonly NotificationStandardRequestContentEventType Chargebackreversal = new(
+        Values.Chargebackreversal
     );
 
-    public static readonly NotificationStandardRequestContentEventType PayOutReturned = new(
-        Values.PayOutReturned
+    public static readonly NotificationStandardRequestContentEventType Receivedprearbitration = new(
+        Values.Receivedprearbitration
     );
-
-    public static readonly NotificationStandardRequestContentEventType PayoutSubscriptionCreated =
-        new(Values.PayoutSubscriptionCreated);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutSubscriptionUpdated =
-        new(Values.PayoutSubscriptionUpdated);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutSubscriptionCanceled =
-        new(Values.PayoutSubscriptionCanceled);
 
-    public static readonly NotificationStandardRequestContentEventType PayoutSubscriptionCompleted =
-        new(Values.PayoutSubscriptionCompleted);
-
-    public static readonly NotificationStandardRequestContentEventType PayoutSubscriptionReminder =
-        new(Values.PayoutSubscriptionReminder);
-
-    public static readonly NotificationStandardRequestContentEventType ImportFileReceived = new(
-        Values.ImportFileReceived
+    public static readonly NotificationStandardRequestContentEventType Receivedretrieval = new(
+        Values.Receivedretrieval
     );
 
-    public static readonly NotificationStandardRequestContentEventType ImportFileProcessed = new(
-        Values.ImportFileProcessed
+    public static readonly NotificationStandardRequestContentEventType Receivedachreturn = new(
+        Values.Receivedachreturn
     );
 
-    public static readonly NotificationStandardRequestContentEventType ImportFileError = new(
-        Values.ImportFileError
+    public static readonly NotificationStandardRequestContentEventType Fraudalert = new(
+        Values.Fraudalert
     );
 
-    public static readonly NotificationStandardRequestContentEventType ExportFileSent = new(
-        Values.ExportFileSent
+    public static readonly NotificationStandardRequestContentEventType Transactionnotfound = new(
+        Values.Transactionnotfound
     );
 
-    public static readonly NotificationStandardRequestContentEventType ExportFileError = new(
-        Values.ExportFileError
+    public static readonly NotificationStandardRequestContentEventType Importfilereceived = new(
+        Values.Importfilereceived
     );
 
-    public static readonly NotificationStandardRequestContentEventType UpdatedMerchant = new(
-        Values.UpdatedMerchant
+    public static readonly NotificationStandardRequestContentEventType Importfileprocessed = new(
+        Values.Importfileprocessed
     );
 
-    public static readonly NotificationStandardRequestContentEventType Report = new(Values.Report);
-
-    public static readonly NotificationStandardRequestContentEventType FailedEmailNotification =
-        new(Values.FailedEmailNotification);
-
-    public static readonly NotificationStandardRequestContentEventType FailedWebNotification = new(
-        Values.FailedWebNotification
+    public static readonly NotificationStandardRequestContentEventType Importfileerror = new(
+        Values.Importfileerror
     );
 
-    public static readonly NotificationStandardRequestContentEventType FailedSmsNotification = new(
-        Values.FailedSmsNotification
+    public static readonly NotificationStandardRequestContentEventType Exportfilesent = new(
+        Values.Exportfilesent
     );
 
-    public static readonly NotificationStandardRequestContentEventType UserPasswordExpiring = new(
-        Values.UserPasswordExpiring
+    public static readonly NotificationStandardRequestContentEventType Exportfileerror = new(
+        Values.Exportfileerror
     );
 
-    public static readonly NotificationStandardRequestContentEventType UserPasswordExpired = new(
-        Values.UserPasswordExpired
+    public static readonly NotificationStandardRequestContentEventType Exportreportcompleted = new(
+        Values.Exportreportcompleted
     );
 
-    public static readonly NotificationStandardRequestContentEventType TransactionNotFound = new(
-        Values.TransactionNotFound
+    public static readonly NotificationStandardRequestContentEventType Paypointroutingupdated = new(
+        Values.Paypointroutingupdated
     );
 
-    public static readonly NotificationStandardRequestContentEventType SystemAlert = new(
-        Values.SystemAlert
-    );
+    public static readonly NotificationStandardRequestContentEventType Paypointaccountnocreceived =
+        new(Values.Paypointaccountnocreceived);
 
     public NotificationStandardRequestContentEventType(string value)
     {
@@ -583,7 +524,21 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
     [Serializable]
     public static class Values
     {
-        public const string PayinTransactionRejected = "payin_transaction_rejected";
+        public const string Approvedpayment = "approvedpayment";
+
+        public const string Authorizedpayment = "authorizedpayment";
+
+        public const string Declinedpayment = "declinedpayment";
+
+        public const string Fundedpayment = "fundedpayment";
+
+        public const string Originatedpayment = "originatedpayment";
+
+        public const string Refundedpayment = "refundedpayment";
+
+        public const string Settledpayment = "settledpayment";
+
+        public const string Voidedpayment = "voidedpayment";
 
         public const string PayinTransactionOnhold = "payin_transaction_onhold";
 
@@ -591,27 +546,49 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
 
         public const string PayinTransactionRecovered = "payin_transaction_recovered";
 
-        public const string PayoutTransactionInitiated = "payout_transaction_initiated";
+        public const string PayinTransactionRejected = "payin_transaction_rejected";
 
-        public const string PayoutTransactionAuthorized = "payout_transaction_authorized";
+        public const string PayinBatchOnhold = "payin_batch_onhold";
 
-        public const string PayoutTransactionApprovedcaptured =
-            "payout_transaction_approvedcaptured";
+        public const string PayinBatchReleased = "payin_batch_released";
 
-        public const string PayoutTransactionDeclined = "payout_transaction_declined";
+        public const string Transfersuccess = "transfersuccess";
 
-        public const string PayoutTransactionTechnicaldecline =
-            "payout_transaction_technicaldecline";
+        public const string Transferadjusted = "transferadjusted";
 
-        public const string PayoutTransactionFailed = "payout_transaction_failed";
+        public const string Transferreturn = "transferreturn";
 
-        public const string PayoutTransactionError = "payout_transaction_error";
+        public const string Transfererror = "transfererror";
 
-        public const string PayoutTransactionPaid = "payout_transaction_paid";
+        public const string Transferbalanceunavailable = "transferbalanceunavailable";
 
-        public const string PayoutTransactionReturned = "payout_transaction_returned";
+        public const string Transferreadyforretry = "transferreadyforretry";
 
-        public const string PayoutTransactionRejected = "payout_transaction_rejected";
+        public const string Transferresolved = "transferresolved";
+
+        public const string Transfersuspended = "transfersuspended";
+
+        public const string Transferdisabledcreditfund = "transferdisabledcreditfund";
+
+        public const string Transferdisableddebitfund = "transferdisableddebitfund";
+
+        public const string Invoicecreated = "invoicecreated";
+
+        public const string Invoicesent = "invoicesent";
+
+        public const string Invoicepaid = "invoicepaid";
+
+        public const string Subscriptioncreated = "subscriptioncreated";
+
+        public const string Subscriptionupdated = "subscriptionupdated";
+
+        public const string Subscriptioncanceled = "subscriptioncanceled";
+
+        public const string Subscriptioncompleted = "subscriptioncompleted";
+
+        public const string Savedmethodupdated = "savedmethodupdated";
+
+        public const string Nocreceived = "nocreceived";
 
         public const string PayoutTransactionVoidedcancelled = "payout_transaction_voidedcancelled";
 
@@ -625,219 +602,160 @@ public readonly record struct NotificationStandardRequestContentEventType : IStr
 
         public const string PayoutTransactionRecovered = "payout_transaction_recovered";
 
-        public const string PayinBatchOnhold = "payin_batch_onhold";
+        public const string PayoutTransactionAuthorized = "payout_transaction_authorized";
 
-        public const string PayinBatchReleased = "payin_batch_released";
+        public const string PayoutTransactionApprovedcaptured =
+            "payout_transaction_approvedcaptured";
 
-        public const string PayoutBatchOpen = "payout_batch_open";
+        public const string PayoutTransactionDeclined = "payout_transaction_declined";
 
-        public const string PayoutBatchOnhold = "payout_batch_onhold";
+        public const string PayoutTransactionTechnicaldecline =
+            "payout_transaction_technicaldecline";
 
-        public const string PayoutBatchReleased = "payout_batch_released";
+        public const string PayoutTransactionError = "payout_transaction_error";
 
-        public const string PayoutBatchProcessed = "payout_batch_processed";
+        public const string PayoutTransactionPaid = "payout_transaction_paid";
 
-        public const string PayoutBatchPaid = "payout_batch_paid";
+        public const string PayoutTransactionReturned = "payout_transaction_returned";
 
-        public const string PayoutBatchFunded = "payout_batch_funded";
+        public const string PayoutTransactionRejected = "payout_transaction_rejected";
 
-        public const string PayoutBatchClosed = "payout_batch_closed";
+        public const string PayoutTransactionDuplicated = "payout_transaction_duplicated";
 
-        public const string PayoutBatchNotclosed = "payout_batch_notclosed";
+        public const string PayoutTransactionFunded = "payout_transaction_funded";
 
-        public const string PayoutBatchFundpending = "payout_batch_fundpending";
-
-        public const string PayoutBatchCancelled = "payout_batch_cancelled";
-
-        public const string PayoutBatchTransferred = "payout_batch_transferred";
-
-        public const string PayoutBatchResolved = "payout_batch_resolved";
+        public const string PayoutTransactionReissued = "payout_transaction_reissued";
 
         public const string PayoutBatchSettlementPending = "payout_batch_settlement_pending";
 
         public const string PayoutBatchSettlementIntransit = "payout_batch_settlement_intransit";
 
-        public const string PayoutBatchSettlementTransferred =
-            "payout_batch_settlement_transferred";
-
         public const string PayoutBatchSettlementFunded = "payout_batch_settlement_funded";
-
-        public const string PayoutBatchSettlementResolved = "payout_batch_settlement_resolved";
 
         public const string PayoutBatchSettlementException = "payout_batch_settlement_exception";
 
         public const string PayoutBatchSettlementAchreturn = "payout_batch_settlement_achreturn";
 
-        public const string PayoutBatchSettlementHeld = "payout_batch_settlement_held";
+        public const string PayoutBatchPaid = "payout_batch_paid";
 
-        public const string PayoutBatchSettlementReleased = "payout_batch_settlement_released";
+        public const string PayoutBatchFundpending = "payout_batch_fundpending";
 
-        public const string ApprovedPayment = "ApprovedPayment";
+        public const string PayoutBatchClosed = "payout_batch_closed";
 
-        public const string AuthorizedPayment = "AuthorizedPayment";
+        public const string PayoutBatchNotclosed = "payout_batch_notclosed";
 
-        public const string DeclinedPayment = "DeclinedPayment";
+        public const string PayoutBatchCancelled = "payout_batch_cancelled";
 
-        public const string OriginatedPayment = "OriginatedPayment";
+        public const string PayoutFundsAdded = "payout_funds_added";
 
-        public const string SettledPayment = "SettledPayment";
+        public const string PayoutFundsAvailable = "payout_funds_available";
 
-        public const string SubscriptionCreated = "SubscriptionCreated";
+        public const string PayoutFundsReturned = "payout_funds_returned";
 
-        public const string SubscriptionUpdated = "SubscriptionUpdated";
+        public const string PayoutVirtualcardTransactionAccepted =
+            "payout_virtualcard_transaction_accepted";
 
-        public const string SubscriptionCanceled = "SubscriptionCanceled";
+        public const string PayoutVirtualcardTransactionDeclined =
+            "payout_virtualcard_transaction_declined";
 
-        public const string SubscriptionCompleted = "SubscriptionCompleted";
+        public const string PayoutGhostcardTransactionAccepted =
+            "payout_ghostcard_transaction_accepted";
 
-        public const string FundedPayment = "FundedPayment";
+        public const string PayoutGhostcardTransactionDeclined =
+            "payout_ghostcard_transaction_declined";
 
-        public const string VoidedPayment = "VoidedPayment";
+        public const string PayoutFundVirtualcardTransactionSuccess =
+            "payout_fund_virtualcard_transaction_success";
 
-        public const string RefundedPayment = "RefundedPayment";
+        public const string PayoutFundVirtualcardTransactionError =
+            "payout_fund_virtualcard_transaction_error";
 
-        public const string HoldTransaction = "HoldTransaction";
+        public const string Vcardcreated = "vcardcreated";
 
-        public const string ReleasedTransaction = "ReleasedTransaction";
+        public const string Vcardsent = "vcardsent";
 
-        public const string HoldBatch = "HoldBatch";
+        public const string Billapproved = "billapproved";
 
-        public const string ReleasedBatch = "ReleasedBatch";
+        public const string Billdisapproved = "billdisapproved";
 
-        public const string TransferAdjusted = "TransferAdjusted";
+        public const string Billpaid = "billpaid";
 
-        public const string TransferDisabledCreditFund = "TransferDisabledCreditFund";
+        public const string Billprocessing = "billprocessing";
 
-        public const string TransferDisabledDebitFund = "TransferDisabledDebitFund";
+        public const string Billsent = "billsent";
 
-        public const string TransferNotAvailableBalance = "TransferNotAvailableBalance";
+        public const string Billcanceled = "billcanceled";
 
-        public const string TransferReadyforRetry = "TransferReadyforRetry";
+        public const string VendorCreated = "vendor_created";
 
-        public const string TransferResolved = "TransferResolved";
+        public const string VendorUpdated = "vendor_updated";
 
-        public const string TransferReturn = "TransferReturn";
+        public const string VendorAchPaymentMethodCreated = "vendor_ach_payment_method_created";
 
-        public const string TransferSuccess = "TransferSuccess";
+        public const string Payoutsubscriptioncreated = "payoutsubscriptioncreated";
 
-        public const string TransferSuspended = "TransferSuspended";
+        public const string Payoutsubscriptionupdated = "payoutsubscriptionupdated";
 
-        public const string TransferError = "TransferError";
+        public const string Payoutsubscriptionreminder = "payoutsubscriptionreminder";
 
-        public const string SendReceipt = "SendReceipt";
+        public const string Payoutsubscriptioncompleted = "payoutsubscriptioncompleted";
 
-        public const string RecoveredTransaction = "RecoveredTransaction";
+        public const string Payoutsubscriptioncanceled = "payoutsubscriptioncanceled";
 
-        public const string CardUpdaterComplete = "CardUpdaterComplete";
+        public const string Payoutsavedmethodupdated = "payoutsavedmethodupdated";
 
-        public const string CreatedApplication = "CreatedApplication";
+        public const string Payoutnocreceived = "payoutnocreceived";
 
-        public const string ApprovedApplication = "ApprovedApplication";
+        public const string Approvedapplication = "approvedapplication";
 
-        public const string FailedBoardingApplication = "FailedBoardingApplication";
+        public const string Boardingapplication = "boardingapplication";
 
-        public const string SubmittedApplication = "SubmittedApplication";
+        public const string Createdapplication = "createdapplication";
 
-        public const string ActivatedMerchant = "ActivatedMerchant";
+        public const string Declinedapplication = "declinedapplication";
 
-        public const string ReceivedChargeBack = "ReceivedChargeBack";
+        public const string Holdingapplication = "holdingapplication";
 
-        public const string ChargebackUpdated = "ChargebackUpdated";
+        public const string Submittedapplication = "submittedapplication";
 
-        public const string ReceivedRetrieval = "ReceivedRetrieval";
+        public const string Failedboardingapplication = "failedboardingapplication";
 
-        public const string RetrievalUpdated = "RetrievalUpdated";
+        public const string Activatedmerchant = "activatedmerchant";
 
-        public const string ReceivedAchReturn = "ReceivedAchReturn";
+        public const string Cardupdatercomplete = "cardupdatercomplete";
 
-        public const string HoldingApplication = "HoldingApplication";
+        public const string Updatedmerchant = "updatedmerchant";
 
-        public const string DeclinedApplication = "DeclinedApplication";
+        public const string Receivedchargeback = "receivedchargeback";
 
-        public const string BoardingApplication = "BoardingApplication";
+        public const string Chargebackupdated = "chargebackupdated";
 
-        public const string PaypointMoved = "PaypointMoved";
+        public const string Chargebackreversal = "chargebackreversal";
 
-        public const string FraudAlert = "FraudAlert";
+        public const string Receivedprearbitration = "receivedprearbitration";
 
-        public const string InvoiceSent = "InvoiceSent";
+        public const string Receivedretrieval = "receivedretrieval";
 
-        public const string InvoicePaid = "InvoicePaid";
+        public const string Receivedachreturn = "receivedachreturn";
 
-        public const string InvoiceCreated = "InvoiceCreated";
+        public const string Fraudalert = "fraudalert";
 
-        public const string BillPaid = "BillPaid";
+        public const string Transactionnotfound = "transactionnotfound";
 
-        public const string BillApproved = "BillApproved";
+        public const string Importfilereceived = "importfilereceived";
 
-        public const string BillDisApproved = "BillDisApproved";
+        public const string Importfileprocessed = "importfileprocessed";
 
-        public const string BillCanceled = "BillCanceled";
+        public const string Importfileerror = "importfileerror";
 
-        public const string BillProcessing = "BillProcessing";
+        public const string Exportfilesent = "exportfilesent";
 
-        public const string CardCreated = "CardCreated";
+        public const string Exportfileerror = "exportfileerror";
 
-        public const string CardActivated = "CardActivated";
+        public const string Exportreportcompleted = "exportreportcompleted";
 
-        public const string CardDeactivated = "CardDeactivated";
+        public const string Paypointroutingupdated = "paypointroutingupdated";
 
-        public const string CardExpired = "CardExpired";
-
-        public const string CardExpiring = "CardExpiring";
-
-        public const string CardLimitUpdated = "CardLimitUpdated";
-
-        public const string BatchClosed = "BatchClosed";
-
-        public const string BatchNotClosed = "BatchNotClosed";
-
-        public const string PayOutFunded = "PayOutFunded";
-
-        public const string PayOutProcessed = "PayOutProcessed";
-
-        public const string PayOutCanceled = "PayOutCanceled";
-
-        public const string PayOutPaid = "PayOutPaid";
-
-        public const string PayOutReturned = "PayOutReturned";
-
-        public const string PayoutSubscriptionCreated = "PayoutSubscriptionCreated";
-
-        public const string PayoutSubscriptionUpdated = "PayoutSubscriptionUpdated";
-
-        public const string PayoutSubscriptionCanceled = "PayoutSubscriptionCanceled";
-
-        public const string PayoutSubscriptionCompleted = "PayoutSubscriptionCompleted";
-
-        public const string PayoutSubscriptionReminder = "PayoutSubscriptionReminder";
-
-        public const string ImportFileReceived = "importFileReceived";
-
-        public const string ImportFileProcessed = "importFileProcessed";
-
-        public const string ImportFileError = "importFileError";
-
-        public const string ExportFileSent = "exportFileSent";
-
-        public const string ExportFileError = "exportFileError";
-
-        public const string UpdatedMerchant = "UpdatedMerchant";
-
-        public const string Report = "Report";
-
-        public const string FailedEmailNotification = "FailedEmailNotification";
-
-        public const string FailedWebNotification = "FailedWebNotification";
-
-        public const string FailedSmsNotification = "FailedSMSNotification";
-
-        public const string UserPasswordExpiring = "UserPasswordExpiring";
-
-        public const string UserPasswordExpired = "UserPasswordExpired";
-
-        public const string TransactionNotFound = "TransactionNotFound";
-
-        public const string SystemAlert = "SystemAlert";
+        public const string Paypointaccountnocreceived = "paypointaccountnocreceived";
     }
 }

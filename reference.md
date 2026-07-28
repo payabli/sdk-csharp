@@ -14689,7 +14689,7 @@ await client.Notification.AddNotificationAsync(
     {
         Content = new NotificationStandardRequestContent
         {
-            EventType = NotificationStandardRequestContentEventType.CreatedApplication,
+            EventType = NotificationStandardRequestContentEventType.Createdapplication,
         },
         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
         Method = NotificationStandardRequestMethod.Web,
@@ -14812,7 +14812,7 @@ await client.Notification.UpdateNotificationAsync(
     {
         Content = new NotificationStandardRequestContent
         {
-            EventType = NotificationStandardRequestContentEventType.ApprovedPayment,
+            EventType = NotificationStandardRequestContentEventType.Approvedpayment,
         },
         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
         Method = NotificationStandardRequestMethod.Email,
@@ -16290,7 +16290,7 @@ Authorizes a transaction for payout.
 
 If you don't pass `autoCapture` with a value of `true`, authorized transactions aren't flagged for settlement until captured. Use the `referenceId` returned in the response to capture the transaction.
 
-When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/api-reference/webhooks-overview/payout-transaction-approved-captured) webhook event.
+When `autoCapture` is `true`, Payabli captures the transaction asynchronously after authorization. The response confirms only that the transaction was authorized; it doesn't confirm that capture succeeded. To confirm capture, listen for the [`payout_transaction_approvedcaptured`](/developers/webhooks/payout-transaction-approved-captured) webhook event.
 
 If a velocity fraud alert is triggered, the endpoint returns a `202` response with `responseCode` `9051`, and the authorization is held for risk review rather than rejected. If a risk policy blocks the transaction, the endpoint returns a `422` response with `responseCode` `9005`, a terminal rejection.
 
@@ -17753,7 +17753,7 @@ await client.ChargeBacks.GetChargebackAsync(1000000);
 <dl>
 <dd>
 
-**id:** `long` — ID of the chargeback or return record. This is returned as `chargebackID` in the [ReceivedChargeBack](/guides/pay-ops-webhooks-payloads#receivedchargeback) and [ReceivedAchReturn](/guides/pay-ops-webhooks-payloads#receivedachreturn) webhook notifications.
+**id:** `long` — ID of the chargeback or return record. This is returned as `chargebackID` in the [ReceivedChargeBack](/developers/webhooks/payops-chargeback-received) and [ReceivedAchReturn](/developers/webhooks/payops-ach-return-received) webhook notifications.
     
 </dd>
 </dl>
@@ -17816,6 +17816,900 @@ await client.ChargeBacks.GetChargebackAttachmentAsync(1000000, "fileName");
 <dd>
 
 **fileName:** `string` — The chargeback attachment's file name.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Case Management
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">ValidateBankAccountChangeAsync</a>(paypointId, ValidateBankAccountChangeRequest { ... }) -> WithRawResponseTask&lt;PreCreationValidationResult&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Validates a bank account change for a paypoint without creating a case.
+Runs the same checks the create endpoint runs, and returns blocking
+conditions and warnings. Blocking conditions prevent creation; warnings
+don't.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.ValidateBankAccountChangeAsync(
+    3040,
+    new ValidateBankAccountChangeRequest
+    {
+        RoutingNumber = "123456789",
+        AccountNumber = "987654321",
+        AccountType = "checking",
+        BankAccountHolderType = "business",
+        BankAccountFunction = CaseManagementBankAccountFunction.Deposits,
+        Services = new BankAccountServices
+        {
+            MoneyIn = new List<MoneyInService>() { MoneyInService.Ach },
+            MoneyOut = new List<MoneyOutService>() { MoneyOutService.Ach },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointId:** `long` — The paypoint's numeric identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ValidateBankAccountChangeRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">CreateBankAccountChangeAsync</a>(paypointId, CreateBankAccountChangeCaseRequest { ... }) -> WithRawResponseTask&lt;CaseResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a bank-account-change case for a paypoint. The account and
+routing numbers are validated and tokenized before the case is saved —
+the raw numbers are never stored or returned. The account holder name is
+taken from the paypoint's legal name. On success the case is created in
+`Submitted` and asynchronous verification starts.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.CreateBankAccountChangeAsync(
+    3040,
+    new CreateBankAccountChangeCaseRequest
+    {
+        Nickname = "Main Settlement Account",
+        BankName = "First National Bank",
+        RoutingNumber = "123456789",
+        AccountNumber = "987654321",
+        AccountType = "checking",
+        BankAccountHolderType = "business",
+        BankAccountFunction = CaseManagementBankAccountFunction.Deposits,
+        Services = new BankAccountServices
+        {
+            MoneyIn = new List<MoneyInService>() { MoneyInService.Ach },
+            MoneyOut = new List<MoneyOutService>() { MoneyOutService.Ach },
+        },
+        Default = true,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointId:** `long` — The paypoint's numeric identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CreateBankAccountChangeCaseRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">GetCaseAsync</a>(uuid) -> WithRawResponseTask&lt;CaseResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a case by its UUID, including its current state, parameters,
+state history, verification metadata, and attachments.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.GetCaseAsync("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">ListCasesAsync</a>(organizationId, ListCasesCaseManagementRequest { ... }) -> WithRawResponseTask&lt;CaseListResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists cases for an organization, climbing the platform org hierarchy.
+Supports pagination and sorting through query parameters, and filtering
+through repeatable `parameters[field(op)]=value` query parameters (for
+example `parameters[state(in)]=Assigned|PendingReview`). Filterable
+fields include `state`, `caseType`, `paypointId`, `createdAt`,
+`updatedAt`, `scheduleFor`, and `createdBy`.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.ListCasesAsync(
+    123,
+    new ListCasesCaseManagementRequest { FromRecord = 0, LimitRecord = 20 }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationId:** `long` — The organization's numeric identifier.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListCasesCaseManagementRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">ListMessagesAsync</a>(caseUuid, ListMessagesCaseManagementRequest { ... }) -> WithRawResponseTask&lt;MessagePage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the notes on a case, ordered oldest to newest. Cursor-paginated.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.ListMessagesAsync(
+    "9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70",
+    new ListMessagesCaseManagementRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ListMessagesCaseManagementRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">PostMessageAsync</a>(caseUuid, PostCaseMessageRequest { ... }) -> WithRawResponseTask&lt;PostedMessage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a note to a case.
+
+Available to both Platform and Enterprise Partners.
+
+This endpoint is in development and not yet available for API use. To
+add a note for now, use Case Management in the
+[Payabli Portal](/guides/pay-ops-portal-bank-account-changes-manage).
+To read existing notes on a case, use
+[List case notes](/developers/api-reference/caseManagement/list-case-notes).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.PostMessageAsync(
+    "9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70",
+    new PostCaseMessageRequest
+    {
+        Content = "Reviewed supporting documents; account ownership confirmed.",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PostCaseMessageRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">ListTransitionsAsync</a>(uuid) -> WithRawResponseTask&lt;AvailableTransitionsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the review actions currently available on a case. The list is
+empty when no user action is available (for example while the case is
+mid-automation).
+
+Available to both Platform and Enterprise Partners, though only
+Enterprise Partners can fire the returned actions.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.ListTransitionsAsync("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">TransitionAsync</a>(uuid, TransitionCaseRequest { ... }) -> WithRawResponseTask&lt;CaseResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fires a review action on a case, such as `Approve`, `Deny`, `Escalate`,
+or `RequestReview`. Assigning a case uses the dedicated assign endpoint,
+not this one. Firing an action that isn't valid for the case's current
+state returns `409`.
+
+Available to Enterprise Partners only.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.TransitionAsync(
+    "9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70",
+    new TransitionCaseRequest
+    {
+        Trigger = CaseTrigger.Approve,
+        Reason = "Account ownership confirmed with the merchant by phone.",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `TransitionCaseRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">AssignCaseAsync</a>(uuid, AssignCaseRequest { ... }) -> WithRawResponseTask&lt;CaseResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assigns a case to a reviewer.
+
+Available to Enterprise Partners only.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.AssignCaseAsync(
+    "9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70",
+    new AssignCaseRequest { AssigneeId = 4238, Reason = "Routing to the risk team for review." }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `AssignCaseRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">ListAttachmentsAsync</a>(caseUuid) -> WithRawResponseTask&lt;IEnumerable&lt;AttachmentResponse&gt;&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the files attached to a case.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.ListAttachmentsAsync("9c2b7e14-3a5f-4d21-b8e0-1f6a4c9d2e70");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">UploadAttachmentAsync</a>(caseUuid, UploadAttachmentCaseManagementRequest { ... }) -> WithRawResponseTask&lt;AttachmentResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads a file to a case as multipart form data. The maximum size is
+25 MiB, and the content type must be an allowed type such as PDF, PNG,
+JPEG, CSV, XLSX, DOCX, or plain text.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.UploadAttachmentAsync(
+    "caseUuid",
+    new UploadAttachmentCaseManagementRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UploadAttachmentCaseManagementRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">GetAttachmentAsync</a>(caseUuid, attachmentId) -> WithRawResponseTask&lt;Stream&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Streams the file content of an attachment.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.GetAttachmentAsync("caseUuid", "attachmentId");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attachmentId:** `string` — The attachment's UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.CaseManagement.<a href="/src/PayabliApi/CaseManagement/CaseManagementClient.cs">DeleteAttachmentAsync</a>(caseUuid, attachmentId) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes an attachment from a case.
+
+Available to both Platform and Enterprise Partners.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.CaseManagement.DeleteAttachmentAsync("caseUuid", "attachmentId");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**caseUuid:** `string` — The case's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**attachmentId:** `string` — The attachment's UUID.
     
 </dd>
 </dl>
