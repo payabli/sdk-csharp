@@ -34,7 +34,7 @@ public record OrganizationData
     public string? OrgEntryName { get; set; }
 
     [JsonPropertyName("orgId")]
-    public string? OrganizationDataOrgId { get; set; }
+    public string? OrgId { get; set; }
 
     [JsonPropertyName("orgLogo")]
     public FileContent? OrgLogo { get; set; }

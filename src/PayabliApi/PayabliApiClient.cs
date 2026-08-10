@@ -22,7 +22,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Payabli.SDK/1.0.15" },
+                { "User-Agent", "Payabli.SDK/1.1.1" },
             }
         );
         foreach (var header in platformHeaders)
@@ -88,6 +88,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         PayoutSubscription = new PayoutSubscriptionClient(_client);
         ChargeBacks = new ChargeBacksClient(_client);
         CaseManagement = new CaseManagementClient(_client);
+        Billing = new BillingClient(_client);
     }
 
     public IBillClient Bill { get; }
@@ -157,4 +158,6 @@ public partial class PayabliApiClient : IPayabliApiClient
     public IChargeBacksClient ChargeBacks { get; }
 
     public ICaseManagementClient CaseManagement { get; }
+
+    public IBillingClient Billing { get; }
 }

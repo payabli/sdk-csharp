@@ -7,7 +7,7 @@ namespace PayabliApi;
 public class ServiceUnavailableError(
     PayabliErrorBody body,
     PayabliApi.RawResponse? rawResponse = null
-) : PayabliApiApiException("ServiceUnavailableError", 503, body, rawResponse: rawResponse)
+) : PayabliApiClientApiException("ServiceUnavailableError", 503, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

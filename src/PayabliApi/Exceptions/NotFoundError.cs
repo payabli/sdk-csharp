@@ -5,4 +5,4 @@ namespace PayabliApi;
 /// </summary>
 [Serializable]
 public class NotFoundError(object body, PayabliApi.RawResponse? rawResponse = null)
-    : PayabliApiApiException("NotFoundError", 404, body, rawResponse: rawResponse);
+    : PayabliApiClientApiException("NotFoundError", 404, body, rawResponse: rawResponse);

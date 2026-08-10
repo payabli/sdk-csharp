@@ -29,9 +29,7 @@ public record ListPayoutRequest
     /// &lt;Info&gt;
     ///   **You must remove `parameters=` from the request before you send it, otherwise Payabli will ignore the filters.**
     ///
-    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
-    ///
-    ///   For example:
+    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client, for example:
     ///
     ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?parameters=totalAmount(gt)=1000&limitRecord=20
     ///
@@ -40,7 +38,7 @@ public record ListPayoutRequest
     ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
     /// &lt;/Info&gt;
     ///
-    /// List of field names accepted:
+    /// Accepted field names:
     ///
     ///   - `status` (in, nin, eq, ne)
     ///   - `transactionDate` (gt, ge, lt, le, eq, ne)
@@ -83,7 +81,7 @@ public record ListPayoutRequest
     ///   - `AchTraceNumber` (eq, ne)
     ///   - `payoutProgram`(eq, ne) the options are `managed` or `odp`. For example, `payoutProgram(eq)=managed` returns all records with a `payoutProgram` equal to `managed`.
     ///
-    ///   List of comparison accepted - enclosed between parentheses:
+    ///   Accepted comparison operators - enclosed between parentheses:
     ///   - eq or empty =&gt; equal
     ///   - gt =&gt; greater than
     ///   - ge =&gt; greater or equal
@@ -95,7 +93,7 @@ public record ListPayoutRequest
     ///   - in =&gt; inside array separated by \"|\"
     ///   - nin =&gt; not inside array separated by \"|\"
     ///
-    ///   List of parameters accepted:
+    ///   Accepted parameters:
     ///
     ///   - limitRecord : max number of records for query (default=\"20\", \"0\" or negative value for all)
     ///   - fromRecord : initial record in query

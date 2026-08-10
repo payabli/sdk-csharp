@@ -23,7 +23,7 @@ public record ListBoardingLinksRequest
     ///
     /// See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
     ///
-    /// List of field names accepted:
+    /// Accepted field names:
     /// - `lastUpdated` (gt, ge, lt, le, eq, ne)
     /// - `templateName` (ct, nct)
     /// - `referenceName` (ct, nct)
@@ -33,7 +33,7 @@ public record ListBoardingLinksRequest
     /// - `templateId` (eq, ne)
     /// - `orgParentname` (ct, nct)
     ///
-    /// List of comparison accepted - enclosed between parentheses:
+    /// Accepted comparison operators - enclosed between parentheses:
     /// - eq or empty =&gt; equal
     /// - gt =&gt; greater than
     /// - ge =&gt; greater or equal
@@ -45,7 +45,7 @@ public record ListBoardingLinksRequest
     /// - in =&gt; inside array
     /// - nin =&gt; not inside array
     ///
-    /// List of parameters accepted:
+    /// Accepted parameters:
     /// - limitRecord : max number of records for query (default="20", "0" or negative value for all)
     /// - fromRecord : initial record in query
     ///

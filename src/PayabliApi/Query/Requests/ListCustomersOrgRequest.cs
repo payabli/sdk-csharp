@@ -29,9 +29,7 @@ public record ListCustomersOrgRequest
     /// &lt;Info&gt;
     ///   **You must remove `parameters=` from the request before you send it, otherwise Payabli will ignore the filters.**
     ///
-    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
-    ///
-    ///   For example:
+    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client, for example:
     ///
     ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?parameters=totalAmount(gt)=1000&limitRecord=20
     ///
@@ -41,7 +39,7 @@ public record ListCustomersOrgRequest
     /// &lt;/Info&gt;
     /// See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for more details.
     ///
-    /// **List of Accepted Field Names:**
+    /// **Accepted field names:**
     ///
     /// - `createdDate` (gt, ge, lt, le, eq, ne)
     /// - `customernumber` (ne, eq, ct, nct)
@@ -71,7 +69,7 @@ public record ListCustomersOrgRequest
     /// - `paypointDba` (ne, eq, ct, nct)
     /// - `orgName` (ne, eq, ct, nct)
     ///
-    /// **List of Accepted Comparisons:**
+    /// **Accepted comparison operators:**
     ///
     /// - `eq` or empty =&gt; equal
     /// - `gt` =&gt; greater than
@@ -84,7 +82,7 @@ public record ListCustomersOrgRequest
     /// - `in` =&gt; inside array separated by "|"
     /// - `nin` =&gt; not inside array separated by "|"
     ///
-    /// **Accepted Parameters:**
+    /// **Accepted parameters:**
     /// - `limitRecord`: Max number of records for query (default="20", "0" or negative value for all)
     /// - `fromRecord`: Initial record in query
     ///

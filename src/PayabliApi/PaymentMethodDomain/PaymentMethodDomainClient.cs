@@ -72,7 +72,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -148,7 +148,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -223,7 +223,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -299,7 +299,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -374,7 +374,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -450,7 +450,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -525,7 +525,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -601,7 +601,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -679,7 +679,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -755,7 +755,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -831,7 +831,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -907,7 +907,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -982,7 +982,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -1000,7 +1000,7 @@ public partial class PaymentMethodDomainClient : IPaymentMethodDomainClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,

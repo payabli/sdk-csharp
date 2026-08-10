@@ -81,7 +81,7 @@ public class EditOrganizationTest : BaseMockServerTest
                 OrgCity = "Johnson City",
                 OrgCountry = "US",
                 OrgEntryName = "pilgrim-planner",
-                OrganizationDataOrgId = "123",
+                OrgId = "123",
                 OrgName = "Pilgrim Planner",
                 OrgState = "TN",
                 OrgTimezone = -5,

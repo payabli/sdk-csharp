@@ -51,7 +51,7 @@ public record V2BadRequestError : IJsonOnDeserialized
     public required string Code { get; set; }
 
     /// <summary>
-    /// Dictionary of field-specific validation errors. Keys are field paths (e.g., "paymentMethod.cardnumber") and values are arrays of error details.
+    /// Dictionary of field-specific validation errors. Keys are field paths (for example, "paymentMethod.cardnumber") and values are arrays of error details.
     /// </summary>
     [JsonPropertyName("errors")]
     public Dictionary<string, IEnumerable<V2BadRequestErrorDetail>> Errors { get; set; } =

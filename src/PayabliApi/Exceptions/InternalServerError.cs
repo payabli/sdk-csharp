@@ -5,4 +5,4 @@ namespace PayabliApi;
 /// </summary>
 [Serializable]
 public class InternalServerError(object body, PayabliApi.RawResponse? rawResponse = null)
-    : PayabliApiApiException("InternalServerError", 500, body, rawResponse: rawResponse);
+    : PayabliApiClientApiException("InternalServerError", 500, body, rawResponse: rawResponse);

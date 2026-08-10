@@ -5,4 +5,4 @@ namespace PayabliApi;
 /// </summary>
 [Serializable]
 public class ConflictError(object body, PayabliApi.RawResponse? rawResponse = null)
-    : PayabliApiApiException("ConflictError", 409, body, rawResponse: rawResponse);
+    : PayabliApiClientApiException("ConflictError", 409, body, rawResponse: rawResponse);

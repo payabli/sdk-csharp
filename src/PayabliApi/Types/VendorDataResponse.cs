@@ -72,7 +72,7 @@ public record VendorDataResponse : IJsonOnDeserialized
     public required string State { get; set; }
 
     /// <summary>
-    /// Vendor's zip code.
+    /// Vendor's ZIP code.
     /// </summary>
     [JsonPropertyName("Zip")]
     public required string Zip { get; set; }

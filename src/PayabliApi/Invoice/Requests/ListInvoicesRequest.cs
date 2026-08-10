@@ -29,7 +29,7 @@ public record ListInvoicesRequest
     ///
     /// See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for help.
     ///
-    /// List of field names accepted:
+    /// Accepted field names:
     ///
     /// - `invoiceDate` (gt, ge, lt, le, eq, ne)
     /// - `dueDate` (gt, ge, lt, le, eq, ne)
@@ -70,7 +70,7 @@ public record ListInvoicesRequest
     /// - `orgName` (ne, eq, ct, nct)
     /// - `additional-xxx` (ne, eq, ct, nct) where xxx is the additional field name
     ///
-    /// List of comparison accepted - enclosed between parentheses:
+    /// Accepted comparison operators - enclosed between parentheses:
     ///
     /// - eq or empty =&gt; equal
     /// - gt =&gt; greater than
@@ -83,7 +83,7 @@ public record ListInvoicesRequest
     /// - in =&gt; inside array
     /// - nin =&gt; not inside array
     ///
-    /// List of parameters accepted:
+    /// Accepted parameters:
     /// - limitRecord : max number of records for query (default="20", "0" or negative value for all)
     /// - fromRecord : initial record in query
     ///

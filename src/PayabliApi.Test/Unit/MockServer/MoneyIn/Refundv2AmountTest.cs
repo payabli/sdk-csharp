@@ -12,10 +12,6 @@ public class Refundv2AmountTest : BaseMockServerTest
     [NUnit.Framework.Test]
     public async Task MockServerTest_1()
     {
-        const string requestJson = """
-            {}
-            """;
-
         const string mockResponse = """
             {
               "code": "A0004",
@@ -165,7 +161,6 @@ public class Refundv2AmountTest : BaseMockServerTest
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
-                    .WithBodyAsJson(requestJson)
             )
             .RespondWith(
                 WireMock
@@ -176,8 +171,7 @@ public class Refundv2AmountTest : BaseMockServerTest
 
         var response = await Client.MoneyIn.Refundv2AmountAsync(
             "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
-            0,
-            new RefundV2Request()
+            0
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
@@ -185,10 +179,6 @@ public class Refundv2AmountTest : BaseMockServerTest
     [NUnit.Framework.Test]
     public async Task MockServerTest_2()
     {
-        const string requestJson = """
-            {}
-            """;
-
         const string mockResponse = """
             {
               "code": "A0004",
@@ -338,7 +328,6 @@ public class Refundv2AmountTest : BaseMockServerTest
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
-                    .WithBodyAsJson(requestJson)
             )
             .RespondWith(
                 WireMock
@@ -349,8 +338,7 @@ public class Refundv2AmountTest : BaseMockServerTest
 
         var response = await Client.MoneyIn.Refundv2AmountAsync(
             "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
-            100.99,
-            new RefundV2Request()
+            100.99
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

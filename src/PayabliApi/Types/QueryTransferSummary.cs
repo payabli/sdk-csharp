@@ -66,7 +66,7 @@ public record QueryTransferSummary : IJsonOnDeserialized
     public double? SplitAmount { get; set; }
 
     /// <summary>
-    /// Service fees are any pass-through fees charged to the customer at the time of payment.  These aren't transferred to the merchant when the batch is transferred and funded.
+    /// Service fees are any pass-through fees charged to the customer at the time of payment. These aren't transferred to the merchant when the batch is transferred and funded.
     /// </summary>
     [JsonPropertyName("serviceFees")]
     public double? ServiceFees { get; set; }
@@ -79,7 +79,7 @@ public record QueryTransferSummary : IJsonOnDeserialized
     public double? NetBatchAmount { get; set; }
 
     /// <summary>
-    /// The transfer amount is the net batch amount plus or minus any returns, refunds,  billing and fees items, chargebacks, adjustments, and third party payments.  This is the amount from the batch that is transferred to the merchant bank account.
+    /// The transfer amount is the net batch amount plus or minus any returns, refunds, billing and fees items, chargebacks, adjustments, and third party payments. This is the amount from the batch that is transferred to the merchant bank account.
     /// </summary>
     [JsonPropertyName("transferAmount")]
     public double? TransferAmount { get; set; }

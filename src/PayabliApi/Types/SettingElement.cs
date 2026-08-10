@@ -15,7 +15,7 @@ public record SettingElement : IJsonOnDeserialized
     public bool? Enabled { get; set; }
 
     /// <summary>
-    /// Fields to display on the reciept.
+    /// Fields to display on the receipt.
     /// </summary>
     [JsonPropertyName("fields")]
     public IEnumerable<DisplayProperty>? Fields { get; set; }
@@ -30,7 +30,7 @@ public record SettingElement : IJsonOnDeserialized
     public bool? SendAuto { get; set; }
 
     /// <summary>
-    /// When `true`, you must send the reciept to the payor manually using the [/MoneyIn/sendreceipt/\{transId\}](/developers/api-reference/moneyin/send-receipt-for-transaction) endpoint.
+    /// When `true`, you must send the receipt to the payor manually using the [/MoneyIn/sendreceipt/\{transId\}](/developers/api-reference/moneyin/send-receipt-for-transaction) endpoint.
     /// </summary>
     [JsonPropertyName("sendManual")]
     public bool? SendManual { get; set; }

@@ -5,7 +5,7 @@ namespace PayabliApi;
 /// </summary>
 [Serializable]
 public class ForbiddenError(PayabliErrorBody body, PayabliApi.RawResponse? rawResponse = null)
-    : PayabliApiApiException("ForbiddenError", 403, body, rawResponse: rawResponse)
+    : PayabliApiClientApiException("ForbiddenError", 403, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

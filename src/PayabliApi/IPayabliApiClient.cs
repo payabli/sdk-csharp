@@ -36,4 +36,5 @@ public partial interface IPayabliApiClient
     public IPayoutSubscriptionClient PayoutSubscription { get; }
     public IChargeBacksClient ChargeBacks { get; }
     public ICaseManagementClient CaseManagement { get; }
+    public IBillingClient Billing { get; }
 }

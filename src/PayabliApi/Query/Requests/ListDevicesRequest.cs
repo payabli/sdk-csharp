@@ -31,9 +31,7 @@ public record ListDevicesRequest
     /// &lt;Info&gt;
     ///   **You must remove `parameters=` from the request before you send it, otherwise Payabli will ignore the filters.**
     ///
-    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
-    ///
-    ///   For example:
+    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client, for example:
     ///
     ///   --url https://api-sandbox.payabli.com/api/Query/devices/8cfec329267?parameters=status=1&limitRecord=20
     ///
@@ -46,7 +44,7 @@ public record ListDevicesRequest
     /// Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference)
     /// for more information.
     ///
-    /// **List of field names accepted:**
+    /// **Accepted field names:**
     ///
     ///
     /// - `deviceId` (eq, ne, ct, nct)
@@ -96,7 +94,7 @@ public record ListDevicesRequest
     /// - `parentOrgName` (eq, ne, ct, nct)
     ///
     ///
-    /// **List of comparison operators accepted:**
+    /// **Accepted comparison operators:**
     ///
     /// - `eq` or empty =&gt; equal
     ///

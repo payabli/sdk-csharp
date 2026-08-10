@@ -12,10 +12,6 @@ public class Refundv2Test : BaseMockServerTest
     [NUnit.Framework.Test]
     public async Task MockServerTest_1()
     {
-        const string requestJson = """
-            {}
-            """;
-
         const string mockResponse = """
             {
               "code": "A0004",
@@ -165,7 +161,6 @@ public class Refundv2Test : BaseMockServerTest
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingPost()
-                    .WithBodyAsJson(requestJson)
             )
             .RespondWith(
                 WireMock
@@ -175,8 +170,7 @@ public class Refundv2Test : BaseMockServerTest
             );
 
         var response = await Client.MoneyIn.Refundv2Async(
-            "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
-            new RefundV2Request()
+            "10-3ffa27df-b171-44e0-b251-e95fbfc7a723"
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

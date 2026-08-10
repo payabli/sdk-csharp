@@ -12,7 +12,7 @@ public record SubscriptionQueryRecords : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Timestamp of when the subscription ws created, in UTC.
+    /// Timestamp of when the subscription was created, in UTC.
     /// </summary>
     [JsonPropertyName("CreatedAt")]
     public DateTime? CreatedAt { get; set; }

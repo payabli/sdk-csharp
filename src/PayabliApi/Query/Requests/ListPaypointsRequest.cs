@@ -29,9 +29,7 @@ public record ListPaypointsRequest
     /// &lt;Info&gt;
     ///   **You must remove `parameters=` from the request before you send it, otherwise Payabli will ignore the filters.**
     ///
-    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
-    ///
-    ///   For example:
+    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client, for example:
     ///
     ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?parameters=totalAmount(gt)=1000&limitRecord=20
     ///
@@ -39,7 +37,7 @@ public record ListPaypointsRequest
     ///
     ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
     /// &lt;/Info&gt;
-    /// **List of field names accepted:**
+    /// **Accepted field names:**
     ///
     /// - `createdAt` (gt, ge, lt, le, eq, ne)
     /// - `lastModified` (gt, ge, lt, le, eq, ne)
@@ -63,7 +61,7 @@ public record ListPaypointsRequest
     /// - `entryName`  (ct, nct)
     /// - `externalOrgID` (ct, nct)
     ///
-    /// **List of comparison accepted - enclosed between parentheses:**
+    /// **Accepted comparison operators - enclosed between parentheses:**
     ///
     /// - `eq` or empty =&gt; equal
     /// - `gt` =&gt; greater than
@@ -76,7 +74,7 @@ public record ListPaypointsRequest
     /// - `in` =&gt; inside array
     /// - `nin` =&gt; not inside array
     ///
-    /// **List of parameters accepted:**
+    /// **Accepted parameters:**
     ///
     /// - `limitRecord` : max number of records for query (default="20", "0" or negative value for all)
     /// - `fromRecord` : initial record in query

@@ -110,7 +110,7 @@ using PayabliApi;
 
 var client = new PayabliApiClient(clientOptions: new ClientOptions
 {
-    BaseUrl = PayabliApiEnvironment.Sandbox
+    BaseUrl = PayabliApiClientEnvironment.Sandbox
 });
 ```
 
@@ -124,7 +124,7 @@ using PayabliApi;
 
 try {
     var response = await client.MoneyIn.Getpaidv2Async(...);
-} catch (PayabliApiApiException e) {
+} catch (PayabliApiClientApiException e) {
     System.Console.WriteLine(e.Body);
     System.Console.WriteLine(e.StatusCode);
 
@@ -275,25 +275,25 @@ This SDK uses forward-compatible enums that can handle unknown values gracefully
 using PayabliApi;
 
 // Using a built-in value
-var fileContentFtype = FileContentFtype.Pdf;
+var getProfileBillingRequestServiceGroup = GetProfileBillingRequestServiceGroup.PayIn;
 
 // Using a custom value
-var customFileContentFtype = FileContentFtype.FromCustom("custom-value");
+var customGetProfileBillingRequestServiceGroup = GetProfileBillingRequestServiceGroup.FromCustom("custom-value");
 
 // Using in a switch statement
-switch (fileContentFtype.Value)
+switch (getProfileBillingRequestServiceGroup.Value)
 {
-    case FileContentFtype.Values.Pdf:
-        Console.WriteLine("Pdf");
+    case GetProfileBillingRequestServiceGroup.Values.PayIn:
+        Console.WriteLine("PayIn");
         break;
     default:
-        Console.WriteLine($"Unknown value: {fileContentFtype.Value}");
+        Console.WriteLine($"Unknown value: {getProfileBillingRequestServiceGroup.Value}");
         break;
 }
 
 // Explicit casting
-string fileContentFtypeString = (string)FileContentFtype.Pdf;
-FileContentFtype fileContentFtypeFromString = (FileContentFtype)"pdf";
+string getProfileBillingRequestServiceGroupString = (string)GetProfileBillingRequestServiceGroup.PayIn;
+GetProfileBillingRequestServiceGroup getProfileBillingRequestServiceGroupFromString = (GetProfileBillingRequestServiceGroup)"PayIn";
 ```
 
 ## Contributing

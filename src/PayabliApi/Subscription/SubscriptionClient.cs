@@ -69,7 +69,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -145,7 +145,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -219,7 +219,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -237,7 +237,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             var responseBody = await response
                 .Raw.Content.ReadAsStringAsync(cancellationToken)
                 .ConfigureAwait(false);
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -308,7 +308,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -384,7 +384,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -456,7 +456,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -532,7 +532,7 @@ public partial class SubscriptionClient : ISubscriptionClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,

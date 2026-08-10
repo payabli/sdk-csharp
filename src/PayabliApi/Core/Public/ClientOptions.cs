@@ -25,7 +25,7 @@ public partial class ClientOptions
 #else
         set;
 #endif
-    } = PayabliApiEnvironment.Sandbox;
+    } = PayabliApiClientEnvironment.Sandbox;
 
     /// <summary>
     /// The http client used to make requests.

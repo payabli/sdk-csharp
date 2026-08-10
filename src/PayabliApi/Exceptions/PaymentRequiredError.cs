@@ -7,7 +7,7 @@ namespace PayabliApi;
 public class PaymentRequiredError(
     V2DeclinedTransactionResponseWrapper body,
     PayabliApi.RawResponse? rawResponse = null
-) : PayabliApiApiException("PaymentRequiredError", 402, body, rawResponse: rawResponse)
+) : PayabliApiClientApiException("PaymentRequiredError", 402, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

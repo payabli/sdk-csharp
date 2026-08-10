@@ -5,7 +5,7 @@ namespace PayabliApi;
 /// </summary>
 [Serializable]
 public class UnauthorizedError(PayabliErrorBody body, PayabliApi.RawResponse? rawResponse = null)
-    : PayabliApiApiException("UnauthorizedError", 401, body, rawResponse: rawResponse)
+    : PayabliApiClientApiException("UnauthorizedError", 401, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

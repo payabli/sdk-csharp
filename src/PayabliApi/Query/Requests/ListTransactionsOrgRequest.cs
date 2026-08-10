@@ -29,9 +29,7 @@ public record ListTransactionsOrgRequest
     /// &lt;Info&gt;
     ///   **You must remove `parameters=` from the request before you send it, otherwise Payabli will ignore the filters.**
     ///
-    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
-    ///
-    ///   For example:
+    ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client, for example:
     ///
     ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?parameters=totalAmount(gt)=1000&limitRecord=20
     ///
@@ -41,7 +39,7 @@ public record ListTransactionsOrgRequest
     /// &lt;/Info&gt;
     /// See [Filters and Conditions Reference](/developers/developer-guides/pay-ops-reporting-engine-overview#filters-and-conditions-reference) for more information.
     ///
-    /// **List of field names accepted:**
+    /// **Accepted field names:**
     ///
     /// - `transactionDate` (gt, ge, lt, le, eq, ne)
     /// - `transId` (ne, eq, ct, nct, in, nin)
@@ -98,7 +96,7 @@ public record ListTransactionsOrgRequest
     /// - `additional-xxx` (ne, eq, ct, nct) where xxx is the additional field name related to customer data
     /// - 'invoiceAdditional-xxx' (ne, eq, ct, nct) where xxx is the additional field name related to invoice data
     ///
-    /// **List of comparison operators accepted:**
+    /// **Accepted comparison operators:**
     /// - `eq` or empty =&gt; equal
     /// - `gt` =&gt; greater than
     /// - `ge` =&gt; greater or equal

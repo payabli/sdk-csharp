@@ -7,7 +7,7 @@ namespace PayabliApi;
 public class UnprocessableEntityError(
     PayabliErrorBody body,
     PayabliApi.RawResponse? rawResponse = null
-) : PayabliApiApiException("UnprocessableEntityError", 422, body, rawResponse: rawResponse)
+) : PayabliApiClientApiException("UnprocessableEntityError", 422, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

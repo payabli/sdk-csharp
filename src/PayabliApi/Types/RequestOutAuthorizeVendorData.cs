@@ -32,6 +32,11 @@ public record RequestOutAuthorizeVendorData : IJsonOnDeserialized
     [JsonPropertyName("email")]
     public string? Email { get; set; }
 
+    /// <summary>
+    /// Vendor's address
+    ///
+    /// For a PO Box address, include only the PO Box in this field, for example `PO Box 29652`. Put the rest of the address, such as a department number, in `address2`.
+    /// </summary>
     [JsonPropertyName("address1")]
     public string? Address1 { get; set; }
 
@@ -89,6 +94,11 @@ public record RequestOutAuthorizeVendorData : IJsonOnDeserialized
     [JsonPropertyName("additionalData")]
     public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
 
+    /// <summary>
+    /// Additional line for vendor's address.
+    ///
+    /// For a PO Box address, this field holds the part of the address that follows the PO Box, for example `Dept# 880662`.
+    /// </summary>
     [JsonPropertyName("address2")]
     public string? Address2 { get; set; }
 

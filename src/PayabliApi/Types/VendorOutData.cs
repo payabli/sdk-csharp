@@ -16,12 +16,16 @@ public record VendorOutData : IJsonOnDeserialized
 
     /// <summary>
     /// Vendor's street address. Allowed characters are letters, numbers, spaces, and `. ,
+    ///
+    /// For a PO Box address, this field holds only the PO Box, for example `PO Box 29652`, and the rest of the address, such as a department number, is in `Address2`.
     /// </summary>
     [JsonPropertyName("Address1")]
     public string? Address1 { get; set; }
 
     /// <summary>
     /// Additional line for vendor's address, such as a suite or unit number.
+    ///
+    /// For a PO Box address, this field holds the part of the address that follows the PO Box, for example `Dept# 880662`.
     /// </summary>
     [JsonPropertyName("Address2")]
     public string? Address2 { get; set; }

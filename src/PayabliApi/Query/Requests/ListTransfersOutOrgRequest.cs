@@ -33,7 +33,7 @@ public record ListTransfersOutOrgRequest
     ///
     ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
     /// &lt;/Info&gt;
-    /// List of field names accepted:
+    /// Accepted field names:
     ///
     ///   - `transferDate` (gt, ge, lt, le, eq, ne)
     ///   - `grossAmount` (gt, ge, lt, le, eq, ne)

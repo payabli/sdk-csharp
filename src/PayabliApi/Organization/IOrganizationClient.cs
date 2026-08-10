@@ -15,7 +15,7 @@ public partial interface IOrganizationClient
     /// Updates an organization's details by ID.
     /// </summary>
     WithRawResponseTask<EditOrganizationResponse> EditOrganizationAsync(
-        int orgId,
+        int orgIdPathParam,
         OrganizationData request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

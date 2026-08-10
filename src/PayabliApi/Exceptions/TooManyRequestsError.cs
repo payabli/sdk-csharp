@@ -5,7 +5,7 @@ namespace PayabliApi;
 /// </summary>
 [Serializable]
 public class TooManyRequestsError(PayabliErrorBody body, PayabliApi.RawResponse? rawResponse = null)
-    : PayabliApiApiException("TooManyRequestsError", 429, body, rawResponse: rawResponse)
+    : PayabliApiClientApiException("TooManyRequestsError", 429, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

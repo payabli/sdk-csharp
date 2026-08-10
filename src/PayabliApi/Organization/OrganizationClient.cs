@@ -69,7 +69,7 @@ public partial class OrganizationClient : IOrganizationClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -145,7 +145,7 @@ public partial class OrganizationClient : IOrganizationClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -160,7 +160,7 @@ public partial class OrganizationClient : IOrganizationClient
     }
 
     private async Task<WithRawResponse<EditOrganizationResponse>> EditOrganizationAsyncCore(
-        int orgId,
+        int orgIdPathParam,
         OrganizationData request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -187,7 +187,7 @@ public partial class OrganizationClient : IOrganizationClient
                     Method = HttpMethod.Put,
                     Path = string.Format(
                         "Organization/{0}",
-                        ValueConvert.ToPathParameterString(orgId)
+                        ValueConvert.ToPathParameterString(orgIdPathParam)
                     ),
                     Body = request,
                     QueryString = _queryString,
@@ -219,7 +219,7 @@ public partial class OrganizationClient : IOrganizationClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -295,7 +295,7 @@ public partial class OrganizationClient : IOrganizationClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -366,7 +366,7 @@ public partial class OrganizationClient : IOrganizationClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -442,7 +442,7 @@ public partial class OrganizationClient : IOrganizationClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -513,7 +513,7 @@ public partial class OrganizationClient : IOrganizationClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -589,7 +589,7 @@ public partial class OrganizationClient : IOrganizationClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -660,7 +660,7 @@ public partial class OrganizationClient : IOrganizationClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -736,7 +736,7 @@ public partial class OrganizationClient : IOrganizationClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -807,7 +807,7 @@ public partial class OrganizationClient : IOrganizationClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -883,7 +883,7 @@ public partial class OrganizationClient : IOrganizationClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -954,7 +954,7 @@ public partial class OrganizationClient : IOrganizationClient
             }
             catch (JsonException e)
             {
-                throw new PayabliApiApiException(
+                throw new PayabliApiClientApiException(
                     "Failed to deserialize response",
                     response.StatusCode,
                     responseBody,
@@ -1030,7 +1030,7 @@ public partial class OrganizationClient : IOrganizationClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new PayabliApiApiException(
+            throw new PayabliApiClientApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody,
@@ -1130,7 +1130,7 @@ public partial class OrganizationClient : IOrganizationClient
     ///         OrgCity = "Johnson City",
     ///         OrgCountry = "US",
     ///         OrgEntryName = "pilgrim-planner",
-    ///         OrganizationDataOrgId = "123",
+    ///         OrgId = "123",
     ///         OrgName = "Pilgrim Planner",
     ///         OrgState = "TN",
     ///         OrgTimezone = -5,
@@ -1141,14 +1141,14 @@ public partial class OrganizationClient : IOrganizationClient
     /// );
     /// </code></example>
     public WithRawResponseTask<EditOrganizationResponse> EditOrganizationAsync(
-        int orgId,
+        int orgIdPathParam,
         OrganizationData request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<EditOrganizationResponse>(
-            EditOrganizationAsyncCore(orgId, request, options, cancellationToken)
+            EditOrganizationAsyncCore(orgIdPathParam, request, options, cancellationToken)
         );
     }
 

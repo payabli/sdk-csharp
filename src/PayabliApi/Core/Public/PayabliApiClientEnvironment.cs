@@ -1,7 +1,7 @@
 namespace PayabliApi;
 
 [Serializable]
-public class PayabliApiEnvironment
+public class PayabliApiClientEnvironment
 {
     public const string Sandbox = "https://api-sandbox.payabli.com/api";
 

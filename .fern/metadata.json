@@ -1,15 +1,17 @@
 {
-  "cliVersion": "5.56.0",
+  "cliVersion": "5.92.0",
   "generatorName": "fernapi/fern-csharp-sdk",
   "generatorVersion": "2.79.0",
   "generatorConfig": {
     "generate-mock-server-tests": true,
-    "inline-path-parameters": false
+    "inline-path-parameters": false,
+    "namespace": "PayabliApi",
+    "client-class-name": "PayabliApiClient"
   },
-  "originGitCommit": "85dc6dd780991f47e9c2d71ad221647a62bccf93",
+  "originGitCommit": "6f0aca12eeff810e6f74ee637add641874b1c134",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "1.0.15",
+  "requestedVersion": "1.1.1",
   "ciProvider": "github",
-  "sdkVersion": "1.0.15"
+  "sdkVersion": "1.1.1"
 }
