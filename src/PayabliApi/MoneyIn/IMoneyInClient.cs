@@ -206,7 +206,7 @@ public partial interface IMoneyInClient
     /// </summary>
     WithRawResponseTask<V2TransactionResponseWrapper> Refundv2Async(
         string transId,
-        RefundV2Request? request,
+        RefundV2Request? request = null,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -223,7 +223,7 @@ public partial interface IMoneyInClient
     WithRawResponseTask<V2TransactionResponseWrapper> Refundv2AmountAsync(
         string transId,
         double amount,
-        RefundV2Request? request,
+        RefundV2Request? request = null,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

@@ -2410,7 +2410,7 @@ public partial class MoneyInClient : IMoneyInClient
 
     private async Task<WithRawResponse<V2TransactionResponseWrapper>> Refundv2AsyncCore(
         string transId,
-        RefundV2Request? request,
+        RefundV2Request? request = null,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -2564,7 +2564,7 @@ public partial class MoneyInClient : IMoneyInClient
     private async Task<WithRawResponse<V2TransactionResponseWrapper>> Refundv2AmountAsyncCore(
         string transId,
         double amount,
-        RefundV2Request? request,
+        RefundV2Request? request = null,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -3364,7 +3364,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// </code></example>
     public WithRawResponseTask<V2TransactionResponseWrapper> Refundv2Async(
         string transId,
-        RefundV2Request? request,
+        RefundV2Request? request = null,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -3389,7 +3389,7 @@ public partial class MoneyInClient : IMoneyInClient
     public WithRawResponseTask<V2TransactionResponseWrapper> Refundv2AmountAsync(
         string transId,
         double amount,
-        RefundV2Request? request,
+        RefundV2Request? request = null,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

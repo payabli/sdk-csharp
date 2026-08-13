@@ -93,6 +93,14 @@ public record ListDevicesOrgRequest
     ///
     /// - `parentOrgName` (eq, ne, ct, nct)
     ///
+    /// - `paypointLogo` (eq, ne, ct, nct)
+    ///
+    /// - `parentOrgLogo` (eq, ne, ct, nct)
+    ///
+    /// - `transactionCount` (eq, ne, gt, ge, lt, le)
+    ///
+    /// - `volumeProcessed` (eq, ne, gt, ge, lt, le)
+    ///
     ///
     /// **Accepted comparison operators:**
     ///

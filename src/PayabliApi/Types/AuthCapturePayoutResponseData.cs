@@ -14,8 +14,11 @@ public record AuthCapturePayoutResponseData : IJsonOnDeserialized
     [JsonPropertyName("authCode")]
     public string? AuthCode { get; set; }
 
+    /// <summary>
+    /// The transaction reference ID, used to capture the transaction. Returns `null` when no transaction is created, such as a declined authorization.
+    /// </summary>
     [JsonPropertyName("referenceId")]
-    public required string ReferenceId { get; set; }
+    public string? ReferenceId { get; set; }
 
     [JsonPropertyName("resultCode")]
     public required int ResultCode { get; set; }

@@ -230,6 +230,13 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("EntityId")]
     public string? EntityId { get; set; }
 
+    /// <summary>
+    /// Operations currently permitted for this payout, derived from its status. Always present; empty for terminal statuses such as paid or canceled. Read this array directly rather than inferring available actions from `PaymentStatus`.
+    /// </summary>
+    [JsonPropertyName("allowedActions")]
+    public IEnumerable<QueryPayoutTransactionRecordsItemAllowedActionsItem> AllowedActions { get; set; } =
+        new List<QueryPayoutTransactionRecordsItemAllowedActionsItem>();
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

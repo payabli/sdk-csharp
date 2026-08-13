@@ -138,6 +138,12 @@ public record DeviceQueryRecord : IJsonOnDeserialized
     public string? PaypointEntry { get; set; }
 
     /// <summary>
+    /// URL of the paypoint's logo, when available.
+    /// </summary>
+    [JsonPropertyName("paypointLogo")]
+    public string? PaypointLogo { get; set; }
+
+    /// <summary>
     /// External identifier for the paypoint.
     /// </summary>
     [JsonPropertyName("externalPaypointId")]
@@ -154,6 +160,24 @@ public record DeviceQueryRecord : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("parentOrgName")]
     public string? ParentOrgName { get; set; }
+
+    /// <summary>
+    /// URL of the parent organization's logo, when available.
+    /// </summary>
+    [JsonPropertyName("parentOrgLogo")]
+    public string? ParentOrgLogo { get; set; }
+
+    /// <summary>
+    /// Total number of transactions processed by this device.
+    /// </summary>
+    [JsonPropertyName("transactionCount")]
+    public required int TransactionCount { get; set; }
+
+    /// <summary>
+    /// Total volume processed by this device, as the sum of net transaction amounts.
+    /// </summary>
+    [JsonPropertyName("volumeProcessed")]
+    public required double VolumeProcessed { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
