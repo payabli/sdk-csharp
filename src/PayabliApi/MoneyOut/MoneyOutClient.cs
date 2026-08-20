@@ -1393,7 +1393,7 @@ public partial class MoneyOutClient : IMoneyOutClient
                 new JsonRequest
                 {
                     Method = HttpMethod.Post,
-                    Path = "vcard/send-card-link",
+                    Path = "MoneyOut/vcard/send-card-link",
                     Body = request,
                     QueryString = _queryString,
                     Headers = _headers,

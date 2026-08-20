@@ -165,7 +165,7 @@ public partial class FundingClient : IFundingClient
     /// await client.Funding.DepositFundsAsync(
     ///     new DepositFundsRequest
     ///     {
-    ///         Amount = 10,
+    ///         Amount = 1500,
     ///         Entrypoint = "48acde49",
     ///         AccountId = "333",
     ///     }

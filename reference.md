@@ -1266,18 +1266,11 @@ await client.MoneyIn.AuthorizeAsync(
     {
         Body = new TransRequestBody
         {
-            CustomerData = new PayorDataRequest { CustomerId = 4440 },
-            EntryPoint = "8cfec329267",
-            Ipaddress = "255.255.255.255",
-            PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+            PaymentDetails = new PaymentDetail { TotalAmount = 1.1 },
             PaymentMethod = new PayMethodCredit
             {
-                Cardcvv = "999",
-                Cardexp = "02/27",
-                CardHolder = "John Cassian",
-                Cardnumber = "4111111111111111",
-                Cardzip = "12345",
-                Initiator = "payor",
+                Cardexp = "cardexp",
+                Cardnumber = "cardnumber",
                 Method = PayMethodCreditMethod.Card,
             },
         },
@@ -1341,7 +1334,7 @@ transaction](/developers/api-reference/moneyin/authorize-a-transaction) to compl
 <dd>
 
 ```csharp
-await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
+await client.MoneyIn.CaptureAsync("transId", 1.1);
 ```
 </dd>
 </dl>
@@ -1410,11 +1403,8 @@ You can use this endpoint to capture both full and partial amounts of the origin
 
 ```csharp
 await client.MoneyIn.CaptureAuthAsync(
-    "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
-    new CaptureRequest
-    {
-        PaymentDetails = new CapturePaymentDetails { TotalAmount = 105, ServiceFee = 5 },
-    }
+    "transId",
+    new CaptureRequest { PaymentDetails = new CapturePaymentDetails { TotalAmount = 1.1 } }
 );
 ```
 </dd>
@@ -1616,18 +1606,11 @@ await client.MoneyIn.GetpaidAsync(
     {
         Body = new TransRequestBody
         {
-            CustomerData = new PayorDataRequest { CustomerId = 4440 },
-            EntryPoint = "8cfec329267",
-            Ipaddress = "255.255.255.255",
-            PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+            PaymentDetails = new PaymentDetail { TotalAmount = 1.1 },
             PaymentMethod = new PayMethodCredit
             {
-                Cardcvv = "999",
-                Cardexp = "02/27",
-                CardHolder = "John Cassian",
-                Cardnumber = "4111111111111111",
-                Cardzip = "12345",
-                Initiator = "payor",
+                Cardexp = "cardexp",
+                Cardnumber = "cardnumber",
                 Method = PayMethodCreditMethod.Card,
             },
         },
@@ -1690,7 +1673,7 @@ A reversal either refunds or voids a transaction independent of the transaction'
 <dd>
 
 ```csharp
-await client.MoneyIn.ReverseAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+await client.MoneyIn.ReverseAsync("transId", 1.1);
 ```
 </dd>
 </dl>
@@ -1762,7 +1745,7 @@ Refund a transaction that has settled and send money back to the account holder.
 <dd>
 
 ```csharp
-await client.MoneyIn.RefundAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+await client.MoneyIn.RefundAsync("transId", 1.1);
 ```
 </dd>
 </dl>
@@ -1834,36 +1817,7 @@ Refunds a settled transaction with split instructions.
 <dd>
 
 ```csharp
-await client.MoneyIn.RefundWithInstructionsAsync(
-    "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
-    new RequestRefund
-    {
-        IdempotencyKey = "8A29FC40-CA47-1067-B31D-00DD010662DB",
-        Source = "api",
-        OrderDescription = "Materials deposit",
-        Amount = 100,
-        RefundDetails = new RefundDetail
-        {
-            SplitRefunding = new List<SplitFundingRefundContent>()
-            {
-                new SplitFundingRefundContent
-                {
-                    OriginationEntryPoint = "7f1a381696",
-                    AccountId = "187-342",
-                    Description = "Refunding undelivered materials",
-                    Amount = 60,
-                },
-                new SplitFundingRefundContent
-                {
-                    OriginationEntryPoint = "7f1a381696",
-                    AccountId = "187-343",
-                    Description = "Refunding deposit for undelivered materials",
-                    Amount = 40,
-                },
-            },
-        },
-    }
-);
+await client.MoneyIn.RefundWithInstructionsAsync("transId", new RequestRefund());
 ```
 </dd>
 </dl>
@@ -2116,7 +2070,7 @@ Cancel a transaction that hasn't been settled yet. Voiding non-captured authoriz
 <dd>
 
 ```csharp
-await client.MoneyIn.VoidAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+await client.MoneyIn.VoidAsync("transId");
 ```
 </dd>
 </dl>
@@ -17108,7 +17062,7 @@ Deposits funds into a paypoint's available payout balance. Deposited funds enter
 await client.Funding.DepositFundsAsync(
     new DepositFundsRequest
     {
-        Amount = 10,
+        Amount = 1500,
         Entrypoint = "48acde49",
         AccountId = "333",
     }

@@ -46,7 +46,7 @@ public record PaymentDetail : IJsonOnDeserialized
     public double? ServiceFee { get; set; }
 
     /// <summary>
-    /// Split funding instructions for the transaction. See [Split a Transaction](/developers/developer-guides/money-in-split-funding) for more.
+    /// Split funding instructions for the transaction. See [Split a Transaction](/guides/pay-in-developer-routing-split-funds) for more.
     /// </summary>
     [JsonPropertyName("splitFunding")]
     public IEnumerable<SplitFundingContent>? SplitFunding { get; set; }

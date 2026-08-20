@@ -1,5 +1,5 @@
 {
-  "cliVersion": "5.95.1",
+  "cliVersion": "5.98.1",
   "generatorName": "fernapi/fern-csharp-sdk",
   "generatorVersion": "2.82.0",
   "generatorConfig": {
@@ -9,10 +9,10 @@
     "client-class-name": "PayabliApiClient",
     "respect-optional-request-body": true
   },
-  "originGitCommit": "c0d928adb5a06dd2f0f02ec1e68e0159c230e3b6",
+  "originGitCommit": "33c4be76370d98fe1e454d48b12915cd83dd3131",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "1.1.5",
+  "requestedVersion": "1.1.6",
   "ciProvider": "github",
-  "sdkVersion": "1.1.5"
+  "sdkVersion": "1.1.6"
 }

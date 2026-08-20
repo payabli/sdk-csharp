@@ -2883,18 +2883,11 @@ public partial class MoneyInClient : IMoneyInClient
     ///     {
     ///         Body = new TransRequestBody
     ///         {
-    ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "8cfec329267",
-    ///             Ipaddress = "255.255.255.255",
-    ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+    ///             PaymentDetails = new PaymentDetail { TotalAmount = 1.1 },
     ///             PaymentMethod = new PayMethodCredit
     ///             {
-    ///                 Cardcvv = "999",
-    ///                 Cardexp = "02/27",
-    ///                 CardHolder = "John Cassian",
-    ///                 Cardnumber = "4111111111111111",
-    ///                 Cardzip = "12345",
-    ///                 Initiator = "payor",
+    ///                 Cardexp = "cardexp",
+    ///                 Cardnumber = "cardnumber",
     ///                 Method = PayMethodCreditMethod.Card,
     ///             },
     ///         },
@@ -2921,7 +2914,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// transaction](/developers/api-reference/moneyin/authorize-a-transaction) to complete the transaction and move funds from the customer to merchant account.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.CaptureAsync("10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13", 0);
+    /// await client.MoneyIn.CaptureAsync("transId", 1.1);
     /// </code></example>
     public WithRawResponseTask<CaptureResponse> CaptureAsync(
         string transId,
@@ -2946,11 +2939,8 @@ public partial class MoneyInClient : IMoneyInClient
     /// </summary>
     /// <example><code>
     /// await client.MoneyIn.CaptureAuthAsync(
-    ///     "10-7d9cd67d-2d5d-4cd7-a1b7-72b8b201ec13",
-    ///     new CaptureRequest
-    ///     {
-    ///         PaymentDetails = new CapturePaymentDetails { TotalAmount = 105, ServiceFee = 5 },
-    ///     }
+    ///     "transId",
+    ///     new CaptureRequest { PaymentDetails = new CapturePaymentDetails { TotalAmount = 1.1 } }
     /// );
     /// </code></example>
     public WithRawResponseTask<CaptureResponse> CaptureAuthAsync(
@@ -3034,18 +3024,11 @@ public partial class MoneyInClient : IMoneyInClient
     ///     {
     ///         Body = new TransRequestBody
     ///         {
-    ///             CustomerData = new PayorDataRequest { CustomerId = 4440 },
-    ///             EntryPoint = "8cfec329267",
-    ///             Ipaddress = "255.255.255.255",
-    ///             PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+    ///             PaymentDetails = new PaymentDetail { TotalAmount = 1.1 },
     ///             PaymentMethod = new PayMethodCredit
     ///             {
-    ///                 Cardcvv = "999",
-    ///                 Cardexp = "02/27",
-    ///                 CardHolder = "John Cassian",
-    ///                 Cardnumber = "4111111111111111",
-    ///                 Cardzip = "12345",
-    ///                 Initiator = "payor",
+    ///                 Cardexp = "cardexp",
+    ///                 Cardnumber = "cardnumber",
     ///                 Method = PayMethodCreditMethod.Card,
     ///             },
     ///         },
@@ -3071,7 +3054,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// A reversal either refunds or voids a transaction independent of the transaction's settlement status. Send a reversal request for a transaction, and Payabli automatically determines whether it's a refund or void. You don't need to know whether the transaction is settled or not. This endpoint only works on transactions made with the legacy endpoints. For transactions made with the current endpoints, check the transaction's settlement status and call void or refund based on the result.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.ReverseAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+    /// await client.MoneyIn.ReverseAsync("transId", 1.1);
     /// </code></example>
     public WithRawResponseTask<ReverseResponse> ReverseAsync(
         string transId,
@@ -3093,7 +3076,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// Refund a transaction that has settled and send money back to the account holder. If a transaction hasn't been settled, void it instead.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.RefundAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723", 0);
+    /// await client.MoneyIn.RefundAsync("transId", 1.1);
     /// </code></example>
     public WithRawResponseTask<RefundResponse> RefundAsync(
         string transId,
@@ -3115,36 +3098,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// Refunds a settled transaction with split instructions.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.RefundWithInstructionsAsync(
-    ///     "10-3ffa27df-b171-44e0-b251-e95fbfc7a723",
-    ///     new RequestRefund
-    ///     {
-    ///         IdempotencyKey = "8A29FC40-CA47-1067-B31D-00DD010662DB",
-    ///         Source = "api",
-    ///         OrderDescription = "Materials deposit",
-    ///         Amount = 100,
-    ///         RefundDetails = new RefundDetail
-    ///         {
-    ///             SplitRefunding = new List&lt;SplitFundingRefundContent&gt;()
-    ///             {
-    ///                 new SplitFundingRefundContent
-    ///                 {
-    ///                     OriginationEntryPoint = "7f1a381696",
-    ///                     AccountId = "187-342",
-    ///                     Description = "Refunding undelivered materials",
-    ///                     Amount = 60,
-    ///                 },
-    ///                 new SplitFundingRefundContent
-    ///                 {
-    ///                     OriginationEntryPoint = "7f1a381696",
-    ///                     AccountId = "187-343",
-    ///                     Description = "Refunding deposit for undelivered materials",
-    ///                     Amount = 40,
-    ///                 },
-    ///             },
-    ///         },
-    ///     }
-    /// );
+    /// await client.MoneyIn.RefundWithInstructionsAsync("transId", new RequestRefund());
     /// </code></example>
     public WithRawResponseTask<RefundWithInstructionsResponse> RefundWithInstructionsAsync(
         string transId,
@@ -3235,7 +3189,7 @@ public partial class MoneyInClient : IMoneyInClient
     /// Cancel a transaction that hasn't been settled yet. Voiding non-captured authorizations prevents future captures. If a transaction has been settled, refund it instead.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyIn.VoidAsync("10-3ffa27df-b171-44e0-b251-e95fbfc7a723");
+    /// await client.MoneyIn.VoidAsync("transId");
     /// </code></example>
     public WithRawResponseTask<VoidResponse> VoidAsync(
         string transId,

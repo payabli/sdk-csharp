@@ -1,7 +1,7 @@
 # Payabli C# Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fpayabli%2Fsdk-csharp)
-[![nuget shield](https://img.shields.io/nuget/v/Payabli.SDK)](https://nuget.org/packages/Payabli.SDK)
+[![nuget shield](https://img.shields.io/nuget/v/PayabliApi)](https://nuget.org/packages/PayabliApi)
 
 The Payabli C# library provides convenient access to the Payabli APIs from C#.
 
@@ -38,7 +38,7 @@ This SDK requires:
 ## Installation
 
 ```sh
-dotnet add package Payabli.SDK
+dotnet add package PayabliApi
 ```
 
 ## Changelog
@@ -89,12 +89,20 @@ await client.MoneyIn.Getpaidv2Async(
             CustomerData = new PayorDataRequest { CustomerId = 4440 },
             EntryPoint = "8cfec329267",
             Ipaddress = "255.255.255.255",
-            PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
-            PaymentMethod = new PayMethodCloud
+            PaymentDetails = new PaymentDetail
             {
-                Device = "6c361c7d-674c-44cc-b790-382b75d1xxx",
-                Method = PayMethodCloudMethod.Cloud,
-                SaveIfSuccess = true,
+                CheckUniqueId = "abc123def456",
+                ServiceFee = 0,
+                TotalAmount = 125.5,
+            },
+            PaymentMethod = new PayMethodAch
+            {
+                AchAccount = "123456",
+                AchAccountType = Achaccounttype.Checking,
+                AchCode = "BOC",
+                AchHolder = "John Doe",
+                AchRouting = "123456789",
+                Method = PayMethodAchMethod.Ach,
             },
         },
     }
