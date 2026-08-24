@@ -54,6 +54,7 @@ public record TransRequestBody : IJsonOnDeserialized
         PayMethodAch,
         PayMethodStoredMethod,
         PayMethodCloud,
+        PayMethodDevice,
         Check,
         Cash,
         PayMethodBodyAllFields

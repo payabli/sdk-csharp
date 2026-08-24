@@ -5,7 +5,9 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// Object containing vendor data.
+/// Vendor to pay with this payout. Create the vendor first with
+/// [Create vendor](/developers/api-reference/vendor/create-vendor), then
+/// reference it here by `vendorNumber` or `vendorId`.
 /// </summary>
 [Serializable]
 public record RequestOutAuthorizeVendorData : IJsonOnDeserialized
@@ -17,106 +19,9 @@ public record RequestOutAuthorizeVendorData : IJsonOnDeserialized
     [JsonPropertyName("vendorNumber")]
     public string? VendorNumber { get; set; }
 
-    [JsonPropertyName("name1")]
-    public string? Name1 { get; set; }
-
-    [JsonPropertyName("name2")]
-    public string? Name2 { get; set; }
-
-    [JsonPropertyName("ein")]
-    public string? Ein { get; set; }
-
-    [JsonPropertyName("phone")]
-    public string? Phone { get; set; }
-
-    [JsonPropertyName("email")]
-    public string? Email { get; set; }
-
     /// <summary>
-    /// Vendor's address
-    ///
-    /// For a PO Box address, include only the PO Box in this field, for example `PO Box 29652`. Put the rest of the address, such as a department number, in `address2`.
+    /// Payabli identifier for the vendor record. Required when `vendorNumber` isn't included.
     /// </summary>
-    [JsonPropertyName("address1")]
-    public string? Address1 { get; set; }
-
-    [JsonPropertyName("city")]
-    public string? City { get; set; }
-
-    [JsonPropertyName("state")]
-    public string? State { get; set; }
-
-    [JsonPropertyName("zip")]
-    public string? Zip { get; set; }
-
-    [JsonPropertyName("country")]
-    public string? Country { get; set; }
-
-    [JsonPropertyName("mcc")]
-    public string? Mcc { get; set; }
-
-    [JsonPropertyName("contacts")]
-    public IEnumerable<Contacts>? Contacts { get; set; }
-
-    [JsonPropertyName("billingData")]
-    public RequestOutAuthorizeVendorBillingData? BillingData { get; set; }
-
-    [JsonPropertyName("vendorStatus")]
-    public int? VendorStatus { get; set; }
-
-    [JsonPropertyName("remitAddress1")]
-    public string? RemitAddress1 { get; set; }
-
-    [JsonPropertyName("remitAddress2")]
-    public string? RemitAddress2 { get; set; }
-
-    [JsonPropertyName("remitCity")]
-    public string? RemitCity { get; set; }
-
-    [JsonPropertyName("remitState")]
-    public string? RemitState { get; set; }
-
-    [JsonPropertyName("remitZip")]
-    public string? RemitZip { get; set; }
-
-    [JsonPropertyName("remitCountry")]
-    public string? RemitCountry { get; set; }
-
-    [JsonPropertyName("customerVendorAccount")]
-    public string? CustomerVendorAccount { get; set; }
-
-    [JsonPropertyName("customField1")]
-    public string? CustomField1 { get; set; }
-
-    [JsonPropertyName("customField2")]
-    public string? CustomField2 { get; set; }
-
-    [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
-
-    /// <summary>
-    /// Additional line for vendor's address.
-    ///
-    /// For a PO Box address, this field holds the part of the address that follows the PO Box, for example `Dept# 880662`.
-    /// </summary>
-    [JsonPropertyName("address2")]
-    public string? Address2 { get; set; }
-
-    [JsonPropertyName("internalReferenceId")]
-    public long? InternalReferenceId { get; set; }
-
-    [JsonPropertyName("locationCode")]
-    public string? LocationCode { get; set; }
-
-    [JsonPropertyName("payeeName1")]
-    public string? PayeeName1 { get; set; }
-
-    [JsonPropertyName("payeeName2")]
-    public string? PayeeName2 { get; set; }
-
-    [JsonPropertyName("paymentMethod")]
-    public VendorPaymentMethod? PaymentMethod { get; set; }
-
     [JsonPropertyName("vendorId")]
     public int? VendorId { get; set; }
 

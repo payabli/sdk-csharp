@@ -63,7 +63,7 @@ public record TransactionQueryRecords : IJsonOnDeserialized
     public BillData? InvoiceData { get; set; }
 
     /// <summary>
-    /// Payment method used: card, ach, or wallet.
+    /// The payment method used for the transaction, for example card, ach, or device.
     /// </summary>
     [JsonPropertyName("Method")]
     public string? Method { get; set; }

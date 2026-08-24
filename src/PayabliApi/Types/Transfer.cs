@@ -165,7 +165,7 @@ public record Transfer : IJsonOnDeserialized
     public required double ThirdPartyPaidAmount { get; set; }
 
     /// <summary>
-    /// Amount of corrections applied to Billing & Fees charges.
+    /// Amount of corrections applied to Billing &amp; Fees charges.
     /// </summary>
     [JsonPropertyName("adjustmentsAmount")]
     public required double AdjustmentsAmount { get; set; }

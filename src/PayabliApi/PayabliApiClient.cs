@@ -21,8 +21,8 @@ public partial class PayabliApiClient : IPayabliApiClient
             {
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
-                { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "PayabliApi/1.1.6" },
+                { "X-Fern-SDK-Version", global::PayabliApi.Version.Current },
+                { "User-Agent", "PayabliApi/1.1.7" },
             }
         );
         foreach (var header in platformHeaders)
@@ -70,6 +70,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Query = new QueryClient(_client);
         Ocr = new OcrClient(_client);
         Notificationlogs = new NotificationlogsClient(_client);
+        Device = new DeviceClient(_client);
         Cloud = new CloudClient(_client);
         LineItem = new LineItemClient(_client);
         Boarding = new BoardingClient(_client);
@@ -122,6 +123,8 @@ public partial class PayabliApiClient : IPayabliApiClient
     public IOcrClient Ocr { get; }
 
     public INotificationlogsClient Notificationlogs { get; }
+
+    public IDeviceClient Device { get; }
 
     public ICloudClient Cloud { get; }
 

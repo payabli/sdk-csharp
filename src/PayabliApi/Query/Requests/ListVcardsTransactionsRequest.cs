@@ -26,11 +26,11 @@ public record ListVcardsTransactionsRequest
     ///
     ///   Because of a technical limitation, you can't make a request that includes filters from the API console on this page. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client, for example:
     ///
-    ///   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/8cfec329267?parameters=transactionAmount(gt)=100&limitRecord=20
+    ///   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/8cfec329267?parameters=transactionAmount(gt)=100&amp;limitRecord=20
     ///
     ///   should become:
     ///
-    ///   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/8cfec329267?transactionAmount(gt)=100&limitRecord=20
+    ///   --url https://api-sandbox.payabli.com/api/Query/vcardsTransactions/8cfec329267?transactionAmount(gt)=100&amp;limitRecord=20
     /// &lt;/Info&gt;
     ///
     /// Accepted field names:

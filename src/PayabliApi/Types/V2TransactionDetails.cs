@@ -45,7 +45,7 @@ public record V2TransactionDetails : IJsonOnDeserialized
     /// Gateway transaction identifier.
     /// </summary>
     [JsonPropertyName("gatewayTransId")]
-    public required string GatewayTransId { get; set; }
+    public string? GatewayTransId { get; set; }
 
     [JsonPropertyName("orderId")]
     public string? OrderId { get; set; }

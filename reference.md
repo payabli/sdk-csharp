@@ -9503,6 +9503,70 @@ await client.Notificationlogs.BulkRetryNotificationLogsAsync(
 </dl>
 </details>
 
+## Device
+<details><summary><code>client.Device.<a href="/src/PayabliApi/Device/DeviceClient.cs">ChallengeAsync</a>(entry) -> WithRawResponseTask&lt;DeviceChallengeResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generates a one-time, 6-digit verification code for activating a
+semi-integrated card-present device in a paypoint. After calling this endpoint, an operator enters the returned code
+on the device's terminal, along with a device name, to register the
+device to the paypoint resolved from `{entry}`.
+
+A code expires 5 minutes after it's issued. A paypoint can have several
+codes active at once — for example, when activating a batch of devices —
+and a code binds to whichever device enters it first.
+
+Authenticate with an OAuth2 Bearer token that has the `device_registry` scope.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Device.ChallengeAsync("8cfec329267");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Cloud
 <details><summary><code>client.Cloud.<a href="/src/PayabliApi/Cloud/CloudClient.cs">AddDeviceAsync</a>(entry, DeviceEntry { ... }) -> WithRawResponseTask&lt;AddDeviceResponse&gt;</code></summary>
 <dl>
@@ -9705,7 +9769,7 @@ await client.Cloud.HistoryDeviceAsync("8cfec329267", "499585-389fj484-3jcj8hj3")
 <dl>
 <dd>
 
-Use [List devices by paypoint](/developers/api-reference/cloud/get-list-of-devices-for-a-paypoint) instead, which supports filters, sorting, and pagination.
+Use [List devices by paypoint](/developers/api-reference/get-list-of-devices-for-a-paypoint) instead, which supports filters, sorting, and pagination.
 
 Get a list of cloud devices registered to an entrypoint.
 </dd>

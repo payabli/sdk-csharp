@@ -33,7 +33,7 @@ public record V2TransactionDetailResponseData : IJsonOnDeserialized
     /// Unique identifier for the transaction assigned by the payment processor.
     /// </summary>
     [JsonPropertyName("transactionid")]
-    public required string Transactionid { get; set; }
+    public string? Transactionid { get; set; }
 
     [JsonPropertyName("avsresponse")]
     public string? Avsresponse { get; set; }

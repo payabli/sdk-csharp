@@ -18,10 +18,9 @@ public partial class MoneyOutClient : IMoneyOutClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 4)
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 3)
             .Add("allowDuplicatedBills", request.AllowDuplicatedBills)
             .Add("doNotCreateBills", request.DoNotCreateBills)
-            .Add("forceVendorCreation", request.ForceVendorCreation)
             .Add("sameDayACH", request.SameDayAch)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();

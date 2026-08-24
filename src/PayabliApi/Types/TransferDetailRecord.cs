@@ -96,7 +96,7 @@ public record TransferDetailRecord : IJsonOnDeserialized
     public double? ThirdPartyPaidAmount { get; set; }
 
     /// <summary>
-    /// Corrections applied to Billing & Fees charges
+    /// Corrections applied to Billing &amp; Fees charges
     /// </summary>
     [JsonPropertyName("adjustmentsAmount")]
     public double? AdjustmentsAmount { get; set; }
@@ -162,7 +162,7 @@ public record TransferDetailRecord : IJsonOnDeserialized
     public string? OrderId { get; set; }
 
     /// <summary>
-    /// Payment method used: card, ach, or wallet
+    /// The payment method used for the transaction, for example card, ach, or device.
     /// </summary>
     [JsonPropertyName("Method")]
     public string? Method { get; set; }

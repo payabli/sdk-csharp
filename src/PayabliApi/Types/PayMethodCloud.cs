@@ -20,9 +20,6 @@ public record PayMethodCloud : IJsonOnDeserialized
     [JsonPropertyName("method")]
     public required PayMethodCloudMethod Method { get; set; }
 
-    [JsonPropertyName("saveIfSuccess")]
-    public bool? SaveIfSuccess { get; set; }
-
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

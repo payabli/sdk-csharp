@@ -19,12 +19,6 @@ public record RequestOutAuthorize
     public bool? DoNotCreateBills { get; set; }
 
     /// <summary>
-    /// When `true`, the request creates a new vendor record, regardless of whether the vendor already exists.
-    /// </summary>
-    [JsonIgnore]
-    public bool? ForceVendorCreation { get; set; }
-
-    /// <summary>
     /// When `true`, Payabli authorizes the payout for same-day ACH processing instead of standard ACH. Same-day ACH must be enabled for the paypoint, otherwise the authorization fails with a `400` response and `responseCode` `3492`. Only ACH payouts honor this flag. Wire and RTP payouts ignore it.
     ///
     /// Same-day ACH has a daily cutoff. Capture the transaction before the cutoff, or pass `autoConvertSameDayAch` with a value of `true` when you capture it.
@@ -66,11 +60,10 @@ public record RequestOutAuthorize
     public required RequestOutAuthorizeVendorData VendorData { get; set; }
 
     /// <summary>
-    /// Array of bills associated to the transaction
+    /// Bills to pay with this payout, each referenced by `billId`.
     /// </summary>
     [JsonPropertyName("invoiceData")]
-    public IEnumerable<RequestOutAuthorizeInvoiceData> InvoiceData { get; set; } =
-        new List<RequestOutAuthorizeInvoiceData>();
+    public IEnumerable<RequestOutAuthorizeInvoiceData>? InvoiceData { get; set; }
 
     [JsonPropertyName("accountId")]
     public string? AccountId { get; set; }

@@ -158,7 +158,7 @@ public record QueryResponseSettlementsRecordsItem : IJsonOnDeserialized
     public DateTime? TransactionTime { get; set; }
 
     /// <summary>
-    /// Payment method used: card or ach.
+    /// The payment method used for the transaction, for example card, ach, or device.
     /// </summary>
     [JsonPropertyName("TransMethod")]
     public string? TransMethod { get; set; }

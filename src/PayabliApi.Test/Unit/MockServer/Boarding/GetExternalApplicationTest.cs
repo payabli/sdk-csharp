@@ -1,0 +1,50 @@
+using NUnit.Framework;
+using PayabliApi;
+using PayabliApi.Test.Unit.MockServer;
+using PayabliApi.Test.Utils;
+
+namespace PayabliApi.Test.Unit.MockServer.Boarding;
+
+[TestFixture]
+[Parallelizable(ParallelScope.Self)]
+public class GetExternalApplicationTest : BaseMockServerTest
+{
+    [NUnit.Framework.Test]
+    public async Task MockServerTest()
+    {
+        const string mockResponse = """
+            {
+              "isSuccess": true,
+              "responseCode": 1,
+              "responseData": {
+                "appLink": "https://boarding-sandbox.payabli.com/boarding/externalapp/load/17E",
+                "referenceId": "129-219"
+              },
+              "responseText": "Success"
+            }
+            """;
+
+        Server
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Boarding/applink/352/mail2")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingPut()
+            )
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
+
+        var response = await Client.Boarding.GetExternalApplicationAsync(
+            352,
+            "mail2",
+            new GetExternalApplicationRequest()
+        );
+        JsonAssert.AreEqual(response, mockResponse);
+    }
+}

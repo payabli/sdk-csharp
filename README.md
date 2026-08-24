@@ -34,6 +34,9 @@ API reference documentation is available [here](https://docs.payabli.com).
 ## Requirements
 
 This SDK requires:
+- .NET 8 and above
+- .NET Framework 4.6.2 and above
+- .NET Standard 2.0 and above
 
 ## Installation
 
@@ -89,20 +92,12 @@ await client.MoneyIn.Getpaidv2Async(
             CustomerData = new PayorDataRequest { CustomerId = 4440 },
             EntryPoint = "8cfec329267",
             Ipaddress = "255.255.255.255",
-            PaymentDetails = new PaymentDetail
+            PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
+            PaymentMethod = new PayMethodDevice
             {
-                CheckUniqueId = "abc123def456",
-                ServiceFee = 0,
-                TotalAmount = 125.5,
-            },
-            PaymentMethod = new PayMethodAch
-            {
-                AchAccount = "123456",
-                AchAccountType = Achaccounttype.Checking,
-                AchCode = "BOC",
-                AchHolder = "John Doe",
-                AchRouting = "123456789",
-                Method = PayMethodAchMethod.Ach,
+                Device = "499585-389fj484-3jcj8hj3",
+                Method = PayMethodDeviceMethod.Device,
+                SaveIfSuccess = true,
             },
         },
     }
@@ -177,7 +172,7 @@ Use the `MaxRetries` request option to configure this behavior.
 var response = await client.MoneyIn.Getpaidv2Async(
     ...,
     new RequestOptions {
-        MaxRetries: 0 // Override MaxRetries at the request level
+        MaxRetries = 0 // Override MaxRetries at the request level
     }
 );
 ```
@@ -190,7 +185,7 @@ The SDK defaults to a 30 second timeout. Use the `Timeout` option to configure t
 var response = await client.MoneyIn.Getpaidv2Async(
     ...,
     new RequestOptions {
-        Timeout: TimeSpan.FromSeconds(3) // Override timeout to 3s
+        Timeout = TimeSpan.FromSeconds(3) // Override timeout to 3s
     }
 );
 ```
@@ -220,7 +215,7 @@ if (headers.TryGetValue("X-Request-Id", out var requestId))
 }
 
 // For the default behavior, simply await without .WithRawResponse()
-var data = await client.MoneyIn.Getpaidv2Async(...);
+var parsedData = await client.MoneyIn.Getpaidv2Async(...);
 
 // .WithRawResponse() also works on streaming endpoints (returns IAsyncEnumerable<T> + RawResponse)
 // and on endpoints with no response body (returns RawResponse only).

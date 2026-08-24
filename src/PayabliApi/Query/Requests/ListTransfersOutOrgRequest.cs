@@ -27,11 +27,11 @@ public record ListTransfersOutOrgRequest
     ///
     ///   For example:
     ///
-    ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?parameters=totalAmount(gt)=1000&limitRecord=20
+    ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?parameters=totalAmount(gt)=1000&amp;limitRecord=20
     ///
     ///   should become:
     ///
-    ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&limitRecord=20
+    ///   --url https://api-sandbox.payabli.com/api/Query/transactions/org/236?totalAmount(gt)=1000&amp;limitRecord=20
     /// &lt;/Info&gt;
     /// Accepted field names:
     ///

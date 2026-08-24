@@ -85,7 +85,7 @@ public record VendorOutData : IJsonOnDeserialized
     public string? Mcc { get; set; }
 
     /// <summary>
-    /// Primary name for vendor. Required for new vendor. Allowed characters are letters, numbers, spaces, and `. , ' & ( )
+    /// Primary name for vendor. Required for new vendor. Allowed characters are letters, numbers, spaces, and `. , ' &amp; ( )
     /// </summary>
     [JsonPropertyName("Name1")]
     public required string Name1 { get; set; }

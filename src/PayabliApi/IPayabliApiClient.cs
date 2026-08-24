@@ -18,6 +18,7 @@ public partial interface IPayabliApiClient
     public IQueryClient Query { get; }
     public IOcrClient Ocr { get; }
     public INotificationlogsClient Notificationlogs { get; }
+    public IDeviceClient Device { get; }
     public ICloudClient Cloud { get; }
     public ILineItemClient LineItem { get; }
     public IBoardingClient Boarding { get; }

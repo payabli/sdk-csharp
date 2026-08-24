@@ -14,6 +14,8 @@ public readonly record struct Methodall : IStringEnum
 
     public static readonly Methodall Cloud = new(Values.Cloud);
 
+    public static readonly Methodall Device = new(Values.Device);
+
     public static readonly Methodall Check = new(Values.Check);
 
     public static readonly Methodall Cash = new(Values.Cash);
@@ -117,6 +119,8 @@ public readonly record struct Methodall : IStringEnum
         public const string Ach = "ach";
 
         public const string Cloud = "cloud";
+
+        public const string Device = "device";
 
         public const string Check = "check";
 

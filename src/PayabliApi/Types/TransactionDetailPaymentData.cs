@@ -15,10 +15,10 @@ public record TransactionDetailPaymentData : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("maskedAccount")]
-    public required string MaskedAccount { get; set; }
+    public string? MaskedAccount { get; set; }
 
     [JsonPropertyName("accountType")]
-    public required string AccountType { get; set; }
+    public string? AccountType { get; set; }
 
     [JsonPropertyName("accountExp")]
     public string? AccountExp { get; set; }

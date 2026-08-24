@@ -18,7 +18,7 @@ public record QueryTransferSummary : IJsonOnDeserialized
     public double? AchReturns { get; set; }
 
     /// <summary>
-    /// Corrections applied to Billing & Fees charges.
+    /// Corrections applied to Billing &amp; Fees charges.
     /// </summary>
     [JsonPropertyName("adjustments")]
     public double? Adjustments { get; set; }

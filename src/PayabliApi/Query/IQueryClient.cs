@@ -271,7 +271,7 @@ public partial interface IQueryClient
     /// These request parameters filter for transactions between April 1, 2024 and April 9, 2024.
     ///
     /// ```bash
-    /// curl -X GET https://api-sandbox.payabli.com/api/Query/transactions/8cfec329267?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59 \
+    /// curl -X GET https://api-sandbox.payabli.com/api/Query/transactions/8cfec329267?limitRecord=20&amp;fromRecord=0&amp;transactionDate(ge)=2024-04-01T00:00:00&amp;transactionDate(le)=2024-04-09T23:59:59 \
     ///   -H 'requestToken: &lt;API TOKEN&gt;'
     /// ```
     /// </summary>
@@ -290,7 +290,7 @@ public partial interface IQueryClient
     /// These request parameters filter for transactions between April 1, 2024 and April 9, 2024.
     ///
     /// ```bash
-    /// curl -X GET "https://api-sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&fromRecord=0&transactionDate(ge)=2024-04-01T00:00:00&transactionDate(le)=2024-04-09T23:59:59" \
+    /// curl -X GET "https://api-sandbox.payabli.com/api/Query/transactions/org/1?limitRecord=20&amp;fromRecord=0&amp;transactionDate(ge)=2024-04-01T00:00:00&amp;transactionDate(le)=2024-04-09T23:59:59" \
     ///   -H 'requestToken: &lt;API TOKEN&gt;'
     /// ```
     /// </summary>
