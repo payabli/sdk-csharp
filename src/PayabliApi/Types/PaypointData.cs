@@ -68,6 +68,13 @@ public record PaypointData : IJsonOnDeserialized
     [JsonPropertyName("State")]
     public string? State { get; set; }
 
+    /// <summary>
+    /// This business description is captured during boarding. It differs from `summary`, which
+    /// reports counts of customers, transactions, and subscriptions attached to the paypoint.
+    /// </summary>
+    [JsonPropertyName("Summary")]
+    public string? BusinessSummary { get; set; }
+
     [JsonPropertyName("summary")]
     public PaypointSummary? Summary { get; set; }
 

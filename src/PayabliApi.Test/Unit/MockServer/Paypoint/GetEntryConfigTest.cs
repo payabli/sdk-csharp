@@ -66,6 +66,7 @@ public class GetEntryConfigTest : BaseMockServerTest
                   "PaypointStatus": 1,
                   "Phone": "5555555555",
                   "State": "GA",
+                  "Summary": "Residential and commercial gutter installation and repair.",
                   "summary": {
                     "amountSubs": 0,
                     "amountTx": 0,
