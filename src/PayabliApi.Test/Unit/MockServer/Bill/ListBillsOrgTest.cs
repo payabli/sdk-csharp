@@ -103,6 +103,8 @@ public class ListBillsOrgTest : BaseMockServerTest
                   "Status": 2,
                   "Terms": "NET30",
                   "TotalAmount": 200,
+                  "PaidAmount": 0,
+                  "OutstandingBalance": 200,
                   "Vendor": {
                     "Address1": "1234 Liberdad St.",
                     "Address2": "Suite 100",

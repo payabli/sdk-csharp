@@ -163,7 +163,7 @@ public class ListSubscriptionsTest : BaseMockServerTest
                 }
               ],
               "Summary": {
-                "pageIdentifier": "XXXXXXXXXXXXXXXXXXX",
+                "pageidentifier": "XXXXXXXXXXXXXXXXXXX",
                 "pageSize": 20,
                 "totalAmount": 150.22,
                 "totalNetAmount": 150.22,

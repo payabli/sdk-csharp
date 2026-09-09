@@ -20,7 +20,7 @@ public class ListPayoutSubscriptionsOrgTest : BaseMockServerTest
                 "totalNetAmount": 500,
                 "totalPages": 1,
                 "pageSize": 20,
-                "pageIdentifier": "XXXXXXXXXXXXXXXXXXX"
+                "pageidentifier": "XXXXXXXXXXXXXXXXXXX"
               },
               "Records": [
                 {

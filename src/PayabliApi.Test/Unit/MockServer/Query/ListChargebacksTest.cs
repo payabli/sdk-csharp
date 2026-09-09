@@ -160,7 +160,7 @@ public class ListChargebacksTest : BaseMockServerTest
                 }
               ],
               "Summary": {
-                "pageIdentifier": "null",
+                "pageidentifier": "null",
                 "pageSize": 20,
                 "totalAmount": 1.56,
                 "totalNetAmount": 1.5,

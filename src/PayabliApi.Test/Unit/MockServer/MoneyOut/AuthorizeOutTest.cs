@@ -72,20 +72,23 @@ public class AuthorizeOutTest : BaseMockServerTest
         var response = await Client.MoneyOut.AuthorizeOutAsync(
             new RequestOutAuthorize
             {
-                EntryPoint = "8cfec329267",
-                AutoCapture = true,
-                InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                Body = new AuthorizePayoutBody
                 {
-                    new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    EntryPoint = "8cfec329267",
+                    AutoCapture = true,
+                    InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                    {
+                        new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    },
+                    OrderDescription = "Window Painting",
+                    PaymentDetails = new RequestOutAuthorizePaymentDetails
+                    {
+                        TotalAmount = 47,
+                        Unbundled = false,
+                    },
+                    PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
+                    VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
                 },
-                OrderDescription = "Window Painting",
-                PaymentDetails = new RequestOutAuthorizePaymentDetails
-                {
-                    TotalAmount = 47,
-                    Unbundled = false,
-                },
-                PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
-                VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
             }
         );
         JsonAssert.AreEqual(response, mockResponse);
@@ -153,16 +156,19 @@ public class AuthorizeOutTest : BaseMockServerTest
         var response = await Client.MoneyOut.AuthorizeOutAsync(
             new RequestOutAuthorize
             {
-                EntryPoint = "8cfec329267",
-                AutoCapture = true,
-                InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                Body = new AuthorizePayoutBody
                 {
-                    new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    EntryPoint = "8cfec329267",
+                    AutoCapture = true,
+                    InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                    {
+                        new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    },
+                    OrderDescription = "Window Painting",
+                    PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
+                    PaymentMethod = new AuthorizePaymentMethod { Method = "vcard" },
+                    VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
                 },
-                OrderDescription = "Window Painting",
-                PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
-                PaymentMethod = new AuthorizePaymentMethod { Method = "vcard" },
-                VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
             }
         );
         JsonAssert.AreEqual(response, mockResponse);
@@ -232,21 +238,24 @@ public class AuthorizeOutTest : BaseMockServerTest
         var response = await Client.MoneyOut.AuthorizeOutAsync(
             new RequestOutAuthorize
             {
-                EntryPoint = "8cfec329267",
-                AutoCapture = true,
-                Source = "api",
-                InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                Body = new AuthorizePayoutBody
                 {
-                    new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    EntryPoint = "8cfec329267",
+                    AutoCapture = true,
+                    Source = "api",
+                    InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                    {
+                        new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    },
+                    OrderDescription = "Window Painting",
+                    PaymentMethod = new AuthorizePaymentMethod
+                    {
+                        Method = "ach",
+                        StoredMethodId = "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-456",
+                    },
+                    PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
+                    VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
                 },
-                OrderDescription = "Window Painting",
-                PaymentMethod = new AuthorizePaymentMethod
-                {
-                    Method = "ach",
-                    StoredMethodId = "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-456",
-                },
-                PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
-                VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
             }
         );
         JsonAssert.AreEqual(response, mockResponse);
@@ -314,19 +323,22 @@ public class AuthorizeOutTest : BaseMockServerTest
         var response = await Client.MoneyOut.AuthorizeOutAsync(
             new RequestOutAuthorize
             {
-                EntryPoint = "8cfec329267",
-                InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                Body = new AuthorizePayoutBody
                 {
-                    new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    EntryPoint = "8cfec329267",
+                    InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                    {
+                        new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    },
+                    OrderDescription = "Office Supplies",
+                    PaymentDetails = new RequestOutAuthorizePaymentDetails
+                    {
+                        TotalAmount = 1500,
+                        CheckNumber = "10001",
+                    },
+                    PaymentMethod = new AuthorizePaymentMethod { Method = "check" },
+                    VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
                 },
-                OrderDescription = "Office Supplies",
-                PaymentDetails = new RequestOutAuthorizePaymentDetails
-                {
-                    TotalAmount = 1500,
-                    CheckNumber = "10001",
-                },
-                PaymentMethod = new AuthorizePaymentMethod { Method = "check" },
-                VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
             }
         );
         JsonAssert.AreEqual(response, mockResponse);
@@ -397,22 +409,25 @@ public class AuthorizeOutTest : BaseMockServerTest
         var response = await Client.MoneyOut.AuthorizeOutAsync(
             new RequestOutAuthorize
             {
-                EntryPoint = "48acde49",
-                InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                Body = new AuthorizePayoutBody
                 {
-                    new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    EntryPoint = "48acde49",
+                    InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                    {
+                        new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    },
+                    OrderDescription = "Contractor Payment",
+                    PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 2500 },
+                    PaymentMethod = new AuthorizePaymentMethod
+                    {
+                        Method = "wire",
+                        AchHolder = "Jane Smith",
+                        AchRouting = "011401533",
+                        AchAccount = "987654321",
+                        AchAccountType = "checking",
+                    },
+                    VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
                 },
-                OrderDescription = "Contractor Payment",
-                PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 2500 },
-                PaymentMethod = new AuthorizePaymentMethod
-                {
-                    Method = "wire",
-                    AchHolder = "Jane Smith",
-                    AchRouting = "011401533",
-                    AchAccount = "987654321",
-                    AchAccountType = "checking",
-                },
-                VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
             }
         );
         JsonAssert.AreEqual(response, mockResponse);
@@ -483,22 +498,25 @@ public class AuthorizeOutTest : BaseMockServerTest
         var response = await Client.MoneyOut.AuthorizeOutAsync(
             new RequestOutAuthorize
             {
-                EntryPoint = "48acde49",
-                InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                Body = new AuthorizePayoutBody
                 {
-                    new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    EntryPoint = "48acde49",
+                    InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+                    {
+                        new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+                    },
+                    OrderDescription = "Urgent Vendor Payment",
+                    PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 1200 },
+                    PaymentMethod = new AuthorizePaymentMethod
+                    {
+                        Method = "rtp",
+                        AchHolder = "Jane Smith",
+                        AchRouting = "011401533",
+                        AchAccount = "987654321",
+                        AchAccountType = "checking",
+                    },
+                    VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
                 },
-                OrderDescription = "Urgent Vendor Payment",
-                PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 1200 },
-                PaymentMethod = new AuthorizePaymentMethod
-                {
-                    Method = "rtp",
-                    AchHolder = "Jane Smith",
-                    AchRouting = "011401533",
-                    AchAccount = "987654321",
-                    AchAccountType = "checking",
-                },
-                VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "7895433" },
             }
         );
         JsonAssert.AreEqual(response, mockResponse);

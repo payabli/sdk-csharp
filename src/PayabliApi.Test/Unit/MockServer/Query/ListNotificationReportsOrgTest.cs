@@ -23,7 +23,7 @@ public class ListNotificationReportsOrgTest : BaseMockServerTest
                 }
               ],
               "Summary": {
-                "pageIdentifier": "null",
+                "pageidentifier": "null",
                 "pageSize": 20,
                 "totalAmount": 0,
                 "totalNetAmount": 0,

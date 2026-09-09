@@ -105,7 +105,7 @@ public class ListVendorsOrgTest : BaseMockServerTest
                 }
               ],
               "Summary": {
-                "pageIdentifier": "null",
+                "pageidentifier": "null",
                 "pageSize": 20,
                 "totalAmount": 200,
                 "totalNetAmount": 77.22,

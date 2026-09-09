@@ -56,6 +56,9 @@ public record QueryPayoutTransactionRecordsItem : IJsonOnDeserialized
     [JsonPropertyName("PaymentId")]
     public string? PaymentId { get; set; }
 
+    [JsonPropertyName("orderId")]
+    public string? OrderId { get; set; }
+
     /// <summary>
     /// ID of the transaction linked to this payout, when applicable.
     /// </summary>

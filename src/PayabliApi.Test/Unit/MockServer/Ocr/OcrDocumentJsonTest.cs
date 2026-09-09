@@ -54,6 +54,7 @@ public class OcrDocumentJsonTest : BaseMockServerTest
                     .WithPath("/Import/ocrDocumentJson/typeResult")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
@@ -66,7 +67,7 @@ public class OcrDocumentJsonTest : BaseMockServerTest
 
         var response = await Client.Ocr.OcrDocumentJsonAsync(
             "typeResult",
-            new FileContentImageOnly()
+            new OcrDocumentJsonRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

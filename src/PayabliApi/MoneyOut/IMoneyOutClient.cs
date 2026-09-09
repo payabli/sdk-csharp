@@ -68,6 +68,21 @@ public partial interface IMoneyOutClient
     );
 
     /// <summary>
+    /// Authorizes a payout and captures it in the same request, returning the capture result. Use this endpoint when you need the capture outcome synchronously: it does the same work as calling `POST /MoneyOut/authorize` followed by `GET /MoneyOut/capture/{referenceId}`, in a single call.
+    ///
+    /// Risk and fraud review runs at both the authorize and capture stages, exactly as it does for the two-call flow.
+    ///
+    /// Payabli ignores the `autoCapture` field in the request body, since this endpoint always captures inline.
+    ///
+    /// If the capture fails, the payout stays authorized. Retry the capture with `GET /MoneyOut/capture/{referenceId}` using the `referenceId` from the error response rather than resubmitting, which would create a second payout. See the [Manage payouts guide](/guides/pay-out-developer-payouts-manage#authorize-and-capture-in-one-call) for details.
+    /// </summary>
+    WithRawResponseTask<AuthCapturePayoutResponse> PayoutAsync(
+        PayoutRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Returns details for a processed money out transaction.
     /// </summary>
     WithRawResponseTask<BillDetailResponse> PayoutDetailsAsync(

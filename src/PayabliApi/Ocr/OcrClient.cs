@@ -14,7 +14,7 @@ public partial class OcrClient : IOcrClient
 
     private async Task<WithRawResponse<PayabliApiResponseOcr>> OcrDocumentFormAsyncCore(
         string typeResult,
-        FileContentImageOnly request,
+        OcrDocumentFormRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -33,22 +33,20 @@ public partial class OcrClient : IOcrClient
             .Add(options?.AdditionalHeaders)
             .BuildAsync()
             .ConfigureAwait(false);
+        var multipartFormRequest_ = new MultipartFormRequest
+        {
+            Method = HttpMethod.Post,
+            Path = string.Format(
+                "Import/ocrDocumentForm/{0}",
+                ValueConvert.ToPathParameterString(typeResult)
+            ),
+            QueryString = _queryString,
+            Headers = _headers,
+            Options = options,
+        };
+        multipartFormRequest_.AddFileParameterPart("file", request.File);
         var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    Method = HttpMethod.Post,
-                    Path = string.Format(
-                        "Import/ocrDocumentForm/{0}",
-                        ValueConvert.ToPathParameterString(typeResult)
-                    ),
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
+            .SendRequestAsync(multipartFormRequest_, cancellationToken)
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
@@ -163,7 +161,7 @@ public partial class OcrClient : IOcrClient
 
     private async Task<WithRawResponse<PayabliApiResponseOcr>> OcrDocumentJsonAsyncCore(
         string typeResult,
-        FileContentImageOnly request,
+        OcrDocumentJsonRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -194,6 +192,7 @@ public partial class OcrClient : IOcrClient
                     Body = request,
                     QueryString = _queryString,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -253,14 +252,14 @@ public partial class OcrClient : IOcrClient
     }
 
     /// <summary>
-    /// Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
+    /// Use this endpoint to upload a document file for OCR processing as `multipart/form-data`, with the file in a field named `file`. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more. To send the file as a Base64-encoded string in a JSON body instead, use `ocrDocumentJson`.
     /// </summary>
     /// <example><code>
-    /// await client.Ocr.OcrDocumentFormAsync("typeResult", new FileContentImageOnly());
+    /// await client.Ocr.OcrDocumentFormAsync("typeResult", new OcrDocumentFormRequest());
     /// </code></example>
     public WithRawResponseTask<PayabliApiResponseOcr> OcrDocumentFormAsync(
         string typeResult,
-        FileContentImageOnly request,
+        OcrDocumentFormRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -274,11 +273,11 @@ public partial class OcrClient : IOcrClient
     /// Use this endpoint to submit a Base64-encoded image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
     /// </summary>
     /// <example><code>
-    /// await client.Ocr.OcrDocumentJsonAsync("typeResult", new FileContentImageOnly());
+    /// await client.Ocr.OcrDocumentJsonAsync("typeResult", new OcrDocumentJsonRequest());
     /// </code></example>
     public WithRawResponseTask<PayabliApiResponseOcr> OcrDocumentJsonAsync(
         string typeResult,
-        FileContentImageOnly request,
+        OcrDocumentJsonRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

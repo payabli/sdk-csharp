@@ -58,7 +58,7 @@ public class ListCustomersOrgTest : BaseMockServerTest
                 }
               ],
               "Summary": {
-                "pageIdentifier": "XXXXXXXXXXXXXX",
+                "pageidentifier": "XXXXXXXXXXXXXX",
                 "pageSize": 20,
                 "totalAmount": 0,
                 "totalNetAmount": 0,

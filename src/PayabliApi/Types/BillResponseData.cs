@@ -39,6 +39,18 @@ public record BillResponseData : IJsonOnDeserialized
     public double? TotalAmount { get; set; }
 
     /// <summary>
+    /// The amount paid toward the bill so far.
+    /// </summary>
+    [JsonPropertyName("PaidAmount")]
+    public double? PaidAmount { get; set; }
+
+    /// <summary>
+    /// The amount still owed on the bill, calculated as `NetAmount` minus `PaidAmount`.
+    /// </summary>
+    [JsonPropertyName("OutstandingBalance")]
+    public double? OutstandingBalance { get; set; }
+
+    /// <summary>
     /// Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY
     /// </summary>
     [JsonPropertyName("BillDate")]

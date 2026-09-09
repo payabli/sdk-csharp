@@ -9135,7 +9135,7 @@ await client.Query.ListVcardsOrgAsync(
 </details>
 
 ## Ocr
-<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentFormAsync</a>(typeResult, FileContentImageOnly { ... }) -> WithRawResponseTask&lt;PayabliApiResponseOcr&gt;</code></summary>
+<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentFormAsync</a>(typeResult, OcrDocumentFormRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponseOcr&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9147,7 +9147,7 @@ await client.Query.ListVcardsOrgAsync(
 <dl>
 <dd>
 
-Use this endpoint to upload an image file for OCR processing. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more.
+Use this endpoint to upload a document file for OCR processing as `multipart/form-data`, with the file in a field named `file`. The accepted file formats include PDF, JPG, JPEG, PNG, and GIF. Specify the desired type of result (either 'bill' or 'invoice') in the path parameter `typeResult`. The response will contain the OCR processing results, including extracted data such as bill number, vendor information, bill items, and more. To send the file as a Base64-encoded string in a JSON body instead, use `ocrDocumentJson`.
 </dd>
 </dl>
 </dd>
@@ -9162,7 +9162,7 @@ Use this endpoint to upload an image file for OCR processing. The accepted file 
 <dd>
 
 ```csharp
-await client.Ocr.OcrDocumentFormAsync("typeResult", new FileContentImageOnly());
+await client.Ocr.OcrDocumentFormAsync("typeResult", new OcrDocumentFormRequest());
 ```
 </dd>
 </dl>
@@ -9185,7 +9185,7 @@ await client.Ocr.OcrDocumentFormAsync("typeResult", new FileContentImageOnly());
 <dl>
 <dd>
 
-**request:** `FileContentImageOnly` 
+**request:** `OcrDocumentFormRequest` 
     
 </dd>
 </dl>
@@ -9197,7 +9197,7 @@ await client.Ocr.OcrDocumentFormAsync("typeResult", new FileContentImageOnly());
 </dl>
 </details>
 
-<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentJsonAsync</a>(typeResult, FileContentImageOnly { ... }) -> WithRawResponseTask&lt;PayabliApiResponseOcr&gt;</code></summary>
+<details><summary><code>client.Ocr.<a href="/src/PayabliApi/Ocr/OcrClient.cs">OcrDocumentJsonAsync</a>(typeResult, OcrDocumentJsonRequest { ... }) -> WithRawResponseTask&lt;PayabliApiResponseOcr&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9224,7 +9224,7 @@ Use this endpoint to submit a Base64-encoded image file for OCR processing. The 
 <dd>
 
 ```csharp
-await client.Ocr.OcrDocumentJsonAsync("typeResult", new FileContentImageOnly());
+await client.Ocr.OcrDocumentJsonAsync("typeResult", new OcrDocumentJsonRequest());
 ```
 </dd>
 </dl>
@@ -9247,7 +9247,7 @@ await client.Ocr.OcrDocumentJsonAsync("typeResult", new FileContentImageOnly());
 <dl>
 <dd>
 
-**request:** `FileContentImageOnly` 
+**request:** `OcrDocumentJsonRequest` 
     
 </dd>
 </dl>
@@ -16323,20 +16323,23 @@ For check payouts, Payabli validates the remit (mailing) address at authorizatio
 await client.MoneyOut.AuthorizeOutAsync(
     new RequestOutAuthorize
     {
-        EntryPoint = "8cfec329267",
-        AutoCapture = true,
-        InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+        Body = new AuthorizePayoutBody
         {
-            new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+            EntryPoint = "8cfec329267",
+            AutoCapture = true,
+            InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+            {
+                new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+            },
+            OrderDescription = "Window Painting",
+            PaymentDetails = new RequestOutAuthorizePaymentDetails
+            {
+                TotalAmount = 47,
+                Unbundled = false,
+            },
+            PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
+            VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
         },
-        OrderDescription = "Window Painting",
-        PaymentDetails = new RequestOutAuthorizePaymentDetails
-        {
-            TotalAmount = 47,
-            Unbundled = false,
-        },
-        PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
-        VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
     }
 );
 ```
@@ -16639,6 +16642,82 @@ await client.MoneyOut.CaptureOutAsync("129-219", new CaptureOutRequest());
 <dd>
 
 **request:** `CaptureOutRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">PayoutAsync</a>(PayoutRequest { ... }) -> WithRawResponseTask&lt;AuthCapturePayoutResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Authorizes a payout and captures it in the same request, returning the capture result. Use this endpoint when you need the capture outcome synchronously: it does the same work as calling `POST /MoneyOut/authorize` followed by `GET /MoneyOut/capture/{referenceId}`, in a single call.
+
+Risk and fraud review runs at both the authorize and capture stages, exactly as it does for the two-call flow.
+
+Payabli ignores the `autoCapture` field in the request body, since this endpoint always captures inline.
+
+If the capture fails, the payout stays authorized. Retry the capture with `GET /MoneyOut/capture/{referenceId}` using the `referenceId` from the error response rather than resubmitting, which would create a second payout. See the [Manage payouts guide](/guides/pay-out-developer-payouts-manage#authorize-and-capture-in-one-call) for details.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyOut.PayoutAsync(
+    new PayoutRequest
+    {
+        Body = new AuthorizePayoutBody
+        {
+            EntryPoint = "8cfec329267",
+            InvoiceData = new List<RequestOutAuthorizeInvoiceData>()
+            {
+                new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+            },
+            OrderDescription = "Window Painting",
+            PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
+            PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
+            VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PayoutRequest` 
     
 </dd>
 </dl>

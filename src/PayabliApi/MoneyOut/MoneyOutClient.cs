@@ -42,7 +42,7 @@ public partial class MoneyOutClient : IMoneyOutClient
                 {
                     Method = HttpMethod.Post,
                     Path = "MoneyOut/authorize",
-                    Body = request,
+                    Body = request.Body,
                     QueryString = _queryString,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -858,6 +858,194 @@ public partial class MoneyOutClient : IMoneyOutClient
                     case 401:
                         throw new UnauthorizedError(
                             JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 409:
+                        throw new ConflictError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 422:
+                        throw new UnprocessableEntityError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 500:
+                        throw new InternalServerError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new PayabliApiClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new PayabliApi.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<AuthCapturePayoutResponse>> PayoutAsyncCore(
+        PayoutRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new PayabliApi.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("sameDayACH", request.SameDayAch)
+            .Add("doNotCreateBills", request.DoNotCreateBills)
+            .Add("allowDuplicatedBills", request.AllowDuplicatedBills)
+            .Add("updateVendorPaymentMethod", request.UpdateVendorPaymentMethod)
+            .Add("autoConvertSameDayAch", request.AutoConvertSameDayAch)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new PayabliApi.Core.HeadersBuilder.Builder()
+            .Add("idempotencyKey", request.IdempotencyKey)
+            .Add(_client.Options.Headers)
+            .Add(
+                _client.Options.GetAuthHeadersForEndpoint(
+                    new[] { new[] { "BearerAuth" }, new[] { "APIKeyAuth" } }
+                )
+            )
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    Method = HttpMethod.Post,
+                    Path = "MoneyOut/payout",
+                    Body = request.Body,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<AuthCapturePayoutResponse>(responseBody)!;
+                return new WithRawResponse<AuthCapturePayoutResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new PayabliApi.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new PayabliApiClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new PayabliApi.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 400:
+                        throw new BadRequestError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 401:
+                        throw new UnauthorizedError(
+                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 409:
+                        throw new ConflictError(
+                            JsonUtils.Deserialize<object>(responseBody),
                             rawResponse: new PayabliApi.RawResponse()
                             {
                                 StatusCode = response.Raw.StatusCode,
@@ -1988,20 +2176,23 @@ public partial class MoneyOutClient : IMoneyOutClient
     /// await client.MoneyOut.AuthorizeOutAsync(
     ///     new RequestOutAuthorize
     ///     {
-    ///         EntryPoint = "8cfec329267",
-    ///         AutoCapture = true,
-    ///         InvoiceData = new List&lt;RequestOutAuthorizeInvoiceData&gt;()
+    ///         Body = new AuthorizePayoutBody
     ///         {
-    ///             new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+    ///             EntryPoint = "8cfec329267",
+    ///             AutoCapture = true,
+    ///             InvoiceData = new List&lt;RequestOutAuthorizeInvoiceData&gt;()
+    ///             {
+    ///                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+    ///             },
+    ///             OrderDescription = "Window Painting",
+    ///             PaymentDetails = new RequestOutAuthorizePaymentDetails
+    ///             {
+    ///                 TotalAmount = 47,
+    ///                 Unbundled = false,
+    ///             },
+    ///             PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
+    ///             VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
     ///         },
-    ///         OrderDescription = "Window Painting",
-    ///         PaymentDetails = new RequestOutAuthorizePaymentDetails
-    ///         {
-    ///             TotalAmount = 47,
-    ///             Unbundled = false,
-    ///         },
-    ///         PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
-    ///         VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
     ///     }
     /// );
     /// </code></example>
@@ -2106,6 +2297,45 @@ public partial class MoneyOutClient : IMoneyOutClient
     {
         return new WithRawResponseTask<AuthCapturePayoutResponse>(
             CaptureOutAsyncCore(referenceId, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Authorizes a payout and captures it in the same request, returning the capture result. Use this endpoint when you need the capture outcome synchronously: it does the same work as calling `POST /MoneyOut/authorize` followed by `GET /MoneyOut/capture/{referenceId}`, in a single call.
+    ///
+    /// Risk and fraud review runs at both the authorize and capture stages, exactly as it does for the two-call flow.
+    ///
+    /// Payabli ignores the `autoCapture` field in the request body, since this endpoint always captures inline.
+    ///
+    /// If the capture fails, the payout stays authorized. Retry the capture with `GET /MoneyOut/capture/{referenceId}` using the `referenceId` from the error response rather than resubmitting, which would create a second payout. See the [Manage payouts guide](/guides/pay-out-developer-payouts-manage#authorize-and-capture-in-one-call) for details.
+    /// </summary>
+    /// <example><code>
+    /// await client.MoneyOut.PayoutAsync(
+    ///     new PayoutRequest
+    ///     {
+    ///         Body = new AuthorizePayoutBody
+    ///         {
+    ///             EntryPoint = "8cfec329267",
+    ///             InvoiceData = new List&lt;RequestOutAuthorizeInvoiceData&gt;()
+    ///             {
+    ///                 new RequestOutAuthorizeInvoiceData { BillId = 54323 },
+    ///             },
+    ///             OrderDescription = "Window Painting",
+    ///             PaymentDetails = new RequestOutAuthorizePaymentDetails { TotalAmount = 47 },
+    ///             PaymentMethod = new AuthorizePaymentMethod { Method = "managed" },
+    ///             VendorData = new RequestOutAuthorizeVendorData { VendorNumber = "VEN-123" },
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<AuthCapturePayoutResponse> PayoutAsync(
+        PayoutRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<AuthCapturePayoutResponse>(
+            PayoutAsyncCore(request, options, cancellationToken)
         );
     }
 

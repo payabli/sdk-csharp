@@ -49,7 +49,7 @@ public class GetApplicationsByPaypointIdTest : BaseMockServerTest
                 }
               ],
               "Summary": {
-                "pageIdentifier": "null",
+                "pageidentifier": "null",
                 "pageSize": 0,
                 "totalAmount": 0,
                 "totalNetAmount": 0,

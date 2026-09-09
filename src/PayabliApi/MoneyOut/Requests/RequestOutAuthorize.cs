@@ -32,50 +32,8 @@ public record RequestOutAuthorize
     [JsonIgnore]
     public string? IdempotencyKey { get; set; }
 
-    [JsonPropertyName("entryPoint")]
-    public required string EntryPoint { get; set; }
-
-    [JsonPropertyName("source")]
-    public string? Source { get; set; }
-
-    [JsonPropertyName("orderId")]
-    public string? OrderId { get; set; }
-
-    [JsonPropertyName("orderDescription")]
-    public string? OrderDescription { get; set; }
-
-    [JsonPropertyName("paymentMethod")]
-    public required AuthorizePaymentMethod PaymentMethod { get; set; }
-
-    /// <summary>
-    /// Object containing payment details.
-    /// </summary>
-    [JsonPropertyName("paymentDetails")]
-    public required RequestOutAuthorizePaymentDetails PaymentDetails { get; set; }
-
-    /// <summary>
-    /// Object containing vendor data.
-    /// </summary>
-    [JsonPropertyName("vendorData")]
-    public required RequestOutAuthorizeVendorData VendorData { get; set; }
-
-    /// <summary>
-    /// Bills to pay with this payout, each referenced by `billId`.
-    /// </summary>
-    [JsonPropertyName("invoiceData")]
-    public IEnumerable<RequestOutAuthorizeInvoiceData>? InvoiceData { get; set; }
-
-    [JsonPropertyName("accountId")]
-    public string? AccountId { get; set; }
-
-    [JsonPropertyName("subdomain")]
-    public string? Subdomain { get; set; }
-
-    [JsonPropertyName("subscriptionId")]
-    public long? SubscriptionId { get; set; }
-
-    [JsonPropertyName("autoCapture")]
-    public bool? AutoCapture { get; set; }
+    [JsonIgnore]
+    public required AuthorizePayoutBody Body { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

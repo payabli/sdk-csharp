@@ -47,6 +47,7 @@ public record ListPayoutOrgRequest
     ///   - `parentOrgId` (ne, eq, nin, in)
     ///   - `paymentMethod` (ct, nct, eq, ne, in, nin)
     ///   - `paymentId` (ct, nct, eq, ne)
+    ///   - `orderId` (ne, eq)
     ///   - `batchNumber` (ct, nct, eq, ne)
     ///   - `totalAmount` (gt, ge, lt, le, eq, ne)
     ///   - `paypointLegal` (ne, eq, ct, nct)

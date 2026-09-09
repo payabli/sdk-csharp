@@ -1,16 +1,11 @@
-using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 using PayabliApi.Core;
 
 namespace PayabliApi;
 
 [Serializable]
-public record FileContentImageOnly : IJsonOnDeserialized
+public record OcrDocumentJsonRequest
 {
-    [JsonExtensionData]
-    private readonly IDictionary<string, JsonElement> _extensionData =
-        new Dictionary<string, JsonElement>();
-
     [JsonPropertyName("ftype")]
     public FileContentFtype? Ftype { get; set; }
 
@@ -31,12 +26,6 @@ public record FileContentImageOnly : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("fContent")]
     public string? FContent { get; set; }
-
-    [JsonIgnore]
-    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
-
-    void IJsonOnDeserialized.OnDeserialized() =>
-        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -11,7 +11,10 @@ public record QuerySummary : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("pageIdentifier")]
+    /// <summary>
+    /// Pagination token for retrieving the next page of results. Returns `null` when there's no additional page.
+    /// </summary>
+    [JsonPropertyName("pageidentifier")]
     public string? PageIdentifier { get; set; }
 
     [JsonPropertyName("pageSize")]

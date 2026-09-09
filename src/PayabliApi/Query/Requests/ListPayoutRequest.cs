@@ -47,6 +47,7 @@ public record ListPayoutRequest
     ///   - `vendorName` (ct, nct, eq, ne)
     ///   - `paymentMethod` (ct, nct, eq, ne, in, nin)
     ///   - `paymentId` (ct, nct, eq, ne)
+    ///   - `orderId` (ne, eq)
     ///   - `parentOrgId` (ne, eq, nin, in)
     ///   - `batchNumber` (ct, nct, eq, ne)
     ///   - `totalAmount` (gt, ge, lt, le, eq, ne)

@@ -36,6 +36,18 @@ public record BillDetailsResponse : IJsonOnDeserialized
     public string? NetAmount { get; set; }
 
     /// <summary>
+    /// The amount paid toward the bill so far.
+    /// </summary>
+    [JsonPropertyName("paidAmount")]
+    public string? PaidAmount { get; set; }
+
+    /// <summary>
+    /// The amount still owed on the bill, calculated as `netAmount` minus `paidAmount`.
+    /// </summary>
+    [JsonPropertyName("outstandingBalance")]
+    public string? OutstandingBalance { get; set; }
+
+    /// <summary>
     /// Bill discount amount.
     /// </summary>
     [JsonPropertyName("discount")]

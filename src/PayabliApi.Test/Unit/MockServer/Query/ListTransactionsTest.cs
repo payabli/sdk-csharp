@@ -186,7 +186,7 @@ public class ListTransactionsTest : BaseMockServerTest
                 }
               ],
               "Summary": {
-                "pageIdentifier": "XXXXXXXXXXXXXXXXXXX",
+                "pageidentifier": "XXXXXXXXXXXXXXXXXXX",
                 "pageSize": 20,
                 "totalAmount": 177.22,
                 "totalNetAmount": 177.22,

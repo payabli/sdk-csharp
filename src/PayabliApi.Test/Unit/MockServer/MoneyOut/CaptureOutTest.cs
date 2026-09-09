@@ -21,7 +21,7 @@ public class CaptureOutTest : BaseMockServerTest
               "responseData": {
                 "referenceId": "129-219",
                 "resultCode": 1,
-                "resultText": "Authorized",
+                "resultText": "Captured",
                 "customerId": 456,
                 "vendorId": 456
               }
