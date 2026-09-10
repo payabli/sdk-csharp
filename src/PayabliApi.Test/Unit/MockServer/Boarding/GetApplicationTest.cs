@@ -581,7 +581,8 @@ public class GetApplicationTest : BaseMockServerTest
                   "ownerphone2": "555888111",
                   "ownerssn": "123456789",
                   "ownertitle": "CEO",
-                  "ozip": "55555"
+                  "ozip": "55555",
+                  "additionalData": {}
                 }
               ],
               "ownType": "Limited Liability Company",
