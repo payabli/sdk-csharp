@@ -623,10 +623,10 @@ public partial class SubscriptionClient : ISubscriptionClient
     ///         },
     ///         ScheduleDetails = new ScheduleDetail
     ///         {
-    ///             EndDate = "2025-03-20",
+    ///             EndDate = "2027-12-31",
     ///             Frequency = Frequency.Weekly,
     ///             PlanId = 1,
-    ///             StartDate = "2024-09-20",
+    ///             StartDate = "2027-01-01",
     ///         },
     ///     }
     /// );

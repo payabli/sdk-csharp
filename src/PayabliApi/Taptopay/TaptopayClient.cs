@@ -3,17 +3,19 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
-public partial class DeviceClient : IDeviceClient
+public partial class TaptopayClient : ITaptopayClient
 {
     private readonly RawClient _client;
 
-    internal DeviceClient(RawClient client)
+    internal TaptopayClient(RawClient client)
     {
         _client = client;
     }
 
-    private async Task<WithRawResponse<DeviceChallengeResponse>> ChallengeAsyncCore(
-        string entry,
+    private async Task<
+        WithRawResponse<TapToPayActivationChallengeResponse>
+    > ActivationChallengeAsyncCore(
+        TapToPayActivationChallengeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -33,12 +35,11 @@ public partial class DeviceClient : IDeviceClient
                 new JsonRequest
                 {
                     Method = HttpMethod.Post,
-                    Path = string.Format(
-                        "Device/challenge/{0}",
-                        ValueConvert.ToPathParameterString(entry)
-                    ),
+                    Path = "v2/device/taptopay/activate/challenge",
+                    Body = request,
                     QueryString = _queryString,
                     Headers = _headers,
+                    ContentType = "application/json",
                     Options = options,
                 },
                 cancellationToken
@@ -51,8 +52,10 @@ public partial class DeviceClient : IDeviceClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<DeviceChallengeResponse>(responseBody)!;
-                return new WithRawResponse<DeviceChallengeResponse>()
+                var responseData = JsonUtils.Deserialize<TapToPayActivationChallengeResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<TapToPayActivationChallengeResponse>()
                 {
                     Data = responseData,
                     RawResponse = new PayabliApi.RawResponse()
@@ -87,9 +90,45 @@ public partial class DeviceClient : IDeviceClient
             {
                 switch (response.StatusCode)
                 {
+                    case 400:
+                        throw new BadRequestError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
                     case 401:
                         throw new UnauthorizedError(
                             JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 403:
+                        throw new ForbiddenError(
+                            JsonUtils.Deserialize<object>(responseBody),
+                            rawResponse: new PayabliApi.RawResponse()
+                            {
+                                StatusCode = response.Raw.StatusCode,
+                                Url =
+                                    response.Raw.RequestMessage?.RequestUri
+                                    ?? new Uri("about:blank"),
+                                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                            }
+                        );
+                    case 404:
+                        throw new NotFoundError(
+                            JsonUtils.Deserialize<object>(responseBody),
                             rawResponse: new PayabliApi.RawResponse()
                             {
                                 StatusCode = response.Raw.StatusCode,
@@ -132,30 +171,37 @@ public partial class DeviceClient : IDeviceClient
     }
 
     /// <summary>
-    /// Generates a one-time, 6-digit verification code for activating a
-    /// semi-integrated card-present device in a paypoint. This endpoint is
-    /// for AXIUM devices only. After calling this endpoint, an operator
-    /// enters the returned code on the device's terminal, along with a
-    /// device name, to register the device to the paypoint resolved from
-    /// `{entry}`.
+    /// Issues a short-lived activation code for a Tap to Pay device in the
+    /// `Pending` state. This endpoint is for Tap to Pay devices only.
+    /// Deliver the code to the device to complete activation.
     ///
-    /// A code expires 5 minutes after it's issued. A paypoint can have several
-    /// codes active at once — for example, when activating a batch of devices —
-    /// and a code binds to whichever device enters it first.
+    /// A code is valid for 30 minutes after it's issued. Calling this
+    /// endpoint again for the same device before the code expires returns
+    /// the same code, with `alreadyIssued` set to `true`, instead of
+    /// generating a new one. A new code is only generated when no valid
+    /// code exists.
     ///
-    /// Authenticate with an OAuth2 bearer token that has the `device_registry` scope.
+    /// Authenticate with an OAuth2 bearer token that has the `pos_create`
+    /// permission. See [Accept Tap to Pay payments](/guides/pay-in-developer-tap-to-pay)
+    /// for the full integration guide.
     /// </summary>
     /// <example><code>
-    /// await client.Device.ChallengeAsync("8cfec329267");
+    /// await client.Taptopay.ActivationChallengeAsync(
+    ///     new TapToPayActivationChallengeRequest
+    ///     {
+    ///         Entry = "8cfec329267",
+    ///         DeviceId = "499585-389fj484-3jcj8hj3",
+    ///     }
+    /// );
     /// </code></example>
-    public WithRawResponseTask<DeviceChallengeResponse> ChallengeAsync(
-        string entry,
+    public WithRawResponseTask<TapToPayActivationChallengeResponse> ActivationChallengeAsync(
+        TapToPayActivationChallengeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<DeviceChallengeResponse>(
-            ChallengeAsyncCore(entry, options, cancellationToken)
+        return new WithRawResponseTask<TapToPayActivationChallengeResponse>(
+            ActivationChallengeAsyncCore(request, options, cancellationToken)
         );
     }
 }

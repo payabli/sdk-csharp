@@ -16,7 +16,7 @@ public class AddVendorTest : BaseMockServerTest
             {
               "vendorNumber": "VEN-123",
               "name1": "Herman's Coatings and Masonry",
-              "name2": "<string>",
+              "name2": "HCM Services",
               "ein": "12-3456789",
               "phone": "5555555555",
               "email": "example@email.com",
@@ -54,8 +54,8 @@ public class AddVendorTest : BaseMockServerTest
               "remitState": "FL",
               "remitZip": "31113",
               "remitCountry": "US",
-              "payeeName1": "<string>",
-              "payeeName2": "<string>",
+              "payeeName1": "Herman Martinez",
+              "payeeName2": "Herman Coatings",
               "customerVendorAccount": "A-37622",
               "internalReferenceId": 123
             }
@@ -93,7 +93,7 @@ public class AddVendorTest : BaseMockServerTest
             {
                 VendorNumber = "VEN-123",
                 Name1 = "Herman's Coatings and Masonry",
-                Name2 = "<string>",
+                Name2 = "HCM Services",
                 Ein = "12-3456789",
                 Phone = "5555555555",
                 Email = "example@email.com",
@@ -134,8 +134,8 @@ public class AddVendorTest : BaseMockServerTest
                 RemitState = "FL",
                 RemitZip = "31113",
                 RemitCountry = "US",
-                PayeeName1 = "<string>",
-                PayeeName2 = "<string>",
+                PayeeName1 = "Herman Martinez",
+                PayeeName2 = "Herman Coatings",
                 CustomerVendorAccount = "A-37622",
                 InternalReferenceId = 123,
             }

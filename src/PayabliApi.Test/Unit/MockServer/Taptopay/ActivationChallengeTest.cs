@@ -3,43 +3,31 @@ using PayabliApi;
 using PayabliApi.Test.Unit.MockServer;
 using PayabliApi.Test.Utils;
 
-namespace PayabliApi.Test.Unit.MockServer.MoneyOut;
+namespace PayabliApi.Test.Unit.MockServer.Taptopay;
 
 [TestFixture]
 [Parallelizable(ParallelScope.Self)]
-public class CaptureAllOutTest : BaseMockServerTest
+public class ActivationChallengeTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
     {
         const string requestJson = """
-            [
-              "129-230",
-              "129-219"
-            ]
+            {
+              "entry": "8cfec329267",
+              "deviceId": "499585-389fj484-3jcj8hj3"
+            }
             """;
 
         const string mockResponse = """
             {
               "isSuccess": true,
-              "responseCode": 1,
-              "responseData": [
-                {
-                  "CustomerId": 456,
-                  "VendorId": 456,
-                  "ReferenceId": "129-230",
-                  "ResultCode": 1,
-                  "ResultText": "Captured"
-                },
-                {
-                  "CustomerId": 456,
-                  "VendorId": 456,
-                  "ReferenceId": "129-219",
-                  "ResultCode": 1,
-                  "ResultText": "Captured"
-                }
-              ],
-              "responseText": "Success"
+              "responseText": "Success",
+              "responseData": {
+                "code": "748801",
+                "expiresAt": "2026-09-10T20:28:27.586Z",
+                "alreadyIssued": false
+              }
             }
             """;
 
@@ -47,7 +35,7 @@ public class CaptureAllOutTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/MoneyOut/captureAll")
+                    .WithPath("/v2/device/taptopay/activate/challenge")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
@@ -61,10 +49,11 @@ public class CaptureAllOutTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.MoneyOut.CaptureAllOutAsync(
-            new CaptureAllOutRequest
+        var response = await Client.Taptopay.ActivationChallengeAsync(
+            new TapToPayActivationChallengeRequest
             {
-                Body = new List<string>() { "129-230", "129-219" },
+                Entry = "8cfec329267",
+                DeviceId = "499585-389fj484-3jcj8hj3",
             }
         );
         JsonAssert.AreEqual(response, mockResponse);

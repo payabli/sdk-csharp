@@ -126,7 +126,7 @@ public partial class BillingClient : IBillingClient
                         );
                     case 403:
                         throw new ForbiddenError(
-                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            JsonUtils.Deserialize<object>(responseBody),
                             rawResponse: new PayabliApi.RawResponse()
                             {
                                 StatusCode = response.Raw.StatusCode,
@@ -277,7 +277,7 @@ public partial class BillingClient : IBillingClient
                         );
                     case 403:
                         throw new ForbiddenError(
-                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            JsonUtils.Deserialize<object>(responseBody),
                             rawResponse: new PayabliApi.RawResponse()
                             {
                                 StatusCode = response.Raw.StatusCode,

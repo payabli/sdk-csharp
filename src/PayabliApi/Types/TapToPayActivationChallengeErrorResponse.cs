@@ -5,29 +5,25 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// The issued activation code and the time it expires.
+/// Error response for a Tap to Pay activation challenge request.
+/// `responseData` carries the same status code as the HTTP response
+/// and a message describing the refusal.
 /// </summary>
 [Serializable]
-public record DeviceChallengeData : IJsonOnDeserialized
+public record TapToPayActivationChallengeErrorResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    /// <summary>
-    /// The 6-digit verification code the operator enters on the device's
-    /// terminal to activate it. It can start with leading zeros, so keep it as
-    /// a string.
-    /// </summary>
-    [JsonPropertyName("code")]
-    public required string Code { get; set; }
+    [JsonPropertyName("isSuccess")]
+    public required bool IsSuccess { get; set; }
 
-    /// <summary>
-    /// UTC time when the code expires, in ISO 8601 round-trip format. A code is
-    /// valid for 5 minutes after it's issued.
-    /// </summary>
-    [JsonPropertyName("expiresAt")]
-    public required DateTime ExpiresAt { get; set; }
+    [JsonPropertyName("responseText")]
+    public required string ResponseText { get; set; }
+
+    [JsonPropertyName("responseData")]
+    public required TapToPayActivationChallengeErrorResponseResponseData ResponseData { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

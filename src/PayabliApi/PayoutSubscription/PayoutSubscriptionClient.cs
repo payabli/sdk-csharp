@@ -648,14 +648,14 @@ public partial class PayoutSubscriptionClient : IPayoutSubscriptionClient
     ///             {
     ///                 InvoiceNumber = "INV-2345",
     ///                 NetAmount = "500",
-    ///                 InvoiceDate = new DateOnly(2025, 8, 1),
-    ///                 DueDate = new DateOnly(2025, 8, 15),
+    ///                 InvoiceDate = new DateOnly(2027, 8, 1),
+    ///                 DueDate = new DateOnly(2027, 8, 15),
     ///             },
     ///         },
     ///         ScheduleDetails = new PayoutScheduleDetail
     ///         {
-    ///             StartDate = "09/01/2027",
-    ///             EndDate = "09/01/2026",
+    ///             StartDate = "01/01/2027",
+    ///             EndDate = "12/31/2027",
     ///             Frequency = Frequency.Monthly,
     ///         },
     ///     }

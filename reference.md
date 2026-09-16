@@ -2795,10 +2795,10 @@ await client.Subscription.NewSubscriptionAsync(
         },
         ScheduleDetails = new ScheduleDetail
         {
-            EndDate = "2025-03-20",
+            EndDate = "2027-12-31",
             Frequency = Frequency.Weekly,
             PlanId = 1,
-            StartDate = "2024-09-20",
+            StartDate = "2027-01-01",
         },
     }
 );
@@ -9517,15 +9517,17 @@ await client.Notificationlogs.BulkRetryNotificationLogsAsync(
 <dd>
 
 Generates a one-time, 6-digit verification code for activating a
-semi-integrated card-present device in a paypoint. After calling this endpoint, an operator enters the returned code
-on the device's terminal, along with a device name, to register the
-device to the paypoint resolved from `{entry}`.
+semi-integrated card-present device in a paypoint. This endpoint is
+for AXIUM devices only. After calling this endpoint, an operator
+enters the returned code on the device's terminal, along with a
+device name, to register the device to the paypoint resolved from
+`{entry}`.
 
 A code expires 5 minutes after it's issued. A paypoint can have several
 codes active at once — for example, when activating a batch of devices —
 and a code binds to whichever device enters it first.
 
-Authenticate with an OAuth2 Bearer token that has the `device_registry` scope.
+Authenticate with an OAuth2 bearer token that has the `device_registry` scope.
 </dd>
 </dl>
 </dd>
@@ -9556,6 +9558,79 @@ await client.Device.ChallengeAsync("8cfec329267");
 <dd>
 
 **entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## TapToPay
+<details><summary><code>client.Taptopay.<a href="/src/PayabliApi/Taptopay/TaptopayClient.cs">ActivationChallengeAsync</a>(TapToPayActivationChallengeRequest { ... }) -> WithRawResponseTask&lt;TapToPayActivationChallengeResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Issues a short-lived activation code for a Tap to Pay device in the
+`Pending` state. This endpoint is for Tap to Pay devices only.
+Deliver the code to the device to complete activation.
+
+A code is valid for 30 minutes after it's issued. Calling this
+endpoint again for the same device before the code expires returns
+the same code, with `alreadyIssued` set to `true`, instead of
+generating a new one. A new code is only generated when no valid
+code exists.
+
+Authenticate with an OAuth2 bearer token that has the `pos_create`
+permission. See [Accept Tap to Pay payments](/guides/pay-in-developer-tap-to-pay)
+for the full integration guide.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Taptopay.ActivationChallengeAsync(
+    new TapToPayActivationChallengeRequest
+    {
+        Entry = "8cfec329267",
+        DeviceId = "499585-389fj484-3jcj8hj3",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TapToPayActivationChallengeRequest` 
     
 </dd>
 </dl>
@@ -14267,7 +14342,7 @@ await client.Management.VerifyAccountDetailsAsync(
 <dl>
 <dd>
 
-Retrieves the basic statistics for an organization or a paypoint, for a given time period, grouped by a particular frequency.
+Retrieves the basic statistics for an organization or a paypoint over a date range, grouped by a frequency. The response returns one row per time bucket. Counts and volumes cover approved transactions only and leave out declines. Volumes are net of fees.
 </dd>
 </dl>
 </dd>
@@ -14375,7 +14450,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(mode, freq, customerId, CustomerBasicStatsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;SubscriptionStatsQueryRecord&gt;&gt;</code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">CustomerBasicStatsAsync</a>(mode, freq, customerId) -> WithRawResponseTask&lt;IEnumerable&lt;StatCustomerBasicQueryRecord&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14387,7 +14462,7 @@ The entry level for the request:
 <dl>
 <dd>
 
-Retrieves the basic statistics for a customer for a specific time period, grouped by a selected frequency.
+Retrieves the basic statistics for a customer over a date range, grouped by a frequency. This is a Pay In view: it counts the customer's approved transactions and returns one row per time bucket. Volume here is the gross amount, before fees.
 </dd>
 </dl>
 </dd>
@@ -14402,7 +14477,7 @@ Retrieves the basic statistics for a customer for a specific time period, groupe
 <dd>
 
 ```csharp
-await client.Statistic.CustomerBasicStatsAsync("ytd", "m", 4440, new CustomerBasicStatsRequest());
+await client.Statistic.CustomerBasicStatsAsync("m12", "m", 4440);
 ```
 </dd>
 </dl>
@@ -14460,14 +14535,6 @@ For example, `w` groups the results by week.
     
 </dd>
 </dl>
-
-<dl>
-<dd>
-
-**request:** `CustomerBasicStatsRequest` 
-    
-</dd>
-</dl>
 </dd>
 </dl>
 
@@ -14476,7 +14543,7 @@ For example, `w` groups the results by week.
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(interval, level, entryId, SubStatsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;StatBasicQueryRecord&gt;&gt;</code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">SubStatsAsync</a>(interval, level, entryId) -> WithRawResponseTask&lt;IEnumerable&lt;SubscriptionStatsQueryRecord&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14488,7 +14555,7 @@ For example, `w` groups the results by week.
 <dl>
 <dd>
 
-Retrieves the subscription statistics for a given interval for a paypoint or organization.
+Retrieves subscription statistics for a paypoint or organization, bucketed by how soon active subscriptions are due to renew. This is a forward-looking forecast of upcoming renewals, not charges already taken. Request a single window with `interval`, or `all` to return every window in one call.
 </dd>
 </dl>
 </dd>
@@ -14503,7 +14570,7 @@ Retrieves the subscription statistics for a given interval for a paypoint or org
 <dd>
 
 ```csharp
-await client.Statistic.SubStatsAsync("30", 2, 1000000, new SubStatsRequest());
+await client.Statistic.SubStatsAsync("all", 2, 1000000);
 ```
 </dd>
 </dl>
@@ -14550,14 +14617,6 @@ The entry level for the request:
     
 </dd>
 </dl>
-
-<dl>
-<dd>
-
-**request:** `SubStatsRequest` 
-    
-</dd>
-</dl>
 </dd>
 </dl>
 
@@ -14566,7 +14625,7 @@ The entry level for the request:
 </dl>
 </details>
 
-<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(mode, freq, idVendor, VendorBasicStatsRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;StatisticsVendorQueryRecord&gt;&gt;</code></summary>
+<details><summary><code>client.Statistic.<a href="/src/PayabliApi/Statistic/StatisticClient.cs">VendorBasicStatsAsync</a>(mode, freq, idVendor) -> WithRawResponseTask&lt;IEnumerable&lt;StatisticsVendorQueryRecord&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -14578,7 +14637,7 @@ The entry level for the request:
 <dl>
 <dd>
 
-Retrieve the basic statistics about a vendor for a given time period, grouped by frequency.
+Retrieve the basic statistics about a vendor over a date range, grouped by frequency. The response returns one row per time bucket, breaking the vendor's bills down by bill state (active, sent to approval, approved, in transit, paid, and so on). Volumes are net of fees.
 </dd>
 </dl>
 </dd>
@@ -14593,7 +14652,7 @@ Retrieve the basic statistics about a vendor for a given time period, grouped by
 <dd>
 
 ```csharp
-await client.Statistic.VendorBasicStatsAsync("ytd", "m", 1, new VendorBasicStatsRequest());
+await client.Statistic.VendorBasicStatsAsync("ytd", "m", 1);
 ```
 </dd>
 </dl>
@@ -14648,14 +14707,6 @@ For example, `w` groups the results by week.
 <dd>
 
 **idVendor:** `int` — Vendor ID.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `VendorBasicStatsRequest` 
     
 </dd>
 </dl>
@@ -15676,7 +15727,7 @@ await client.Vendor.AddVendorAsync(
     {
         VendorNumber = "VEN-123",
         Name1 = "Herman's Coatings and Masonry",
-        Name2 = "<string>",
+        Name2 = "HCM Services",
         Ein = "12-3456789",
         Phone = "5555555555",
         Email = "example@email.com",
@@ -15717,8 +15768,8 @@ await client.Vendor.AddVendorAsync(
         RemitState = "FL",
         RemitZip = "31113",
         RemitCountry = "US",
-        PayeeName1 = "<string>",
-        PayeeName2 = "<string>",
+        PayeeName1 = "Herman Martinez",
+        PayeeName2 = "Herman Coatings",
         CustomerVendorAccount = "A-37622",
         InternalReferenceId = 123,
     }
@@ -16395,7 +16446,7 @@ Cancels an array of payout transactions.
 <dd>
 
 ```csharp
-await client.MoneyOut.CancelAllOutAsync(new List<string>() { "2-29", "2-28", "2-27" });
+await client.MoneyOut.CancelAllOutAsync(new List<string>() { "129-230", "129-219" });
 ```
 </dd>
 </dl>
@@ -16560,7 +16611,7 @@ Captures an array of authorized payout transactions for settlement. The maximum 
 await client.MoneyOut.CaptureAllOutAsync(
     new CaptureAllOutRequest
     {
-        Body = new List<string>() { "2-29", "2-28", "2-27" },
+        Body = new List<string>() { "129-230", "129-219" },
     }
 );
 ```
@@ -17524,14 +17575,14 @@ await client.PayoutSubscription.CreatePayoutSubscriptionAsync(
             {
                 InvoiceNumber = "INV-2345",
                 NetAmount = "500",
-                InvoiceDate = new DateOnly(2025, 8, 1),
-                DueDate = new DateOnly(2025, 8, 15),
+                InvoiceDate = new DateOnly(2027, 8, 1),
+                DueDate = new DateOnly(2027, 8, 15),
             },
         },
         ScheduleDetails = new PayoutScheduleDetail
         {
-            StartDate = "09/01/2027",
-            EndDate = "09/01/2026",
+            StartDate = "01/01/2027",
+            EndDate = "12/31/2027",
             Frequency = Frequency.Monthly,
         },
     }

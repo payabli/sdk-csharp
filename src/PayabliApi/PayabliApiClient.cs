@@ -22,7 +22,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", global::PayabliApi.Version.Current },
-                { "User-Agent", "PayabliApi/1.1.11" },
+                { "User-Agent", "PayabliApi/1.1.12" },
             }
         );
         foreach (var header in platformHeaders)
@@ -71,6 +71,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Ocr = new OcrClient(_client);
         Notificationlogs = new NotificationlogsClient(_client);
         Device = new DeviceClient(_client);
+        Taptopay = new TaptopayClient(_client);
         Cloud = new CloudClient(_client);
         LineItem = new LineItemClient(_client);
         Boarding = new BoardingClient(_client);
@@ -125,6 +126,8 @@ public partial class PayabliApiClient : IPayabliApiClient
     public INotificationlogsClient Notificationlogs { get; }
 
     public IDeviceClient Device { get; }
+
+    public ITaptopayClient Taptopay { get; }
 
     public ICloudClient Cloud { get; }
 

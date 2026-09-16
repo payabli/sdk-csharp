@@ -2107,7 +2107,7 @@ public partial class MoneyOutClient : IMoneyOutClient
                         );
                     case 403:
                         throw new ForbiddenError(
-                            JsonUtils.Deserialize<PayabliErrorBody>(responseBody),
+                            JsonUtils.Deserialize<object>(responseBody),
                             rawResponse: new PayabliApi.RawResponse()
                             {
                                 StatusCode = response.Raw.StatusCode,
@@ -2211,7 +2211,7 @@ public partial class MoneyOutClient : IMoneyOutClient
     /// Cancels an array of payout transactions.
     /// </summary>
     /// <example><code>
-    /// await client.MoneyOut.CancelAllOutAsync(new List&lt;string&gt;() { "2-29", "2-28", "2-27" });
+    /// await client.MoneyOut.CancelAllOutAsync(new List&lt;string&gt;() { "129-230", "129-219" });
     /// </code></example>
     public WithRawResponseTask<CaptureAllOutResponse> CancelAllOutAsync(
         IEnumerable<string> request,
@@ -2265,7 +2265,7 @@ public partial class MoneyOutClient : IMoneyOutClient
     /// await client.MoneyOut.CaptureAllOutAsync(
     ///     new CaptureAllOutRequest
     ///     {
-    ///         Body = new List&lt;string&gt;() { "2-29", "2-28", "2-27" },
+    ///         Body = new List&lt;string&gt;() { "129-230", "129-219" },
     ///     }
     /// );
     /// </code></example>

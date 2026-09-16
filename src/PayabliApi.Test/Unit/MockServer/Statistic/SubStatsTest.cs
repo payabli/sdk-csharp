@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using PayabliApi;
 using PayabliApi.Test.Unit.MockServer;
 using PayabliApi.Test.Utils;
 
@@ -15,11 +14,24 @@ public class SubStatsTest : BaseMockServerTest
         const string mockResponse = """
             [
               {
-                "statX": "2023-03",
-                "inTransactions": 150,
-                "inTransactionsVolume": 25000.5,
-                "inWalletTransactions": 10,
-                "inWalletVolume": 1000.5
+                "interval": "30",
+                "count": 23,
+                "volume": 1609.62
+              },
+              {
+                "interval": "60",
+                "count": 0,
+                "volume": 0
+              },
+              {
+                "interval": "90",
+                "count": 0,
+                "volume": 0
+              },
+              {
+                "interval": "+90",
+                "count": 0,
+                "volume": 0
               }
             ]
             """;
@@ -28,7 +40,7 @@ public class SubStatsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Statistic/subscriptions/30/2/1000000")
+                    .WithPath("/Statistic/subscriptions/all/2/1000000")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -40,12 +52,7 @@ public class SubStatsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Statistic.SubStatsAsync(
-            "30",
-            2,
-            1000000,
-            new SubStatsRequest()
-        );
+        var response = await Client.Statistic.SubStatsAsync("all", 2, 1000000);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

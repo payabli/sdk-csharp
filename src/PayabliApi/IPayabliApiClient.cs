@@ -19,6 +19,7 @@ public partial interface IPayabliApiClient
     public IOcrClient Ocr { get; }
     public INotificationlogsClient Notificationlogs { get; }
     public IDeviceClient Device { get; }
+    public ITaptopayClient Taptopay { get; }
     public ICloudClient Cloud { get; }
     public ILineItemClient LineItem { get; }
     public IBoardingClient Boarding { get; }

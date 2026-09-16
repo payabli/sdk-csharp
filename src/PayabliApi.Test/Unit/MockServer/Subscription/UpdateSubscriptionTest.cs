@@ -105,10 +105,10 @@ public class UpdateSubscriptionTest : BaseMockServerTest
                 "totalAmount": 100
               },
               "scheduleDetails": {
-                "endDate": "2025-03-20",
+                "endDate": "2027-12-31",
                 "frequency": "weekly",
                 "planId": 1,
-                "startDate": "2024-09-20"
+                "startDate": "2027-01-01"
               }
             }
             """;
@@ -147,10 +147,10 @@ public class UpdateSubscriptionTest : BaseMockServerTest
                 PaymentDetails = new PaymentDetail { ServiceFee = 0, TotalAmount = 100 },
                 ScheduleDetails = new ScheduleDetail
                 {
-                    EndDate = "2025-03-20",
+                    EndDate = "2027-12-31",
                     Frequency = Frequency.Weekly,
                     PlanId = 1,
-                    StartDate = "2024-09-20",
+                    StartDate = "2027-01-01",
                 },
             }
         );

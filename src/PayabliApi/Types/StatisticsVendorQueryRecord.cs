@@ -12,103 +12,103 @@ public record StatisticsVendorQueryRecord : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Statistical grouping identifier
+    /// The time bucket for this row, formatted according to the query's `freq` (for example, `2025-11` for a monthly bucket). Each bill falls in the bucket of its most recent update. The counts below break the vendor's bills down by bill state.
     /// </summary>
     [JsonPropertyName("statX")]
     public required string StatX { get; set; }
 
     /// <summary>
-    /// Number of active transactions
+    /// Number of the vendor's bills in the active state (created, not yet submitted for approval).
     /// </summary>
     [JsonPropertyName("active")]
     public required int Active { get; set; }
 
     /// <summary>
-    /// Volume of active transactions
+    /// Total value of the vendor's active bills, net of fees.
     /// </summary>
     [JsonPropertyName("activeVolume")]
     public required double ActiveVolume { get; set; }
 
     /// <summary>
-    /// Number of transactions sent to approval
+    /// Number of the vendor's bills submitted into an approval workflow.
     /// </summary>
     [JsonPropertyName("sentToApproval")]
     public required int SentToApproval { get; set; }
 
     /// <summary>
-    /// Volume of transactions sent to approval
+    /// Total value of the vendor's bills sent to approval, net of fees.
     /// </summary>
     [JsonPropertyName("sentToApprovalVolume")]
     public required double SentToApprovalVolume { get; set; }
 
     /// <summary>
-    /// Number of transactions to approval
+    /// Number of the vendor's bills awaiting an approver's decision.
     /// </summary>
     [JsonPropertyName("toApproval")]
     public required int ToApproval { get; set; }
 
     /// <summary>
-    /// Volume of transactions to approval
+    /// Total value of the vendor's bills awaiting approval, net of fees.
     /// </summary>
     [JsonPropertyName("toApprovalVolume")]
     public required double ToApprovalVolume { get; set; }
 
     /// <summary>
-    /// Number of approved transactions
+    /// Number of the vendor's bills approved for payment.
     /// </summary>
     [JsonPropertyName("approved")]
     public required int Approved { get; set; }
 
     /// <summary>
-    /// Volume of approved transactions
+    /// Total value of the vendor's approved bills, net of fees.
     /// </summary>
     [JsonPropertyName("approvedVolume")]
     public required double ApprovedVolume { get; set; }
 
     /// <summary>
-    /// Number of disapproved transactions
+    /// Number of the vendor's bills rejected during approval.
     /// </summary>
     [JsonPropertyName("disapproved")]
     public required int Disapproved { get; set; }
 
     /// <summary>
-    /// Volume of disapproved transactions
+    /// Total value of the vendor's disapproved bills, net of fees.
     /// </summary>
     [JsonPropertyName("disapprovedVolume")]
     public required double DisapprovedVolume { get; set; }
 
     /// <summary>
-    /// Number of cancelled transactions
+    /// Number of the vendor's cancelled bills.
     /// </summary>
     [JsonPropertyName("cancelled")]
     public required int Cancelled { get; set; }
 
     /// <summary>
-    /// Volume of cancelled transactions
+    /// Total value of the vendor's cancelled bills, net of fees.
     /// </summary>
     [JsonPropertyName("cancelledVolume")]
     public required double CancelledVolume { get; set; }
 
     /// <summary>
-    /// Number of transactions in transit
+    /// Number of the vendor's bills whose payment is in transit.
     /// </summary>
     [JsonPropertyName("inTransit")]
     public required int InTransit { get; set; }
 
     /// <summary>
-    /// Volume of transactions in transit
+    /// Total value of the vendor's in-transit bills, net of fees.
     /// </summary>
     [JsonPropertyName("inTransitVolume")]
     public required double InTransitVolume { get; set; }
 
     /// <summary>
-    /// Number of paid transactions
+    /// Number of the vendor's bills marked paid. Paid means the payout has settled, not merely that Payabli issued it.
     /// </summary>
     [JsonPropertyName("paid")]
     public required int Paid { get; set; }
 
     /// <summary>
-    /// Volume of paid transactions
+    /// Total value of the vendor's paid bills, net of fees.
     /// </summary>
     [JsonPropertyName("paidVolume")]
     public required double PaidVolume { get; set; }

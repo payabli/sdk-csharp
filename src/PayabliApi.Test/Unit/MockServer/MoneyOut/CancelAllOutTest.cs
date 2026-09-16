@@ -13,9 +13,8 @@ public class CancelAllOutTest : BaseMockServerTest
     {
         const string requestJson = """
             [
-              "2-29",
-              "2-28",
-              "2-27"
+              "129-230",
+              "129-219"
             ]
             """;
 
@@ -61,7 +60,7 @@ public class CancelAllOutTest : BaseMockServerTest
             );
 
         var response = await Client.MoneyOut.CancelAllOutAsync(
-            new List<string>() { "2-29", "2-28", "2-27" }
+            new List<string>() { "129-230", "129-219" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

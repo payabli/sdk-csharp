@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using PayabliApi;
 using PayabliApi.Test.Unit.MockServer;
 using PayabliApi.Test.Utils;
 
@@ -15,9 +14,9 @@ public class CustomerBasicStatsTest : BaseMockServerTest
         const string mockResponse = """
             [
               {
-                "interval": "2023-03",
-                "count": 45,
-                "volume": 12500.75
+                "statX": "2023-03",
+                "inTransactions": 45,
+                "inTransactionsVolume": 12500.75
               }
             ]
             """;
@@ -26,7 +25,7 @@ public class CustomerBasicStatsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Statistic/customerbasic/ytd/m/4440")
+                    .WithPath("/Statistic/customerbasic/m12/m/4440")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -38,12 +37,7 @@ public class CustomerBasicStatsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Statistic.CustomerBasicStatsAsync(
-            "ytd",
-            "m",
-            4440,
-            new CustomerBasicStatsRequest()
-        );
+        var response = await Client.Statistic.CustomerBasicStatsAsync("m12", "m", 4440);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using PayabliApi;
 using PayabliApi.Test.Unit.MockServer;
 using PayabliApi.Test.Utils;
 
@@ -52,12 +51,7 @@ public class VendorBasicStatsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Statistic.VendorBasicStatsAsync(
-            "ytd",
-            "m",
-            1,
-            new VendorBasicStatsRequest()
-        );
+        var response = await Client.Statistic.VendorBasicStatsAsync("ytd", "m", 1);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

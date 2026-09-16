@@ -5,41 +5,29 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record StatBasicQueryRecord : IJsonOnDeserialized
+public record StatCustomerBasicQueryRecord : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Statistical grouping identifier
+    /// The time bucket for this row, formatted according to the query's `freq` (for example, `2026-9` for a monthly bucket). The response returns one object per bucket across the requested range.
     /// </summary>
     [JsonPropertyName("statX")]
     public required string StatX { get; set; }
 
     /// <summary>
-    /// Number of incoming transactions
+    /// Count of the customer's approved transactions.
     /// </summary>
     [JsonPropertyName("inTransactions")]
     public required int InTransactions { get; set; }
 
     /// <summary>
-    /// Volume of incoming transactions
+    /// Total gross value of the customer's approved transactions. Unlike `/Statistic/basic`, this volume is the gross amount, before fees.
     /// </summary>
     [JsonPropertyName("inTransactionsVolume")]
     public required double InTransactionsVolume { get; set; }
-
-    /// <summary>
-    /// Number of incoming wallet transactions
-    /// </summary>
-    [JsonPropertyName("inWalletTransactions")]
-    public required int InWalletTransactions { get; set; }
-
-    /// <summary>
-    /// Volume of incoming wallet transactions
-    /// </summary>
-    [JsonPropertyName("inWalletVolume")]
-    public required double InWalletVolume { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

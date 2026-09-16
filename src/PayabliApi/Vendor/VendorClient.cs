@@ -1003,7 +1003,7 @@ public partial class VendorClient : IVendorClient
     ///     {
     ///         VendorNumber = "VEN-123",
     ///         Name1 = "Herman's Coatings and Masonry",
-    ///         Name2 = "&lt;string&gt;",
+    ///         Name2 = "HCM Services",
     ///         Ein = "12-3456789",
     ///         Phone = "5555555555",
     ///         Email = "example@email.com",
@@ -1044,8 +1044,8 @@ public partial class VendorClient : IVendorClient
     ///         RemitState = "FL",
     ///         RemitZip = "31113",
     ///         RemitCountry = "US",
-    ///         PayeeName1 = "&lt;string&gt;",
-    ///         PayeeName2 = "&lt;string&gt;",
+    ///         PayeeName1 = "Herman Martinez",
+    ///         PayeeName2 = "Herman Coatings",
     ///         CustomerVendorAccount = "A-37622",
     ///         InternalReferenceId = 123,
     ///     }

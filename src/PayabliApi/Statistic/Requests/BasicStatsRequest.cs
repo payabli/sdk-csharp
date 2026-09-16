@@ -18,12 +18,6 @@ public record BasicStatsRequest
     public string? EndDate { get; set; }
 
     /// <summary>
-    /// List of parameters.
-    /// </summary>
-    [JsonIgnore]
-    public Dictionary<string, string?>? Parameters { get; set; }
-
-    /// <summary>
     /// Used with `custom` mode. The start date for the range.
     /// Valid formats:
     ///    - YYYY-mm-dd
