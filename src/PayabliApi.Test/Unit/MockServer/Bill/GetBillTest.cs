@@ -22,8 +22,8 @@ public class GetBillTest : BaseMockServerTest
                 "BillNumber": "ABC-123",
                 "NetAmount": 100,
                 "TotalAmount": 100,
-                "BillDate": "2025-07-01",
-                "DueDate": "2025-07-01",
+                "BillDate": "2025-07-01T00:00:00.000Z",
+                "DueDate": "2025-07-01T00:00:00.000Z",
                 "Comments": "Deposit for materials",
                 "BillItems": [
                   {

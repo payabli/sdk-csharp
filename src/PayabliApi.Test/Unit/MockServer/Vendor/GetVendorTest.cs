@@ -72,6 +72,7 @@ public class GetVendorTest : BaseMockServerTest
                 "TotalBillsAmount": 25083.2
               },
               "PaypointLegalname": "Sunshine Services, LLC",
+              "PaypointId": 3040,
               "PaypointDbaname": "Sunshine Gutters",
               "PaypointEntryname": "d193cf9a46",
               "ParentOrgName": "PropertyManager Pro",
@@ -93,6 +94,7 @@ public class GetVendorTest : BaseMockServerTest
               "PaymentPortalUrl": "https://greenfield-landscaping.com/pay",
               "CardAccepted": "yes",
               "AchAccepted": "unable to determine",
+              "CheckAccepted": "no",
               "EnrichmentStatus": "fully_enriched",
               "EnrichedBy": "web_search",
               "EnrichedAt": "2026-03-05T14:22:10.000Z",

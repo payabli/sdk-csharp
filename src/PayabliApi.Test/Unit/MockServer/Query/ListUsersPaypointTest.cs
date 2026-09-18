@@ -21,7 +21,10 @@ public class ListUsersPaypointTest : BaseMockServerTest
                       "roleValue": true
                     }
                   ],
-                  "AdditionalData": "AdditionalData",
+                  "AdditionalData": {
+                    "key1": "value1",
+                    "key2": "value2"
+                  },
                   "createdAt": "2022-07-01T15:00:01.000Z",
                   "Email": "example@email.com",
                   "language": "en",

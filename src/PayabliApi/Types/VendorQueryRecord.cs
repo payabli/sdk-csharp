@@ -12,10 +12,10 @@ public record VendorQueryRecord : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("VendorNumber")]
-    public string? VendorNumber { get; set; }
+    public required string VendorNumber { get; set; }
 
     [JsonPropertyName("Name1")]
-    public string? Name1 { get; set; }
+    public required string Name1 { get; set; }
 
     [JsonPropertyName("Name2")]
     public string? Name2 { get; set; }
@@ -32,15 +32,27 @@ public record VendorQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("RemitEmail")]
     public string? RemitEmail { get; set; }
 
+    /// <summary>
+    /// The address.
+    /// </summary>
     [JsonPropertyName("Address1")]
     public string? Address1 { get; set; }
 
+    /// <summary>
+    /// Additional line for the address.
+    /// </summary>
     [JsonPropertyName("Address2")]
     public string? Address2 { get; set; }
 
+    /// <summary>
+    /// The city.
+    /// </summary>
     [JsonPropertyName("City")]
     public string? City { get; set; }
 
+    /// <summary>
+    /// The state or province.
+    /// </summary>
     [JsonPropertyName("State")]
     public string? State { get; set; }
 
@@ -69,10 +81,10 @@ public record VendorQueryRecord : IJsonOnDeserialized
     public string? PaymentMethod { get; set; }
 
     [JsonPropertyName("VendorStatus")]
-    public int? VendorStatus { get; set; }
+    public required int VendorStatus { get; set; }
 
     [JsonPropertyName("VendorId")]
-    public int? VendorId { get; set; }
+    public required int VendorId { get; set; }
 
     [JsonPropertyName("EnrollmentStatus")]
     public string? EnrollmentStatus { get; set; }
@@ -81,7 +93,7 @@ public record VendorQueryRecord : IJsonOnDeserialized
     public VendorSummary? Summary { get; set; }
 
     [JsonPropertyName("PaypointLegalname")]
-    public string? PaypointLegalname { get; set; }
+    public required string PaypointLegalname { get; set; }
 
     /// <summary>
     /// The paypoint's ID. This is different from the entryname.
@@ -90,22 +102,22 @@ public record VendorQueryRecord : IJsonOnDeserialized
     public long? PaypointId { get; set; }
 
     [JsonPropertyName("PaypointDbaname")]
-    public string? PaypointDbaname { get; set; }
+    public required string PaypointDbaname { get; set; }
 
     [JsonPropertyName("PaypointEntryname")]
-    public string? PaypointEntryname { get; set; }
+    public required string PaypointEntryname { get; set; }
 
     [JsonPropertyName("ParentOrgName")]
-    public string? ParentOrgName { get; set; }
+    public required string ParentOrgName { get; set; }
 
     [JsonPropertyName("ParentOrgId")]
-    public long? ParentOrgId { get; set; }
+    public required long ParentOrgId { get; set; }
 
     [JsonPropertyName("CreatedDate")]
-    public DateTime? CreatedDate { get; set; }
+    public required DateTime CreatedDate { get; set; }
 
     [JsonPropertyName("LastUpdated")]
-    public DateTime? LastUpdated { get; set; }
+    public required DateTime LastUpdated { get; set; }
 
     [JsonPropertyName("remitAddress1")]
     public string? RemitAddress1 { get; set; }
@@ -141,7 +153,7 @@ public record VendorQueryRecord : IJsonOnDeserialized
     public string? CustomerVendorAccount { get; set; }
 
     [JsonPropertyName("InternalReferenceId")]
-    public long? InternalReferenceId { get; set; }
+    public required long InternalReferenceId { get; set; }
 
     /// <summary>
     /// URL for the vendor's online payment portal, if known. Populated by the vendor enrichment pipeline.
@@ -171,7 +183,7 @@ public record VendorQueryRecord : IJsonOnDeserialized
     /// Current enrichment state of the vendor. Values are `not_enriched`, `partially_enriched`, `fully_enriched`, or `fallback_applied`.
     /// </summary>
     [JsonPropertyName("EnrichmentStatus")]
-    public string? EnrichmentStatus { get; set; }
+    public required string EnrichmentStatus { get; set; }
 
     /// <summary>
     /// Which enrichment method resolved the vendor's payment acceptance info. Values are `invoice_scan`, `web_search`, `vendor_network`, or `manual`.

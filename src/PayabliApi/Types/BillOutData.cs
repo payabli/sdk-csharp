@@ -21,7 +21,7 @@ public record BillOutData : IJsonOnDeserialized
     public string? AccountingField2 { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     /// <summary>
     /// An array of bill images. Attachments aren't required, but we strongly

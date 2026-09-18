@@ -33,10 +33,10 @@ public record BillQueryRecord2 : IJsonOnDeserialized
     public IEnumerable<BillQueryRecord2BillApprovalsItem>? BillApprovals { get; set; }
 
     /// <summary>
-    /// Bill creation date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY.
+    /// Bill creation date, returned as a timestamp.
     /// </summary>
     [JsonPropertyName("BillDate")]
-    public DateOnly? BillDate { get; set; }
+    public DateTime? BillDate { get; set; }
 
     /// <summary>
     /// Events associated with the bill.
@@ -81,10 +81,10 @@ public record BillQueryRecord2 : IJsonOnDeserialized
     public string? DocumentsRef { get; set; }
 
     /// <summary>
-    /// Bill due date in one of the accepted formats: YYYY-MM-DD, MM/DD/YYYY.
+    /// Bill due date, returned as a timestamp.
     /// </summary>
     [JsonPropertyName("DueDate")]
-    public DateOnly? DueDate { get; set; }
+    public DateTime? DueDate { get; set; }
 
     /// <summary>
     /// End date for the bill.

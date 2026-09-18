@@ -236,11 +236,8 @@ public record VCardGetResponseAssociatedVendor : IJsonOnDeserialized
     [JsonPropertyName("InternalReferenceId")]
     public int? InternalReferenceId { get; set; }
 
-    /// <summary>
-    /// Field for additional data, if any.
-    /// </summary>
     [JsonPropertyName("additionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }

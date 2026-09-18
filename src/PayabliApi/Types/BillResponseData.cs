@@ -51,16 +51,16 @@ public record BillResponseData : IJsonOnDeserialized
     public double? OutstandingBalance { get; set; }
 
     /// <summary>
-    /// Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY
+    /// Date of bill, returned as a timestamp.
     /// </summary>
     [JsonPropertyName("BillDate")]
-    public DateOnly? BillDate { get; set; }
+    public DateTime? BillDate { get; set; }
 
     /// <summary>
-    /// Due Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY
+    /// Due date of bill, returned as a timestamp.
     /// </summary>
     [JsonPropertyName("DueDate")]
-    public DateOnly? DueDate { get; set; }
+    public DateTime? DueDate { get; set; }
 
     /// <summary>
     /// Comments associated with the bill. For managed payables, the character limit is 200. For on demand payouts, the characters limit is 250.
@@ -114,7 +114,7 @@ public record BillResponseData : IJsonOnDeserialized
     public string? Source { get; set; }
 
     [JsonPropertyName("AdditionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     [JsonPropertyName("Vendor")]
     public VendorDataResponse? Vendor { get; set; }

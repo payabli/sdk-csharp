@@ -15,7 +15,7 @@ public record UserQueryRecord : IJsonOnDeserialized
     public IEnumerable<UsrAccess>? Access { get; set; }
 
     [JsonPropertyName("AdditionalData")]
-    public string? AdditionalData { get; set; }
+    public Dictionary<string, string>? AdditionalData { get; set; }
 
     /// <summary>
     /// The timestamp for the user's creation, in UTC.

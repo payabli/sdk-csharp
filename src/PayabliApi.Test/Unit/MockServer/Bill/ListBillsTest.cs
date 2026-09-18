@@ -54,7 +54,7 @@ public class ListBillsTest : BaseMockServerTest
                       "Id": 293
                     }
                   ],
-                  "BillDate": "2025-03-10",
+                  "BillDate": "2025-03-10T00:00:00.000Z",
                   "billEvents": [
                     {
                       "description": "Created Bill",
@@ -86,7 +86,7 @@ public class ListBillsTest : BaseMockServerTest
                   "Comments": "PAYBILL",
                   "CreatedAt": "2024-03-13T15:54:26.000Z",
                   "Discount": 0,
-                  "DueDate": "2025-03-10",
+                  "DueDate": "2025-03-10T00:00:00.000Z",
                   "externalPaypointID": "micasa-10",
                   "Frequency": "onetime",
                   "IdBill": 6104,
