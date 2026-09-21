@@ -24,13 +24,13 @@ public record VendorDataResponse : IJsonOnDeserialized
     /// Secondary name for vendor.
     /// </summary>
     [JsonPropertyName("Name2")]
-    public string? Name2 { get; set; }
+    public required string Name2 { get; set; }
 
     /// <summary>
     /// EIN/Tax ID for vendor. In responses, this field is masked, and looks like: `"ein": "XXXXX6789"`.
     /// </summary>
     [JsonPropertyName("EIN")]
-    public string? Ein { get; set; }
+    public required string Ein { get; set; }
 
     /// <summary>
     /// Vendor's phone number.
@@ -51,61 +51,61 @@ public record VendorDataResponse : IJsonOnDeserialized
     /// Vendor's address.
     /// </summary>
     [JsonPropertyName("Address1")]
-    public string? Address1 { get; set; }
+    public required string Address1 { get; set; }
 
     /// <summary>
     /// Additional line for vendor's address.
     /// </summary>
     [JsonPropertyName("Address2")]
-    public string? Address2 { get; set; }
+    public required string Address2 { get; set; }
 
     /// <summary>
     /// Vendor's city.
     /// </summary>
     [JsonPropertyName("City")]
-    public string? City { get; set; }
+    public required string City { get; set; }
 
     /// <summary>
     /// Vendor's state. Must be a two-character state code.
     /// </summary>
     [JsonPropertyName("State")]
-    public string? State { get; set; }
+    public required string State { get; set; }
 
     /// <summary>
     /// Vendor's ZIP code.
     /// </summary>
     [JsonPropertyName("Zip")]
-    public string? Zip { get; set; }
+    public required string Zip { get; set; }
 
     /// <summary>
     /// Vendor's country. Payabli supports only US and Canadian vendors.
     /// </summary>
     [JsonPropertyName("Country")]
-    public string? Country { get; set; }
+    public required string Country { get; set; }
 
     [JsonPropertyName("Mcc")]
-    public string? Mcc { get; set; }
+    public required string Mcc { get; set; }
 
     [JsonPropertyName("LocationCode")]
-    public string? LocationCode { get; set; }
+    public required string LocationCode { get; set; }
 
     /// <summary>
     /// Array of objects describing the vendor's contacts.
     /// </summary>
     [JsonPropertyName("Contacts")]
-    public IEnumerable<ContactsResponse>? Contacts { get; set; }
+    public IEnumerable<ContactsResponse> Contacts { get; set; } = new List<ContactsResponse>();
 
     /// <summary>
     /// Object containing vendor's bank information.
     /// </summary>
     [JsonPropertyName("BillingData")]
-    public VendorResponseBillingData? BillingData { get; set; }
+    public required VendorResponseBillingData BillingData { get; set; }
 
     /// <summary>
     /// Preferred payment method for vendor.
     /// </summary>
     [JsonPropertyName("PaymentMethod")]
-    public VendorDataResponsePaymentMethod? PaymentMethod { get; set; }
+    public required VendorDataResponsePaymentMethod PaymentMethod { get; set; }
 
     [JsonPropertyName("VendorStatus")]
     public required int VendorStatus { get; set; }
@@ -168,40 +168,40 @@ public record VendorDataResponse : IJsonOnDeserialized
     public required DateTime LastUpdated { get; set; }
 
     [JsonPropertyName("remitAddress1")]
-    public string? RemitAddress1 { get; set; }
+    public required string RemitAddress1 { get; set; }
 
     [JsonPropertyName("remitAddress2")]
-    public string? RemitAddress2 { get; set; }
+    public required string RemitAddress2 { get; set; }
 
     [JsonPropertyName("remitCity")]
-    public string? RemitCity { get; set; }
+    public required string RemitCity { get; set; }
 
     [JsonPropertyName("remitState")]
-    public string? RemitState { get; set; }
+    public required string RemitState { get; set; }
 
     [JsonPropertyName("remitZip")]
-    public string? RemitZip { get; set; }
+    public required string RemitZip { get; set; }
 
     [JsonPropertyName("remitCountry")]
-    public string? RemitCountry { get; set; }
+    public required string RemitCountry { get; set; }
 
     [JsonPropertyName("payeeName1")]
-    public string? PayeeName1 { get; set; }
+    public required string PayeeName1 { get; set; }
 
     [JsonPropertyName("payeeName2")]
-    public string? PayeeName2 { get; set; }
+    public required string PayeeName2 { get; set; }
 
     /// <summary>
     /// Custom field 1 for vendor
     /// </summary>
     [JsonPropertyName("customField1")]
-    public string? CustomField1 { get; set; }
+    public required string CustomField1 { get; set; }
 
     /// <summary>
     /// Custom field 2 for vendor
     /// </summary>
     [JsonPropertyName("customField2")]
-    public string? CustomField2 { get; set; }
+    public required string CustomField2 { get; set; }
 
     /// <summary>
     /// Account number of paypoint in the Vendor side.
@@ -213,13 +213,14 @@ public record VendorDataResponse : IJsonOnDeserialized
     public required long InternalReferenceId { get; set; }
 
     [JsonPropertyName("additionalData")]
-    public Dictionary<string, string>? AdditionalData { get; set; }
+    public Dictionary<string, string> AdditionalData { get; set; } =
+        new Dictionary<string, string>();
 
     /// <summary>
     /// External paypoint identifier
     /// </summary>
     [JsonPropertyName("externalPaypointID")]
-    public string? ExternalPaypointId { get; set; }
+    public required string ExternalPaypointId { get; set; }
 
     /// <summary>
     /// Array of stored payment methods for vendor

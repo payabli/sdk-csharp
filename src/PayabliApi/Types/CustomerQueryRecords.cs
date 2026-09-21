@@ -12,13 +12,8 @@ public record CustomerQueryRecords : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("customerId")]
-    public required long CustomerId { get; set; }
+    public long? CustomerId { get; set; }
 
-    /// <summary>
-    /// User-provided unique identifier for the customer. This is typically the
-    /// customer ID from your own system. Returns null when the paypoint's
-    /// customer identifier configuration doesn't use the customer number.
-    /// </summary>
     [JsonPropertyName("customerNumber")]
     public string? CustomerNumber { get; set; }
 
@@ -29,7 +24,7 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     public string? CustomerUsername { get; set; }
 
     [JsonPropertyName("customerStatus")]
-    public required int CustomerStatus { get; set; }
+    public int? CustomerStatus { get; set; }
 
     /// <summary>
     /// Company name.
@@ -41,13 +36,13 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     /// Customer first name.
     /// </summary>
     [JsonPropertyName("Firstname")]
-    public required string Firstname { get; set; }
+    public string? Firstname { get; set; }
 
     /// <summary>
     /// Customer last name.
     /// </summary>
     [JsonPropertyName("Lastname")]
-    public required string Lastname { get; set; }
+    public string? Lastname { get; set; }
 
     /// <summary>
     /// Customer phone number.
@@ -119,16 +114,16 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     /// Customer balance.
     /// </summary>
     [JsonPropertyName("Balance")]
-    public required double Balance { get; set; }
+    public double? Balance { get; set; }
 
     [JsonPropertyName("TimeZone")]
-    public required int TimeZone { get; set; }
+    public int? TimeZone { get; set; }
 
     [JsonPropertyName("MFA")]
-    public required bool Mfa { get; set; }
+    public bool? Mfa { get; set; }
 
     [JsonPropertyName("MFAMode")]
-    public required int MfaMode { get; set; }
+    public int? MfaMode { get; set; }
 
     /// <summary>
     /// Social network linked to customer. Possible values:
@@ -156,23 +151,22 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     /// Date and time of last update.
     /// </summary>
     [JsonPropertyName("LastUpdated")]
-    public required DateTime LastUpdated { get; set; }
+    public DateTime? LastUpdated { get; set; }
 
     /// <summary>
     /// Date and time created.
     /// </summary>
     [JsonPropertyName("Created")]
-    public required DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// List of additional custom fields in format key:value.
     /// </summary>
     [JsonPropertyName("AdditionalFields")]
-    public Dictionary<string, string> AdditionalFields { get; set; } =
-        new Dictionary<string, string>();
+    public Dictionary<string, string>? AdditionalFields { get; set; }
 
     [JsonPropertyName("IdentifierFields")]
-    public IEnumerable<string> IdentifierFields { get; set; } = new List<string>();
+    public IEnumerable<string>? IdentifierFields { get; set; }
 
     /// <summary>
     /// List of subscriptions associated to the customer.
@@ -193,22 +187,22 @@ public record CustomerQueryRecords : IJsonOnDeserialized
     /// Paypoint legal name.
     /// </summary>
     [JsonPropertyName("PaypointLegalname")]
-    public required string PaypointLegalname { get; set; }
+    public string? PaypointLegalname { get; set; }
 
     /// <summary>
     /// Paypoint DBA name.
     /// </summary>
     [JsonPropertyName("PaypointDbaname")]
-    public required string PaypointDbaname { get; set; }
+    public string? PaypointDbaname { get; set; }
 
     [JsonPropertyName("ParentOrgName")]
-    public required string ParentOrgName { get; set; }
+    public string? ParentOrgName { get; set; }
 
     [JsonPropertyName("ParentOrgId")]
-    public required long ParentOrgId { get; set; }
+    public long? ParentOrgId { get; set; }
 
     [JsonPropertyName("PaypointEntryname")]
-    public required string PaypointEntryname { get; set; }
+    public string? PaypointEntryname { get; set; }
 
     [JsonPropertyName("pageidentifier")]
     public string? Pageidentifier { get; set; }
