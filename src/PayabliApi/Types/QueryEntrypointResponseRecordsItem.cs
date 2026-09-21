@@ -24,7 +24,7 @@ public record QueryEntrypointResponseRecordsItem : IJsonOnDeserialized
     public string? BAddress2 { get; set; }
 
     [JsonPropertyName("BankData")]
-    public IEnumerable<Bank>? BankData { get; set; }
+    public IEnumerable<Bank> BankData { get; set; } = new List<Bank>();
 
     [JsonPropertyName("BCity")]
     public string? BCity { get; set; }
@@ -39,16 +39,16 @@ public record QueryEntrypointResponseRecordsItem : IJsonOnDeserialized
     public string? BFax { get; set; }
 
     [JsonPropertyName("BinPerson")]
-    public int? BinPerson { get; set; }
+    public required int BinPerson { get; set; }
 
     [JsonPropertyName("BinPhone")]
-    public int? BinPhone { get; set; }
+    public required int BinPhone { get; set; }
 
     [JsonPropertyName("BinWeb")]
-    public int? BinWeb { get; set; }
+    public required int BinWeb { get; set; }
 
     [JsonPropertyName("BoardingId")]
-    public long? BoardingId { get; set; }
+    public required long BoardingId { get; set; }
 
     [JsonPropertyName("BPhone")]
     public string? BPhone { get; set; }
@@ -63,46 +63,47 @@ public record QueryEntrypointResponseRecordsItem : IJsonOnDeserialized
     public string? BSummary { get; set; }
 
     [JsonPropertyName("BTimeZone")]
-    public int? BTimeZone { get; set; }
+    public required int BTimeZone { get; set; }
 
     [JsonPropertyName("BZip")]
     public string? BZip { get; set; }
 
     [JsonPropertyName("ContactData")]
-    public IEnumerable<Contacts>? ContactData { get; set; }
+    public IEnumerable<Contacts> ContactData { get; set; } = new List<Contacts>();
 
     [JsonPropertyName("CreatedAt")]
-    public DateTime? CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     [JsonPropertyName("DbaName")]
-    public string? DbaName { get; set; }
+    public required string DbaName { get; set; }
 
     [JsonPropertyName("DocumentsRef")]
     public string? DocumentsRef { get; set; }
 
     [JsonPropertyName("Ein")]
-    public string? Ein { get; set; }
+    public required string Ein { get; set; }
 
     [JsonPropertyName("EntryPoints")]
-    public IEnumerable<PaypointEntryConfig>? EntryPoints { get; set; }
+    public IEnumerable<PaypointEntryConfig> EntryPoints { get; set; } =
+        new List<PaypointEntryConfig>();
 
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
 
     [JsonPropertyName("ExternalProcessorInformation")]
-    public string? ExternalProcessorInformation { get; set; }
+    public required string ExternalProcessorInformation { get; set; }
 
     [JsonPropertyName("HighTicketAmount")]
     public double? HighTicketAmount { get; set; }
 
     [JsonPropertyName("IdPaypoint")]
-    public long? IdPaypoint { get; set; }
+    public required long IdPaypoint { get; set; }
 
     [JsonPropertyName("LastModified")]
-    public DateTime? LastModified { get; set; }
+    public required DateTime LastModified { get; set; }
 
     [JsonPropertyName("LegalName")]
-    public string? LegalName { get; set; }
+    public required string LegalName { get; set; }
 
     [JsonPropertyName("License")]
     public string? License { get; set; }
@@ -117,7 +118,7 @@ public record QueryEntrypointResponseRecordsItem : IJsonOnDeserialized
     public string? MAddress2 { get; set; }
 
     [JsonPropertyName("Mccid")]
-    public string? Mccid { get; set; }
+    public required string Mccid { get; set; }
 
     [JsonPropertyName("MCity")]
     public string? MCity { get; set; }
@@ -132,19 +133,19 @@ public record QueryEntrypointResponseRecordsItem : IJsonOnDeserialized
     public string? MZip { get; set; }
 
     [JsonPropertyName("OrgId")]
-    public long? OrgId { get; set; }
+    public required long OrgId { get; set; }
 
     [JsonPropertyName("OrgParentName")]
-    public string? OrgParentName { get; set; }
+    public required string OrgParentName { get; set; }
 
     [JsonPropertyName("OwnerData")]
-    public IEnumerable<Owners>? OwnerData { get; set; }
+    public IEnumerable<Owners> OwnerData { get; set; } = new List<Owners>();
 
     [JsonPropertyName("OwnType")]
     public OwnType? OwnType { get; set; }
 
     [JsonPropertyName("PaypointStatus")]
-    public int? PaypointStatus { get; set; }
+    public required int PaypointStatus { get; set; }
 
     [JsonPropertyName("SalesCode")]
     public string? SalesCode { get; set; }
@@ -153,13 +154,13 @@ public record QueryEntrypointResponseRecordsItem : IJsonOnDeserialized
     public Services? ServiceData { get; set; }
 
     [JsonPropertyName("summary")]
-    public PaypointSummary? Summary { get; set; }
+    public required PaypointSummary Summary { get; set; }
 
     [JsonPropertyName("Taxfillname")]
     public string? Taxfillname { get; set; }
 
     [JsonPropertyName("TemplateId")]
-    public long? TemplateId { get; set; }
+    public required long TemplateId { get; set; }
 
     /// <summary>
     /// Business website.

@@ -12,13 +12,13 @@ public record AssociatedVendor : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("VendorNumber")]
-    public string? VendorNumber { get; set; }
+    public required string VendorNumber { get; set; }
 
     /// <summary>
     /// Primary name for vendor.
     /// </summary>
     [JsonPropertyName("Name1")]
-    public string? Name1 { get; set; }
+    public required string Name1 { get; set; }
 
     /// <summary>
     /// Secondary name for vendor.
@@ -99,7 +99,7 @@ public record AssociatedVendor : IJsonOnDeserialized
     public int? VendorStatus { get; set; }
 
     [JsonPropertyName("VendorId")]
-    public int? VendorId { get; set; }
+    public required int VendorId { get; set; }
 
     [JsonPropertyName("EnrollmentStatus")]
     public string? EnrollmentStatus { get; set; }

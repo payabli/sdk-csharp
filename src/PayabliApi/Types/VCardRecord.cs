@@ -15,19 +15,19 @@ public record VCardRecord : IJsonOnDeserialized
     /// When `true`, the vCard has been sent.
     /// </summary>
     [JsonPropertyName("vcardSent")]
-    public bool? VcardSent { get; set; }
+    public required bool VcardSent { get; set; }
 
     [JsonPropertyName("cardType")]
-    public int? CardType { get; set; }
+    public required int CardType { get; set; }
 
     [JsonPropertyName("cardToken")]
-    public string? CardToken { get; set; }
+    public required string CardToken { get; set; }
 
     /// <summary>
     /// The vCard number.
     /// </summary>
     [JsonPropertyName("cardNumber")]
-    public string? CardNumber { get; set; }
+    public required string CardNumber { get; set; }
 
     /// <summary>
     /// The vCard CVC number.
@@ -39,37 +39,37 @@ public record VCardRecord : IJsonOnDeserialized
     /// Expiration date in format YYYY-MM-DD. The minimum time to expire is 3 months, maximum is 3 years. If not provided, the default is 6 months.
     /// </summary>
     [JsonPropertyName("expirationDate")]
-    public string? ExpirationDate { get; set; }
+    public required string ExpirationDate { get; set; }
 
     [JsonPropertyName("status")]
-    public string? Status { get; set; }
+    public required string Status { get; set; }
 
     /// <summary>
     /// The vCard amount.
     /// </summary>
     [JsonPropertyName("amount")]
-    public double? Amount { get; set; }
+    public required double Amount { get; set; }
 
     /// <summary>
     /// The vCard's current balance.
     /// </summary>
     [JsonPropertyName("currentBalance")]
-    public double? CurrentBalance { get; set; }
+    public required double CurrentBalance { get; set; }
 
     [JsonPropertyName("expenseLimit")]
-    public double? ExpenseLimit { get; set; }
+    public required double ExpenseLimit { get; set; }
 
     [JsonPropertyName("expenseLimitPeriod")]
     public string? ExpenseLimitPeriod { get; set; }
 
     [JsonPropertyName("maxNumberOfUses")]
-    public int? MaxNumberOfUses { get; set; }
+    public required int MaxNumberOfUses { get; set; }
 
     [JsonPropertyName("currentNumberOfUses")]
-    public int? CurrentNumberOfUses { get; set; }
+    public required int CurrentNumberOfUses { get; set; }
 
     [JsonPropertyName("exactAmount")]
-    public bool? ExactAmount { get; set; }
+    public required bool ExactAmount { get; set; }
 
     /// <summary>
     /// MCC assigned to vCard.
@@ -96,13 +96,13 @@ public record VCardRecord : IJsonOnDeserialized
     public string? Misc2 { get; set; }
 
     [JsonPropertyName("dateCreated")]
-    public DateTime? DateCreated { get; set; }
+    public required DateTime DateCreated { get; set; }
 
     [JsonPropertyName("dateModified")]
-    public DateTime? DateModified { get; set; }
+    public required DateTime DateModified { get; set; }
 
     [JsonPropertyName("associatedVendor")]
-    public AssociatedVendor? AssociatedVendor { get; set; }
+    public required AssociatedVendor AssociatedVendor { get; set; }
 
     [JsonPropertyName("associatedCustomer")]
     public CustomerData? AssociatedCustomer { get; set; }
@@ -135,7 +135,7 @@ public record VCardRecord : IJsonOnDeserialized
     /// The paypoint's unique identifier.
     /// </summary>
     [JsonPropertyName("paypointId")]
-    public int? PaypointId { get; set; }
+    public required int PaypointId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -34,6 +34,8 @@ public class ListCustomersOrgTest : BaseMockServerTest
                   "Email": "thibodeaux.hebert@bayoumail.com",
                   "externalPaypointID": "pay-10",
                   "Firstname": "Thibodeaux",
+                  "AdditionalFields": {},
+                  "ParentOrgId": 123,
                   "IdentifierFields": [
                     "email"
                   ],

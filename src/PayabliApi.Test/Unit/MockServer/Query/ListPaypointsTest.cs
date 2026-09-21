@@ -73,6 +73,11 @@ public class ListPaypointsTest : BaseMockServerTest
                   "OwnType": "Limited Liability Company",
                   "PaypointStatus": 1,
                   "SalesCode": "SalesCode",
+                  "summary": {
+                    "countTx": 10,
+                    "amountTx": 690,
+                    "countSubs": 2
+                  },
                   "Taxfillname": "Sunshine LLC",
                   "TemplateId": 22,
                   "WebsiteAddress": "www.example.com",
