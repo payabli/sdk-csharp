@@ -13,13 +13,13 @@ public class RemoveMethodTest : BaseMockServerTest
     {
         const string mockResponse = """
             {
+              "responseText": "Success",
               "isSuccess": true,
               "responseData": {
-                "referenceId": "129-219",
+                "referenceId": "32-8877drt00045632-678",
                 "resultCode": 1,
                 "resultText": "Removed"
-              },
-              "responseText": "Success"
+              }
             }
             """;
 

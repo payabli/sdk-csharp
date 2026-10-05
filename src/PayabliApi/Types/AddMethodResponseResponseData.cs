@@ -31,6 +31,36 @@ public record AddMethodResponseResponseData : IJsonOnDeserialized
     [JsonPropertyName("customerId")]
     public long? CustomerId { get; set; }
 
+    /// <summary>
+    /// Only returned when the request is declined.
+    /// </summary>
+    [JsonPropertyName("authCode")]
+    public string? AuthCode { get; set; }
+
+    /// <summary>
+    /// Only returned when the request is declined.
+    /// </summary>
+    [JsonPropertyName("avsResponseText")]
+    public string? AvsResponseText { get; set; }
+
+    /// <summary>
+    /// Only returned when the request is declined.
+    /// </summary>
+    [JsonPropertyName("cvvResponseText")]
+    public string? CvvResponseText { get; set; }
+
+    /// <summary>
+    /// Only returned when the request is declined.
+    /// </summary>
+    [JsonPropertyName("vendorId")]
+    public int? VendorId { get; set; }
+
+    /// <summary>
+    /// Stored method identifier in Payabli platform. Returns the same value as
+    /// `referenceId`. This field isn't returned when you convert a temporary
+    /// token to a permanent token, so use `referenceId` to get the stored
+    /// method ID.
+    /// </summary>
     [JsonPropertyName("methodReferenceId")]
     public string? MethodReferenceId { get; set; }
 

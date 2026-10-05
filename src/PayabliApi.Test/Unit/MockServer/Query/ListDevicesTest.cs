@@ -28,6 +28,8 @@ public class ListDevicesTest : BaseMockServerTest
                   "description": "Front Counter Terminal",
                   "serialNumber": "SN-90210-XR",
                   "friendlyName": "Front Counter",
+                  "make": "",
+                  "model": "DX8000",
                   "deviceType": 1,
                   "deviceStatus": 1,
                   "macAddress": "1A2B3C4D5E6F",

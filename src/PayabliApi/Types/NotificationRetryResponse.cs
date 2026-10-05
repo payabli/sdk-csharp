@@ -5,26 +5,17 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 [Serializable]
-public record AddMethodResponse : IJsonOnDeserialized
+public record NotificationRetryResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Returned only when the request succeeds. Not returned when the request is declined, or when you convert a temporary token to a permanent token.
+    /// A message describing the result of the retry.
     /// </summary>
-    [JsonPropertyName("pageIdentifier")]
-    public string? PageIdentifier { get; set; }
-
-    [JsonPropertyName("responseData")]
-    public AddMethodResponseResponseData? ResponseData { get; set; }
-
-    [JsonPropertyName("isSuccess")]
-    public bool? IsSuccess { get; set; }
-
-    [JsonPropertyName("responseText")]
-    public required string ResponseText { get; set; }
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

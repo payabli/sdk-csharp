@@ -35,43 +35,42 @@ public class GetMethodTest : BaseMockServerTest
                 },
                 "customers": [
                   {
-                    "additionalData": {
-                      "key1": {
-                        "key": "value"
-                      },
-                      "key2": {
-                        "key": "value"
-                      },
-                      "key3": {
-                        "key": "value"
-                      }
-                    },
-                    "balance": 250,
-                    "billingPhone": "1234567890",
-                    "company": "Bluesky Tech Inc",
-                    "created": "2023-06-01T14:30:00.000Z",
                     "customerId": 4440,
                     "customerNumber": "C-90010",
-                    "customerStatus": 1,
                     "customerUsername": "Marcus",
+                    "customerStatus": 1,
+                    "company": "Bluesky Tech Inc",
+                    "firstname": "Marcus",
+                    "lastname": "Chen",
+                    "phone": "1234567890",
+                    "email": "marcus.chen@example.com",
+                    "address1": "123 Market St",
+                    "city": "San Francisco",
+                    "state": "CA",
+                    "zip": "94105",
+                    "country": "US",
+                    "shippingAddress1": "Suite 500",
+                    "shippingCity": "San Francisco",
+                    "shippingState": "CA",
+                    "shippingZip": "94105",
+                    "shippingCountry": "US",
+                    "balance": 250,
+                    "timeZone": -8,
+                    "mfa": true,
+                    "mfaMode": 1,
+                    "lastUpdated": "2024-12-15T09:45:32.000Z",
+                    "created": "2023-06-01T14:30:00.000Z",
+                    "additionalFields": {},
                     "identifierFields": [
                       "firstname",
                       "email"
                     ],
-                    "lastUpdated": "2024-12-15T09:45:32.000Z",
-                    "mfa": true,
-                    "mfaMode": 1,
-                    "parentOrgId": 5,
-                    "parentOrgName": "TechCorp",
-                    "paypointDbaname": "Bluesky Tech",
-                    "paypointEntryname": "45782932fcc",
                     "paypointLegalname": "Bluesky Technologies LLC",
-                    "shippingAddress1": "Suite 500",
-                    "shippingCity": "San Francisco",
-                    "shippingCountry": "US",
-                    "shippingState": "CA",
-                    "shippingZip": "94105",
-                    "timeZone": -8
+                    "paypointDbaname": "Bluesky Tech",
+                    "parentOrgName": "TechCorp",
+                    "parentOrgId": 5,
+                    "paypointEntryname": "45782932fcc",
+                    "customerEvents": []
                   }
                 ],
                 "descriptor": "visa",
@@ -125,45 +124,42 @@ public class GetMethodTest : BaseMockServerTest
                 "bin": "",
                 "customers": [
                   {
-                    "additionalData": {
-                      "key1": {
-                        "key": "value"
-                      },
-                      "key2": {
-                        "key": "value"
-                      },
-                      "key3": {
-                        "key": "value"
-                      }
-                    },
-                    "balance": 250,
-                    "billingPhone": "1234567890",
-                    "company": "Bluesky Tech Inc",
-                    "created": "2023-06-01T14:30:00.000Z",
                     "customerId": 4440,
                     "customerNumber": "C-90010",
-                    "customerStatus": 1,
                     "customerUsername": "Marcus",
+                    "customerStatus": 1,
+                    "company": "Bluesky Tech Inc",
+                    "firstname": "Marcus",
+                    "lastname": "Chen",
+                    "phone": "1234567890",
+                    "email": "marcus.chen@example.com",
+                    "address1": "123 Market St",
+                    "city": "San Francisco",
+                    "state": "CA",
+                    "zip": "94105",
+                    "country": "US",
+                    "shippingAddress1": "Suite 500",
+                    "shippingCity": "San Francisco",
+                    "shippingState": "CA",
+                    "shippingZip": "94105",
+                    "shippingCountry": "US",
+                    "balance": 250,
+                    "timeZone": -8,
+                    "mfa": true,
+                    "mfaMode": 1,
+                    "lastUpdated": "2024-12-15T09:45:32.000Z",
+                    "created": "2023-06-01T14:30:00.000Z",
+                    "additionalFields": {},
                     "identifierFields": [
                       "firstname",
                       "email"
                     ],
-                    "lastUpdated": "2024-12-15T09:45:32.000Z",
-                    "mfa": true,
-                    "mfaMode": 1,
-                    "parentOrgId": 5,
-                    "parentOrgName": "TechCorp",
-                    "paypointDbaname": "Bluesky Tech",
-                    "paypointEntryname": "45782932fcc",
                     "paypointLegalname": "Bluesky Technologies LLC",
-                    "shippingAddress1": "Suite 500",
-                    "shippingCity": "San Francisco",
-                    "shippingCountry": "US",
-                    "shippingState": "CA",
-                    "shippingZip": "94105",
-                    "snIdentifier": "null",
-                    "snProvider": "google",
-                    "timeZone": -8
+                    "paypointDbaname": "Bluesky Tech",
+                    "parentOrgName": "TechCorp",
+                    "parentOrgId": 5,
+                    "paypointEntryname": "45782932fcc",
+                    "customerEvents": []
                   }
                 ],
                 "descriptor": "Checking",

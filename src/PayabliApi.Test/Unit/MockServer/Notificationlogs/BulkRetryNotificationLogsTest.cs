@@ -8,15 +8,16 @@ namespace PayabliApi.Test.Unit.MockServer.Notificationlogs;
 public class BulkRetryNotificationLogsTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
-    public void MockServerTest()
+    public async Task MockServerTest()
     {
         const string requestJson = """
             [
-              "550e8400-e29b-41d4-a716-446655440000",
-              "550e8400-e29b-41d4-a716-446655440001",
-              "550e8400-e29b-41d4-a716-446655440002"
+              "string",
+              "string"
             ]
             """;
+
+        const string mockResponse = "string";
 
         Server
             .Given(
@@ -28,17 +29,16 @@ public class BulkRetryNotificationLogsTest : BaseMockServerTest
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
-            .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
 
-        Assert.DoesNotThrowAsync(async () =>
-            await Client.Notificationlogs.BulkRetryNotificationLogsAsync(
-                new List<string>()
-                {
-                    "550e8400-e29b-41d4-a716-446655440000",
-                    "550e8400-e29b-41d4-a716-446655440001",
-                    "550e8400-e29b-41d4-a716-446655440002",
-                }
-            )
+        var response = await Client.Notificationlogs.BulkRetryNotificationLogsAsync(
+            new List<string>() { "string", "string" }
         );
+        Assert.That(response, Is.EqualTo(mockResponse));
     }
 }

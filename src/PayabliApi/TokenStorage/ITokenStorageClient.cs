@@ -3,7 +3,7 @@ namespace PayabliApi;
 public partial interface ITokenStorageClient
 {
     /// <summary>
-    /// Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `ReferenceId` value in the response is the `storedMethodId` to use with transactions.
+    /// Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `referenceId` value in the response is the `storedMethodId` to use with transactions, and the `methodId` to use when you manage the saved payment method.
     /// </summary>
     WithRawResponseTask<AddMethodResponse> AddMethodAsync(
         AddMethodRequest request,

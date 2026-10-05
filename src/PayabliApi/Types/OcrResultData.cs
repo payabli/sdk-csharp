@@ -14,8 +14,27 @@ public record OcrResultData : IJsonOnDeserialized
     [JsonPropertyName("billNumber")]
     public string? BillNumber { get; set; }
 
+    /// <summary>
+    /// Subtotal of the document's line items, before tax.
+    ///
+    /// This isn't the amount due. When you create a bill from this result,
+    /// set the bill's `netAmount` from `totalAmount`.
+    /// </summary>
     [JsonPropertyName("netAmount")]
     public double? NetAmount { get; set; }
+
+    /// <summary>
+    /// Discount on the document. This is often `null` even when the
+    /// document shows a discount. `totalAmount` already reflects any discount.
+    /// </summary>
+    [JsonPropertyName("discount")]
+    public double? Discount { get; set; }
+
+    /// <summary>
+    /// Total amount due on the document, after any discount and including tax.
+    /// </summary>
+    [JsonPropertyName("totalAmount")]
+    public double? TotalAmount { get; set; }
 
     [JsonPropertyName("billDate")]
     public DateTime? BillDate { get; set; }

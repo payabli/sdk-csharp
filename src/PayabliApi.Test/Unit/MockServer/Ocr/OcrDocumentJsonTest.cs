@@ -25,6 +25,8 @@ public class OcrDocumentJsonTest : BaseMockServerTest
                 "resultData": {
                   "billNumber": "billNumber",
                   "netAmount": 1.1,
+                  "discount": 1.1,
+                  "totalAmount": 1.1,
                   "billDate": "2024-01-15T09:30:00.000Z",
                   "dueDate": "2024-01-15T09:30:00.000Z",
                   "comments": "comments",

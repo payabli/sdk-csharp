@@ -24,7 +24,18 @@ public record RequestOutAuthorizePaymentDetails : IJsonOnDeserialized
     public string? Currency { get; set; }
 
     /// <summary>
-    /// Service fee to be deducted from the total amount. This amount must be a number, percentages aren't accepted. If you are using a percentage-based fee schedule, you must calculate the value manually.
+    /// Service fee to deduct from the total amount. This amount must be a number, percentages aren't accepted. If you're using a percentage-based fee schedule, you must calculate the value manually.
+    ///
+    /// Payabli honors this field only when the paypoint's ACH payout pricing allows fee overrides. Otherwise, Payabli ignores this field and charges the fee configured in the paypoint's pricing. Contact Payabli to check or change this setting.
+    ///
+    /// When fee overrides are allowed:
+    ///
+    /// - `0` overrides the configured fee, and no fee is charged.
+    /// - A positive value replaces the configured fee. Payabli caps the fee at `totalAmount`.
+    /// - A negative value results in no fee.
+    /// - If you omit this field, Payabli charges the configured fee.
+    ///
+    /// The fee is deducted from the payout, so the vendor receives `totalAmount` minus the fee.
     /// </summary>
     [JsonPropertyName("serviceFee")]
     public double? ServiceFee { get; set; }

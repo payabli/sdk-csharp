@@ -98,6 +98,12 @@ public record GetMethodResponseResponseData : IJsonOnDeserialized
     [JsonPropertyName("vendors")]
     public IEnumerable<GetMethodResponseResponseDataVendorsItem>? Vendors { get; set; }
 
+    /// <summary>
+    /// Digital wallet type if applicable.
+    /// </summary>
+    [JsonPropertyName("walletType")]
+    public string? WalletType { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

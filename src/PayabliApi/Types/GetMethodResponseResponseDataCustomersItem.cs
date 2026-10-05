@@ -4,6 +4,9 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// The customer record that owns the stored payment method.
+/// </summary>
 [Serializable]
 public record GetMethodResponseResponseDataCustomersItem : IJsonOnDeserialized
 {
@@ -12,10 +15,46 @@ public record GetMethodResponseResponseDataCustomersItem : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// List of additional custom fields in format key:value.
+    /// </summary>
+    [JsonPropertyName("additionalFields")]
+    public Dictionary<string, string>? AdditionalFields { get; set; }
+
+    /// <summary>
+    /// Customer address.
+    /// </summary>
+    [JsonPropertyName("address")]
+    public string? Address { get; set; }
+
+    /// <summary>
+    /// Additional line for customer address.
+    /// </summary>
+    [JsonPropertyName("address1")]
+    public string? Address1 { get; set; }
+
+    /// <summary>
     /// Customer's current balance
     /// </summary>
     [JsonPropertyName("balance")]
     public float? Balance { get; set; }
+
+    /// <summary>
+    /// Customer city.
+    /// </summary>
+    [JsonPropertyName("city")]
+    public string? City { get; set; }
+
+    /// <summary>
+    /// Company name.
+    /// </summary>
+    [JsonPropertyName("company")]
+    public string? Company { get; set; }
+
+    /// <summary>
+    /// Customer country.
+    /// </summary>
+    [JsonPropertyName("country")]
+    public string? Country { get; set; }
 
     /// <summary>
     /// Creation timestamp
@@ -28,6 +67,21 @@ public record GetMethodResponseResponseDataCustomersItem : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("customerConsent")]
     public Dictionary<string, object?>? CustomerConsent { get; set; }
+
+    /// <summary>
+    /// Events recorded for the customer.
+    /// </summary>
+    [JsonPropertyName("customerEvents")]
+    public IEnumerable<object>? CustomerEvents { get; set; }
+
+    [JsonPropertyName("customerId")]
+    public long? CustomerId { get; set; }
+
+    [JsonPropertyName("customerNumber")]
+    public string? CustomerNumber { get; set; }
+
+    [JsonPropertyName("customerPortal")]
+    public string? CustomerPortal { get; set; }
 
     /// <summary>
     /// Status code for the customer
@@ -44,8 +98,29 @@ public record GetMethodResponseResponseDataCustomersItem : IJsonOnDeserialized
     [JsonPropertyName("customerUsername")]
     public string? CustomerUsername { get; set; }
 
+    /// <summary>
+    /// Customer email address.
+    /// </summary>
+    [JsonPropertyName("email")]
+    public string? Email { get; set; }
+
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
+
+    /// <summary>
+    /// Customer first name.
+    /// </summary>
+    [JsonPropertyName("firstname")]
+    public string? Firstname { get; set; }
+
+    [JsonPropertyName("identifierFields")]
+    public IEnumerable<string>? IdentifierFields { get; set; }
+
+    /// <summary>
+    /// Customer last name.
+    /// </summary>
+    [JsonPropertyName("lastname")]
+    public string? Lastname { get; set; }
 
     /// <summary>
     /// Last update timestamp
@@ -90,6 +165,30 @@ public record GetMethodResponseResponseDataCustomersItem : IJsonOnDeserialized
     public string? PaypointLegalname { get; set; }
 
     /// <summary>
+    /// Customer phone number.
+    /// </summary>
+    [JsonPropertyName("phone")]
+    public string? Phone { get; set; }
+
+    [JsonPropertyName("shippingAddress")]
+    public string? ShippingAddress { get; set; }
+
+    [JsonPropertyName("shippingAddress1")]
+    public string? ShippingAddress1 { get; set; }
+
+    [JsonPropertyName("shippingCity")]
+    public string? ShippingCity { get; set; }
+
+    [JsonPropertyName("shippingCountry")]
+    public string? ShippingCountry { get; set; }
+
+    [JsonPropertyName("shippingState")]
+    public string? ShippingState { get; set; }
+
+    [JsonPropertyName("shippingZip")]
+    public string? ShippingZip { get; set; }
+
+    /// <summary>
     /// Social network data
     /// </summary>
     [JsonPropertyName("snData")]
@@ -106,6 +205,12 @@ public record GetMethodResponseResponseDataCustomersItem : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("snProvider")]
     public string? SnProvider { get; set; }
+
+    /// <summary>
+    /// Customer state.
+    /// </summary>
+    [JsonPropertyName("state")]
+    public string? State { get; set; }
 
     /// <summary>
     /// List of payment methods associated to the customer
@@ -125,80 +230,11 @@ public record GetMethodResponseResponseDataCustomersItem : IJsonOnDeserialized
     [JsonPropertyName("timeZone")]
     public int? TimeZone { get; set; }
 
-    [JsonPropertyName("additionalData")]
-    public Dictionary<string, Dictionary<string, object?>>? AdditionalData { get; set; }
-
-    [JsonPropertyName("billingAddress1")]
-    public string? BillingAddress1 { get; set; }
-
-    [JsonPropertyName("billingAddress2")]
-    public string? BillingAddress2 { get; set; }
-
-    [JsonPropertyName("billingCity")]
-    public string? BillingCity { get; set; }
-
-    [JsonPropertyName("billingCountry")]
-    public string? BillingCountry { get; set; }
-
-    [JsonPropertyName("billingEmail")]
-    public string? BillingEmail { get; set; }
-
-    [JsonPropertyName("billingPhone")]
-    public string? BillingPhone { get; set; }
-
-    [JsonPropertyName("billingState")]
-    public string? BillingState { get; set; }
-
     /// <summary>
-    /// Customer's billing ZIP code. For Pay In functions, this field supports 5-digit and 9-digit ZIP codes and alphanumeric Canadian postal codes. For example: "37615-1234" or "37615".
+    /// Customer postal code.
     /// </summary>
-    [JsonPropertyName("billingZip")]
-    public string? BillingZip { get; set; }
-
-    /// <summary>
-    /// Customer's company name.
-    /// </summary>
-    [JsonPropertyName("company")]
-    public string? Company { get; set; }
-
-    [JsonPropertyName("customerId")]
-    public long? CustomerId { get; set; }
-
-    [JsonPropertyName("customerNumber")]
-    public string? CustomerNumber { get; set; }
-
-    /// <summary>
-    /// Customer/Payor first name.
-    /// </summary>
-    [JsonPropertyName("firstName")]
-    public string? FirstName { get; set; }
-
-    [JsonPropertyName("identifierFields")]
-    public IEnumerable<string>? IdentifierFields { get; set; }
-
-    /// <summary>
-    /// Customer/Payor last name.
-    /// </summary>
-    [JsonPropertyName("lastName")]
-    public string? LastName { get; set; }
-
-    [JsonPropertyName("shippingAddress1")]
-    public string? ShippingAddress1 { get; set; }
-
-    [JsonPropertyName("shippingAddress2")]
-    public string? ShippingAddress2 { get; set; }
-
-    [JsonPropertyName("shippingCity")]
-    public string? ShippingCity { get; set; }
-
-    [JsonPropertyName("shippingCountry")]
-    public string? ShippingCountry { get; set; }
-
-    [JsonPropertyName("shippingState")]
-    public string? ShippingState { get; set; }
-
-    [JsonPropertyName("shippingZip")]
-    public string? ShippingZip { get; set; }
+    [JsonPropertyName("zip")]
+    public string? Zip { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

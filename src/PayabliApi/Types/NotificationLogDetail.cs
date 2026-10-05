@@ -4,6 +4,9 @@ using PayabliApi.Core;
 
 namespace PayabliApi;
 
+/// <summary>
+/// A notification log entry returned by the detail and retry endpoints, including the request and response captured for the delivery.
+/// </summary>
 [Serializable]
 public record NotificationLogDetail : IJsonOnDeserialized
 {
@@ -11,14 +14,41 @@ public record NotificationLogDetail : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// The custom headers Payabli sent with the notification, if any.
+    /// </summary>
     [JsonPropertyName("webHeaders")]
     public IEnumerable<StringStringKeyValuePair>? WebHeaders { get; set; }
 
+    /// <summary>
+    /// The headers the target returned. Null when the target sent no response.
+    /// </summary>
     [JsonPropertyName("responseHeaders")]
     public IEnumerable<KeyValueArray>? ResponseHeaders { get; set; }
 
+    /// <summary>
+    /// The body the target returned. Empty when the target sent no response.
+    /// </summary>
     [JsonPropertyName("responseContent")]
-    public string? ResponseContent { get; set; }
+    public required string ResponseContent { get; set; }
+
+    /// <summary>
+    /// The name of the organization the notification belongs to.
+    /// </summary>
+    [JsonPropertyName("organizationName")]
+    public required string OrganizationName { get; set; }
+
+    /// <summary>
+    /// The name of the paypoint the notification is related to. Empty for organization-level notifications.
+    /// </summary>
+    [JsonPropertyName("paypointName")]
+    public required string PaypointName { get; set; }
+
+    /// <summary>
+    /// The identifier for the delivery request.
+    /// </summary>
+    [JsonPropertyName("requestId")]
+    public required string RequestId { get; set; }
 
     /// <summary>
     /// The unique identifier for the notification.
@@ -27,43 +57,49 @@ public record NotificationLogDetail : IJsonOnDeserialized
     public required string Id { get; set; }
 
     /// <summary>
-    /// The ID of the organization that the notification belongs to.
+    /// The ID of the organization the notification belongs to.
     /// </summary>
     [JsonPropertyName("orgId")]
     public long? OrgId { get; set; }
 
     /// <summary>
-    /// The ID of the paypoint that the notification is related to.
+    /// The ID of the paypoint the notification is related to. Null for organization-level notifications.
     /// </summary>
     [JsonPropertyName("paypointId")]
     public long? PaypointId { get; set; }
 
     /// <summary>
-    /// The event that triggered the notification.
+    /// The event that triggered the notification, such as `approvedpayment`.
     /// </summary>
     [JsonPropertyName("notificationEvent")]
     public string? NotificationEvent { get; set; }
 
     /// <summary>
-    /// The target URL for the notification.
+    /// The target the notification was delivered to, such as a webhook URL, email address, or phone number.
     /// </summary>
     [JsonPropertyName("target")]
     public string? Target { get; set; }
 
     /// <summary>
-    /// The HTTP response status of the notification.
+    /// The HTTP status code the target returned, such as `200`. Returns `0` when the target sent no response.
     /// </summary>
-    [JsonPropertyName("responseStatus")]
-    public string? ResponseStatus { get; set; }
+    [JsonPropertyName("responseStatusCode")]
+    public required int ResponseStatusCode { get; set; }
 
     /// <summary>
-    /// Indicates whether the notification was successful.
+    /// The delivery status message, such as `OK` when the notification succeeded, `Dropped` when it failed, or `No response received from server.` when the target sent no response.
+    /// </summary>
+    [JsonPropertyName("responseStatus")]
+    public required string ResponseStatus { get; set; }
+
+    /// <summary>
+    /// Indicates whether the notification was delivered successfully.
     /// </summary>
     [JsonPropertyName("success")]
     public required bool Success { get; set; }
 
     /// <summary>
-    /// Contains the body of the notification.
+    /// The body of the notification.
     /// </summary>
     [JsonPropertyName("jobData")]
     public string? JobData { get; set; }
@@ -75,19 +111,19 @@ public record NotificationLogDetail : IJsonOnDeserialized
     public required DateTime CreatedDate { get; set; }
 
     /// <summary>
-    /// The date and time when the notification was successfully delivered.
+    /// The date and time when the notification was delivered successfully. Null if it hasn't succeeded.
     /// </summary>
     [JsonPropertyName("successDate")]
     public DateTime? SuccessDate { get; set; }
 
     /// <summary>
-    /// The date and time when the notification last failed.
+    /// The date and time when the notification last failed. Null if it hasn't failed.
     /// </summary>
     [JsonPropertyName("lastFailedDate")]
     public DateTime? LastFailedDate { get; set; }
 
     /// <summary>
-    /// Indicates whether the notification is currently in progress.
+    /// Indicates whether the notification is currently being sent.
     /// </summary>
     [JsonPropertyName("isInProgress")]
     public required bool IsInProgress { get; set; }

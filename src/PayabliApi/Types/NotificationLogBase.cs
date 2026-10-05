@@ -5,38 +5,14 @@ using PayabliApi.Core;
 namespace PayabliApi;
 
 /// <summary>
-/// A notification log entry returned by the search endpoint.
+/// Fields shared by the search and detail responses for a notification log entry.
 /// </summary>
 [Serializable]
-public record NotificationLog : IJsonOnDeserialized
+public record NotificationLogBase : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
-
-    /// <summary>
-    /// The URL of the organization's logo.
-    /// </summary>
-    [JsonPropertyName("organizationLogo")]
-    public required string OrganizationLogo { get; set; }
-
-    /// <summary>
-    /// The URL of the organization's browser tab icon.
-    /// </summary>
-    [JsonPropertyName("organizationFavIcon")]
-    public required string OrganizationFavIcon { get; set; }
-
-    /// <summary>
-    /// The URL of the paypoint's logo.
-    /// </summary>
-    [JsonPropertyName("paypointLogo")]
-    public required string PaypointLogo { get; set; }
-
-    /// <summary>
-    /// The notification's delivery method — `1` (Email), `2` (SMS), or `3` (Webhook).
-    /// </summary>
-    [JsonPropertyName("notificationType")]
-    public required int NotificationType { get; set; }
 
     /// <summary>
     /// The name of the organization the notification belongs to.

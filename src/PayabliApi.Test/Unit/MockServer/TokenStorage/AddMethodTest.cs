@@ -35,15 +35,15 @@ public class AddMethodTest : BaseMockServerTest
 
         const string mockResponse = """
             {
+              "responseText": "Success",
               "isSuccess": true,
               "responseData": {
-                "customerId": 4440,
-                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                "referenceId": "129-219",
+                "referenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 "resultCode": 1,
-                "resultText": "Approved"
-              },
-              "responseText": "Success"
+                "resultText": "Added",
+                "customerId": 4440,
+                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440"
+              }
             }
             """;
 
@@ -111,14 +111,14 @@ public class AddMethodTest : BaseMockServerTest
 
         const string mockResponse = """
             {
+              "responseText": "Success",
               "isSuccess": true,
               "responseData": {
-                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                "referenceId": "129-219",
+                "referenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 "resultCode": 1,
-                "resultText": "Approved"
-              },
-              "responseText": "Success"
+                "resultText": "Added",
+                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440"
+              }
             }
             """;
 
@@ -183,15 +183,14 @@ public class AddMethodTest : BaseMockServerTest
 
         const string mockResponse = """
             {
+              "responseText": "Success",
               "isSuccess": true,
               "responseData": {
-                "customerId": 4440,
-                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                "referenceId": "129-219",
+                "referenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 "resultCode": 1,
-                "resultText": "Approved"
-              },
-              "responseText": "Success"
+                "resultText": "Added",
+                "customerId": 4440
+              }
             }
             """;
 
@@ -256,15 +255,15 @@ public class AddMethodTest : BaseMockServerTest
 
         const string mockResponse = """
             {
+              "responseText": "Success",
               "isSuccess": true,
               "responseData": {
-                "customerId": 4440,
-                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                "referenceId": "129-219",
+                "referenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 "resultCode": 1,
-                "resultText": "Approved"
-              },
-              "responseText": "Success"
+                "resultText": "Added",
+                "customerId": 4440,
+                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440"
+              }
             }
             """;
 
@@ -333,15 +332,15 @@ public class AddMethodTest : BaseMockServerTest
 
         const string mockResponse = """
             {
+              "responseText": "Success",
               "isSuccess": true,
               "responseData": {
-                "customerId": 4440,
-                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
-                "referenceId": "129-219",
+                "referenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440",
                 "resultCode": 1,
-                "resultText": "Approved"
-              },
-              "responseText": "Success"
+                "resultText": "Added",
+                "customerId": 456,
+                "methodReferenceId": "1ec55af9-7b5a-4ff0-81ed-c12d2f95e135-4440"
+              }
             }
             """;
 

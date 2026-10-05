@@ -104,7 +104,7 @@ public partial interface IQueryClient
     );
 
     /// <summary>
-    /// Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+    /// Returns a list of cloud and AXIUM devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     WithRawResponseTask<QueryDeviceResponse> ListDevicesAsync(
         string entry,
@@ -114,7 +114,7 @@ public partial interface IQueryClient
     );
 
     /// <summary>
-    /// Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+    /// Returns a list of cloud and AXIUM devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
     /// </summary>
     WithRawResponseTask<QueryDeviceResponse> ListDevicesOrgAsync(
         int orgId,

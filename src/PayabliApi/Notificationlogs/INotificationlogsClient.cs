@@ -30,7 +30,7 @@ public partial interface INotificationlogsClient
     ///
     /// **Permissions:** notifications_create
     /// </summary>
-    WithRawResponseTask<NotificationLogDetail> RetryNotificationLogAsync(
+    WithRawResponseTask<NotificationRetryResponse> RetryNotificationLogAsync(
         string uuid,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -42,7 +42,7 @@ public partial interface INotificationlogsClient
     ///
     /// This endpoint requires the `notifications_create` permission.
     /// </summary>
-    WithRawResponseTask BulkRetryNotificationLogsAsync(
+    WithRawResponseTask<string> BulkRetryNotificationLogsAsync(
         IEnumerable<string> request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

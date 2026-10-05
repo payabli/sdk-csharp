@@ -4639,7 +4639,7 @@ await client.PaymentLink.UpdatePayLinkOutFromIdAsync(
 <dl>
 <dd>
 
-Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `ReferenceId` value in the response is the `storedMethodId` to use with transactions.
+Saves a payment method for reuse. This call exchanges sensitive payment information for a token that can be used to process future transactions. The `referenceId` value in the response is the `storedMethodId` to use with transactions, and the `methodId` to use when you manage the saved payment method.
 </dd>
 </dl>
 </dd>
@@ -6900,7 +6900,7 @@ await client.Query.ListCustomersOrgAsync(
 <dl>
 <dd>
 
-Returns a list of cloud devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+Returns a list of cloud and AXIUM devices for a single paypoint. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 </dd>
 </dl>
 </dd>
@@ -6970,7 +6970,7 @@ await client.Query.ListDevicesAsync(
 <dl>
 <dd>
 
-Returns a list of cloud devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
+Returns a list of cloud and AXIUM devices for a single organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 </dd>
 </dl>
 </dd>
@@ -9298,7 +9298,7 @@ await client.Notificationlogs.SearchNotificationLogsAsync(
         StartDate = new DateTime(2024, 01, 01, 00, 00, 00, 000),
         EndDate = new DateTime(2024, 01, 31, 23, 59, 59, 000),
         OrgId = 123,
-        NotificationEvent = "ActivatedMerchant",
+        NotificationEvent = "approvedpayment",
         Succeeded = true,
     }
 );
@@ -9383,7 +9383,7 @@ await client.Notificationlogs.GetNotificationLogAsync("550e8400-e29b-41d4-a716-4
 </dl>
 </details>
 
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">RetryNotificationLogAsync</a>(uuid) -> WithRawResponseTask&lt;NotificationLogDetail&gt;</code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">RetryNotificationLogAsync</a>(uuid) -> WithRawResponseTask&lt;NotificationRetryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9439,7 +9439,7 @@ await client.Notificationlogs.RetryNotificationLogAsync("550e8400-e29b-41d4-a716
 </dl>
 </details>
 
-<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">BulkRetryNotificationLogsAsync</a>(IEnumerable&lt;string&gt; { ... }) -> WithRawResponseTask</code></summary>
+<details><summary><code>client.Notificationlogs.<a href="/src/PayabliApi/Notificationlogs/NotificationlogsClient.cs">BulkRetryNotificationLogsAsync</a>(IEnumerable&lt;string&gt; { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9470,12 +9470,7 @@ This endpoint requires the `notifications_create` permission.
 
 ```csharp
 await client.Notificationlogs.BulkRetryNotificationLogsAsync(
-    new List<string>()
-    {
-        "550e8400-e29b-41d4-a716-446655440000",
-        "550e8400-e29b-41d4-a716-446655440001",
-        "550e8400-e29b-41d4-a716-446655440002",
-    }
+    new List<string>() { "string", "string" }
 );
 ```
 </dd>
@@ -17170,6 +17165,8 @@ Reissues a payout transaction with a new payment method. This creates a new tran
 The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
 
 The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
+
+The reissue request doesn't accept a service fee. Payabli always charges the fee configured in the paypoint's ACH payout pricing, even when the pricing allows fee overrides. The new transaction keeps the original payout's total amount. The vendor receives that amount minus the configured fee.
 </dd>
 </dl>
 </dd>

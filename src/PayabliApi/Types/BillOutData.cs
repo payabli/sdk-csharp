@@ -43,7 +43,7 @@ public record BillOutData : IJsonOnDeserialized
     public IEnumerable<FileContent>? Attachments { get; set; }
 
     /// <summary>
-    /// Date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY.
+    /// Date of bill. Send the date in YYYY-MM-DD format. The API also accepts ISO 8601 date-time values but keeps only the date.
     /// </summary>
     [JsonPropertyName("billDate")]
     public DateOnly? BillDate { get; set; }
@@ -67,7 +67,7 @@ public record BillOutData : IJsonOnDeserialized
     public double? Discount { get; set; }
 
     /// <summary>
-    /// Due date of bill. Accepted formats: YYYY-MM-DD, MM/DD/YYYY.
+    /// Due date of bill. Send the date in YYYY-MM-DD format. The API also accepts ISO 8601 date-time values but keeps only the date.
     /// </summary>
     [JsonPropertyName("dueDate")]
     public DateOnly? DueDate { get; set; }

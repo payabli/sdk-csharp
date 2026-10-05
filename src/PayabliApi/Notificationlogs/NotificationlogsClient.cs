@@ -311,7 +311,7 @@ public partial class NotificationlogsClient : INotificationlogsClient
         }
     }
 
-    private async Task<WithRawResponse<NotificationLogDetail>> RetryNotificationLogAsyncCore(
+    private async Task<WithRawResponse<NotificationRetryResponse>> RetryNotificationLogAsyncCore(
         string uuid,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -354,8 +354,8 @@ public partial class NotificationlogsClient : INotificationlogsClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<NotificationLogDetail>(responseBody)!;
-                return new WithRawResponse<NotificationLogDetail>()
+                var responseData = JsonUtils.Deserialize<NotificationRetryResponse>(responseBody)!;
+                return new WithRawResponse<NotificationRetryResponse>()
                 {
                     Data = responseData,
                     RawResponse = new PayabliApi.RawResponse()
@@ -458,7 +458,7 @@ public partial class NotificationlogsClient : INotificationlogsClient
         }
     }
 
-    private async Task<RawResponse> BulkRetryNotificationLogsAsyncCore(
+    private async Task<WithRawResponse<string>> BulkRetryNotificationLogsAsyncCore(
         IEnumerable<string> request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -494,11 +494,18 @@ public partial class NotificationlogsClient : INotificationlogsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            return new PayabliApi.RawResponse()
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            return new WithRawResponse<string>()
             {
-                StatusCode = response.Raw.StatusCode,
-                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                Data = responseBody,
+                RawResponse = new PayabliApi.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                },
             };
         }
         {
@@ -534,7 +541,7 @@ public partial class NotificationlogsClient : INotificationlogsClient
     ///         StartDate = new DateTime(2024, 01, 01, 00, 00, 00, 000),
     ///         EndDate = new DateTime(2024, 01, 31, 23, 59, 59, 000),
     ///         OrgId = 123,
-    ///         NotificationEvent = "ActivatedMerchant",
+    ///         NotificationEvent = "approvedpayment",
     ///         Succeeded = true,
     ///     }
     /// );
@@ -576,13 +583,13 @@ public partial class NotificationlogsClient : INotificationlogsClient
     /// <example><code>
     /// await client.Notificationlogs.RetryNotificationLogAsync("550e8400-e29b-41d4-a716-446655440000");
     /// </code></example>
-    public WithRawResponseTask<NotificationLogDetail> RetryNotificationLogAsync(
+    public WithRawResponseTask<NotificationRetryResponse> RetryNotificationLogAsync(
         string uuid,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<NotificationLogDetail>(
+        return new WithRawResponseTask<NotificationRetryResponse>(
             RetryNotificationLogAsyncCore(uuid, options, cancellationToken)
         );
     }
@@ -595,21 +602,16 @@ public partial class NotificationlogsClient : INotificationlogsClient
     /// </summary>
     /// <example><code>
     /// await client.Notificationlogs.BulkRetryNotificationLogsAsync(
-    ///     new List&lt;string&gt;()
-    ///     {
-    ///         "550e8400-e29b-41d4-a716-446655440000",
-    ///         "550e8400-e29b-41d4-a716-446655440001",
-    ///         "550e8400-e29b-41d4-a716-446655440002",
-    ///     }
+    ///     new List&lt;string&gt;() { "string", "string" }
     /// );
     /// </code></example>
-    public WithRawResponseTask BulkRetryNotificationLogsAsync(
+    public WithRawResponseTask<string> BulkRetryNotificationLogsAsync(
         IEnumerable<string> request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask(
+        return new WithRawResponseTask<string>(
             BulkRetryNotificationLogsAsyncCore(request, options, cancellationToken)
         );
     }
