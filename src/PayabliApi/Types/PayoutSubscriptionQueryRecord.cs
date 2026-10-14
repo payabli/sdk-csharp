@@ -32,16 +32,40 @@ public record PayoutSubscriptionQueryRecord : IJsonOnDeserialized
     public IEnumerable<GeneralEvents>? Events { get; set; }
 
     [JsonPropertyName("vendor")]
-    public VendorQueryRecord? Vendor { get; set; }
+    public PayoutSubscriptionVendor? Vendor { get; set; }
 
     /// <summary>
     /// Bills associated with the payout subscription.
     /// </summary>
     [JsonPropertyName("billData")]
-    public IEnumerable<BillPayOutData>? BillData { get; set; }
+    public IEnumerable<PayoutSubscriptionBill>? BillData { get; set; }
 
     [JsonPropertyName("externalPaypointID")]
     public string? ExternalPaypointId { get; set; }
+
+    /// <summary>
+    /// When `true`, the payout subscription's payouts are processed as same-day ACH instead of standard ACH. Same-day ACH must be enabled for the paypoint. Only ACH payouts honor this setting.
+    /// </summary>
+    [JsonPropertyName("sameDayAch")]
+    public bool? SameDayAch { get; set; }
+
+    /// <summary>
+    /// When `true`, Payabli doesn't automatically create a bill for the payout subscription's payouts.
+    /// </summary>
+    [JsonPropertyName("doNotCreateBills")]
+    public bool? DoNotCreateBills { get; set; }
+
+    /// <summary>
+    /// When `true`, the payout subscription bypasses the requirement for unique bills, identified by vendor invoice number.
+    /// </summary>
+    [JsonPropertyName("allowDuplicatedBills")]
+    public bool? AllowDuplicatedBills { get; set; }
+
+    /// <summary>
+    /// When `true`, a same-day ACH payout captured after the same-day ACH cutoff is converted to a standard ACH payment. When `false`, the capture is declined. Has no effect when `sameDayAch` is `false`.
+    /// </summary>
+    [JsonPropertyName("autoConvertSameDayAch")]
+    public bool? AutoConvertSameDayAch { get; set; }
 
     /// <summary>
     /// The payout subscription's payment method.
@@ -71,7 +95,7 @@ public record PayoutSubscriptionQueryRecord : IJsonOnDeserialized
     public double? FeeAmount { get; set; }
 
     [JsonPropertyName("paymentData")]
-    public QueryPaymentData? PaymentData { get; set; }
+    public PayoutSubscriptionPaymentData? PaymentData { get; set; }
 
     /// <summary>
     /// The payout subscription start date.
@@ -162,6 +186,12 @@ public record PayoutSubscriptionQueryRecord : IJsonOnDeserialized
 
     [JsonPropertyName("source")]
     public string? Source { get; set; }
+
+    /// <summary>
+    /// Subscription type. Always `null` for payout subscriptions.
+    /// </summary>
+    [JsonPropertyName("subscriptionType")]
+    public string? SubscriptionType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

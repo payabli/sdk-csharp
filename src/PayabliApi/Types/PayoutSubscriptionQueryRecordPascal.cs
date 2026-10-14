@@ -44,6 +44,30 @@ public record PayoutSubscriptionQueryRecordPascal : IJsonOnDeserialized
     public string? ExternalPaypointId { get; set; }
 
     /// <summary>
+    /// When `true`, the payout subscription's payouts are processed as same-day ACH instead of standard ACH. Same-day ACH must be enabled for the paypoint. Only ACH payouts honor this setting.
+    /// </summary>
+    [JsonPropertyName("SameDayAch")]
+    public bool? SameDayAch { get; set; }
+
+    /// <summary>
+    /// When `true`, Payabli doesn't automatically create a bill for the payout subscription's payouts.
+    /// </summary>
+    [JsonPropertyName("DoNotCreateBills")]
+    public bool? DoNotCreateBills { get; set; }
+
+    /// <summary>
+    /// When `true`, the payout subscription bypasses the requirement for unique bills, identified by vendor invoice number.
+    /// </summary>
+    [JsonPropertyName("AllowDuplicatedBills")]
+    public bool? AllowDuplicatedBills { get; set; }
+
+    /// <summary>
+    /// When `true`, a same-day ACH payout captured after the same-day ACH cutoff is converted to a standard ACH payment. When `false`, the capture is declined. Has no effect when `SameDayAch` is `false`.
+    /// </summary>
+    [JsonPropertyName("AutoConvertSameDayAch")]
+    public bool? AutoConvertSameDayAch { get; set; }
+
+    /// <summary>
     /// The payout subscription's payment method.
     /// </summary>
     [JsonPropertyName("Method")]
@@ -71,7 +95,7 @@ public record PayoutSubscriptionQueryRecordPascal : IJsonOnDeserialized
     public double? FeeAmount { get; set; }
 
     [JsonPropertyName("PaymentData")]
-    public QueryPaymentData? PaymentData { get; set; }
+    public PayoutSubscriptionPaymentDataPascal? PaymentData { get; set; }
 
     /// <summary>
     /// The payout subscription start date.
@@ -162,6 +186,12 @@ public record PayoutSubscriptionQueryRecordPascal : IJsonOnDeserialized
 
     [JsonPropertyName("Source")]
     public string? Source { get; set; }
+
+    /// <summary>
+    /// Subscription type. Always `null` for payout subscriptions.
+    /// </summary>
+    [JsonPropertyName("SubscriptionType")]
+    public string? SubscriptionType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

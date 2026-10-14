@@ -210,7 +210,10 @@ public record VendorQueryRecord : IJsonOnDeserialized
     public string? ExternalPaypointId { get; set; }
 
     [JsonPropertyName("StoredMethods")]
-    public IEnumerable<VendorResponseStoredMethod>? StoredMethods { get; set; }
+    public IEnumerable<VendorStoredMethod>? StoredMethods { get; set; }
+
+    [JsonPropertyName("VendorPortal")]
+    public VendorPortalAccess? VendorPortal { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

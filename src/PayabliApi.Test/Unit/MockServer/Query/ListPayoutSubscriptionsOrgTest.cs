@@ -132,6 +132,10 @@ public class ListPayoutSubscriptionsOrgTest : BaseMockServerTest
                     }
                   ],
                   "ExternalPaypointID": "d193cf9a46-10",
+                  "SameDayAch": false,
+                  "DoNotCreateBills": false,
+                  "AllowDuplicatedBills": true,
+                  "AutoConvertSameDayAch": false,
                   "Method": "ach",
                   "PaypointId": 3040,
                   "TotalAmount": 500,

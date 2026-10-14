@@ -65,6 +65,12 @@ public record BillingDataResponse : IJsonOnDeserialized
     [JsonPropertyName("default")]
     public required bool Default { get; set; }
 
+    /// <summary>
+    /// Country code of the bank account, in ISO 3166-1 alpha-2 format (for example, `US` or `CA`).
+    /// </summary>
+    [JsonPropertyName("country")]
+    public string? Country { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
