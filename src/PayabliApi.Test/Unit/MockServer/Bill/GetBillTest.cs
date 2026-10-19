@@ -58,6 +58,7 @@ public class GetBillTest : BaseMockServerTest
                   "Country": "US",
                   "Mcc": "7777",
                   "LocationCode": "MIA123",
+                  "Issue1099": false,
                   "Contacts": [
                     {
                       "ContactName": "Herman Martinez",

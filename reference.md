@@ -15734,6 +15734,7 @@ await client.Vendor.AddVendorAsync(
         Country = "US",
         Mcc = "7777",
         LocationCode = "MIA123",
+        Issue1099 = true,
         Contacts = new List<Contacts>()
         {
             new Contacts
@@ -16195,7 +16196,7 @@ Creates a ghost card, a multi-use virtual debit card issued to a vendor for recu
 
 Unlike single-use virtual cards issued as part of a payout transaction, ghost cards aren't tied to a specific payout. They're issued directly to a vendor and can be reused up to a configurable number of times within the card's spending limits.
 
-Only one ghost card can exist per vendor per paypoint. To issue a new card to the same vendor, cancel the existing card first.
+Only one active ghost card can exist per vendor per paypoint. If the vendor already has one, the request fails with error `7067`. To issue a new card to the same vendor, cancel the existing card first. Canceled and expired cards don't count toward this limit. See [Cancel ghost card](/developers/api-reference/cards/cancel-ghost-card).
 </dd>
 </dl>
 </dd>
@@ -16254,6 +16255,64 @@ await client.GhostCard.CreateGhostCardAsync(
 <dd>
 
 **request:** `CreateGhostCardRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.GhostCard.<a href="/src/PayabliApi/GhostCard/GhostCardClient.cs">DeleteGhostCardAsync</a>(cardToken) -> WithRawResponseTask&lt;DeleteGhostCardResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Cancels a ghost card. This is always a soft delete: Payabli keeps the card record, including its transaction history.
+
+Canceling a ghost card frees the vendor's slot, so you can issue a new ghost card to the same vendor. A card canceled with this endpoint can't be used, reactivated, or canceled again.
+
+Requires the `vcard_delete` permission.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.GhostCard.DeleteGhostCardAsync("gc_abc123def456");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**cardToken:** `string` — Token that identifies the ghost card to cancel. This is the `ReferenceId` returned when the card was created.
     
 </dd>
 </dl>
@@ -17148,6 +17207,74 @@ await client.MoneyOut.UpdateCheckPaymentStatusAsync("TRANS123456", AllowedCheckP
 </dl>
 </details>
 
+<details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">GetNextCheckNumberAsync</a>(paypointId, accountId) -> WithRawResponseTask&lt;NextCheckNumberResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a suggested check number for the next check payout from a paypoint's funding account. Payabli suggests the highest check number on the account's check payouts plus one, or `1` if the account has no check history. Canceled check payouts don't count toward the highest number.
+
+
+Use the suggested value with the `checkNumber` field when you reissue a check, or when you create a new check payout.
+
+
+Errors return HTTP `400`: `3005` when the paypoint ID is invalid or inactive, and `3758` when the account ID isn't valid for the paypoint.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MoneyOut.GetNextCheckNumberAsync(3040, "123-456");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointId:** `long` — The ID of the paypoint that owns the funding account.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**accountId:** `string` — The `accountId` of the bank account linked to the paypoint's check service, such as `123-456`. Find it in the paypoint's bank account details (`BankData`).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.MoneyOut.<a href="/src/PayabliApi/MoneyOut/MoneyOutClient.cs">ReissueOutAsync</a>(ReissueOutRequest { ... }) -> WithRawResponseTask&lt;ReissuePayoutResponse&gt;</code></summary>
 <dl>
 <dd>
@@ -17162,7 +17289,7 @@ await client.MoneyOut.UpdateCheckPaymentStatusAsync("TRANS123456", AllowedCheckP
 
 Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
 
-The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+The original transaction must be in **Processing** or **Processed** status. An ACH payout with a **Returned** status can also be reissued. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
 
 The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
 

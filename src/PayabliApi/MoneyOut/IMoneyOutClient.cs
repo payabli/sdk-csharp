@@ -156,9 +156,25 @@ public partial interface IMoneyOutClient
     );
 
     /// <summary>
+    /// Returns a suggested check number for the next check payout from a paypoint's funding account. Payabli suggests the highest check number on the account's check payouts plus one, or `1` if the account has no check history. Canceled check payouts don't count toward the highest number.
+    ///
+    ///
+    /// Use the suggested value with the `checkNumber` field when you reissue a check, or when you create a new check payout.
+    ///
+    ///
+    /// Errors return HTTP `400`: `3005` when the paypoint ID is invalid or inactive, and `3758` when the account ID isn't valid for the paypoint.
+    /// </summary>
+    WithRawResponseTask<NextCheckNumberResponse> GetNextCheckNumberAsync(
+        long paypointId,
+        string accountId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Reissues a payout transaction with a new payment method. This creates a new transaction linked to the original and marks the original transaction as reissued.
     ///
-    /// The original transaction must be in **Processing** or **Processed** status. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
+    /// The original transaction must be in **Processing** or **Processed** status. An ACH payout with a **Returned** status can also be reissued. The payment method in the request body is used directly. The endpoint doesn't fall back to vendor-managed payment methods.
     ///
     /// The new transaction goes through the standard authorize-and-capture flow automatically. Both the original and new transactions are linked through their event histories for audit purposes.
     ///

@@ -29,6 +29,7 @@ public class ListPayoutOrgTest : BaseMockServerTest
                     "State": "FL",
                     "Zip": "33131",
                     "Country": "US",
+                    "Issue1099": false,
                     "Contacts": [
                       {
                         "ContactName": "Alex Doe",

@@ -145,6 +145,15 @@ public record VendorData : IJsonOnDeserialized
     public int? VendorStatus { get; set; }
 
     /// <summary>
+    /// When `true`, a 1099 tax form is issued to this vendor. When you
+    /// create a vendor and omit this field, it defaults to `false`. When
+    /// you update a vendor and omit this field, the vendor keeps its
+    /// current value.
+    /// </summary>
+    [JsonPropertyName("issue1099")]
+    public bool? Issue1099 { get; set; }
+
+    /// <summary>
     /// Vendor's ZIP or postal code. Required if any address field is provided. For US addresses, use five digits (`12345`) or ZIP+4 format (`12345-6789`).
     /// </summary>
     [JsonPropertyName("zip")]

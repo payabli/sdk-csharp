@@ -81,6 +81,9 @@ public record VendorOutData : IJsonOnDeserialized
     [JsonPropertyName("LocationCode")]
     public string? LocationCode { get; set; }
 
+    [JsonPropertyName("Issue1099")]
+    public bool? Issue1099 { get; set; }
+
     [JsonPropertyName("Mcc")]
     public string? Mcc { get; set; }
 

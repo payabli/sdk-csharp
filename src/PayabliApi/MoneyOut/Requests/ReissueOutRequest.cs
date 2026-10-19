@@ -21,6 +21,9 @@ public record ReissueOutRequest
     [JsonPropertyName("paymentMethod")]
     public required ReissuePaymentMethod PaymentMethod { get; set; }
 
+    [JsonPropertyName("checkNumber")]
+    public string? CheckNumber { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

@@ -28,6 +28,7 @@ public class AddVendorTest : BaseMockServerTest
               "country": "US",
               "mcc": "7777",
               "locationCode": "MIA123",
+              "issue1099": true,
               "contacts": [
                 {
                   "contactName": "Herman Martinez",
@@ -105,6 +106,7 @@ public class AddVendorTest : BaseMockServerTest
                 Country = "US",
                 Mcc = "7777",
                 LocationCode = "MIA123",
+                Issue1099 = true,
                 Contacts = new List<Contacts>()
                 {
                     new Contacts

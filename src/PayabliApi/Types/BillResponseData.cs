@@ -146,6 +146,18 @@ public record BillResponseData : IJsonOnDeserialized
     [JsonPropertyName("Transaction")]
     public TransactionOutQueryRecord? Transaction { get; set; }
 
+    /// <summary>
+    /// All payout transactions that paid the bill, with one entry for each payout. When a bill is paid by several [partial payouts](/guides/pay-out-developer-bills-manage#partially-pay-a-bill), each one has an entry and `Transaction` holds the most recent. A bill paid by a single payout has one entry, and its `idOut` and `paymentId` match those on `Transaction`.
+    ///
+    /// Canceled payouts aren't included.
+    ///
+    /// The value is `null` when the bill has no payouts. When every payout on the bill has been canceled, the value is an empty array. If partial payments aren't enabled, a bill whose only payout was canceled returns `null` instead.
+    ///
+    /// Each entry has identifiers only. For a transaction's details, see [Get payout details](/developers/api-reference/moneyout/get-details-for-a-processed-payout-transaction).
+    /// </summary>
+    [JsonPropertyName("transactions")]
+    public IEnumerable<BillTransactionReference>? Transactions { get; set; }
+
     [JsonPropertyName("billEvents")]
     public IEnumerable<GeneralEvents>? BillEvents { get; set; }
 

@@ -82,7 +82,8 @@ public class ReissueOutTest : BaseMockServerTest
             {
               "paymentMethod": {
                 "method": "check"
-              }
+              },
+              "checkNumber": "10708"
             }
             """;
 
@@ -123,6 +124,7 @@ public class ReissueOutTest : BaseMockServerTest
             {
                 TransId = "129-219",
                 PaymentMethod = new ReissuePaymentMethod { Method = "check" },
+                CheckNumber = "10708",
             }
         );
         JsonAssert.AreEqual(response, mockResponse);

@@ -30,6 +30,7 @@ public class ListVendorsOrgTest : BaseMockServerTest
                   "Country": "US",
                   "Mcc": "7777",
                   "LocationCode": "LOC123",
+                  "Issue1099": false,
                   "Contacts": [
                     {
                       "ContactEmail": "eric@martinezcoatings.com",

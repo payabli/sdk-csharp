@@ -218,6 +218,14 @@ public record BillQueryRecord2 : IJsonOnDeserialized
     [JsonPropertyName("Transaction")]
     public TransactionOutQueryRecord? Transaction { get; set; }
 
+    /// <summary>
+    /// All payout transactions that paid the bill, with one entry for each payout. When a bill is paid by several [partial payouts](/guides/pay-out-developer-bills-manage#partially-pay-a-bill), each one has an entry and `Transaction` holds the most recent. Canceled payouts aren't included.
+    ///
+    /// The value is `null` when the bill has no payouts, and an empty array when every payout on the bill has been canceled. For details, see `transactions` in [Get bill](/developers/api-reference/bill/get-bill).
+    /// </summary>
+    [JsonPropertyName("transactions")]
+    public IEnumerable<BillTransactionReference>? Transactions { get; set; }
+
     [JsonPropertyName("Vendor")]
     public VendorOutData? Vendor { get; set; }
 

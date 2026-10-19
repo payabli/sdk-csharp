@@ -51,7 +51,7 @@ public class ListTransactionsTest : BaseMockServerTest
                     "ShippingState": "string",
                     "ShippingZip": "string"
                   },
-                  "DeviceId": "499585-389fj484-3jcj8hj3",
+                  "DeviceId": "",
                   "EntrypageId": 0,
                   "ExternalProcessorInformation": " ",
                   "FeeAmount": 10.25,
@@ -335,6 +335,112 @@ public class ListTransactionsTest : BaseMockServerTest
             {
                 LimitRecord = 1,
                 Parameters = new Dictionary<string, string?>() { { "operation(eq)", "Reject" } },
+            }
+        );
+        JsonAssert.AreEqual(response, mockResponse);
+    }
+
+    [NUnit.Framework.Test]
+    public async Task MockServerTest_3()
+    {
+        const string mockResponse = """
+            {
+              "Records": [
+                {
+                  "PaymentTransId": "3040-1d1abbd8caf54ae691dc670a863b1f2b",
+                  "Method": "device",
+                  "TransStatus": 1,
+                  "ResponseData": {
+                    "resultCode": "A0000",
+                    "authcode": "OK9870"
+                  },
+                  "Source": "Device",
+                  "splitCount": 0,
+                  "TransactionTime": "2026-09-24T15:12:40.000Z",
+                  "DeviceId": "499585-389fj484-3jcj8hj3",
+                  "DeviceData": {
+                    "deviceType": "SemiIntegrated",
+                    "friendlyName": "Front counter",
+                    "serialNumber": "SN-90210-XR",
+                    "make": "",
+                    "model": "DX8000",
+                    "macAddress": "02:00:00:00:00:00",
+                    "deviceStatus": "Active"
+                  },
+                  "DeviceEntryMode": "Swipe"
+                },
+                {
+                  "PaymentTransId": "3040-2da01510567d460cb828042b8a9e0248",
+                  "Method": "device",
+                  "BatchNumber": "",
+                  "PaymentData": {},
+                  "TransStatus": -1,
+                  "SettlementStatus": 0,
+                  "Source": "Device",
+                  "splitCount": 0,
+                  "TransactionTime": "2026-09-24T14:00:53.000Z",
+                  "TransactionEvents": [
+                    {
+                      "TransEvent": "Created",
+                      "EventData": "0HNOQ7PMGR7HG:00000087",
+                      "EventTime": "2026-09-24T14:00:53.000Z"
+                    },
+                    {
+                      "TransEvent": "Initiated",
+                      "EventData": "0HNOQ7PMGR7HG:00000087",
+                      "EventTime": "2026-09-24T14:00:53.000Z"
+                    },
+                    {
+                      "TransEvent": "Device Timeout",
+                      "EventData": "6345a1d96c4c9df6a391fe20b47e0397",
+                      "EventTime": "2026-09-24T14:05:08.000Z"
+                    }
+                  ],
+                  "DeviceId": "499585-389fj484-3jcj8hj3",
+                  "DeviceData": {
+                    "deviceType": "SemiIntegrated",
+                    "friendlyName": "Front counter",
+                    "serialNumber": "SN-90210-XR",
+                    "make": "",
+                    "model": "DX8000",
+                    "macAddress": "02:00:00:00:00:00",
+                    "deviceStatus": "Active"
+                  }
+                }
+              ],
+              "Summary": {
+                "totalRecords": 2,
+                "totalAmount": 0,
+                "totalNetAmount": 0,
+                "totalPages": 1,
+                "pageSize": 2
+              }
+            }
+            """;
+
+        Server
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Query/transactions/8cfec329267")
+                    .WithParam("limitRecord", "2")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .UsingGet()
+            )
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
+
+        var response = await Client.Query.ListTransactionsAsync(
+            "8cfec329267",
+            new ListTransactionsRequest
+            {
+                LimitRecord = 2,
+                Parameters = new Dictionary<string, string?>() { { "method(eq)", "device" } },
             }
         );
         JsonAssert.AreEqual(response, mockResponse);

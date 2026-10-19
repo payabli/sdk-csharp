@@ -156,4 +156,77 @@ public class UpdateSubscriptionTest : BaseMockServerTest
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
+
+    [NUnit.Framework.Test]
+    public async Task MockServerTest_4()
+    {
+        const string requestJson = """
+            {
+              "invoiceData": {
+                "invoiceAmount": 25,
+                "invoiceStatus": 1,
+                "items": [
+                  {
+                    "itemProductName": "Yard Work",
+                    "itemDescription": "service",
+                    "itemCost": 25,
+                    "itemQty": 1,
+                    "itemTotalAmount": 25
+                  }
+                ]
+              }
+            }
+            """;
+
+        const string mockResponse = """
+            {
+              "responseText": "Success",
+              "isSuccess": true,
+              "responseData": "231",
+              "customerId": 4440
+            }
+            """;
+
+        Server
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/Subscription/231")
+                    .WithHeader("Authorization", "*")
+                    .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
+                    .WithHeader("Content-Type", "application/json")
+                    .UsingPut()
+                    .WithBodyAsJson(requestJson)
+            )
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
+
+        var response = await Client.Subscription.UpdateSubscriptionAsync(
+            231,
+            new RequestUpdateSchedule
+            {
+                InvoiceData = new BillData
+                {
+                    InvoiceAmount = 25,
+                    InvoiceStatus = 1,
+                    Items = new List<BillItem>()
+                    {
+                        new BillItem
+                        {
+                            ItemProductName = "Yard Work",
+                            ItemDescription = "service",
+                            ItemCost = 25,
+                            ItemQty = 1,
+                            ItemTotalAmount = 25,
+                        },
+                    },
+                },
+            }
+        );
+        JsonAssert.AreEqual(response, mockResponse);
+    }
 }

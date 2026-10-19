@@ -89,6 +89,9 @@ public record VendorDataResponse : IJsonOnDeserialized
     [JsonPropertyName("LocationCode")]
     public required string LocationCode { get; set; }
 
+    [JsonPropertyName("Issue1099")]
+    public required bool Issue1099 { get; set; }
+
     /// <summary>
     /// Array of objects describing the vendor's contacts.
     /// </summary>

@@ -40,6 +40,7 @@ public class VCardGetTest : BaseMockServerTest
                 "Zip": "10001",
                 "Country": "USA",
                 "Mcc": "5411",
+                "Issue1099": false,
                 "Contacts": [
                   {
                     "ContactName": "Herman Martinez",

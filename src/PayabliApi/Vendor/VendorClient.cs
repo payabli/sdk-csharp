@@ -1015,6 +1015,7 @@ public partial class VendorClient : IVendorClient
     ///         Country = "US",
     ///         Mcc = "7777",
     ///         LocationCode = "MIA123",
+    ///         Issue1099 = true,
     ///         Contacts = new List&lt;Contacts&gt;()
     ///         {
     ///             new Contacts

@@ -267,6 +267,20 @@ public class DetailsTest : BaseMockServerTest
               "GatewayTransId": "020080b14c2541444bc985621033c1b7ccda",
               "Method": "device",
               "DeviceId": "499585-389fj484-3jcj8hj3",
+              "DeviceData": {
+                "deviceType": "SemiIntegrated",
+                "friendlyName": "Front counter",
+                "serialNumber": "SN-90210-XR",
+                "make": "",
+                "model": "DX8000",
+                "macAddress": "02:00:00:00:00:00",
+                "deviceStatus": "Active"
+              },
+              "DeviceEntryMode": "Chip",
+              "EmvAuthData": {
+                "RequestEmvData": "4F07A00000000310108407A00000000310109F0607A00000000310109F0702FF0082021800950580400080009A032604099C01005F24032807315F2A0208405F300202015F3401019F02060000000100009F03060000000000009F090200019F10080106A00000C020009F1A0208409F1E0831323334353637389F2608DD2AE343E749FB379F2701809F3303E028C89F3501219F360201C09F3704BBF794229F3901059F410400000002",
+                "ResponseEmvData": "8a023030910adedb013b4b4450b00012"
+              },
               "OrderId": "",
               "Operation": "Sale",
               "Source": "api",
@@ -303,7 +317,8 @@ public class DetailsTest : BaseMockServerTest
                 "authcode": "OK2576",
                 "transactionid": "020080b14c2541444bc985621033c1b7ccda",
                 "response_code": "100",
-                "response_code_text": "Operation successful"
+                "response_code_text": "Operation successful",
+                "emv_auth_response_data": "8a023030910adedb013b4b4450b00012"
               },
               "Customer": {
                 "customerId": 4440,

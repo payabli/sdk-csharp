@@ -119,6 +119,9 @@ public record GetMethodResponseResponseDataVendorsItem : IJsonOnDeserialized
     [JsonPropertyName("locationCode")]
     public string? LocationCode { get; set; }
 
+    [JsonPropertyName("issue1099")]
+    public bool? Issue1099 { get; set; }
+
     /// <summary>
     /// Merchant category code
     /// </summary>

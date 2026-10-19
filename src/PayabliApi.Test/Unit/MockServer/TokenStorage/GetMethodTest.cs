@@ -238,6 +238,7 @@ public class GetMethodTest : BaseMockServerTest
                     "country": "US",
                     "mcc": "",
                     "locationCode": "WEST",
+                    "issue1099": false,
                     "contacts": [
                       {
                         "contactName": "John Doe",

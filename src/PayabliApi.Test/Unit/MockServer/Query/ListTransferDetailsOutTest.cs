@@ -67,6 +67,7 @@ public class ListTransferDetailsOutTest : BaseMockServerTest
                     "Zip": "78745",
                     "Country": "US",
                     "Mcc": "5039",
+                    "Issue1099": false,
                     "Contacts": [
                       {
                         "ContactName": "Robert Chen",

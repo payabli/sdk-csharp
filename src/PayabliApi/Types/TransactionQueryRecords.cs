@@ -44,6 +44,15 @@ public record TransactionQueryRecords : IJsonOnDeserialized
     [JsonPropertyName("DeviceId")]
     public string? DeviceId { get; set; }
 
+    [JsonPropertyName("DeviceData")]
+    public QueryDeviceData? DeviceData { get; set; }
+
+    [JsonPropertyName("DeviceEntryMode")]
+    public string? DeviceEntryMode { get; set; }
+
+    [JsonPropertyName("EmvAuthData")]
+    public EmvAuthData? EmvAuthData { get; set; }
+
     [JsonPropertyName("EntrypageId")]
     public long? EntrypageId { get; set; }
 

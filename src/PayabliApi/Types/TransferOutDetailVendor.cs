@@ -104,6 +104,9 @@ public record TransferOutDetailVendor : IJsonOnDeserialized
     [JsonPropertyName("LocationCode")]
     public string? LocationCode { get; set; }
 
+    [JsonPropertyName("Issue1099")]
+    public required bool Issue1099 { get; set; }
+
     /// <summary>
     /// List of contacts for the vendor.
     /// </summary>

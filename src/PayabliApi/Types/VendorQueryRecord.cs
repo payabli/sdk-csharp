@@ -68,6 +68,9 @@ public record VendorQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("LocationCode")]
     public string? LocationCode { get; set; }
 
+    [JsonPropertyName("Issue1099")]
+    public required bool Issue1099 { get; set; }
+
     /// <summary>
     /// Array of objects describing the vendor's contacts.
     /// </summary>

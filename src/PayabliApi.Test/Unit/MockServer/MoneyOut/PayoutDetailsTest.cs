@@ -80,6 +80,7 @@ public class PayoutDetailsTest : BaseMockServerTest
                 "Country": "US",
                 "Mcc": "7777",
                 "LocationCode": "LOC123",
+                "Issue1099": false,
                 "Contacts": [
                   {
                     "ContactEmail": "eric@martinezcoatings.com",
@@ -359,6 +360,7 @@ public class PayoutDetailsTest : BaseMockServerTest
                 "Country": "US",
                 "Mcc": "7777",
                 "LocationCode": "LOC123",
+                "Issue1099": false,
                 "Contacts": [
                   {
                     "ContactEmail": "eric@martinezcoatings.com",
