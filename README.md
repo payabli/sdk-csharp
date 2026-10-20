@@ -278,25 +278,25 @@ This SDK uses forward-compatible enums that can handle unknown values gracefully
 using PayabliApi;
 
 // Using a built-in value
-var getProfileBillingRequestServiceGroup = GetProfileBillingRequestServiceGroup.PayIn;
+var updateBusinessRequestLegalStructure = UpdateBusinessRequestLegalStructure.LimitedLiabilityCompany;
 
 // Using a custom value
-var customGetProfileBillingRequestServiceGroup = GetProfileBillingRequestServiceGroup.FromCustom("custom-value");
+var customUpdateBusinessRequestLegalStructure = UpdateBusinessRequestLegalStructure.FromCustom("custom-value");
 
 // Using in a switch statement
-switch (getProfileBillingRequestServiceGroup.Value)
+switch (updateBusinessRequestLegalStructure.Value)
 {
-    case GetProfileBillingRequestServiceGroup.Values.PayIn:
-        Console.WriteLine("PayIn");
+    case UpdateBusinessRequestLegalStructure.Values.LimitedLiabilityCompany:
+        Console.WriteLine("LimitedLiabilityCompany");
         break;
     default:
-        Console.WriteLine($"Unknown value: {getProfileBillingRequestServiceGroup.Value}");
+        Console.WriteLine($"Unknown value: {updateBusinessRequestLegalStructure.Value}");
         break;
 }
 
 // Explicit casting
-string getProfileBillingRequestServiceGroupString = (string)GetProfileBillingRequestServiceGroup.PayIn;
-GetProfileBillingRequestServiceGroup getProfileBillingRequestServiceGroupFromString = (GetProfileBillingRequestServiceGroup)"PayIn";
+string updateBusinessRequestLegalStructureString = (string)UpdateBusinessRequestLegalStructure.LimitedLiabilityCompany;
+UpdateBusinessRequestLegalStructure updateBusinessRequestLegalStructureFromString = (UpdateBusinessRequestLegalStructure)"limited-liability-company";
 ```
 
 ## Contributing

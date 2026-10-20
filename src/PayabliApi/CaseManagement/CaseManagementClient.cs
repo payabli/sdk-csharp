@@ -1947,8 +1947,11 @@ public partial class CaseManagementClient : ICaseManagementClient
     ///         BankAccountFunction = CaseManagementBankAccountFunction.Deposits,
     ///         Services = new BankAccountServices
     ///         {
-    ///             MoneyIn = new List&lt;MoneyInService&gt;() { MoneyInService.Ach },
-    ///             MoneyOut = new List&lt;MoneyOutService&gt;() { MoneyOutService.Ach },
+    ///             MoneyIn = new List&lt;CaseManagementMoneyInService&gt;() { CaseManagementMoneyInService.Ach },
+    ///             MoneyOut = new List&lt;CaseManagementMoneyOutService&gt;()
+    ///             {
+    ///                 CaseManagementMoneyOutService.Ach,
+    ///             },
     ///         },
     ///     }
     /// );
@@ -1988,8 +1991,11 @@ public partial class CaseManagementClient : ICaseManagementClient
     ///         BankAccountFunction = CaseManagementBankAccountFunction.Deposits,
     ///         Services = new BankAccountServices
     ///         {
-    ///             MoneyIn = new List&lt;MoneyInService&gt;() { MoneyInService.Ach },
-    ///             MoneyOut = new List&lt;MoneyOutService&gt;() { MoneyOutService.Ach },
+    ///             MoneyIn = new List&lt;CaseManagementMoneyInService&gt;() { CaseManagementMoneyInService.Ach },
+    ///             MoneyOut = new List&lt;CaseManagementMoneyOutService&gt;()
+    ///             {
+    ///                 CaseManagementMoneyOutService.Ach,
+    ///             },
     ///         },
     ///         Default = true,
     ///     }

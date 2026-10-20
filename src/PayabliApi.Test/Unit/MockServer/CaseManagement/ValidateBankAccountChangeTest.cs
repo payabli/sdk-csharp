@@ -70,8 +70,14 @@ public class ValidateBankAccountChangeTest : BaseMockServerTest
                 BankAccountFunction = CaseManagementBankAccountFunction.Deposits,
                 Services = new BankAccountServices
                 {
-                    MoneyIn = new List<MoneyInService>() { MoneyInService.Ach },
-                    MoneyOut = new List<MoneyOutService>() { MoneyOutService.Ach },
+                    MoneyIn = new List<CaseManagementMoneyInService>()
+                    {
+                        CaseManagementMoneyInService.Ach,
+                    },
+                    MoneyOut = new List<CaseManagementMoneyOutService>()
+                    {
+                        CaseManagementMoneyOutService.Ach,
+                    },
                 },
             }
         );

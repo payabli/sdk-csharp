@@ -10210,6 +10210,3308 @@ await client.LineItem.ListLineItemsAsync(
 </dl>
 </details>
 
+## Businesses
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">ListBusinessesAsync</a>(ListBusinessesBusinessesRequest { ... }) -> WithRawResponseTask&lt;ListBusinessesEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists businesses with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.ListBusinessesAsync(
+    new ListBusinessesBusinessesRequest { Limit = 1, Page = 1 }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListBusinessesBusinessesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">CreateBusinessAsync</a>(CreateBusinessRequest { ... }) -> WithRawResponseTask&lt;BusinessCreatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a business, the legal entity behind a paypoint. New businesses
+start in `Draft`. Set `parentReference` to the organization 
+the business belongs to, or omit it to use the organization your
+credential belongs to.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.CreateBusinessAsync(
+    new CreateBusinessRequest
+    {
+        LegalName = "Rose Gardens LLC",
+        LegalStructure = CreateBusinessRequestLegalStructure.Llc,
+        ExternalId = "rg-001",
+        Website = "https://example.com",
+        Phone = new List<string>() { "3055551212" },
+        Emails = new List<string>() { "ops@example.com" },
+        MerchantCatCode = "5814",
+        PaymentMethods = new List<BusinessPaymentMethod>()
+        {
+            new BusinessPaymentMethod
+            {
+                Type = "bank_account",
+                Name = "Operating account",
+                FinancialInstitution = "Bank of Example",
+                OwnerType = "business",
+                AccountType = "checking",
+                AccountNumber = "123456789",
+                RoutingNumber = "021000021",
+                Usage = new List<string>() { "deposits", "billing" },
+                IsDefault = true,
+            },
+            new BusinessPaymentMethod
+            {
+                Type = "bank_account",
+                Name = "Payout account",
+                FinancialInstitution = "Bank of Example",
+                OwnerType = "business",
+                AccountType = "checking",
+                AccountNumber = "987654321",
+                RoutingNumber = "021000021",
+                Usage = new List<string>() { "payOutFunding" },
+                IsDefault = false,
+            },
+        },
+        TaxReference = "477498993",
+        ParentReference = "8cfec329267",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateBusinessRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">GetBusinessAsync</a>(businessReference) -> WithRawResponseTask&lt;BusinessDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a business by reference. Sensitive fields such as `taxReference` are masked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.GetBusinessAsync("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">DeactivateBusinessAsync</a>(businessReference, DeactivateBusinessRequest { ... }) -> WithRawResponseTask&lt;BusinessDeactivatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deactivates a business. This is a soft delete: the business moves to
+`Deactivated` and the record is kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.DeactivateBusinessAsync(
+    "019fed33-615d-77b6-afaa-46e7ac9bf36e",
+    new DeactivateBusinessRequest { Reason = "Duplicate record" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `DeactivateBusinessRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">UpdateBusinessAsync</a>(businessReference, UpdateBusinessRequest { ... }) -> WithRawResponseTask&lt;BusinessUpdatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a business. Send only the fields you want to change.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.UpdateBusinessAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    new UpdateBusinessRequest { Website = "https://example.org" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateBusinessRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">GetBusinessUnmaskedAsync</a>(businessReference) -> WithRawResponseTask&lt;BusinessDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a business by reference with sensitive fields unmasked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.GetBusinessUnmaskedAsync("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">ListBusinessAddressesAsync</a>(businessReference) -> WithRawResponseTask&lt;BusinessAddressListEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the addresses on a business. Each address is identified by its `businessAddressReference`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.ListBusinessAddressesAsync("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">CreateBusinessAddressAsync</a>(businessReference, CreateBusinessAddressRequest { ... }) -> WithRawResponseTask&lt;BusinessAddressEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds an address to a business. Returns the new address and its `businessAddressReference`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.CreateBusinessAddressAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    new CreateBusinessAddressRequest
+    {
+        Type = AddressType.Mailing,
+        Location = BusinessAddressLocation.Warehouse,
+        AddressLine1 = "202 Warehouse Ln",
+        CityLocality = "Austin",
+        StateProvince = "TX",
+        PostalCode = "73302",
+        Country = "US",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `CreateBusinessAddressRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">GetBusinessAddressAsync</a>(businessReference, businessAddressReference) -> WithRawResponseTask&lt;BusinessAddressEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single business address by its `businessAddressReference`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.GetBusinessAddressAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    "019fed1a-84a6-7043-a6c0-e8aa2d4bec36"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessAddressReference:** `string` — The business address reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">DeleteBusinessAddressAsync</a>(businessReference, businessAddressReference) -> WithRawResponseTask&lt;BusinessAddressDeletedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes an address from a business.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.DeleteBusinessAddressAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    "019fed1a-67d6-768a-b4cc-29d4299e21d9"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessAddressReference:** `string` — The business address reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">UpdateBusinessAddressAsync</a>(businessReference, businessAddressReference, UpdateBusinessAddressRequest { ... }) -> WithRawResponseTask&lt;BusinessAddressEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a business address. Send only the fields you want to change; omitted fields are kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.UpdateBusinessAddressAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    "019fed1a-67d6-768a-b4cc-29d4299e21d9",
+    new UpdateBusinessAddressRequest { Type = AddressType.Billing }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**businessAddressReference:** `string` — The business address reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateBusinessAddressRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">ListBusinessPeopleAsync</a>(businessReference) -> WithRawResponseTask&lt;BusinessPersonListEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the people linked to a business, each with the relationship's role, ownership, and relationship-scoped contact details.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.ListBusinessPeopleAsync("019fed1a-3d6e-75d3-a81e-cba3874b0a55");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">LinkBusinessPersonAsync</a>(businessReference, LinkBusinessPersonRequest { ... }) -> WithRawResponseTask&lt;BusinessPersonEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Links an existing person to a business, setting the relationship's role, ownership, primary-controller flag, contact fields, and addresses.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.LinkBusinessPersonAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    new LinkBusinessPersonRequest
+    {
+        PersonReference = "01a0014d-ce1a-7110-9bac-c4c59647a88d",
+        PersonType = PersonType.Owner,
+        OwnershipPercentage = 100,
+        IsPrimaryController = true,
+        IsSigner = true,
+        Title = "CEO",
+        PrimaryEmail = "contact@example.com",
+        SecondaryEmail = "contact.alt@example.net",
+        PrimaryPhoneNumber = "3055551212",
+        SecondaryPhoneNumber = "3055559876",
+        BillingAddress = new PersonAddressRequest
+        {
+            AddressLine1 = "123 Main Street",
+            CityLocality = "Miami",
+            StateProvince = "FL",
+            PostalCode = "33101",
+            Country = "US",
+            Type = PersonAddressType.Billing,
+        },
+        MailingAddress = new PersonAddressRequest
+        {
+            AddressLine1 = "456 Oak Avenue",
+            CityLocality = "Miami",
+            StateProvince = "FL",
+            PostalCode = "33102",
+            Country = "US",
+            Type = PersonAddressType.Mailing,
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `LinkBusinessPersonRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">GetBusinessPersonAsync</a>(businessReference, personReference) -> WithRawResponseTask&lt;BusinessPersonEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a single business-person link by the person's reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.GetBusinessPersonAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    "01a0014d-ce1a-7110-9bac-c4c59647a88d"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">UnlinkBusinessPersonAsync</a>(businessReference, personReference) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the link between a person and a business. The person record itself isn't deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.UnlinkBusinessPersonAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    "01a0014d-ce1a-7110-9bac-c4c59647a88d"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Businesses.<a href="/src/PayabliApi/Businesses/BusinessesClient.cs">UpdateBusinessPersonAsync</a>(businessReference, personReference, UpdateBusinessPersonRequest { ... }) -> WithRawResponseTask&lt;BusinessPersonEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a business-person link. Send only the fields you want to change; omitted fields are kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Businesses.UpdateBusinessPersonAsync(
+    "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+    "01a0014d-ce1a-7110-9bac-c4c59647a88d",
+    new UpdateBusinessPersonRequest
+    {
+        PrimaryEmail = "updated.contact@example.com",
+        IsPrimaryController = true,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**businessReference:** `string` — The business reference (`businessUuid`).
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateBusinessPersonRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## People
+<details><summary><code>client.People.<a href="/src/PayabliApi/People/PeopleClient.cs">ListPeopleAsync</a>(ListPeoplePeopleRequest { ... }) -> WithRawResponseTask&lt;ListPeopleEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists people with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.People.ListPeopleAsync(new ListPeoplePeopleRequest { Limit = 1, Page = 1 });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPeoplePeopleRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.People.<a href="/src/PayabliApi/People/PeopleClient.cs">CreatePersonAsync</a>(CreatePersonRequest { ... }) -> WithRawResponseTask&lt;PersonDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a person, an individual associated with a business such as an
+owner, director, or signer. Include a `businessRelationship` object to
+link the person to a business on create; the business reference, role
+(`personType`), and `ownershipPercentage` go inside that object.
+
+A person's job `title` and whether they're the signer (`isSigner`) also
+belong to the business link, so send them inside `businessRelationship`.
+A top-level `title` returns a `400` with the message
+`title moved into the businessRelationship object; send them there instead of at the top level.`
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.People.CreatePersonAsync(
+    new CreatePersonRequest
+    {
+        FirstName = "Marcus",
+        MiddleName = "James",
+        LastName = "Delgado",
+        PrimaryEmail = "marcus.delgado@example.com",
+        SecondaryEmail = "m.delgado@example.net",
+        PrimaryPhoneNumber = "3055551212",
+        SecondaryPhoneNumber = "3055559876",
+        DateOfBirth = "1985-03-14",
+        Ssn = "412-55-9021",
+        Nationality = "US",
+        DriversLicenseNumber = "D1234567",
+        DriversLicenseState = "FL",
+        ExternalId = "person-001",
+        CustomData = new Dictionary<string, object?>() { { "department", "finance" } },
+        Addresses = new List<PersonAddressRequest>()
+        {
+            new PersonAddressRequest
+            {
+                AddressLine1 = "123 Main Street",
+                AddressLine2 = "Suite 400",
+                CityLocality = "Miami",
+                StateProvince = "FL",
+                PostalCode = "33101",
+                Country = "US",
+                Type = PersonAddressType.Legal,
+            },
+        },
+        IdentificationDocuments = new List<IdentificationDocumentRequest>()
+        {
+            new IdentificationDocumentRequest
+            {
+                Type = "passport",
+                Number = "X1234567",
+                IssuingCountry = "US",
+                ExpirationDate = "2030-06-30",
+            },
+        },
+        BusinessRelationship = new BusinessRelationshipRequest
+        {
+            BusinessReference = "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+            PersonType = PersonType.Owner,
+            OwnershipPercentage = 100,
+            IsPrimaryController = true,
+            IsSigner = true,
+            Title = "CEO",
+            PrimaryEmail = "contact@example.com",
+            SecondaryEmail = "contact.alt@example.net",
+            PrimaryPhoneNumber = "3055551212",
+            SecondaryPhoneNumber = "3055559876",
+            BillingAddress = new PersonAddressRequest
+            {
+                AddressLine1 = "123 Main Street",
+                CityLocality = "Miami",
+                StateProvince = "FL",
+                PostalCode = "33101",
+                Country = "US",
+                Type = PersonAddressType.Billing,
+            },
+            MailingAddress = new PersonAddressRequest
+            {
+                AddressLine1 = "456 Oak Avenue",
+                CityLocality = "Miami",
+                StateProvince = "FL",
+                PostalCode = "33102",
+                Country = "US",
+                Type = PersonAddressType.Mailing,
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreatePersonRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.People.<a href="/src/PayabliApi/People/PeopleClient.cs">GetPersonAsync</a>(personReference) -> WithRawResponseTask&lt;PersonDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a person by reference. Sensitive fields such as `ssn` are masked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.People.GetPersonAsync("01a0014d-ce1a-7110-9bac-c4c59647a88d");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.People.<a href="/src/PayabliApi/People/PeopleClient.cs">UpdatePersonAsync</a>(personReference, UpdatePersonRequest { ... }) -> WithRawResponseTask&lt;PersonUpdatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a person. Send only the fields you want to change.
+
+A person's job title belongs to their business link, not the person. Sending `title` in any form, including `null`, returns a `400` with the message `title moved to the business relationship; update it with PATCH /api/v2/businesses/{businessReference}/people/{personReference}.`
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.People.UpdatePersonAsync(
+    "01a0014d-ce1a-7110-9bac-c4c59647a88d",
+    new UpdatePersonRequest { PrimaryPhoneNumber = "3055550199" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdatePersonRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.People.<a href="/src/PayabliApi/People/PeopleClient.cs">GetPersonUnmaskedAsync</a>(personReference) -> WithRawResponseTask&lt;PersonDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a person by reference with sensitive fields unmasked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.People.GetPersonUnmaskedAsync("01a0014d-ce1a-7110-9bac-c4c59647a88d");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**personReference:** `string` — The person reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.People.<a href="/src/PayabliApi/People/PeopleClient.cs">SearchPeopleAsync</a>(SearchPeopleRequest { ... }) -> WithRawResponseTask&lt;PeopleSearchEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Searches for people by identity attributes during boarding. The search
+covers every business in your organization, so use it to find a person
+before you create them again. To read the people already on a
+paypoint's business, use a standard `GET` instead.
+Provide at least one of `firstName` or `lastName`. Each result has a
+`matchScore` showing how closely it matches, and an external identity
+vendor can enrich the results. Each result's `dateOfBirth` is masked.
+To get the full value, use the unmasked search.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.People.SearchPeopleAsync(
+    new SearchPeopleRequest
+    {
+        Entry = "8cfec329267",
+        OrgId = 123,
+        Body = new Dictionary<object, object?>()
+        {
+            { "firstName", "Marcus" },
+            { "lastName", "Delgado" },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `SearchPeopleRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.People.<a href="/src/PayabliApi/People/PeopleClient.cs">SearchPeopleUnmaskedAsync</a>(SearchPeopleUnmaskedRequest { ... }) -> WithRawResponseTask&lt;PeopleSearchEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Searches for people by identity attributes during boarding, and returns
+each result's `dateOfBirth` unmasked. The query parameters, request
+body, and other response fields match the standard people search.
+Provide at least one of `firstName` or `lastName`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.People.SearchPeopleUnmaskedAsync(
+    new SearchPeopleUnmaskedRequest
+    {
+        Entry = "8cfec329267",
+        OrgId = 123,
+        Body = new Dictionary<object, object?>()
+        {
+            { "firstName", "Marcus" },
+            { "lastName", "Delgado" },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `SearchPeopleUnmaskedRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Paypoints
+<details><summary><code>client.Paypoints.<a href="/src/PayabliApi/Paypoints/PaypointsClient.cs">ListPaypointsAsync</a>(ListPaypointsPaypointsRequest { ... }) -> WithRawResponseTask&lt;ListPaypointsEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists paypoints with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Paypoints.ListPaypointsAsync(
+    new ListPaypointsPaypointsRequest { Limit = 1, Page = 1 }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPaypointsPaypointsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Paypoints.<a href="/src/PayabliApi/Paypoints/PaypointsClient.cs">CreatePaypointAsync</a>(OneOf&lt;CreatePaypointWithBusinessReference, CreatePaypointWithInlineBusiness, CreatePaypointAllFields&gt; { ... }) -> WithRawResponseTask&lt;PaypointCreatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a paypoint. New paypoints start in `pending`. Provide exactly
+one of `businessReference` (an existing business) or `business` (to
+create the business inline).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Paypoints.CreatePaypointAsync(
+    new CreatePaypointWithBusinessReference
+    {
+        BusinessReference = "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+        PaypointType = "merchant",
+        DoingBusinessAs = "Rose Gardens",
+        Description = "Boutique flower shop",
+        Website = "https://example.com",
+        CustomerServiceEmail = "support@example.com",
+        CustomerServicePhone = "3055551212",
+        Timezone = "America/New_York",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OneOf<CreatePaypointWithBusinessReference, CreatePaypointWithInlineBusiness, CreatePaypointAllFields>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Paypoints.<a href="/src/PayabliApi/Paypoints/PaypointsClient.cs">GetPaypointAsync</a>(paypointReference) -> WithRawResponseTask&lt;PaypointDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a paypoint by reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Paypoints.GetPaypointAsync("019ff064-c690-7679-a73e-688418aadc7c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointReference:** `string` — The paypoint reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Paypoints.<a href="/src/PayabliApi/Paypoints/PaypointsClient.cs">UpdatePaypointAsync</a>(paypointReference, UpdatePaypointRequest { ... }) -> WithRawResponseTask&lt;PaypointUpdatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a paypoint. Send only the fields you want to change.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Paypoints.UpdatePaypointAsync(
+    "019ff064-c690-7679-a73e-688418aadc7c",
+    new UpdatePaypointRequest { Description = "Updated description" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paypointReference:** `string` — The paypoint reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdatePaypointRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Payment methods
+<details><summary><code>client.PaymentMethods.<a href="/src/PayabliApi/PaymentMethods/PaymentMethodsClient.cs">ListPaymentMethodsAsync</a>(ListPaymentMethodsPaymentMethodsRequest { ... }) -> WithRawResponseTask&lt;ListPaymentMethodsEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists payment methods with optional filtering and pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentMethods.ListPaymentMethodsAsync(
+    new ListPaymentMethodsPaymentMethodsRequest { Limit = 1, Page = 1 }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPaymentMethodsPaymentMethodsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentMethods.<a href="/src/PayabliApi/PaymentMethods/PaymentMethodsClient.cs">CreatePaymentMethodsAsync</a>(CreatePaymentMethodsRequest { ... }) -> WithRawResponseTask&lt;PaymentMethodsCreatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates one or more payment methods for an entity in a single call.
+Set each payment method's `accountOwner` to the entity it belongs to.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentMethods.CreatePaymentMethodsAsync(
+    new CreatePaymentMethodsRequest
+    {
+        Data = new List<CreatePaymentMethodRequest>()
+        {
+            new CreatePaymentMethodRequest
+            {
+                Type = CreatePaymentMethodRequestType.BankAccount,
+                AccountOwner = "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+                OwnerType = PaymentMethodOwnerType.Business,
+                AccountType = "checking",
+                AccountNumber = "123456789",
+                RoutingNumber = "021000021",
+                Nickname = "Operating account",
+                FinancialInstitution = "Bank of Example",
+                Usage = new List<PaymentMethodUsage>()
+                {
+                    PaymentMethodUsage.Deposits,
+                    PaymentMethodUsage.Billing,
+                },
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreatePaymentMethodsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentMethods.<a href="/src/PayabliApi/PaymentMethods/PaymentMethodsClient.cs">GetPaymentMethodAsync</a>(paymentMethodReference) -> WithRawResponseTask&lt;PaymentMethodDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a payment method by reference. Sensitive fields such as the account and routing numbers are masked.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentMethods.GetPaymentMethodAsync("019ff142-454b-7721-96a3-c8628b9d568f");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentMethodReference:** `string` — The payment method reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentMethods.<a href="/src/PayabliApi/PaymentMethods/PaymentMethodsClient.cs">DeactivatePaymentMethodAsync</a>(paymentMethodReference) -> WithRawResponseTask&lt;PaymentMethodDeactivatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deactivates a payment method. This is a soft delete: the payment
+method moves to `INACTIVE` and the record is kept.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentMethods.DeactivatePaymentMethodAsync("019ff142-454b-7721-96a3-c8628b9d568f");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentMethodReference:** `string` — The payment method reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PaymentMethods.<a href="/src/PayabliApi/PaymentMethods/PaymentMethodsClient.cs">UpdatePaymentMethodAsync</a>(paymentMethodReference, UpdatePaymentMethodRequest { ... }) -> WithRawResponseTask&lt;PaymentMethodUpdatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a payment method. Send only the fields you
+want to change. Only payment methods in `PENDING` status can be updated.
+Once a payment method is active, change it through the bank account
+change process instead.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PaymentMethods.UpdatePaymentMethodAsync(
+    "019ff142-454b-7721-96a3-c8628b9d568f",
+    new UpdatePaymentMethodRequest
+    {
+        Nickname = "Primary operating account",
+        Usage = new List<PaymentMethodUsage>()
+        {
+            PaymentMethodUsage.Deposits,
+            PaymentMethodUsage.Billing,
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**paymentMethodReference:** `string` — The payment method reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdatePaymentMethodRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Boarding templates
+<details><summary><code>client.BoardingTemplates.<a href="/src/PayabliApi/BoardingTemplates/BoardingTemplatesClient.cs">ListTemplatesAsync</a>(ListTemplatesBoardingTemplatesRequest { ... }) -> WithRawResponseTask&lt;ListTemplatesResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the boarding templates an organization owns, plus templates
+inherited from ancestor organizations. Scope the listing with the
+required `orgId` query parameter. You can filter by `status`, `name`,
+`slug`, `orgName`, and `inherited`, and page through results.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BoardingTemplates.ListTemplatesAsync(
+    new ListTemplatesBoardingTemplatesRequest { OrgId = 123 }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListTemplatesBoardingTemplatesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BoardingTemplates.<a href="/src/PayabliApi/BoardingTemplates/BoardingTemplatesClient.cs">GetTemplateAsync</a>(uuid) -> WithRawResponseTask&lt;Template&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a boarding template by UUID, including its current content version.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BoardingTemplates.GetTemplateAsync("019ff129-d393-7761-9a31-e5afe85b4081");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The template's UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BoardingTemplates.<a href="/src/PayabliApi/BoardingTemplates/BoardingTemplatesClient.cs">ArchiveTemplateAsync</a>(uuid) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Archives a boarding template by UUID. Archiving is a soft delete: the
+template stays readable with `status: archived`, so archiving an
+already-archived template returns `409`, not another success. Unknown
+templates return `404`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BoardingTemplates.ArchiveTemplateAsync("019ff129-d393-7761-9a31-e5afe85b4081");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The template's UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BoardingTemplates.<a href="/src/PayabliApi/BoardingTemplates/BoardingTemplatesClient.cs">GetTemplateVersionAsync</a>(uuid, versionUuid) -> WithRawResponseTask&lt;TemplateVersion&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a specific immutable content version of a template.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BoardingTemplates.GetTemplateVersionAsync(
+    "019ff129-d393-7761-9a31-e5afe85b4081",
+    "019ff129-d396-74c4-86da-ae3d082d7ef9"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**uuid:** `string` — The template's UUID.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**versionUuid:** `string` — The version's UUID.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Applications
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">ListApplicationsAsync</a>(ListApplicationsApplicationsRequest { ... }) -> WithRawResponseTask&lt;ListApplicationsEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists boarding applications with pagination.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.ListApplicationsAsync(new ListApplicationsApplicationsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListApplicationsApplicationsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">CreateApplicationAsync</a>(CreateApplicationRequest { ... }) -> WithRawResponseTask&lt;ApplicationEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a boarding application for a business. The business must
+already have a paypoint. New applications start in `draft`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.CreateApplicationAsync(
+    new CreateApplicationRequest
+    {
+        BusinessReference = "019fed1a-3d6e-75d3-a81e-cba3874b0a55",
+        ExternalId = "APP-2025-0417",
+        Tags = new List<string>() { "priority" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateApplicationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">GetApplicationAsync</a>(requestsReference) -> WithRawResponseTask&lt;ApplicationEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a boarding application by reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.GetApplicationAsync("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">UpdateApplicationAsync</a>(requestsReference, UpdateApplicationRequest { ... }) -> WithRawResponseTask&lt;ApplicationEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to a boarding application. Send only the fields you want to change.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.UpdateApplicationAsync(
+    "3f3caa7b-bdfe-4bf1-814b-30d54859247c",
+    new UpdateApplicationRequest
+    {
+        ExternalId = "APP-2025-0417-REV2",
+        Tags = new List<string>() { "priority", "expedited" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateApplicationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">ValidateApplicationAsync</a>(requestsReference) -> WithRawResponseTask&lt;ValidationResultEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Checks whether the records linked to an application (the business, its people, and its payment methods) include everything the application's requested services need. The response lists any missing or invalid fields by section. Validation doesn't change the application, and it doesn't return a validation token. The request has no body.
+
+One owner on the application must be the signer, flagged with `isSigner` on their business link. If no one is flagged, the `people` section returns a `missingFields` entry with `field` set to `people.isSigner`, `label` set to `Signer`, and `reason` set to `required — choose the person who signs the application`. The signer rule isn't reported when the application has no people.
+
+The `people` section also checks ownership. At least one person must be the primary controller, flagged with `isPrimaryController`. If no one is, the entry has `field` set to `people.isPrimaryController`, `label` set to `Primary Controller`, and `reason` set to `required — at least one principal must be designated`. Unless the business's `legalStructure` is `government` or `non-profit`, at least one owner must have an `ownershipPercentage` of 25 or more. If no one does, the entry has `field` set to `people.ownershipPercentage`, `label` set to `Qualifying Owner`, and `reason` set to `at least one principal must have an ownership stake of 25% or more`.
+
+Validation also reports required documents that have nothing uploaded. See [List application document requirements](/developers/api-reference/applications/list-application-document-requirements). The bank statement requirement appears in the `business` section, with `field` set to `documents.bankStatement`. A person document appears in the `people` section, with `field` set to `people.{personReference}.` followed by the requirement's `fieldPath`, such as `people.01a0014d-ce1a-7110-9bac-c4c59647a88d.person.documents.w9`. Submit doesn't enforce document requirements.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.ValidateApplicationAsync("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">SubmitApplicationAsync</a>(requestsReference, SubmitApplicationRequest { ... }) -> WithRawResponseTask&lt;TransitionResultEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submits a draft application for review. Your integration (the applicant) calls this after the business, its people, payment methods, and services are in place. Verification then runs automatically.
+
+The application must have a signer: an owner flagged with `isSigner` on their business link, or one you name in `signer.personReference`. Payabli records the signer's identity from their person record and business link, so update those before you submit. The `signer` object carries the signature details.
+
+If the application has no signer, the request fails with `422` and the error `SIGNER_REQUIRED`. If `signer.personReference` names a person who isn't an owner, the request fails with `422` and the error `SIGNER_NOT_OWNER`. If the application isn't a draft, the request fails with `409` and the error `BIZ_004`, before any signer check. If `signer.reportedSignerIp` isn't a single valid IPv4 or IPv6 address, the request fails with `400` and the error `VALIDATION_ERROR`, and the application isn't submitted.
+
+Submit doesn't check every rule that [validate](/developers/api-reference/applications/validate-an-application) reports, such as the primary controller and ownership rules. Validate the application and resolve its missing fields before you submit.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.SubmitApplicationAsync(
+    "3f3caa7b-bdfe-4bf1-814b-30d54859247c",
+    new SubmitApplicationRequest
+    {
+        Signer = new SubmitSigner
+        {
+            PersonReference = "01a0014d-ce1a-7110-9bac-c4c59647a88d",
+            Signature = "Marcus J Delgado",
+            SignatureType = SignatureType.Type,
+            Acceptance = true,
+            PciAttestation = true,
+            ReportedSignerIp = "203.0.113.7",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `SubmitApplicationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">ProvideDocumentsAsync</a>(requestsReference) -> WithRawResponseTask&lt;TransitionResultEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks the documents that Payabli requested during review as provided, when the application is in `pendingdocuments`. It returns the application to review. The request has no body.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.ProvideDocumentsAsync("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">ProvideResponseAsync</a>(requestsReference) -> WithRawResponseTask&lt;TransitionResultEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks the information that Payabli requested during review as provided, when the application is in `pendingresponse`. It returns the application to review. The request has no body.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.ProvideResponseAsync("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">WithdrawApplicationAsync</a>(requestsReference, WithdrawApplicationRequest { ... }) -> WithRawResponseTask&lt;TransitionResultEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Withdraws a boarding application. The response returns the application's
+new status and the actions now allowed on it.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.WithdrawApplicationAsync(
+    "3f3caa7b-bdfe-4bf1-814b-30d54859247c",
+    new WithdrawApplicationRequest { Reason = "Duplicate application" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `WithdrawApplicationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">GetApplicationHistoryAsync</a>(requestsReference) -> WithRawResponseTask&lt;StatusHistoryEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the status transition history of a boarding application, oldest first. History records changes only. An approved application that fails enablement the same way on every attempt doesn't add entries, so use [enablement](/developers/api-reference/applications/get-application-enablement-progress) to follow that progress.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.GetApplicationHistoryAsync("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">GetApplicationEnablementAsync</a>(requestsReference) -> WithRawResponseTask&lt;EnablementEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the progress of setting up an approved application's services with their processors. An application's status stays `approved` or `autoapproved` while this runs, and it moves to `activated` after every requested service is set up. Use this endpoint to see why an approved merchant isn't live yet.
+
+Enablement doesn't send webhooks, so poll this endpoint to follow it. Until enablement starts, `state` and the other progress fields are `null`, and `services` is empty. That includes applications that are in `draft`, withdrawn, or in `error`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.GetApplicationEnablementAsync("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">ListApplicationDocumentRequirementsAsync</a>(requestsReference) -> WithRawResponseTask&lt;DocumentRequirementListEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the documents an application asks for, from its template and from Payabli business rules. For example, a business with an annual revenue of $1,000,000 or more needs bank statements. Each requirement gives the `fieldPath` and `subject` to send when you upload, the formats it accepts, how many documents it takes, and how many are uploaded so far.
+
+A person requirement appears once for each owner of the business, with that owner's `personReference`. The list is empty when the application asks for no documents.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.ListApplicationDocumentRequirementsAsync(
+    "3f3caa7b-bdfe-4bf1-814b-30d54859247c"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">ListApplicationDocumentsAsync</a>(requestsReference) -> WithRawResponseTask&lt;ApplicationDocumentListEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the documents uploaded to an application. The list is empty when none are uploaded.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.ListApplicationDocumentsAsync("3f3caa7b-bdfe-4bf1-814b-30d54859247c");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">UploadApplicationDocumentAsync</a>(requestsReference, UploadApplicationDocumentRequest { ... }) -> WithRawResponseTask&lt;ApplicationDocumentEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads one document to an application as multipart form data. [List the application's document requirements](/developers/api-reference/applications/list-application-document-requirements) first. Send the requirement's `fieldPath`, one of its `subjectTypes` as `subject`, and, for a person requirement, its `personReference`.
+
+The file can be up to 10 MB, in a format the requirement accepts. Payabli checks the file's content, not only its name. Each requirement takes up to `maxUploads` documents.
+
+Uploading doesn't change the application's status. When underwriting requests documents, upload them, then call [provide documents](/developers/api-reference/applications/provide-application-documents) to return the application to review.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.UploadApplicationDocumentAsync(
+    "3f3caa7b-bdfe-4bf1-814b-30d54859247c",
+    new UploadApplicationDocumentRequest
+    {
+        FieldPath = "documents.bankStatement",
+        Subject = DocumentSubjectType.Business,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UploadApplicationDocumentRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Applications.<a href="/src/PayabliApi/Applications/ApplicationsClient.cs">DeleteApplicationDocumentAsync</a>(requestsReference, documentReference) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes a document you uploaded from an application. Deleting doesn't change the application's status. A deleted document no longer counts toward its requirement, so you can upload a replacement. Deleting a document that's already deleted returns `404`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Applications.DeleteApplicationDocumentAsync(
+    "3f3caa7b-bdfe-4bf1-814b-30d54859247c",
+    "019ff1d7-6e14-7c8b-a2f5-91d3b7e04c62"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestsReference:** `string` — The application reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**documentReference:** `string` — The document reference, from the upload response or [List application documents](/developers/api-reference/applications/list-application-documents).
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Boarding
 <details><summary><code>client.Boarding.<a href="/src/PayabliApi/Boarding/BoardingClient.cs">AddApplicationAsync</a>(OneOf&lt;ApplicationDataPayIn, ApplicationDataManaged, ApplicationDataOdp, ApplicationData&gt; { ... }) -> WithRawResponseTask&lt;PayabliApiResponse00Responsedatanonobject&gt;</code></summary>
 <dl>
@@ -10222,6 +13524,11 @@ await client.LineItem.ListLineItemsAsync(
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Create an application](/developers/api-reference/applications/create-an-application) instead. One legacy call becomes several intelligent boarding calls, one for each record. See [Map legacy calls to new endpoints](/guides/pay-ops-developer-boarding-legacy-migrate#map-legacy-calls-to-new-endpoints).
+</Warning>
+
 
 Creates a boarding application in an organization. This endpoint requires an application API token.
 </dd>
@@ -10419,6 +13726,11 @@ await client.Boarding.AddApplicationAsync(
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Update the record that holds the data instead, such as [the business](/developers/api-reference/businesses/update-a-business) or [a person](/developers/api-reference/people/update-a-person). Use [Update an application](/developers/api-reference/applications/update-an-application) only for the application's own fields.
+</Warning>
+
+
 Updates a boarding application by ID. This endpoint requires an application API token.
 </dd>
 </dl>
@@ -10481,6 +13793,11 @@ await client.Boarding.UpdateApplicationAsync(352, new ApplicationData());
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Withdraw an application](/developers/api-reference/applications/withdraw-an-application) instead.
+</Warning>
+
+
 Deletes a boarding application by ID.
 </dd>
 </dl>
@@ -10535,6 +13852,11 @@ await client.Boarding.DeleteApplicationAsync(352);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Get an application](/developers/api-reference/applications/get-an-application) instead.
+</Warning>
+
+
 Retrieves the details for a boarding application by ID.
 </dd>
 </dl>
@@ -10588,6 +13910,11 @@ await client.Boarding.GetApplicationAsync(352);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
 
 Gets a boarding application by authentication information. This endpoint requires an `application` API token.
 </dd>
@@ -10654,6 +13981,11 @@ await client.Boarding.GetApplicationByAuthAsync(
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Retrieves details for a boarding link, by ID.
 </dd>
 </dl>
@@ -10708,6 +14040,11 @@ await client.Boarding.GetByIdLinkApplicationAsync(91);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Get details for a boarding link using the boarding template ID. This endpoint requires an application API token.
 </dd>
 </dl>
@@ -10761,6 +14098,11 @@ await client.Boarding.GetByTemplateIdLinkApplicationAsync(80);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
 
 Retrieves a link and the verification code used to log into an existing boarding application. You can also use this endpoint to send a link and referenceId for an existing boarding application to an email address. The recipient can use the referenceId and email address to access and edit the application.
 </dd>
@@ -10836,6 +14178,11 @@ await client.Boarding.GetExternalApplicationAsync(
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Retrieves the details for a boarding link, by reference name. This endpoint requires an application API token.
 </dd>
 </dl>
@@ -10889,6 +14236,11 @@ await client.Boarding.GetLinkApplicationAsync("myorgaccountname-00091");
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List applications](/developers/api-reference/applications/list-applications) instead.
+</Warning>
+
 
 Returns a list of boarding applications for an organization. Use filters to limit results. Include the `exportFormat` query parameter to return the results as a file instead of a JSON response.
 </dd>
@@ -10960,6 +14312,11 @@ await client.Boarding.ListApplicationsAsync(
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
+
 Return a list of boarding links for an organization. Use filters to limit results.
 </dd>
 </dl>
@@ -11030,6 +14387,11 @@ await client.Boarding.ListBoardingLinksAsync(
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Create an application](/developers/api-reference/applications/create-an-application) for a paypoint that's already boarded instead. See [Request more services with the API](/guides/pay-ops-developer-boarding-add-services).
+</Warning>
+
+
 Creates a new boarding application linked to an existing paypoint as part of the multi-product boarding flow. Use this endpoint to add new services to a paypoint without creating a duplicate record. The system copies eligible business, contact, banking, and address data from the paypoint to the new application based on 1:1 field matching. The merchant only needs to provide fields that are specific to the new service. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
 </dd>
 </dl>
@@ -11093,6 +14455,11 @@ await client.Boarding.AddServiceToPaypointFromAppAsync(
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List applications](/developers/api-reference/applications/list-applications) instead. It doesn't filter by paypoint.
+</Warning>
+
+
 Returns all boarding applications associated with a specific paypoint, including those created through the multi-product boarding flow. Use this endpoint to track underwriting progress across multiple service additions or to build reporting views. See the [Multi-product boarding](/guides/pay-ops-developer-boarding-multi-product) guide for the full flow.
 </dd>
 </dl>
@@ -11148,6 +14515,11 @@ await client.Boarding.GetApplicationsByPaypointIdAsync(3040);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Archive a template](/developers/api-reference/boarding-templates/archive-a-template) instead.
+</Warning>
+
+
 Deletes a template by ID.
 </dd>
 </dl>
@@ -11201,6 +14573,11 @@ await client.Templates.DeleteTemplateAsync(80);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Intelligent boarding has no matching endpoint. Each application has its own hosted form link instead. See [Send merchants a boarding link](/guides/pay-ops-developer-boarding-legacy-migrate#send-merchants-a-boarding-link).
+</Warning>
+
 
 Generates a boarding link from a boarding template.
 </dd>
@@ -11264,6 +14641,11 @@ await client.Templates.GetlinkTemplateAsync(80, true);
 <dl>
 <dd>
 
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [Get a template](/developers/api-reference/boarding-templates/get-a-template) instead.
+</Warning>
+
+
 Retrieves a boarding template's details by ID.
 </dd>
 </dl>
@@ -11317,6 +14699,11 @@ await client.Templates.GetTemplateAsync(80);
 
 <dl>
 <dd>
+
+<Warning>
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List templates](/developers/api-reference/boarding-templates/list-templates) instead.
+</Warning>
+
 
 Retrieves a list of boarding templates for an organization. Use filters to limit results. You can't make a request that includes filters from the API console in the documentation. The response won't be filtered. Instead, copy the request, remove `parameters=` and run the request in a different client.
 </dd>
@@ -11390,7 +14777,7 @@ await client.Templates.ListTemplatesAsync(
 <dd>
 
 <Warning>
-  This endpoint is deprecated. To export this data, use [List all apps for org](/developers/api-reference/boarding/get-list-of-applications-for-an-organization) with the `exportFormat` query parameter instead.
+  Legacy boarding is deprecated and will be sunset in Q2 2027. Use [List applications](/developers/api-reference/applications/list-applications) instead. It doesn't export files.
 </Warning>
 
 Export a list of boarding applications for an organization. Use filters to limit results.
@@ -18136,8 +21523,11 @@ await client.CaseManagement.ValidateBankAccountChangeAsync(
         BankAccountFunction = CaseManagementBankAccountFunction.Deposits,
         Services = new BankAccountServices
         {
-            MoneyIn = new List<MoneyInService>() { MoneyInService.Ach },
-            MoneyOut = new List<MoneyOutService>() { MoneyOutService.Ach },
+            MoneyIn = new List<CaseManagementMoneyInService>() { CaseManagementMoneyInService.Ach },
+            MoneyOut = new List<CaseManagementMoneyOutService>()
+            {
+                CaseManagementMoneyOutService.Ach,
+            },
         },
     }
 );
@@ -18221,8 +21611,11 @@ await client.CaseManagement.CreateBankAccountChangeAsync(
         BankAccountFunction = CaseManagementBankAccountFunction.Deposits,
         Services = new BankAccountServices
         {
-            MoneyIn = new List<MoneyInService>() { MoneyInService.Ach },
-            MoneyOut = new List<MoneyOutService>() { MoneyOutService.Ach },
+            MoneyIn = new List<CaseManagementMoneyInService>() { CaseManagementMoneyInService.Ach },
+            MoneyOut = new List<CaseManagementMoneyOutService>()
+            {
+                CaseManagementMoneyOutService.Ach,
+            },
         },
         Default = true,
     }

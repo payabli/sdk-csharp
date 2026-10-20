@@ -22,7 +22,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", global::PayabliApi.Version.Current },
-                { "User-Agent", "PayabliApi/1.1.19" },
+                { "User-Agent", "PayabliApi/1.1.20" },
             }
         );
         foreach (var header in platformHeaders)
@@ -74,6 +74,12 @@ public partial class PayabliApiClient : IPayabliApiClient
         Taptopay = new TaptopayClient(_client);
         Cloud = new CloudClient(_client);
         LineItem = new LineItemClient(_client);
+        Businesses = new BusinessesClient(_client);
+        People = new PeopleClient(_client);
+        Paypoints = new PaypointsClient(_client);
+        PaymentMethods = new PaymentMethodsClient(_client);
+        BoardingTemplates = new BoardingTemplatesClient(_client);
+        Applications = new ApplicationsClient(_client);
         Boarding = new BoardingClient(_client);
         Templates = new TemplatesClient(_client);
         Export = new ExportClient(_client);
@@ -132,6 +138,18 @@ public partial class PayabliApiClient : IPayabliApiClient
     public ICloudClient Cloud { get; }
 
     public ILineItemClient LineItem { get; }
+
+    public IBusinessesClient Businesses { get; }
+
+    public IPeopleClient People { get; }
+
+    public IPaypointsClient Paypoints { get; }
+
+    public IPaymentMethodsClient PaymentMethods { get; }
+
+    public IBoardingTemplatesClient BoardingTemplates { get; }
+
+    public IApplicationsClient Applications { get; }
 
     public IBoardingClient Boarding { get; }
 

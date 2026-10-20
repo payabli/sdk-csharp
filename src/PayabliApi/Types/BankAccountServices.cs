@@ -18,13 +18,13 @@ public record BankAccountServices : IJsonOnDeserialized
     /// Pay In services the account is used for.
     /// </summary>
     [JsonPropertyName("moneyIn")]
-    public IEnumerable<MoneyInService>? MoneyIn { get; set; }
+    public IEnumerable<CaseManagementMoneyInService>? MoneyIn { get; set; }
 
     /// <summary>
     /// Pay Out services the account is used for.
     /// </summary>
     [JsonPropertyName("moneyOut")]
-    public IEnumerable<MoneyOutService>? MoneyOut { get; set; }
+    public IEnumerable<CaseManagementMoneyOutService>? MoneyOut { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

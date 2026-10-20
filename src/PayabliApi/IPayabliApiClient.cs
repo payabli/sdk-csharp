@@ -22,6 +22,12 @@ public partial interface IPayabliApiClient
     public ITaptopayClient Taptopay { get; }
     public ICloudClient Cloud { get; }
     public ILineItemClient LineItem { get; }
+    public IBusinessesClient Businesses { get; }
+    public IPeopleClient People { get; }
+    public IPaypointsClient Paypoints { get; }
+    public IPaymentMethodsClient PaymentMethods { get; }
+    public IBoardingTemplatesClient BoardingTemplates { get; }
+    public IApplicationsClient Applications { get; }
     public IBoardingClient Boarding { get; }
     public ITemplatesClient Templates { get; }
     public IExportClient Export { get; }
