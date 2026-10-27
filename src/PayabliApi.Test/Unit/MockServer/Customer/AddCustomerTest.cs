@@ -78,7 +78,7 @@ public class AddCustomerTest : BaseMockServerTest
                 "PaypointDbaname": "Gruzya Adventure Outfitters",
                 "ParentOrgName": "The Pilgrim Planner",
                 "ParentOrgId": 123,
-                "PaypointEntryname": "41035afaa7",
+                "PaypointEntryname": "8cfec329267",
                 "pageidentifier": "null"
               },
               "responseText": "Success"

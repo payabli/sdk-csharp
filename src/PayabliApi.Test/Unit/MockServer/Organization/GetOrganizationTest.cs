@@ -13,7 +13,7 @@ public class GetOrganizationTest : BaseMockServerTest
     {
         const string mockResponse = """
             {
-              "services": [
+              "Services": [
                 {
                   "description": "description",
                   "enabled": true,
@@ -25,7 +25,7 @@ public class GetOrganizationTest : BaseMockServerTest
                   "txPercentCost": 1.1
                 }
               ],
-              "billingInfo": {
+              "BillingInfo": {
                 "achAccount": "123123123",
                 "achRouting": "123123123",
                 "billingAddress": "123 Walnut Street",
@@ -34,40 +34,36 @@ public class GetOrganizationTest : BaseMockServerTest
                 "billingState": "TN",
                 "billingZip": "37615"
               },
-              "contacts": [
+              "Contacts": [
                 {
-                  "contactEmail": "example@email.com",
-                  "contactName": "Herman Martinez",
-                  "contactPhone": "3055550000",
-                  "contactTitle": "Owner"
+                  "ContactEmail": "example@email.com",
+                  "ContactName": "Herman Martinez",
+                  "ContactPhone": "3055550000",
+                  "ContactTitle": "Owner"
                 }
               ],
               "createdAt": "2022-07-01T15:00:01.000Z",
-              "hasBilling": true,
-              "hasResidual": true,
+              "HasBilling": true,
+              "HasResidual": true,
               "idOrg": 123,
               "isRoot": false,
-              "orgAddress": "123 Walnut Street",
-              "orgCity": "Johnson City",
-              "orgCountry": "US",
-              "orgEntryName": "pilgrim-planner",
-              "orgId": "123",
-              "orgLogo": {
-                "fContent": "TXkgdGVzdCBmaWxlHJ==...",
-                "filename": "my-doc.pdf",
-                "ftype": "pdf",
-                "furl": "https://mysite.com/my-doc.pdf"
-              },
-              "orgName": "Pilgrim Planner",
-              "orgParentId": 236,
-              "orgParentName": "PropertyManager Pro",
-              "orgState": "TN",
-              "orgTimezone": -5,
-              "orgType": 0,
-              "orgWebsite": "www.pilgrimageplanner.com",
-              "orgZip": "orgZip",
+              "OrgAddress": "123 Walnut Street",
+              "OrgCity": "Johnson City",
+              "OrgCountry": "US",
+              "OrgEntryName": "pilgrim-planner",
+              "OrgFavicon": "https://www.pilgrimageplanner.com/favicon.png",
+              "OrgId": "123",
+              "OrgLogo": "https://www.pilgrimageplanner.com/logo.png",
+              "OrgName": "Pilgrim Planner",
+              "OrgParentId": 236,
+              "OrgParentName": "PropertyManager Pro",
+              "OrgState": "TN",
+              "OrgTimezone": -5,
+              "OrgType": 0,
+              "OrgWebsite": "www.pilgrimageplanner.com",
+              "OrgZip": "orgZip",
               "recipientEmailNotification": true,
-              "replyToEmail": "example@email.com",
+              "ReplyToEmail": "example@email.com",
               "resumable": false,
               "summary": {
                 "amountSubs": 1.1,

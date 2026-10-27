@@ -456,7 +456,7 @@ public partial class OrganizationClient : IOrganizationClient
         }
     }
 
-    private async Task<WithRawResponse<OrganizationQueryRecord>> GetBasicOrganizationAsyncCore(
+    private async Task<WithRawResponse<GetBasicOrganizationResponse>> GetBasicOrganizationAsyncCore(
         string entry,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -499,8 +499,10 @@ public partial class OrganizationClient : IOrganizationClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<OrganizationQueryRecord>(responseBody)!;
-                return new WithRawResponse<OrganizationQueryRecord>()
+                var responseData = JsonUtils.Deserialize<GetBasicOrganizationResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<GetBasicOrganizationResponse>()
                 {
                     Data = responseData,
                     RawResponse = new PayabliApi.RawResponse()
@@ -603,7 +605,9 @@ public partial class OrganizationClient : IOrganizationClient
         }
     }
 
-    private async Task<WithRawResponse<OrganizationQueryRecord>> GetBasicOrganizationByIdAsyncCore(
+    private async Task<
+        WithRawResponse<GetBasicOrganizationResponse>
+    > GetBasicOrganizationByIdAsyncCore(
         int orgId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -646,8 +650,10 @@ public partial class OrganizationClient : IOrganizationClient
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<OrganizationQueryRecord>(responseBody)!;
-                return new WithRawResponse<OrganizationQueryRecord>()
+                var responseData = JsonUtils.Deserialize<GetBasicOrganizationResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<GetBasicOrganizationResponse>()
                 {
                     Data = responseData,
                     RawResponse = new PayabliApi.RawResponse()
@@ -1173,15 +1179,15 @@ public partial class OrganizationClient : IOrganizationClient
     /// Gets an organization's basic information by entry name (entrypoint identifier).
     /// </summary>
     /// <example><code>
-    /// await client.Organization.GetBasicOrganizationAsync("8cfec329267");
+    /// await client.Organization.GetBasicOrganizationAsync("pilgrim-planner");
     /// </code></example>
-    public WithRawResponseTask<OrganizationQueryRecord> GetBasicOrganizationAsync(
+    public WithRawResponseTask<GetBasicOrganizationResponse> GetBasicOrganizationAsync(
         string entry,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<OrganizationQueryRecord>(
+        return new WithRawResponseTask<GetBasicOrganizationResponse>(
             GetBasicOrganizationAsyncCore(entry, options, cancellationToken)
         );
     }
@@ -1192,13 +1198,13 @@ public partial class OrganizationClient : IOrganizationClient
     /// <example><code>
     /// await client.Organization.GetBasicOrganizationByIdAsync(123);
     /// </code></example>
-    public WithRawResponseTask<OrganizationQueryRecord> GetBasicOrganizationByIdAsync(
+    public WithRawResponseTask<GetBasicOrganizationResponse> GetBasicOrganizationByIdAsync(
         int orgId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<OrganizationQueryRecord>(
+        return new WithRawResponseTask<GetBasicOrganizationResponse>(
             GetBasicOrganizationByIdAsyncCore(orgId, options, cancellationToken)
         );
     }

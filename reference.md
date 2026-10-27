@@ -12040,6 +12040,266 @@ await client.Paypoints.UpdatePaypointAsync(
 </dl>
 </details>
 
+## Organizations
+<details><summary><code>client.Organizations.<a href="/src/PayabliApi/Organizations/OrganizationsClient.cs">ListOrganizationsAsync</a>(ListOrganizationsOrganizationsRequest { ... }) -> WithRawResponseTask&lt;ListPaypointsEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists organizations with optional filtering and pagination. Only
+organizations are returned. Other paypoints never appear in this list.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.ListOrganizationsAsync(
+    new ListOrganizationsOrganizationsRequest
+    {
+        BusinessReference = "6e2b9d14-7a3c-4f58-b1e6-0c9d3a5f8e27",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListOrganizationsOrganizationsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organizations.<a href="/src/PayabliApi/Organizations/OrganizationsClient.cs">CreateOrganizationAsync</a>(OneOf&lt;CreateOrganizationWithInlineBusiness, CreateOrganizationWithBusinessReference, CreateOrganizationAllFields&gt; { ... }) -> WithRawResponseTask&lt;PaypointCreatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an organization. Provide exactly one of `business` (to create
+the business inline, recommended) or `businessReference` (an existing
+business). In intelligent boarding, an organization is a kind of paypoint, so the
+request takes the paypoint create fields except `paypointType`. Payabli
+sets the organization type itself. An organization isn't underwritten,
+so only the fields needed to create the records are required. New
+organizations start in `pending`. If you don't set
+`parentPaypointReference`, the organization nests under the
+organization your credential belongs to. Returns `409` if an
+organization with the same `externalId` already exists.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.CreateOrganizationAsync(
+    new CreateOrganizationWithInlineBusiness
+    {
+        DoingBusinessAs = "PropertyManager Pro",
+        Description = "Property management software partner",
+        Website = "https://example.com",
+        CustomerServicePhone = "3055551212",
+        CustomerServiceEmail = "support@example.com",
+        Timezone = "America/New_York",
+        ExternalId = "pmp-org-001",
+        Business = new CreateBusinessRequest
+        {
+            LegalName = "PropertyManager Pro LLC",
+            LegalStructure = CreateBusinessRequestLegalStructure.Llc,
+            ExternalId = "pmp-biz-001",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OneOf<CreateOrganizationWithInlineBusiness, CreateOrganizationWithBusinessReference, CreateOrganizationAllFields>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organizations.<a href="/src/PayabliApi/Organizations/OrganizationsClient.cs">GetOrganizationAsync</a>(organizationReference) -> WithRawResponseTask&lt;PaypointDetailEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves an organization by reference.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.GetOrganizationAsync("a8806f02-23b3-4f6d-bba3-42e1b94326ea");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReference:** `string` — The organization reference.
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Organizations.<a href="/src/PayabliApi/Organizations/OrganizationsClient.cs">UpdateOrganizationAsync</a>(organizationReference, UpdateOrganizationRequest { ... }) -> WithRawResponseTask&lt;PaypointUpdatedEnvelope&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Applies a partial update to an organization. Send only the fields you want to change. You can't change an organization's type. If you send `paypointType`, the request ignores it and doesn't return an error.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Organizations.UpdateOrganizationAsync(
+    "a8806f02-23b3-4f6d-bba3-42e1b94326ea",
+    new UpdateOrganizationRequest { Description = "Updated description" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationReference:** `string` — The organization reference.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateOrganizationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Payment methods
 <details><summary><code>client.PaymentMethods.<a href="/src/PayabliApi/PaymentMethods/PaymentMethodsClient.cs">ListPaymentMethodsAsync</a>(ListPaymentMethodsPaymentMethodsRequest { ... }) -> WithRawResponseTask&lt;ListPaymentMethodsEnvelope&gt;</code></summary>
 <dl>
@@ -17417,7 +17677,7 @@ await client.Organization.DeleteOrganizationAsync(123);
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationAsync</a>(entry) -> WithRawResponseTask&lt;OrganizationQueryRecord&gt;</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationAsync</a>(entry) -> WithRawResponseTask&lt;GetBasicOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -17444,7 +17704,7 @@ Gets an organization's basic information by entry name (entrypoint identifier).
 <dd>
 
 ```csharp
-await client.Organization.GetBasicOrganizationAsync("8cfec329267");
+await client.Organization.GetBasicOrganizationAsync("pilgrim-planner");
 ```
 </dd>
 </dl>
@@ -17459,7 +17719,7 @@ await client.Organization.GetBasicOrganizationAsync("8cfec329267");
 <dl>
 <dd>
 
-**entry:** `string` — The paypoint's entrypoint identifier. [Learn more](/developers/api-reference/api-overview#entrypoint-vs-entry)
+**entry:** `string` — The organization's entry name (`OrgEntryName`).
     
 </dd>
 </dl>
@@ -17471,7 +17731,7 @@ await client.Organization.GetBasicOrganizationAsync("8cfec329267");
 </dl>
 </details>
 
-<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationByIdAsync</a>(orgId) -> WithRawResponseTask&lt;OrganizationQueryRecord&gt;</code></summary>
+<details><summary><code>client.Organization.<a href="/src/PayabliApi/Organization/OrganizationClient.cs">GetBasicOrganizationByIdAsync</a>(orgId) -> WithRawResponseTask&lt;GetBasicOrganizationResponse&gt;</code></summary>
 <dl>
 <dd>
 

@@ -23,11 +23,11 @@ public record PayabliCredentialsPascal : IJsonOnDeserialized
     [JsonPropertyName("Mode")]
     public int? Mode { get; set; }
 
-    [JsonPropertyName("MinTicket")]
-    public double? MinTicket { get; set; }
+    [JsonPropertyName("Minticket")]
+    public double? Minticket { get; set; }
 
-    [JsonPropertyName("MaxTicket")]
-    public double? MaxTicket { get; set; }
+    [JsonPropertyName("Maxticket")]
+    public double? Maxticket { get; set; }
 
     [JsonPropertyName("CfeeFix")]
     public double? CfeeFix { get; set; }

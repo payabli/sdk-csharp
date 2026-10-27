@@ -11,22 +11,22 @@ public record OrganizationQueryRecord : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("services")]
-    public IEnumerable<OrganizationQueryRecordServicesItem>? Services { get; set; }
+    [JsonPropertyName("BillingInfo")]
+    public InstrumentResponse? BillingInfo { get; set; }
 
-    [JsonPropertyName("billingInfo")]
-    public Instrument? BillingInfo { get; set; }
-
-    [JsonPropertyName("contacts")]
-    public IEnumerable<Contacts>? Contacts { get; set; }
+    /// <summary>
+    /// List of contacts.
+    /// </summary>
+    [JsonPropertyName("Contacts")]
+    public IEnumerable<ContactsResponse>? Contacts { get; set; }
 
     [JsonPropertyName("createdAt")]
     public DateTime? CreatedAt { get; set; }
 
-    [JsonPropertyName("hasBilling")]
+    [JsonPropertyName("HasBilling")]
     public bool? HasBilling { get; set; }
 
-    [JsonPropertyName("hasResidual")]
+    [JsonPropertyName("HasResidual")]
     public bool? HasResidual { get; set; }
 
     [JsonPropertyName("idOrg")]
@@ -35,56 +35,68 @@ public record OrganizationQueryRecord : IJsonOnDeserialized
     [JsonPropertyName("isRoot")]
     public bool? IsRoot { get; set; }
 
-    [JsonPropertyName("orgAddress")]
+    [JsonPropertyName("OrgAddress")]
     public string? OrgAddress { get; set; }
 
-    [JsonPropertyName("orgCity")]
+    [JsonPropertyName("OrgCity")]
     public string? OrgCity { get; set; }
 
-    [JsonPropertyName("orgCountry")]
+    [JsonPropertyName("OrgCountry")]
     public string? OrgCountry { get; set; }
 
-    [JsonPropertyName("orgEntryName")]
+    [JsonPropertyName("OrgEntryName")]
     public string? OrgEntryName { get; set; }
 
-    [JsonPropertyName("orgId")]
+    /// <summary>
+    /// URL of the organization's favicon.
+    /// </summary>
+    [JsonPropertyName("OrgFavicon")]
+    public string? OrgFavicon { get; set; }
+
+    [JsonPropertyName("OrgId")]
     public string? OrgId { get; set; }
 
-    [JsonPropertyName("orgLogo")]
-    public FileContent? OrgLogo { get; set; }
+    /// <summary>
+    /// URL of the organization's logo.
+    /// </summary>
+    [JsonPropertyName("OrgLogo")]
+    public string? OrgLogo { get; set; }
 
-    [JsonPropertyName("orgName")]
+    [JsonPropertyName("OrgName")]
     public string? OrgName { get; set; }
 
-    [JsonPropertyName("orgParentId")]
+    [JsonPropertyName("OrgParentId")]
     public long? OrgParentId { get; set; }
 
-    [JsonPropertyName("orgParentName")]
+    [JsonPropertyName("OrgParentName")]
     public string? OrgParentName { get; set; }
 
-    [JsonPropertyName("orgState")]
+    [JsonPropertyName("OrgState")]
     public string? OrgState { get; set; }
 
-    [JsonPropertyName("orgTimezone")]
+    [JsonPropertyName("OrgTimezone")]
     public int? OrgTimezone { get; set; }
 
-    [JsonPropertyName("orgType")]
+    [JsonPropertyName("OrgType")]
     public int? OrgType { get; set; }
 
-    [JsonPropertyName("orgWebsite")]
+    [JsonPropertyName("OrgWebsite")]
     public string? OrgWebsite { get; set; }
 
-    [JsonPropertyName("orgZip")]
+    [JsonPropertyName("OrgZip")]
     public string? OrgZip { get; set; }
 
     [JsonPropertyName("recipientEmailNotification")]
     public bool? RecipientEmailNotification { get; set; }
 
-    [JsonPropertyName("replyToEmail")]
+    [JsonPropertyName("ReplyToEmail")]
     public string? ReplyToEmail { get; set; }
 
     [JsonPropertyName("resumable")]
     public bool? Resumable { get; set; }
+
+    [JsonPropertyName("Services")]
+    public IEnumerable<OrganizationQueryRecordServicesItem>? Services { get; set; }
 
     [JsonPropertyName("summary")]
     public SummaryOrg? Summary { get; set; }

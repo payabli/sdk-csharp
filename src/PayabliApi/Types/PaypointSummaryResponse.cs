@@ -81,6 +81,12 @@ public record PaypointSummaryResponse : IJsonOnDeserialized
     public string? CustomerServiceEmail { get; set; }
 
     /// <summary>
+    /// Your own identifier for the paypoint. Omitted when you haven't set one.
+    /// </summary>
+    [JsonPropertyName("externalId")]
+    public string? ExternalId { get; set; }
+
+    /// <summary>
     /// The paypoint's entrypoint name, used as the `entry` value on endpoints that target the paypoint.
     /// </summary>
     [JsonPropertyName("entryName")]

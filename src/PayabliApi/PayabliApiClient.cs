@@ -22,7 +22,7 @@ public partial class PayabliApiClient : IPayabliApiClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "PayabliApi" },
                 { "X-Fern-SDK-Version", global::PayabliApi.Version.Current },
-                { "User-Agent", "PayabliApi/1.1.20" },
+                { "User-Agent", "PayabliApi/1.1.21" },
             }
         );
         foreach (var header in platformHeaders)
@@ -77,6 +77,7 @@ public partial class PayabliApiClient : IPayabliApiClient
         Businesses = new BusinessesClient(_client);
         People = new PeopleClient(_client);
         Paypoints = new PaypointsClient(_client);
+        Organizations = new OrganizationsClient(_client);
         PaymentMethods = new PaymentMethodsClient(_client);
         BoardingTemplates = new BoardingTemplatesClient(_client);
         Applications = new ApplicationsClient(_client);
@@ -144,6 +145,8 @@ public partial class PayabliApiClient : IPayabliApiClient
     public IPeopleClient People { get; }
 
     public IPaypointsClient Paypoints { get; }
+
+    public IOrganizationsClient Organizations { get; }
 
     public IPaymentMethodsClient PaymentMethods { get; }
 

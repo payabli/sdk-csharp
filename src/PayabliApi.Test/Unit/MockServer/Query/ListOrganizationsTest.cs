@@ -16,32 +16,33 @@ public class ListOrganizationsTest : BaseMockServerTest
             {
               "Records": [
                 {
-                  "services": [
+                  "Services": [
                     {}
                   ],
-                  "contacts": [
+                  "Contacts": [
                     {}
                   ],
                   "createdAt": "2022-07-01T15:00:01.000Z",
-                  "hasBilling": true,
-                  "hasResidual": true,
+                  "HasBilling": true,
+                  "HasResidual": true,
                   "idOrg": 123,
                   "isRoot": false,
-                  "orgAddress": "123 Walnut Street",
-                  "orgCity": "Johnson City",
-                  "orgCountry": "US",
-                  "orgEntryName": "pilgrim-planner",
-                  "orgId": "123",
-                  "orgName": "Pilgrim Planner",
-                  "orgParentId": 236,
-                  "orgParentName": "PropertyManager Pro",
-                  "orgState": "TN",
-                  "orgTimezone": -5,
-                  "orgType": 0,
-                  "orgWebsite": "www.pilgrimageplanner.com",
-                  "orgZip": "orgZip",
+                  "OrgAddress": "123 Walnut Street",
+                  "OrgCity": "Johnson City",
+                  "OrgCountry": "US",
+                  "OrgEntryName": "pilgrim-planner",
+                  "OrgFavicon": "https://www.pilgrimageplanner.com/favicon.png",
+                  "OrgId": "123",
+                  "OrgName": "Pilgrim Planner",
+                  "OrgParentId": 236,
+                  "OrgParentName": "PropertyManager Pro",
+                  "OrgState": "TN",
+                  "OrgTimezone": -5,
+                  "OrgType": 0,
+                  "OrgWebsite": "www.pilgrimageplanner.com",
+                  "OrgZip": "orgZip",
                   "recipientEmailNotification": true,
-                  "replyToEmail": "example@email.com",
+                  "ReplyToEmail": "example@email.com",
                   "resumable": false,
                   "users": [
                     {

@@ -25,6 +25,7 @@ public partial interface IPayabliApiClient
     public IBusinessesClient Businesses { get; }
     public IPeopleClient People { get; }
     public IPaypointsClient Paypoints { get; }
+    public IOrganizationsClient Organizations { get; }
     public IPaymentMethodsClient PaymentMethods { get; }
     public IBoardingTemplatesClient BoardingTemplates { get; }
     public IApplicationsClient Applications { get; }

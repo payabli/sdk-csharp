@@ -27,10 +27,22 @@ public record MethodsListOut : IJsonOnDeserialized
     public bool? Check { get; set; }
 
     /// <summary>
+    /// When `true`, Real-Time Payments (RTP) is offered as a payout method.
+    /// </summary>
+    [JsonPropertyName("rtp")]
+    public bool? Rtp { get; set; }
+
+    /// <summary>
     /// When `true`, virtual card (vCard) is offered as a payout method.
     /// </summary>
     [JsonPropertyName("vcard")]
     public bool? Vcard { get; set; }
+
+    /// <summary>
+    /// When `true`, wire transfer is offered as a payout method.
+    /// </summary>
+    [JsonPropertyName("wire")]
+    public bool? Wire { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

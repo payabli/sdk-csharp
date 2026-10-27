@@ -106,7 +106,7 @@ public class GetBillTest : BaseMockServerTest
                   },
                   "PaypointLegalname": "Gruzya Adventure Outfitters LLC",
                   "PaypointDbaname": "Gruzya Adventure Outfitters",
-                  "PaypointEntryname": "41035afaa7",
+                  "PaypointEntryname": "8cfec329267",
                   "ParentOrgName": "Pilgrim Planner",
                   "ParentOrgId": 1232,
                   "CreatedDate": "2022-07-01T15:00:01.000Z",
@@ -146,7 +146,7 @@ public class GetBillTest : BaseMockServerTest
                 "PaypointDbaname": "Gruzya Adventure Outfitters",
                 "ParentOrgId": 1232,
                 "ParentOrgName": "Pilgrim Planner",
-                "PaypointEntryname": "41035afaa7",
+                "PaypointEntryname": "8cfec329267",
                 "DocumentsRef": {
                   "zipfile": "documents_285.zip",
                   "filelist": [

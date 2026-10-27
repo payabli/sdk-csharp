@@ -13,7 +13,7 @@ public record ListPaypointsPaypointsRequest
     public string? BusinessReference { get; set; }
 
     /// <summary>
-    /// Filter by paypoint status.
+    /// Filter by paypoint status. One of `active`, `inactive`, `suspended`, or `closed`. Any other value, including `pending`, returns `400`.
     /// </summary>
     [JsonIgnore]
     public string? Status { get; set; }

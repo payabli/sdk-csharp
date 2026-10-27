@@ -33,7 +33,7 @@ public partial interface IOrganizationClient
     /// <summary>
     /// Gets an organization's basic information by entry name (entrypoint identifier).
     /// </summary>
-    WithRawResponseTask<OrganizationQueryRecord> GetBasicOrganizationAsync(
+    WithRawResponseTask<GetBasicOrganizationResponse> GetBasicOrganizationAsync(
         string entry,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -42,7 +42,7 @@ public partial interface IOrganizationClient
     /// <summary>
     /// Gets an organization's basic details by org ID.
     /// </summary>
-    WithRawResponseTask<OrganizationQueryRecord> GetBasicOrganizationByIdAsync(
+    WithRawResponseTask<GetBasicOrganizationResponse> GetBasicOrganizationByIdAsync(
         int orgId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
