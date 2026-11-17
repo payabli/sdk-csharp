@@ -22,7 +22,7 @@ public class ExportBatchDetailsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Export/batchDetails/csv/org/123")
+                    .WithPath("/Export/batchDetails/csv/org/900123")
                     .WithParam("columnsExport", "BatchDate:Batch_Date", "PaypointName:Legal_name")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "1000")
@@ -39,7 +39,7 @@ public class ExportBatchDetailsOrgTest : BaseMockServerTest
 
         var response = await Client.Export.ExportBatchDetailsOrgAsync(
             ExportFormat1.Csv,
-            123,
+            900123,
             new ExportBatchDetailsOrgRequest
             {
                 ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",

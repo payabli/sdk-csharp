@@ -1258,7 +1258,7 @@ public partial class PaypointClient : IPaypointClient
     ///     new PaypointMoveRequest
     ///     {
     ///         EntryPoint = "8cfec329267",
-    ///         NewParentOrganizationId = 123,
+    ///         NewParentOrganizationId = 900123,
     ///         NotificationRequest = new NotificationRequest
     ///         {
     ///             NotificationUrl = "https://webhook-test.yoursie.com",

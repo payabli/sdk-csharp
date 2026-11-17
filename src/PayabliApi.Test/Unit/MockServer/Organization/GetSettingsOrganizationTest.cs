@@ -62,7 +62,7 @@ public class GetSettingsOrganizationTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Organization/settings/123")
+                    .WithPath("/Organization/settings/900123")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -74,7 +74,7 @@ public class GetSettingsOrganizationTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Organization.GetSettingsOrganizationAsync(123);
+        var response = await Client.Organization.GetSettingsOrganizationAsync(900123);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

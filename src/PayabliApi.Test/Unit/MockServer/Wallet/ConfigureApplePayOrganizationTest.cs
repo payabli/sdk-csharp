@@ -16,7 +16,7 @@ public class ConfigureApplePayOrganizationTest : BaseMockServerTest
             {
               "cascade": true,
               "isEnabled": true,
-              "orgId": 123
+              "orgId": 900123
             }
             """;
 
@@ -65,7 +65,7 @@ public class ConfigureApplePayOrganizationTest : BaseMockServerTest
             {
                 Cascade = true,
                 IsEnabled = true,
-                OrgId = 123,
+                OrgId = 900123,
             }
         );
         JsonAssert.AreEqual(response, mockResponse);

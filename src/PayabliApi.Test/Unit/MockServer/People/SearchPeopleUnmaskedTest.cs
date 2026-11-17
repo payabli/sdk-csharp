@@ -36,13 +36,27 @@ public class SearchPeopleUnmaskedTest : BaseMockServerTest
                     "matchScore": 0.6,
                     "isTopMatch": true,
                     "isFromVendor": false,
+                    "primaryAddress": {
+                      "street": "123 Main Street",
+                      "city": "Miami",
+                      "state": "FL",
+                      "zip": "33101"
+                    },
+                    "addresses": [
+                      {
+                        "street": "123 Main Street",
+                        "city": "Miami",
+                        "state": "FL",
+                        "zip": "33101"
+                      }
+                    ],
                     "phones": [
                       "+13055551212"
                     ],
                     "emails": [
                       "marcus.delgado@example.com"
                     ],
-                    "addressCount": 0,
+                    "addressCount": 1,
                     "phoneCount": 1,
                     "emailCount": 1
                   }
@@ -59,7 +73,7 @@ public class SearchPeopleUnmaskedTest : BaseMockServerTest
                     .RequestBuilders.Request.Create()
                     .WithPath("/v2/people/search/unmasked")
                     .WithParam("entry", "8cfec329267")
-                    .WithParam("orgId", "123")
+                    .WithParam("orgId", "900123")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
@@ -77,7 +91,7 @@ public class SearchPeopleUnmaskedTest : BaseMockServerTest
             new SearchPeopleUnmaskedRequest
             {
                 Entry = "8cfec329267",
-                OrgId = 123,
+                OrgId = 900123,
                 Body = new Dictionary<object, object?>()
                 {
                     { "firstName", "Marcus" },

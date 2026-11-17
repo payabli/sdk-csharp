@@ -19,13 +19,13 @@ public class GetProfileTest : BaseMockServerTest
               "versionNumber": 31,
               "business": {
                 "entityType": 1,
-                "entityId": 123
+                "entityId": 900123
               },
               "name": "Default PayIn Profile",
               "feeType": 1,
               "createdAt": "2026-01-01T00:00:00.000Z",
               "updatedAt": "2026-01-01T00:00:00.000Z",
-              "parentId": "1:123",
+              "parentId": "1:900123",
               "billableEvents": [
                 {
                   "id": 1,
@@ -45,11 +45,11 @@ public class GetProfileTest : BaseMockServerTest
                       "passthrough": 0,
                       "payor": {
                         "entityType": 1,
-                        "entityId": 123
+                        "entityId": 900123
                       },
                       "collector": {
                         "entityType": 1,
-                        "entityId": 123
+                        "entityId": 900123
                       },
                       "effectiveDate": "2026-01-01T00:00:00.000Z",
                       "createdAt": "2026-01-01T00:00:00.000Z",
@@ -69,7 +69,7 @@ public class GetProfileTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/billing/configuration/PayIn/Organization/123")
+                    .WithPath("/billing/configuration/PayIn/Organization/900123")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -84,7 +84,7 @@ public class GetProfileTest : BaseMockServerTest
         var response = await Client.Billing.GetProfileAsync(
             GetProfileBillingRequestServiceGroup.PayIn,
             GetProfileBillingRequestEntityType.Organization,
-            123
+            900123
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

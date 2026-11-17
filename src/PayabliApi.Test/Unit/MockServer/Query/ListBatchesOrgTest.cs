@@ -147,7 +147,7 @@ public class ListBatchesOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/batches/org/123")
+                    .WithPath("/Query/batches/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -163,7 +163,7 @@ public class ListBatchesOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListBatchesOrgAsync(
-            123,
+            900123,
             new ListBatchesOrgRequest
             {
                 FromRecord = 251,

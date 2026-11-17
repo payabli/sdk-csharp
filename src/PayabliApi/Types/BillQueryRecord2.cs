@@ -189,6 +189,15 @@ public record BillQueryRecord2 : IJsonOnDeserialized
     public int? Status { get; set; }
 
     /// <summary>
+    /// The name of the bill's `Status`: `Canceled`, `None`, `Active`, `Sent to Approval`,
+    /// `Partially Approved`, `Rejected`, `Approved`, `In Transit`, `Partially Paid`, or `Paid`.
+    /// Returns `null` for an unrecognized code. See
+    /// [Pay Out statuses](/guides/pay-out-status-reference#bill-statuses).
+    /// </summary>
+    [JsonPropertyName("StatusLabel")]
+    public string? StatusLabel { get; set; }
+
+    /// <summary>
     /// The payment terms for invoice. If no terms were defined initially, then response data for this field will default to `N30`.
     /// </summary>
     [JsonPropertyName("Terms")]

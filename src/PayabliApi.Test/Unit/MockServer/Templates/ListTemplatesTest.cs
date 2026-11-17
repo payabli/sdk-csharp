@@ -49,7 +49,7 @@ public class ListTemplatesTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/templates/123")
+                    .WithPath("/Query/templates/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -65,7 +65,7 @@ public class ListTemplatesTest : BaseMockServerTest
             );
 
         var response = await Client.Templates.ListTemplatesAsync(
-            123,
+            900123,
             new ListTemplatesRequest
             {
                 FromRecord = 251,

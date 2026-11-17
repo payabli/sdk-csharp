@@ -12,6 +12,28 @@ public record PayabliCredentialsPascal : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// When `true`, the gateway for this credential is enabled for the paypoint. The value is
+    /// `null` when the credential isn't linked to a gateway.
+    /// </summary>
+    [JsonPropertyName("active")]
+    public bool? Active { get; set; }
+
+    /// <summary>
+    /// The customer ID configured for this gateway. Returned only for gateways that use a
+    /// customer ID. For all other gateways, or when no customer ID is configured, the value is
+    /// `null`.
+    /// </summary>
+    [JsonPropertyName("customerId")]
+    public string? CustomerId { get; set; }
+
+    /// <summary>
+    /// The client ID configured for this gateway. Returned only for gateways that use a client
+    /// ID. For all other gateways, or when no client ID is configured, the value is `null`.
+    /// </summary>
+    [JsonPropertyName("clientId")]
+    public string? ClientId { get; set; }
+
+    /// <summary>
     /// The payment service that this credential applies to. A paypoint can support multiple services, each represented by its own credential object in the array. Possible values are `card` (credit/debit card), `ach` (ACH bank transfer), `check` (paper check), `vcard` (virtual card), `cloud` (card-present), `cash`, `managed` (managed payment service), and `wallet`.
     /// </summary>
     [JsonPropertyName("Service")]

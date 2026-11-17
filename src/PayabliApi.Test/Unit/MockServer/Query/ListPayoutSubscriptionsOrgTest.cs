@@ -26,6 +26,7 @@ public class ListPayoutSubscriptionsOrgTest : BaseMockServerTest
                 {
                   "IdOutSubscription": 42,
                   "Status": 1,
+                  "StatusLabel": "Active",
                   "Events": [
                     {
                       "description": "TransferCreated",
@@ -75,6 +76,7 @@ public class ListPayoutSubscriptionsOrgTest : BaseMockServerTest
                       "default": true
                     },
                     "VendorStatus": 1,
+                    "VendorStatusLabel": "Active",
                     "VendorId": 456,
                     "Summary": {
                       "ActiveBills": 2,
@@ -170,7 +172,7 @@ public class ListPayoutSubscriptionsOrgTest : BaseMockServerTest
                   "PaypointDbaname": "Sunshine Gutters",
                   "PaypointEntryname": "d193cf9a46",
                   "ParentOrgName": "PropertyManager Pro",
-                  "ParentOrgId": 236,
+                  "ParentOrgId": 900123,
                   "Source": "api"
                 }
               ]
@@ -181,7 +183,7 @@ public class ListPayoutSubscriptionsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/payoutsubscriptions/org/123")
+                    .WithPath("/Query/payoutsubscriptions/org/900123")
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
                     .WithParam("sortBy", "desc(field_name)")
@@ -197,7 +199,7 @@ public class ListPayoutSubscriptionsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListPayoutSubscriptionsOrgAsync(
-            123,
+            900123,
             new ListPayoutSubscriptionsOrgRequest
             {
                 FromRecord = 0,

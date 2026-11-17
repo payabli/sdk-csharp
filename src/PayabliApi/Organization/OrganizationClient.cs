@@ -1084,7 +1084,7 @@ public partial class OrganizationClient : IOrganizationClient
     ///         OrgCity = "Johnson City",
     ///         OrgCountry = "US",
     ///         OrgEntryName = "pilgrim-planner",
-    ///         OrgId = "123",
+    ///         OrgId = "900123",
     ///         OrgLogo = new FileContent
     ///         {
     ///             FContent = "TXkgdGVzdCBmaWxlHJ==...",
@@ -1093,7 +1093,7 @@ public partial class OrganizationClient : IOrganizationClient
     ///             Furl = "https://mysite.com/my-doc.pdf",
     ///         },
     ///         OrgName = "Pilgrim Planner",
-    ///         OrgParentId = 236,
+    ///         OrgParentId = 900123,
     ///         OrgState = "TN",
     ///         OrgTimezone = -5,
     ///         OrgType = 0,
@@ -1119,7 +1119,7 @@ public partial class OrganizationClient : IOrganizationClient
     /// </summary>
     /// <example><code>
     /// await client.Organization.EditOrganizationAsync(
-    ///     123,
+    ///     900123,
     ///     new OrganizationData
     ///     {
     ///         Contacts = new List&lt;Contacts&gt;()
@@ -1136,7 +1136,7 @@ public partial class OrganizationClient : IOrganizationClient
     ///         OrgCity = "Johnson City",
     ///         OrgCountry = "US",
     ///         OrgEntryName = "pilgrim-planner",
-    ///         OrgId = "123",
+    ///         OrgId = "900123",
     ///         OrgName = "Pilgrim Planner",
     ///         OrgState = "TN",
     ///         OrgTimezone = -5,
@@ -1162,7 +1162,7 @@ public partial class OrganizationClient : IOrganizationClient
     /// Delete an organization by ID.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.DeleteOrganizationAsync(123);
+    /// await client.Organization.DeleteOrganizationAsync(900123);
     /// </code></example>
     public WithRawResponseTask<DeleteOrganizationResponse> DeleteOrganizationAsync(
         int orgId,
@@ -1196,7 +1196,7 @@ public partial class OrganizationClient : IOrganizationClient
     /// Gets an organization's basic details by org ID.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.GetBasicOrganizationByIdAsync(123);
+    /// await client.Organization.GetBasicOrganizationByIdAsync(900123);
     /// </code></example>
     public WithRawResponseTask<GetBasicOrganizationResponse> GetBasicOrganizationByIdAsync(
         int orgId,
@@ -1213,7 +1213,7 @@ public partial class OrganizationClient : IOrganizationClient
     /// Retrieves details for an organization by ID.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.GetOrganizationAsync(123);
+    /// await client.Organization.GetOrganizationAsync(900123);
     /// </code></example>
     public WithRawResponseTask<OrganizationQueryRecord> GetOrganizationAsync(
         int orgId,
@@ -1230,7 +1230,7 @@ public partial class OrganizationClient : IOrganizationClient
     /// Retrieves an organization's settings.
     /// </summary>
     /// <example><code>
-    /// await client.Organization.GetSettingsOrganizationAsync(123);
+    /// await client.Organization.GetSettingsOrganizationAsync(900123);
     /// </code></example>
     public WithRawResponseTask<SettingsQueryRecord> GetSettingsOrganizationAsync(
         int orgId,

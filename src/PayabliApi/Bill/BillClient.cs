@@ -1919,7 +1919,7 @@ public partial class BillClient : IBillClient
     /// </summary>
     /// <example><code>
     /// await client.Bill.ListBillsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListBillsOrgRequest
     ///     {
     ///         FromRecord = 251,

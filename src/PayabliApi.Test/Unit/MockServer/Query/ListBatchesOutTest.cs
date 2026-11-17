@@ -33,6 +33,7 @@ public class ListBatchesOutTest : BaseMockServerTest
                   "BatchProcessingRecords": 0,
                   "BatchRecords": 1,
                   "BatchStatus": 1,
+                  "BatchStatusLabel": "Closed",
                   "BatchStatusText": "Waiting Funds",
                   "CardAmount": 0,
                   "CardRecords": 0,
@@ -56,7 +57,8 @@ public class ListBatchesOutTest : BaseMockServerTest
                   "WireAmount": 0,
                   "WireRecords": 0,
                   "WireStatus": 0,
-                  "WireStatusText": "WireStatusText"
+                  "WireStatusText": "WireStatusText",
+                  "TransferDate": "2024-01-02T01:00:00.000Z"
                 }
               ],
               "Summary": {

@@ -113,6 +113,13 @@ public record VendorDataResponse : IJsonOnDeserialized
     [JsonPropertyName("VendorStatus")]
     public required int VendorStatus { get; set; }
 
+    /// <summary>
+    /// The name of the `VendorStatus`: `Inactive`, `Active`, or `Deleted`. Returns `null` for
+    /// an unrecognized code.
+    /// </summary>
+    [JsonPropertyName("VendorStatusLabel")]
+    public string? VendorStatusLabel { get; set; }
+
     [JsonPropertyName("VendorId")]
     public required int VendorId { get; set; }
 

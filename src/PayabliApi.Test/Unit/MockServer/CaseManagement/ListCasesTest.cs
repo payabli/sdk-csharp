@@ -45,7 +45,7 @@ public class ListCasesTest : BaseMockServerTest
                     },
                     "default": true
                   },
-                  "orgId": 123,
+                  "orgId": 900123,
                   "paypointId": 3040,
                   "createdAt": "2026-01-15T10:30:00.000Z",
                   "updatedAt": "2026-01-15T10:30:43.000Z",
@@ -54,7 +54,7 @@ public class ListCasesTest : BaseMockServerTest
                   "attachments": [],
                   "roomId": 96369,
                   "org": {
-                    "id": 123,
+                    "id": 900123,
                     "name": "Example Partner Org"
                   },
                   "paypoint": {
@@ -70,7 +70,7 @@ public class ListCasesTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/v2/cases/organization/123")
+                    .WithPath("/v2/cases/organization/900123")
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
                     .WithHeader("Authorization", "*")
@@ -85,7 +85,7 @@ public class ListCasesTest : BaseMockServerTest
             );
 
         var response = await Client.CaseManagement.ListCasesAsync(
-            123,
+            900123,
             new ListCasesCaseManagementRequest { FromRecord = 0, LimitRecord = 20 }
         );
         JsonAssert.AreEqual(response, mockResponse);

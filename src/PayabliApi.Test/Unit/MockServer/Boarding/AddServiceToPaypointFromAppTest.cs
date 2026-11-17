@@ -15,7 +15,7 @@ public class AddServiceToPaypointFromAppTest : BaseMockServerTest
         const string requestJson = """
             {
               "paypointId": 3040,
-              "templateId": 456,
+              "templateId": 900022,
               "recipientEmail": "merchant@example.com",
               "returnBoardingAccessInfoInLine": true,
               "onCreate": [
@@ -59,7 +59,7 @@ public class AddServiceToPaypointFromAppTest : BaseMockServerTest
             new CreateApplicationFromPaypointRequest
             {
                 PaypointId = 3040,
-                TemplateId = 456,
+                TemplateId = 900022,
                 RecipientEmail = "merchant@example.com",
                 ReturnBoardingAccessInfoInLine = true,
                 OnCreate = new List<string>() { "submitApplication" },

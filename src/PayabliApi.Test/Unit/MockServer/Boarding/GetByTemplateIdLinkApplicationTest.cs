@@ -30,7 +30,7 @@ public class GetByTemplateIdLinkApplicationTest : BaseMockServerTest
                 "ftype": "pdf",
                 "furl": "https://mysite.com/my-doc.pdf"
               },
-              "orgId": 123,
+              "orgId": 900123,
               "pageIdentifier:": "null",
               "recipientEmailNotification": true,
               "referenceName": "payabli-00710",
@@ -43,7 +43,7 @@ public class GetByTemplateIdLinkApplicationTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Boarding/linkbyTemplate/80")
+                    .WithPath("/Boarding/linkbyTemplate/900022")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -55,7 +55,7 @@ public class GetByTemplateIdLinkApplicationTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Boarding.GetByTemplateIdLinkApplicationAsync(80);
+        var response = await Client.Boarding.GetByTemplateIdLinkApplicationAsync(900022);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

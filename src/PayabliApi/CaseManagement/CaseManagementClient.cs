@@ -2045,7 +2045,7 @@ public partial class CaseManagementClient : ICaseManagementClient
     /// </summary>
     /// <example><code>
     /// await client.CaseManagement.ListCasesAsync(
-    ///     123,
+    ///     900123,
     ///     new ListCasesCaseManagementRequest { FromRecord = 0, LimitRecord = 20 }
     /// );
     /// </code></example>

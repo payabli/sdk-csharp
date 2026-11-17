@@ -563,7 +563,7 @@ public class GetApplicationTest : BaseMockServerTest
               ],
               "mState": "TN",
               "mZip": "37615",
-              "orgId": 123,
+              "orgId": 900123,
               "orgParentName": "PropertyManager Pro",
               "ownerData": [
                 {
@@ -582,7 +582,8 @@ public class GetApplicationTest : BaseMockServerTest
                   "ownerssn": "123456789",
                   "ownertitle": "CEO",
                   "ozip": "55555",
-                  "additionalData": {}
+                  "additionalData": {},
+                  "primaryOwner": true
                 }
               ],
               "ownType": "Limited Liability Company",
@@ -634,7 +635,7 @@ public class GetApplicationTest : BaseMockServerTest
                 }
               },
               "taxfillname": "Sunshine LLC",
-              "templateId": 22,
+              "templateId": 900022,
               "websiteAddress": "www.example.com",
               "whencharged": "When Service Provided",
               "whendelivered": "Over 30 Days",

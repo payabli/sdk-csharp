@@ -85,6 +85,7 @@ public class GetBillTest : BaseMockServerTest
                   },
                   "PaymentMethod": "vcard",
                   "VendorStatus": 1,
+                  "VendorStatusLabel": "Active",
                   "VendorId": 456,
                   "Summary": {
                     "ActiveBills": 5,
@@ -132,6 +133,7 @@ public class GetBillTest : BaseMockServerTest
                   "StoredMethods": []
                 },
                 "Status": -99,
+                "StatusLabel": "Canceled",
                 "CreatedAt": "2025-07-01T15:00:01.000Z",
                 "LastUpdated": "2025-07-01T15:00:01.000Z",
                 "billEvents": [

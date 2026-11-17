@@ -60,7 +60,7 @@ public class ListInvoicesOrgTest : BaseMockServerTest
                   ],
                   "lastName": "Tan",
                   "ParentOrgName": "Emerald Enterprises",
-                  "ParentOrgId": 123,
+                  "ParentOrgId": 900123,
                   "paylinkId": "2325-XXXXXXX-90b1-4598-b6c7-44cdcbf495d7-1234",
                   "paymentTerms": "NET30",
                   "PaypointDbaname": "Emerald City Trading",
@@ -94,7 +94,7 @@ public class ListInvoicesOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/invoices/org/123")
+                    .WithPath("/Query/invoices/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -110,7 +110,7 @@ public class ListInvoicesOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Invoice.ListInvoicesOrgAsync(
-            123,
+            900123,
             new ListInvoicesOrgRequest
             {
                 FromRecord = 251,

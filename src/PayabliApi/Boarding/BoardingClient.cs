@@ -2060,7 +2060,7 @@ public partial class BoardingClient : IBoardingClient
     ///         Mcountry = "US",
     ///         Mstate = "TN",
     ///         Mzip = "37615",
-    ///         OrgId = 123,
+    ///         OrgId = 900123,
     ///         Ownership = new List&lt;Owners&gt;()
     ///         {
     ///             new Owners
@@ -2113,7 +2113,7 @@ public partial class BoardingClient : IBoardingClient
     ///         },
     ///         Startdate = "01/01/1990",
     ///         TaxFillName = "Sunshine LLC",
-    ///         TemplateId = 22,
+    ///         TemplateId = 900022,
     ///         Ticketamt = 1000,
     ///         Website = "www.example.com",
     ///         WhenCharged = Whencharged.WhenServiceProvided,
@@ -2146,6 +2146,9 @@ public partial class BoardingClient : IBoardingClient
     ///
     ///
     /// Updates a boarding application by ID. This endpoint requires an application API token.
+    ///
+    ///
+    /// If you send `ownership`, it replaces the application's owners. Include every owner, and set `primaryOwner` again on the primary owner, or the application loses its primary owner. If you leave `ownership` out, the owners don't change.
     /// </summary>
     /// <example><code>
     /// await client.Boarding.UpdateApplicationAsync(352, new ApplicationData());
@@ -2263,7 +2266,7 @@ public partial class BoardingClient : IBoardingClient
     /// Get details for a boarding link using the boarding template ID. This endpoint requires an application API token.
     /// </summary>
     /// <example><code>
-    /// await client.Boarding.GetByTemplateIdLinkApplicationAsync(80);
+    /// await client.Boarding.GetByTemplateIdLinkApplicationAsync(900022);
     /// </code></example>
     public WithRawResponseTask<BoardingLinkQueryRecord> GetByTemplateIdLinkApplicationAsync(
         double templateId,
@@ -2336,7 +2339,7 @@ public partial class BoardingClient : IBoardingClient
     /// </summary>
     /// <example><code>
     /// await client.Boarding.ListApplicationsAsync(
-    ///     123,
+    ///     900123,
     ///     new ListApplicationsRequest
     ///     {
     ///         FromRecord = 251,
@@ -2367,7 +2370,7 @@ public partial class BoardingClient : IBoardingClient
     /// </summary>
     /// <example><code>
     /// await client.Boarding.ListBoardingLinksAsync(
-    ///     123,
+    ///     900123,
     ///     new ListBoardingLinksRequest
     ///     {
     ///         FromRecord = 251,
@@ -2401,7 +2404,7 @@ public partial class BoardingClient : IBoardingClient
     ///     new CreateApplicationFromPaypointRequest
     ///     {
     ///         PaypointId = 3040,
-    ///         TemplateId = 456,
+    ///         TemplateId = 900022,
     ///         RecipientEmail = "merchant@example.com",
     ///         ReturnBoardingAccessInfoInLine = true,
     ///         OnCreate = new List&lt;string&gt;() { "submitApplication" },

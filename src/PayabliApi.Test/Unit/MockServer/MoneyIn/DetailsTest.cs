@@ -119,7 +119,7 @@ public class DetailsTest : BaseMockServerTest
               "NetAmount": 995.5,
               "Operation": "Sale",
               "OrderId": "DUES-123",
-              "OrgId": 123,
+              "OrgId": 900123,
               "ParentOrgName": "HOAManager Pro",
               "PaymentData": {
                 "AccountExp": "11/29",

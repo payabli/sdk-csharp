@@ -35,7 +35,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
                   "NetAmount": 3762.87,
                   "Operation": "Sale",
                   "OrderId": "O-5140",
-                  "OrgId": 123,
+                  "OrgId": 900123,
                   "ParentOrgName": "PropertyManager Pro",
                   "PaymentData": {
                     "orderDescription": "Monthly subscription",
@@ -100,7 +100,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/transactions/org/123")
+                    .WithPath("/Query/transactions/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -116,7 +116,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListTransactionsOrgAsync(
-            123,
+            900123,
             new ListTransactionsOrgRequest
             {
                 FromRecord = 251,
@@ -175,7 +175,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
                   "SettlementStatus": 0,
                   "Operation": "Reject",
                   "Source": "api",
-                  "OrgId": 123,
+                  "OrgId": 900123,
                   "TransactionTime": "2026-03-02T18:56:23.109Z",
                   "Customer": {
                     "FirstName": "Blaise",
@@ -216,7 +216,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/transactions/org/123")
+                    .WithPath("/Query/transactions/org/900123")
                     .WithParam("limitRecord", "1")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
@@ -230,7 +230,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListTransactionsOrgAsync(
-            123,
+            900123,
             new ListTransactionsOrgRequest
             {
                 LimitRecord = 1,
@@ -322,7 +322,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/transactions/org/123")
+                    .WithPath("/Query/transactions/org/900123")
                     .WithParam("limitRecord", "2")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
@@ -336,7 +336,7 @@ public class ListTransactionsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListTransactionsOrgAsync(
-            123,
+            900123,
             new ListTransactionsOrgRequest
             {
                 LimitRecord = 2,

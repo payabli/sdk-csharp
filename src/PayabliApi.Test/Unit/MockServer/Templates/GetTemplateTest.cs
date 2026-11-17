@@ -82,7 +82,7 @@ public class GetTemplateTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Templates/get/80")
+                    .WithPath("/Templates/get/900022")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -94,7 +94,7 @@ public class GetTemplateTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Templates.GetTemplateAsync(80);
+        var response = await Client.Templates.GetTemplateAsync(900022);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

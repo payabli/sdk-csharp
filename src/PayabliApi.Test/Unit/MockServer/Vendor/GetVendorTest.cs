@@ -53,6 +53,7 @@ public class GetVendorTest : BaseMockServerTest
                 "default": true
               },
               "VendorStatus": 1,
+              "VendorStatusLabel": "Active",
               "VendorId": 456,
               "Summary": {
                 "ActiveBills": 2,

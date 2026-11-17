@@ -24,7 +24,7 @@ public class DeleteTemplateTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Templates/80")
+                    .WithPath("/Templates/900022")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingDelete()
@@ -36,7 +36,7 @@ public class DeleteTemplateTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Templates.DeleteTemplateAsync(80);
+        var response = await Client.Templates.DeleteTemplateAsync(900022);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

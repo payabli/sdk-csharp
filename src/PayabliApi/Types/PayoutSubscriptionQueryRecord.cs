@@ -26,6 +26,13 @@ public record PayoutSubscriptionQueryRecord : IJsonOnDeserialized
     public int? Status { get; set; }
 
     /// <summary>
+    /// The name of the payout subscription's `status`: `Paused`, `Active`, `Completed`, `Marked
+    /// for Deletion`, or `In Progress`. Returns `null` for an unrecognized code.
+    /// </summary>
+    [JsonPropertyName("statusLabel")]
+    public string? StatusLabel { get; set; }
+
+    /// <summary>
     /// Events associated with the payout subscription.
     /// </summary>
     [JsonPropertyName("events")]

@@ -61,7 +61,7 @@ public class ListDevicesOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/devices/org/123")
+                    .WithPath("/Query/devices/org/900123")
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
                     .WithParam("sortBy", "desc(createdAt)")
@@ -77,7 +77,7 @@ public class ListDevicesOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListDevicesOrgAsync(
-            123,
+            900123,
             new ListDevicesOrgRequest
             {
                 FromRecord = 0,

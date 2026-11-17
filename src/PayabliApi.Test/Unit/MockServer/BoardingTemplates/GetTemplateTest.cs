@@ -14,7 +14,7 @@ public class GetTemplateTest : BaseMockServerTest
         const string mockResponse = """
             {
               "uuid": "019ff129-d393-7761-9a31-e5afe85b4081",
-              "orgId": 123,
+              "orgId": 900123,
               "orgName": "PropertyManager Pro",
               "name": "Standard boarding template",
               "status": "active",

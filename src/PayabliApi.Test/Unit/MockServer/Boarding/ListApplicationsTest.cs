@@ -87,7 +87,7 @@ public class ListApplicationsTest : BaseMockServerTest
                   "mCountry": "US",
                   "mState": "TN",
                   "mZip": "37615",
-                  "orgId": 123,
+                  "orgId": 900123,
                   "orgParentName": "PropertyManager Pro",
                   "ownerData": [
                     {}
@@ -98,7 +98,7 @@ public class ListApplicationsTest : BaseMockServerTest
                   "resumable": false,
                   "salesCode": "salesCode",
                   "taxfillname": "Sunshine LLC",
-                  "templateId": 22,
+                  "templateId": 900022,
                   "websiteAddress": "www.example.com",
                   "whencharged": "When Service Provided",
                   "whendelivered": "0-7 Days",
@@ -121,7 +121,7 @@ public class ListApplicationsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/boarding/123")
+                    .WithPath("/Query/boarding/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -137,7 +137,7 @@ public class ListApplicationsTest : BaseMockServerTest
             );
 
         var response = await Client.Boarding.ListApplicationsAsync(
-            123,
+            900123,
             new ListApplicationsRequest
             {
                 FromRecord = 251,

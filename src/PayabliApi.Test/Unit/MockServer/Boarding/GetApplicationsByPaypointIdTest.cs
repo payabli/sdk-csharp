@@ -16,13 +16,13 @@ public class GetApplicationsByPaypointIdTest : BaseMockServerTest
               "Records": [
                 {
                   "idApplication": 68388,
-                  "orgId": 123,
+                  "orgId": 900123,
                   "dbaName": "Meadowbrook Phase II HOA A",
                   "legalName": "Meadowbrook Phase II HOA B",
                   "ein": "601907058",
                   "boardingStatus": 7,
                   "boardingSubStatus": 0,
-                  "templateId": 8233,
+                  "templateId": 900022,
                   "boardingLinkId": 6344,
                   "contactData": [
                     {

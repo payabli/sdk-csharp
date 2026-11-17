@@ -525,7 +525,7 @@ public partial class BoardingTemplatesClient : IBoardingTemplatesClient
     /// </summary>
     /// <example><code>
     /// await client.BoardingTemplates.ListTemplatesAsync(
-    ///     new ListTemplatesBoardingTemplatesRequest { OrgId = 123 }
+    ///     new ListTemplatesBoardingTemplatesRequest { OrgId = 900123 }
     /// );
     /// </code></example>
     public WithRawResponseTask<ListTemplatesResponse> ListTemplatesAsync(

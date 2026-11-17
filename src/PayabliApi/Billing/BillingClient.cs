@@ -340,7 +340,7 @@ public partial class BillingClient : IBillingClient
     /// </summary>
     /// <example><code>
     /// await client.Billing.ListProfilesAsync(
-    ///     123,
+    ///     900123,
     ///     new ListBillingProfilesRequest { LimitRecord = 20, FromRecord = 0 }
     /// );
     /// </code></example>
@@ -371,7 +371,7 @@ public partial class BillingClient : IBillingClient
     /// await client.Billing.GetProfileAsync(
     ///     GetProfileBillingRequestServiceGroup.PayIn,
     ///     GetProfileBillingRequestEntityType.Organization,
-    ///     123
+    ///     900123
     /// );
     /// </code></example>
     public WithRawResponseTask<BillingProfileResponse> GetProfileAsync(

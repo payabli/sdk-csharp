@@ -102,6 +102,7 @@ public class ListTransferDetailsOutTest : BaseMockServerTest
                   "PaypointLegalname": "Solid Rock Concrete Coatings LLC",
                   "PaypointId": 3040,
                   "Status": 2,
+                  "StatusLabel": "Processing",
                   "PaymentId": "01KXYZ789ABC123DEF456GHI",
                   "LastUpdated": "2025-01-15T10:23:05",
                   "TotalAmount": 1250,

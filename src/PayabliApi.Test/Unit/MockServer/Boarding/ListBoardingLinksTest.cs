@@ -43,7 +43,7 @@ public class ListBoardingLinksTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/boardinglinks/123")
+                    .WithPath("/Query/boardinglinks/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -59,7 +59,7 @@ public class ListBoardingLinksTest : BaseMockServerTest
             );
 
         var response = await Client.Boarding.ListBoardingLinksAsync(
-            123,
+            900123,
             new ListBoardingLinksRequest
             {
                 FromRecord = 251,

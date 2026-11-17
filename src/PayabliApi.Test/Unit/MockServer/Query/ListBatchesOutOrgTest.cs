@@ -33,6 +33,7 @@ public class ListBatchesOutOrgTest : BaseMockServerTest
                   "BatchProcessingRecords": 0,
                   "BatchRecords": 1,
                   "BatchStatus": 1,
+                  "BatchStatusLabel": "Closed",
                   "BatchStatusText": "Waiting Funds",
                   "CardAmount": 0,
                   "CardRecords": 0,
@@ -56,7 +57,8 @@ public class ListBatchesOutOrgTest : BaseMockServerTest
                   "WireAmount": 0,
                   "WireRecords": 0,
                   "WireStatus": 0,
-                  "WireStatusText": "WireStatusText"
+                  "WireStatusText": "WireStatusText",
+                  "TransferDate": "2024-01-02T01:00:00.000Z"
                 }
               ],
               "Summary": {
@@ -74,7 +76,7 @@ public class ListBatchesOutOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/batchesOut/org/123")
+                    .WithPath("/Query/batchesOut/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -90,7 +92,7 @@ public class ListBatchesOutOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListBatchesOutOrgAsync(
-            123,
+            900123,
             new ListBatchesOutOrgRequest
             {
                 FromRecord = 251,

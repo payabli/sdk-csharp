@@ -72,7 +72,7 @@ public class ListChargebacksOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/chargebacks/org/123")
+                    .WithPath("/Query/chargebacks/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -88,7 +88,7 @@ public class ListChargebacksOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListChargebacksOrgAsync(
-            123,
+            900123,
             new ListChargebacksOrgRequest
             {
                 FromRecord = 251,

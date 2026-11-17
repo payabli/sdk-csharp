@@ -173,7 +173,7 @@ public class ListSettlementsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/settlements/org/123")
+                    .WithPath("/Query/settlements/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -189,7 +189,7 @@ public class ListSettlementsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListSettlementsOrgAsync(
-            123,
+            900123,
             new ListSettlementsOrgRequest
             {
                 FromRecord = 251,

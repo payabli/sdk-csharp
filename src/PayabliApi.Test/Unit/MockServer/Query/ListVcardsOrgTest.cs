@@ -73,7 +73,7 @@ public class ListVcardsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/vcards/org/123")
+                    .WithPath("/Query/vcards/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -89,7 +89,7 @@ public class ListVcardsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListVcardsOrgAsync(
-            123,
+            900123,
             new ListVcardsOrgRequest
             {
                 FromRecord = 251,

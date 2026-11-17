@@ -27,7 +27,7 @@ public record TransferOutRecord : IJsonOnDeserialized
     public int? PaypointId { get; set; }
 
     /// <summary>
-    /// The batch number for the transfer.
+    /// The batch number for the transfer. Vendor enrichment and bank account verification billing transfers aren't tied to a batch, so this is an empty string for those transfers.
     /// </summary>
     [JsonPropertyName("batchNumber")]
     public string? BatchNumber { get; set; }
@@ -39,19 +39,19 @@ public record TransferOutRecord : IJsonOnDeserialized
     public string? BatchCurrency { get; set; }
 
     /// <summary>
-    /// The number of records in the batch.
+    /// The number of records in the batch. Vendor enrichment and bank account verification billing transfers aren't tied to a batch, so this is `0` for those transfers.
     /// </summary>
     [JsonPropertyName("batchRecords")]
     public int? BatchRecords { get; set; }
 
     /// <summary>
-    /// An identifier for the transfer.
+    /// An identifier for the transfer. Vendor enrichment and bank account verification billing transfers use the format `BILL_{paypointId}_{yyyyMMdd}_{feeType}`, where `feeType` is `VendorEnrichment` or `BankAccountVerification`.
     /// </summary>
     [JsonPropertyName("transferIdentifier")]
     public string? TransferIdentifier { get; set; }
 
     /// <summary>
-    /// The ID of the batch.
+    /// The ID of the batch. Vendor enrichment and bank account verification billing transfers aren't tied to a batch, so this is `0` for those transfers.
     /// </summary>
     [JsonPropertyName("batchId")]
     public int? BatchId { get; set; }
@@ -135,7 +135,7 @@ public record TransferOutRecord : IJsonOnDeserialized
     public DateTime? TransferDate { get; set; }
 
     /// <summary>
-    /// The processor used for the transfer.
+    /// The processor used for the transfer. This is `billing` for vendor enrichment and bank account verification billing transfers.
     /// </summary>
     [JsonPropertyName("processor")]
     public string? Processor { get; set; }
@@ -145,6 +145,14 @@ public record TransferOutRecord : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("transferStatus")]
     public int? TransferStatus { get; set; }
+
+    /// <summary>
+    /// The name of the `transferStatus`: `Pending`, `In Transit`, `Transferred`, `Funded
+    /// (settled)`, `Resolved`, `Exception`, `ACH Return or Chargeback`, `Held`, `Released`,
+    /// `Refunded`, or `None`. Returns `null` for an unrecognized code.
+    /// </summary>
+    [JsonPropertyName("transferStatusLabel")]
+    public string? TransferStatusLabel { get; set; }
 
     /// <summary>
     /// The gross amount of the transfer.
@@ -219,7 +227,7 @@ public record TransferOutRecord : IJsonOnDeserialized
     public IEnumerable<TransferOutMessage>? Messages { get; set; }
 
     /// <summary>
-    /// The transfer type. One of `debit`, `credit`, or `billing`.
+    /// The transfer type. One of `debit`, `credit`, or `billing`. A `billing` transfer is an ACH debit from the paypoint that collects fees. Billing transfers for payout fees belong to the payout's batch. Vendor enrichment and bank account verification charges are collected in a separate daily debit for each paypoint and fee type. These transfers aren't tied to a batch, so `batchId` and `batchRecords` are `0` and `batchNumber` is empty. Their `grossAmount`, `billingFeesAmount`, and `netTransferAmount` each hold the charge total as a negative value.
     /// </summary>
     [JsonPropertyName("type")]
     public string? Type { get; set; }

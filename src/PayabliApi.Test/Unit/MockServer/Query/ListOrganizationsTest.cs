@@ -25,16 +25,16 @@ public class ListOrganizationsTest : BaseMockServerTest
                   "createdAt": "2022-07-01T15:00:01.000Z",
                   "HasBilling": true,
                   "HasResidual": true,
-                  "idOrg": 123,
+                  "idOrg": 900123,
                   "isRoot": false,
                   "OrgAddress": "123 Walnut Street",
                   "OrgCity": "Johnson City",
                   "OrgCountry": "US",
                   "OrgEntryName": "pilgrim-planner",
                   "OrgFavicon": "https://www.pilgrimageplanner.com/favicon.png",
-                  "OrgId": "123",
+                  "OrgId": "900123",
                   "OrgName": "Pilgrim Planner",
-                  "OrgParentId": 236,
+                  "OrgParentId": 900123,
                   "OrgParentName": "PropertyManager Pro",
                   "OrgState": "TN",
                   "OrgTimezone": -5,
@@ -67,7 +67,7 @@ public class ListOrganizationsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/organizations/123")
+                    .WithPath("/Query/organizations/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -83,7 +83,7 @@ public class ListOrganizationsTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListOrganizationsAsync(
-            123,
+            900123,
             new ListOrganizationsRequest
             {
                 FromRecord = 251,

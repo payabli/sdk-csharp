@@ -1894,7 +1894,7 @@ public partial class InvoiceClient : IInvoiceClient
     /// </summary>
     /// <example><code>
     /// await client.Invoice.ListInvoicesOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListInvoicesOrgRequest
     ///     {
     ///         FromRecord = 251,

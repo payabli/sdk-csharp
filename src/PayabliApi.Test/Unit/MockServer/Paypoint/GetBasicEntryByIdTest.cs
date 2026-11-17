@@ -50,7 +50,26 @@ public class GetBasicEntryByIdTest : BaseMockServerTest
                   ],
                   "Country": "US",
                   "Credentials": [
-                    {}
+                    {
+                      "active": true,
+                      "Service": "card",
+                      "Mode": 0,
+                      "Minticket": 0,
+                      "Maxticket": 20000,
+                      "CfeeFix": 0,
+                      "CfeeFloat": 0,
+                      "CfeeMin": 0,
+                      "CfeeMax": 0,
+                      "ReferenceId": 1000000,
+                      "AccountId": "",
+                      "acceptSameDayACH": false,
+                      "Currency": [
+                        "USD"
+                      ],
+                      "GreaterValueAllowed": false,
+                      "AbsorbDifference": false,
+                      "AllowOverride": false
+                    }
                   ],
                   "DbaName": "Sunshine Gutters",
                   "externalPaypointID": "",

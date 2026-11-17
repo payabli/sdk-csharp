@@ -75,6 +75,18 @@ public record PeopleSearchResultResponse : IJsonOnDeserialized
     public bool? IsFromVendor { get; set; }
 
     /// <summary>
+    /// The person's primary address. `null` when the person has no address on file.
+    /// </summary>
+    [JsonPropertyName("primaryAddress")]
+    public PeopleSearchAddressResponse? PrimaryAddress { get; set; }
+
+    /// <summary>
+    /// The person's addresses on file. Empty when the person has no address.
+    /// </summary>
+    [JsonPropertyName("addresses")]
+    public IEnumerable<PeopleSearchAddressResponse>? Addresses { get; set; }
+
+    /// <summary>
     /// The person's phone numbers.
     /// </summary>
     [JsonPropertyName("phones")]

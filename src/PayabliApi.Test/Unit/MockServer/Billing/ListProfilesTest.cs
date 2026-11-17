@@ -27,7 +27,7 @@ public class ListProfilesTest : BaseMockServerTest
                   "versionNumber": 1,
                   "business": {
                     "entityType": "Organization",
-                    "entityId": 123
+                    "entityId": 900123
                   },
                   "serviceVertical": "PayOut",
                   "name": "PayOut Default Configuration",
@@ -40,7 +40,7 @@ public class ListProfilesTest : BaseMockServerTest
                     "templates": 2,
                     "applications": 357
                   },
-                  "parentId": "1:123",
+                  "parentId": "1:900123",
                   "countOfEvents": 10
                 },
                 {
@@ -49,7 +49,7 @@ public class ListProfilesTest : BaseMockServerTest
                   "versionNumber": 31,
                   "business": {
                     "entityType": "Organization",
-                    "entityId": 123
+                    "entityId": 900123
                   },
                   "serviceVertical": "PayIn",
                   "name": "Default PayIn Profile",
@@ -62,7 +62,7 @@ public class ListProfilesTest : BaseMockServerTest
                     "templates": 0,
                     "applications": 13
                   },
-                  "parentId": "1:123",
+                  "parentId": "1:900123",
                   "countOfEvents": 11
                 }
               ]
@@ -73,7 +73,7 @@ public class ListProfilesTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/billing/configuration/org/123")
+                    .WithPath("/billing/configuration/org/900123")
                     .WithParam("limitRecord", "20")
                     .WithParam("fromRecord", "0")
                     .WithHeader("Authorization", "*")
@@ -88,7 +88,7 @@ public class ListProfilesTest : BaseMockServerTest
             );
 
         var response = await Client.Billing.ListProfilesAsync(
-            123,
+            900123,
             new ListBillingProfilesRequest { LimitRecord = 20, FromRecord = 0 }
         );
         JsonAssert.AreEqual(response, mockResponse);
@@ -112,7 +112,7 @@ public class ListProfilesTest : BaseMockServerTest
                   "versionNumber": 31,
                   "business": {
                     "entityType": "Organization",
-                    "entityId": 123
+                    "entityId": 900123
                   },
                   "serviceVertical": "PayIn",
                   "name": "Default PayIn Profile",
@@ -125,7 +125,7 @@ public class ListProfilesTest : BaseMockServerTest
                     "templates": 0,
                     "applications": 13
                   },
-                  "parentId": "1:123",
+                  "parentId": "1:900123",
                   "countOfEvents": 11
                 }
               ]
@@ -136,7 +136,7 @@ public class ListProfilesTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/billing/configuration/org/123")
+                    .WithPath("/billing/configuration/org/900123")
                     .WithParam("limitRecord", "20")
                     .WithParam("fromRecord", "0")
                     .WithHeader("Authorization", "*")
@@ -151,7 +151,7 @@ public class ListProfilesTest : BaseMockServerTest
             );
 
         var response = await Client.Billing.ListProfilesAsync(
-            123,
+            900123,
             new ListBillingProfilesRequest
             {
                 ServiceVertical = new List<int>() { 1 },

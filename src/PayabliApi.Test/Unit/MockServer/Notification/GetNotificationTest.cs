@@ -22,7 +22,7 @@ public class GetNotificationTest : BaseMockServerTest
               "lastUpdated": "2024-02-21T09:16:31.000Z",
               "method": "report-email",
               "notificationId": 1717,
-              "ownerId": 123,
+              "ownerId": 900123,
               "ownerName": "The Pilgrim Planner",
               "ownerType": 0,
               "status": 1,

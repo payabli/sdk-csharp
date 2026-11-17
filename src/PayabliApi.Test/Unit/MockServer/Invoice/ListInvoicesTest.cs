@@ -74,7 +74,7 @@ public class ListInvoicesTest : BaseMockServerTest
                   "PaypointLegalname": "Emerald City LLC",
                   "PaypointDbaname": "Emerald City Trading",
                   "PaypointEntryname": "47a30009s",
-                  "ParentOrgId": 123,
+                  "ParentOrgId": 900123,
                   "ParentOrgName": "Emerald Enterprises",
                   "externalPaypointID": "seattletrade01-10"
                 }

@@ -56,6 +56,7 @@ public class ListVendorsOrgTest : BaseMockServerTest
                     "default": true
                   },
                   "VendorStatus": 1,
+                  "VendorStatusLabel": "Active",
                   "VendorId": 456,
                   "Summary": {
                     "ActiveBills": 2,
@@ -122,7 +123,7 @@ public class ListVendorsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/vendors/org/123")
+                    .WithPath("/Query/vendors/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -138,7 +139,7 @@ public class ListVendorsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListVendorsOrgAsync(
-            123,
+            900123,
             new ListVendorsOrgRequest
             {
                 FromRecord = 251,

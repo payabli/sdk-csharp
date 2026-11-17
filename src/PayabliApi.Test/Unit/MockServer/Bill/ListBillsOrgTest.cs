@@ -101,6 +101,7 @@ public class ListBillsOrgTest : BaseMockServerTest
                   "PaypointLegalname": "MiCasa Sports LLC",
                   "Source": "web",
                   "Status": 2,
+                  "StatusLabel": "Sent to Approval",
                   "Terms": "NET30",
                   "TotalAmount": 200,
                   "PaidAmount": 0,
@@ -142,7 +143,7 @@ public class ListBillsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/bills/org/123")
+                    .WithPath("/Query/bills/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -158,7 +159,7 @@ public class ListBillsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Bill.ListBillsOrgAsync(
-            123,
+            900123,
             new ListBillsOrgRequest
             {
                 FromRecord = 251,

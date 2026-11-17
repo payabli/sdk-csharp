@@ -618,7 +618,7 @@ public partial class TemplatesClient : ITemplatesClient
     /// Deletes a template by ID.
     /// </summary>
     /// <example><code>
-    /// await client.Templates.DeleteTemplateAsync(80);
+    /// await client.Templates.DeleteTemplateAsync(900022);
     /// </code></example>
     public WithRawResponseTask<PayabliApiResponseTemplateId> DeleteTemplateAsync(
         double templateId,
@@ -640,7 +640,7 @@ public partial class TemplatesClient : ITemplatesClient
     /// Generates a boarding link from a boarding template.
     /// </summary>
     /// <example><code>
-    /// await client.Templates.GetlinkTemplateAsync(80, true);
+    /// await client.Templates.GetlinkTemplateAsync(900022, true);
     /// </code></example>
     public WithRawResponseTask<BoardingLinkApiResponse> GetlinkTemplateAsync(
         double templateId,
@@ -663,7 +663,7 @@ public partial class TemplatesClient : ITemplatesClient
     /// Retrieves a boarding template's details by ID.
     /// </summary>
     /// <example><code>
-    /// await client.Templates.GetTemplateAsync(80);
+    /// await client.Templates.GetTemplateAsync(900022);
     /// </code></example>
     public WithRawResponseTask<TemplateQueryRecord> GetTemplateAsync(
         double templateId,
@@ -686,7 +686,7 @@ public partial class TemplatesClient : ITemplatesClient
     /// </summary>
     /// <example><code>
     /// await client.Templates.ListTemplatesAsync(
-    ///     123,
+    ///     900123,
     ///     new ListTemplatesRequest
     ///     {
     ///         FromRecord = 251,

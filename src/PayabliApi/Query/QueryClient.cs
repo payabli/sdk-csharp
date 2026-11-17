@@ -6435,7 +6435,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchDetailsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListBatchDetailsOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6487,7 +6487,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchesOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListBatchesOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6539,7 +6539,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListBatchesOutOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListBatchesOutOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6591,7 +6591,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListChargebacksOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListChargebacksOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6643,7 +6643,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListCustomersOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListCustomersOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6695,7 +6695,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListDevicesOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListDevicesOrgRequest
     ///     {
     ///         FromRecord = 0,
@@ -6747,7 +6747,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListNotificationReportsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListNotificationReportsOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6799,7 +6799,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListNotificationsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListNotificationsOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6825,7 +6825,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListOrganizationsAsync(
-    ///     123,
+    ///     900123,
     ///     new ListOrganizationsRequest
     ///     {
     ///         FromRecord = 251,
@@ -6877,7 +6877,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListPayoutOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListPayoutOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -6903,7 +6903,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListPaypointsAsync(
-    ///     123,
+    ///     900123,
     ///     new ListPaypointsRequest
     ///     {
     ///         FromRecord = 251,
@@ -6955,7 +6955,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListSettlementsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListSettlementsOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -7007,7 +7007,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListSubscriptionsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListSubscriptionsOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -7059,7 +7059,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListPayoutSubscriptionsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListPayoutSubscriptionsOrgRequest
     ///     {
     ///         FromRecord = 0,
@@ -7129,7 +7129,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransactionsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListTransactionsOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -7199,7 +7199,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransfersOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListTransfersRequestOrg { FromRecord = 0, LimitRecord = 20 }
     /// );
     /// </code></example>
@@ -7220,7 +7220,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListTransfersOutOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListTransfersOutOrgRequest { FromRecord = 0, LimitRecord = 20 }
     /// );
     /// </code></example>
@@ -7285,7 +7285,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListUsersOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListUsersOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -7363,7 +7363,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListVendorsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListVendorsOrgRequest
     ///     {
     ///         FromRecord = 251,
@@ -7441,7 +7441,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListVcardsTransactionsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListVcardsTransactionsOrgRequest
     ///     {
     ///         FromRecord = 0,
@@ -7467,7 +7467,7 @@ public partial class QueryClient : IQueryClient
     /// </summary>
     /// <example><code>
     /// await client.Query.ListVcardsOrgAsync(
-    ///     123,
+    ///     900123,
     ///     new ListVcardsOrgRequest
     ///     {
     ///         FromRecord = 251,

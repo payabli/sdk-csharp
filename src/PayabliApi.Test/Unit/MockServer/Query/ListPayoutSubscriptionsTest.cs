@@ -26,6 +26,7 @@ public class ListPayoutSubscriptionsTest : BaseMockServerTest
                 {
                   "IdOutSubscription": 42,
                   "Status": 1,
+                  "StatusLabel": "Active",
                   "Events": [
                     {
                       "description": "TransferCreated",
@@ -75,6 +76,7 @@ public class ListPayoutSubscriptionsTest : BaseMockServerTest
                       "default": true
                     },
                     "VendorStatus": 1,
+                    "VendorStatusLabel": "Active",
                     "VendorId": 456,
                     "Summary": {
                       "ActiveBills": 2,
@@ -170,7 +172,7 @@ public class ListPayoutSubscriptionsTest : BaseMockServerTest
                   "PaypointDbaname": "Sunshine Gutters",
                   "PaypointEntryname": "d193cf9a46",
                   "ParentOrgName": "PropertyManager Pro",
-                  "ParentOrgId": 236,
+                  "ParentOrgId": 900123,
                   "Source": "api"
                 }
               ]

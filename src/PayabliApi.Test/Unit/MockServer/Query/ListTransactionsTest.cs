@@ -117,7 +117,7 @@ public class ListTransactionsTest : BaseMockServerTest
                   "NetAmount": 100,
                   "Operation": "Sale",
                   "OrderId": "9876543",
-                  "OrgId": 123,
+                  "OrgId": 900123,
                   "ParentOrgName": "Payabli",
                   "PaymentData": {
                     "AccountExp": "0426",
@@ -275,7 +275,7 @@ public class ListTransactionsTest : BaseMockServerTest
                   "SettlementStatus": 0,
                   "Operation": "Reject",
                   "Source": "api",
-                  "OrgId": 123,
+                  "OrgId": 900123,
                   "TransactionTime": "2026-03-02T18:56:23.109Z",
                   "Customer": {
                     "FirstName": "Blaise",

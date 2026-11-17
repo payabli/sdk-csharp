@@ -118,7 +118,7 @@ public class GetApplicationByAuthTest : BaseMockServerTest
               "mCountry": "US",
               "mState": "TN",
               "mZip": "37615",
-              "orgId": 123,
+              "orgId": 900123,
               "orgParentName": "PropertyManager Pro",
               "ownerData": [
                 {
@@ -136,7 +136,8 @@ public class GetApplicationByAuthTest : BaseMockServerTest
                   "ownerphone2": "555888111",
                   "ownerssn": "123456789",
                   "ownertitle": "CEO",
-                  "ozip": "55555"
+                  "ozip": "55555",
+                  "primaryOwner": true
                 }
               ],
               "ownType": "Limited Liability Company",
@@ -182,7 +183,7 @@ public class GetApplicationByAuthTest : BaseMockServerTest
                 "zip": "55555"
               },
               "taxfillname": "Sunshine LLC",
-              "templateId": 22,
+              "templateId": 900022,
               "websiteAddress": "www.example.com",
               "whencharged": "When Service Provided",
               "whendelivered": "0-7 Days",

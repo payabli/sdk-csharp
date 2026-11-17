@@ -72,7 +72,7 @@ public class ListTransfersOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/transfers/org/123")
+                    .WithPath("/Query/transfers/org/900123")
                     .WithParam("fromRecord", "0")
                     .WithParam("limitRecord", "20")
                     .WithHeader("Authorization", "*")
@@ -87,7 +87,7 @@ public class ListTransfersOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListTransfersOrgAsync(
-            123,
+            900123,
             new ListTransfersRequestOrg { FromRecord = 0, LimitRecord = 20 }
         );
         JsonAssert.AreEqual(response, mockResponse);

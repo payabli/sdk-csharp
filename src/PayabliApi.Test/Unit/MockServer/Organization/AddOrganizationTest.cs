@@ -37,7 +37,7 @@ public class AddOrganizationTest : BaseMockServerTest
               "orgCity": "Johnson City",
               "orgCountry": "US",
               "orgEntryName": "pilgrim-planner",
-              "orgId": "123",
+              "orgId": "900123",
               "orgLogo": {
                 "fContent": "TXkgdGVzdCBmaWxlHJ==...",
                 "filename": "my-doc.pdf",
@@ -45,7 +45,7 @@ public class AddOrganizationTest : BaseMockServerTest
                 "furl": "https://mysite.com/my-doc.pdf"
               },
               "orgName": "Pilgrim Planner",
-              "orgParentId": 236,
+              "orgParentId": 900123,
               "orgState": "TN",
               "orgTimezone": -5,
               "orgType": 0,
@@ -112,7 +112,7 @@ public class AddOrganizationTest : BaseMockServerTest
                 OrgCity = "Johnson City",
                 OrgCountry = "US",
                 OrgEntryName = "pilgrim-planner",
-                OrgId = "123",
+                OrgId = "900123",
                 OrgLogo = new FileContent
                 {
                     FContent = "TXkgdGVzdCBmaWxlHJ==...",
@@ -121,7 +121,7 @@ public class AddOrganizationTest : BaseMockServerTest
                     Furl = "https://mysite.com/my-doc.pdf",
                 },
                 OrgName = "Pilgrim Planner",
-                OrgParentId = 236,
+                OrgParentId = 900123,
                 OrgState = "TN",
                 OrgTimezone = -5,
                 OrgType = 0,

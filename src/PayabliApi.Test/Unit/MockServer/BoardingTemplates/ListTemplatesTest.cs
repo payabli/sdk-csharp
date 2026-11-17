@@ -22,7 +22,7 @@ public class ListTemplatesTest : BaseMockServerTest
               "Records": [
                 {
                   "uuid": "019ff129-d393-7761-9a31-e5afe85b4081",
-                  "orgId": 123,
+                  "orgId": 900123,
                   "orgName": "PropertyManager Pro",
                   "name": "Standard boarding template",
                   "status": "active",
@@ -234,7 +234,7 @@ public class ListTemplatesTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/v2/templates")
-                    .WithParam("orgId", "123")
+                    .WithParam("orgId", "900123")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -247,7 +247,7 @@ public class ListTemplatesTest : BaseMockServerTest
             );
 
         var response = await Client.BoardingTemplates.ListTemplatesAsync(
-            new ListTemplatesBoardingTemplatesRequest { OrgId = 123 }
+            new ListTemplatesBoardingTemplatesRequest { OrgId = 900123 }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

@@ -93,7 +93,7 @@ public class ListBatchDetailsOrgTest : BaseMockServerTest
                   },
                   "PaypointDbaname": "Gruzya Adventure Outfitters, LLC",
                   "ParentOrgName": "Pilgrim Planner",
-                  "ParentOrgId": 123,
+                  "ParentOrgId": 900123,
                   "PaypointEntryname": "7f1a3816XX",
                   "DeviceId": "",
                   "RetrievalId": 0,
@@ -103,7 +103,7 @@ public class ListBatchDetailsOrgTest : BaseMockServerTest
                   "ConnectorName": "DefaultConnector",
                   "EntrypageId": 0,
                   "FeeAmount": 0,
-                  "OrgId": 123,
+                  "OrgId": 900123,
                   "PayorId": 2707,
                   "PaypointId": 3040,
                   "PendingFeeAmount": 0,
@@ -195,7 +195,7 @@ public class ListBatchDetailsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/batchDetails/org/123")
+                    .WithPath("/Query/batchDetails/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -211,7 +211,7 @@ public class ListBatchDetailsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListBatchDetailsOrgAsync(
-            123,
+            900123,
             new ListBatchDetailsOrgRequest
             {
                 FromRecord = 251,

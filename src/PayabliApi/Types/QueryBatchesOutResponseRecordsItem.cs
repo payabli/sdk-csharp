@@ -75,6 +75,14 @@ public record QueryBatchesOutResponseRecordsItem : IJsonOnDeserialized
     public int? BatchStatus { get; set; }
 
     /// <summary>
+    /// The name of the `BatchStatus`: `Open`, `Closed`, `Funded`, `Processed`, `Paid`,
+    /// `Canceled`, `Funding Pending`, `Held`, or `Released`. Returns `null` for an unrecognized
+    /// code. See [Pay Out statuses](/guides/pay-out-status-reference#batch-statuses).
+    /// </summary>
+    [JsonPropertyName("BatchStatusLabel")]
+    public string? BatchStatusLabel { get; set; }
+
+    /// <summary>
     /// A text description of the batch status.
     /// </summary>
     [JsonPropertyName("BatchStatusText")]
@@ -139,6 +147,14 @@ public record QueryBatchesOutResponseRecordsItem : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("PaypointName")]
     public string? PaypointName { get; set; }
+
+    /// <summary>
+    /// The date and time, in UTC, of the transfer that funds the batch. For a batch that
+    /// hasn't been funded yet, this field returns the time of the request instead, and
+    /// `transferDate` filters don't match that value.
+    /// </summary>
+    [JsonPropertyName("TransferDate")]
+    public DateTime? TransferDate { get; set; }
 
     [JsonPropertyName("VcardAmount")]
     public double? VcardAmount { get; set; }

@@ -63,6 +63,7 @@ public class PayoutDetailsTest : BaseMockServerTest
               "PaypointLegalname": "Sunshine Services, LLC",
               "Source": "api",
               "Status": 11,
+              "StatusLabel": "Authorized",
               "StatusText": "Captured",
               "TotalAmount": 8800,
               "Vendor": {
@@ -106,6 +107,7 @@ public class PayoutDetailsTest : BaseMockServerTest
                   "default": true
                 },
                 "VendorStatus": 1,
+                "VendorStatusLabel": "Active",
                 "VendorId": 456,
                 "Summary": {
                   "ActiveBills": 2,

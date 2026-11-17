@@ -740,7 +740,7 @@ Retrieve a list of bills for an organization. Use filters to limit results. Incl
 
 ```csharp
 await client.Bill.ListBillsOrgAsync(
-    123,
+    900123,
     new ListBillsOrgRequest
     {
         FromRecord = 251,
@@ -3426,7 +3426,7 @@ Returns a list of invoices for an org. Use filters to limit results. Include the
 
 ```csharp
 await client.Invoice.ListInvoicesOrgAsync(
-    123,
+    900123,
     new ListInvoicesOrgRequest
     {
         FromRecord = 251,
@@ -5106,7 +5106,7 @@ await client.Paypoint.MigrateAsync(
     new PaypointMoveRequest
     {
         EntryPoint = "8cfec329267",
-        NewParentOrganizationId = 123,
+        NewParentOrganizationId = 900123,
         NotificationRequest = new NotificationRequest
         {
             NotificationUrl = "https://webhook-test.yoursie.com",
@@ -6286,7 +6286,7 @@ Retrieve a list of batches and their details, including settled and unsettled tr
 
 ```csharp
 await client.Query.ListBatchDetailsOrgAsync(
-    123,
+    900123,
     new ListBatchDetailsOrgRequest
     {
         FromRecord = 251,
@@ -6426,7 +6426,7 @@ Retrieve a list of batches for an org. Use filters to limit results. Include the
 
 ```csharp
 await client.Query.ListBatchesOrgAsync(
-    123,
+    900123,
     new ListBatchesOrgRequest
     {
         FromRecord = 251,
@@ -6566,7 +6566,7 @@ Retrieve a list of MoneyOut batches for an org. Use filters to limit results. In
 
 ```csharp
 await client.Query.ListBatchesOutOrgAsync(
-    123,
+    900123,
     new ListBatchesOutOrgRequest
     {
         FromRecord = 251,
@@ -6706,7 +6706,7 @@ Retrieve a list of chargebacks and returned transactions for an org. Use filters
 
 ```csharp
 await client.Query.ListChargebacksOrgAsync(
-    123,
+    900123,
     new ListChargebacksOrgRequest
     {
         FromRecord = 251,
@@ -6846,7 +6846,7 @@ Retrieves a list of customers for an org. Use filters to limit results. Include 
 
 ```csharp
 await client.Query.ListCustomersOrgAsync(
-    123,
+    900123,
     new ListCustomersOrgRequest
     {
         FromRecord = 251,
@@ -6986,7 +6986,7 @@ Returns a list of cloud and AXIUM devices for a single organization. Use filters
 
 ```csharp
 await client.Query.ListDevicesOrgAsync(
-    123,
+    900123,
     new ListDevicesOrgRequest
     {
         FromRecord = 0,
@@ -7126,7 +7126,7 @@ Returns a list of all reports generated in the last 60 days for an organization.
 
 ```csharp
 await client.Query.ListNotificationReportsOrgAsync(
-    123,
+    900123,
     new ListNotificationReportsOrgRequest
     {
         FromRecord = 251,
@@ -7266,7 +7266,7 @@ Return a list of notifications for an organization. Use filters to limit results
 
 ```csharp
 await client.Query.ListNotificationsOrgAsync(
-    123,
+    900123,
     new ListNotificationsOrgRequest
     {
         FromRecord = 251,
@@ -7336,7 +7336,7 @@ Retrieves a list of an organization's suborganizations and their full details su
 
 ```csharp
 await client.Query.ListOrganizationsAsync(
-    123,
+    900123,
     new ListOrganizationsRequest
     {
         FromRecord = 251,
@@ -7476,7 +7476,7 @@ Retrieves a list of money out transactions (payouts) for an organization. Use fi
 
 ```csharp
 await client.Query.ListPayoutOrgAsync(
-    123,
+    900123,
     new ListPayoutOrgRequest
     {
         FromRecord = 251,
@@ -7546,7 +7546,7 @@ Returns a list of paypoints in an organization. Use filters to limit results. In
 
 ```csharp
 await client.Query.ListPaypointsAsync(
-    123,
+    900123,
     new ListPaypointsRequest
     {
         FromRecord = 251,
@@ -7686,7 +7686,7 @@ Retrieve a list of settled transactions for an organization. Include the `export
 
 ```csharp
 await client.Query.ListSettlementsOrgAsync(
-    123,
+    900123,
     new ListSettlementsOrgRequest
     {
         FromRecord = 251,
@@ -7826,7 +7826,7 @@ Returns a list of subscriptions for a single org. Use filters to limit results. 
 
 ```csharp
 await client.Query.ListSubscriptionsOrgAsync(
-    123,
+    900123,
     new ListSubscriptionsOrgRequest
     {
         FromRecord = 251,
@@ -7966,7 +7966,7 @@ Returns a list of payout subscriptions for a single org. Use filters to limit re
 
 ```csharp
 await client.Query.ListPayoutSubscriptionsOrgAsync(
-    123,
+    900123,
     new ListPayoutSubscriptionsOrgRequest
     {
         FromRecord = 0,
@@ -8124,7 +8124,7 @@ curl -X GET "https://api-sandbox.payabli.com/api/Query/transactions/org/1?limitR
 
 ```csharp
 await client.Query.ListTransactionsOrgAsync(
-    123,
+    900123,
     new ListTransactionsOrgRequest
     {
         FromRecord = 251,
@@ -8333,7 +8333,7 @@ Retrieve a list of transfers for an org. Use filters to limit results. Include t
 
 ```csharp
 await client.Query.ListTransfersOrgAsync(
-    123,
+    900123,
     new ListTransfersRequestOrg { FromRecord = 0, LimitRecord = 20 }
 );
 ```
@@ -8398,7 +8398,7 @@ Retrieve a list of outbound transfers for an organization. Use filters to limit 
 
 ```csharp
 await client.Query.ListTransfersOutOrgAsync(
-    123,
+    900123,
     new ListTransfersOutOrgRequest { FromRecord = 0, LimitRecord = 20 }
 );
 ```
@@ -8602,7 +8602,7 @@ Get list of users for an org. Use filters to limit results.
 
 ```csharp
 await client.Query.ListUsersOrgAsync(
-    123,
+    900123,
     new ListUsersOrgRequest
     {
         FromRecord = 251,
@@ -8812,7 +8812,7 @@ Retrieve a list of vendors for an organization. Use filters to limit results. In
 
 ```csharp
 await client.Query.ListVendorsOrgAsync(
-    123,
+    900123,
     new ListVendorsOrgRequest
     {
         FromRecord = 251,
@@ -9022,7 +9022,7 @@ Retrieve a list of virtual card transactions for an organization. Use filters to
 
 ```csharp
 await client.Query.ListVcardsTransactionsOrgAsync(
-    123,
+    900123,
     new ListVcardsTransactionsOrgRequest
     {
         FromRecord = 0,
@@ -9092,7 +9092,7 @@ Retrieve a list of vcards (virtual credit cards) issued for an organization. Use
 
 ```csharp
 await client.Query.ListVcardsOrgAsync(
-    123,
+    900123,
     new ListVcardsOrgRequest
     {
         FromRecord = 251,
@@ -9297,7 +9297,7 @@ await client.Notificationlogs.SearchNotificationLogsAsync(
         PageSize = 20,
         StartDate = new DateTime(2024, 01, 01, 00, 00, 00, 000),
         EndDate = new DateTime(2024, 01, 31, 23, 59, 59, 000),
-        OrgId = 123,
+        OrgId = 900123,
         NotificationEvent = "approvedpayment",
         Succeeded = true,
     }
@@ -11694,7 +11694,7 @@ await client.People.SearchPeopleAsync(
     new SearchPeopleRequest
     {
         Entry = "8cfec329267",
-        OrgId = 123,
+        OrgId = 900123,
         Body = new Dictionary<object, object?>()
         {
             { "firstName", "Marcus" },
@@ -11762,7 +11762,7 @@ await client.People.SearchPeopleUnmaskedAsync(
     new SearchPeopleUnmaskedRequest
     {
         Entry = "8cfec329267",
-        OrgId = 123,
+        OrgId = 900123,
         Body = new Dictionary<object, object?>()
         {
             { "firstName", "Marcus" },
@@ -12652,7 +12652,7 @@ required `orgId` query parameter. You can filter by `status`, `name`,
 
 ```csharp
 await client.BoardingTemplates.ListTemplatesAsync(
-    new ListTemplatesBoardingTemplatesRequest { OrgId = 123 }
+    new ListTemplatesBoardingTemplatesRequest { OrgId = 900123 }
 );
 ```
 </dd>
@@ -13170,9 +13170,9 @@ await client.Applications.ValidateApplicationAsync("3f3caa7b-bdfe-4bf1-814b-30d5
 
 Submits a draft application for review. Your integration (the applicant) calls this after the business, its people, payment methods, and services are in place. Verification then runs automatically.
 
-The application must have a signer: an owner flagged with `isSigner` on their business link, or one you name in `signer.personReference`. Payabli records the signer's identity from their person record and business link, so update those before you submit. The `signer` object carries the signature details.
+The application must have a signer: an owner flagged with `isSigner` on their business link, or one you name in `signer.personReference`. Payabli records the signer's identity from their person record and business link, so update those before you submit. The `signer` object carries the signature details, and every submit needs `signer.signature` and `signer.signatureType`, even when you send `signer.signedDocumentReference`.
 
-If the application has no signer, the request fails with `422` and the error `SIGNER_REQUIRED`. If `signer.personReference` names a person who isn't an owner, the request fails with `422` and the error `SIGNER_NOT_OWNER`. If the application isn't a draft, the request fails with `409` and the error `BIZ_004`, before any signer check. If `signer.reportedSignerIp` isn't a single valid IPv4 or IPv6 address, the request fails with `400` and the error `VALIDATION_ERROR`, and the application isn't submitted.
+If `signer`, `signer.signature`, or `signer.signatureType` is missing or blank, the request fails with `400` and the error `VALIDATION_ERROR`. If the application has no signer, the request fails with `422` and the error `SIGNER_REQUIRED`. If `signer.personReference` names a person who isn't an owner, the request fails with `422` and the error `SIGNER_NOT_OWNER`. If the application isn't a draft, the request fails with `409` and the error `BIZ_004`, before any signer check. If `signer.reportedSignerIp` isn't a single valid IPv4 or IPv6 address, the request fails with `400` and the error `VALIDATION_ERROR`, and the application isn't submitted.
 
 Submit doesn't check every rule that [validate](/developers/api-reference/applications/validate-an-application) reports, such as the primary controller and ownership rules. Validate the application and resolve its missing fields before you submit.
 </dd>
@@ -13886,7 +13886,7 @@ await client.Boarding.AddApplicationAsync(
         Mcountry = "US",
         Mstate = "TN",
         Mzip = "37615",
-        OrgId = 123,
+        OrgId = 900123,
         Ownership = new List<Owners>()
         {
             new Owners
@@ -13939,7 +13939,7 @@ await client.Boarding.AddApplicationAsync(
         },
         Startdate = "01/01/1990",
         TaxFillName = "Sunshine LLC",
-        TemplateId = 22,
+        TemplateId = 900022,
         Ticketamt = 1000,
         Website = "www.example.com",
         WhenCharged = Whencharged.WhenServiceProvided,
@@ -13992,6 +13992,9 @@ await client.Boarding.AddApplicationAsync(
 
 
 Updates a boarding application by ID. This endpoint requires an application API token.
+
+
+If you send `ownership`, it replaces the application's owners. Include every owner, and set `primaryOwner` again on the primary owner, or the application loses its primary owner. If you leave `ownership` out, the owners don't change.
 </dd>
 </dl>
 </dd>
@@ -14320,7 +14323,7 @@ Get details for a boarding link using the boarding template ID. This endpoint re
 <dd>
 
 ```csharp
-await client.Boarding.GetByTemplateIdLinkApplicationAsync(80);
+await client.Boarding.GetByTemplateIdLinkApplicationAsync(900022);
 ```
 </dd>
 </dl>
@@ -14518,7 +14521,7 @@ Returns a list of boarding applications for an organization. Use filters to limi
 
 ```csharp
 await client.Boarding.ListApplicationsAsync(
-    123,
+    900123,
     new ListApplicationsRequest
     {
         FromRecord = 251,
@@ -14593,7 +14596,7 @@ Return a list of boarding links for an organization. Use filters to limit result
 
 ```csharp
 await client.Boarding.ListBoardingLinksAsync(
-    123,
+    900123,
     new ListBoardingLinksRequest
     {
         FromRecord = 251,
@@ -14671,7 +14674,7 @@ await client.Boarding.AddServiceToPaypointFromAppAsync(
     new CreateApplicationFromPaypointRequest
     {
         PaypointId = 3040,
-        TemplateId = 456,
+        TemplateId = 900022,
         RecipientEmail = "merchant@example.com",
         ReturnBoardingAccessInfoInLine = true,
         OnCreate = new List<string>() { "submitApplication" },
@@ -14795,7 +14798,7 @@ Deletes a template by ID.
 <dd>
 
 ```csharp
-await client.Templates.DeleteTemplateAsync(80);
+await client.Templates.DeleteTemplateAsync(900022);
 ```
 </dd>
 </dl>
@@ -14854,7 +14857,7 @@ Generates a boarding link from a boarding template.
 <dd>
 
 ```csharp
-await client.Templates.GetlinkTemplateAsync(80, true);
+await client.Templates.GetlinkTemplateAsync(900022, true);
 ```
 </dd>
 </dl>
@@ -14921,7 +14924,7 @@ Retrieves a boarding template's details by ID.
 <dd>
 
 ```csharp
-await client.Templates.GetTemplateAsync(80);
+await client.Templates.GetTemplateAsync(900022);
 ```
 </dd>
 </dl>
@@ -14981,7 +14984,7 @@ Retrieves a list of boarding templates for an organization. Use filters to limit
 
 ```csharp
 await client.Templates.ListTemplatesAsync(
-    123,
+    900123,
     new ListTemplatesRequest
     {
         FromRecord = 251,
@@ -15057,7 +15060,7 @@ Export a list of boarding applications for an organization. Use filters to limit
 ```csharp
 await client.Export.ExportApplicationsAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportApplicationsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -15223,7 +15226,7 @@ Export batch details for an organization. Use filters to limit results.
 ```csharp
 await client.Export.ExportBatchDetailsOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportBatchDetailsOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -15389,7 +15392,7 @@ Export a list of batches for an organization. Use filters to limit results.
 ```csharp
 await client.Export.ExportBatchesOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportBatchesOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -15555,7 +15558,7 @@ Export a list of money out batches for an organization. Use filters to limit res
 ```csharp
 await client.Export.ExportBatchesOutOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportBatchesOutOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -15721,7 +15724,7 @@ Export a list of bills for an organization. Use filters to limit results.
 ```csharp
 await client.Export.ExportBillsOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportBillsOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -15887,7 +15890,7 @@ Export a list of chargebacks and ACH returns for an organization. Use filters to
 ```csharp
 await client.Export.ExportChargebacksOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportChargebacksOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -16053,7 +16056,7 @@ Exports a list of customers for an organization. Use filters to limit results.
 ```csharp
 await client.Export.ExportCustomersOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportCustomersOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -16219,7 +16222,7 @@ Export a list of invoices for an organization. Use filters to limit results.
 ```csharp
 await client.Export.ExportInvoicesOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportInvoicesOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -16302,7 +16305,7 @@ Export a list of child organizations (suborganizations) for a parent organizatio
 ```csharp
 await client.Export.ExportOrganizationsAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportOrganizationsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -16468,7 +16471,7 @@ Export a list of payouts and their details for an organization. Use filters to l
 ```csharp
 await client.Export.ExportPayoutOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportPayoutOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -16551,7 +16554,7 @@ Export a list of paypoints in an organization. Use filters to limit results.
 ```csharp
 await client.Export.ExportPaypointsAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportPaypointsRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -16717,7 +16720,7 @@ Export a list of settled transactions for an organization. Use filters to limit 
 ```csharp
 await client.Export.ExportSettlementsOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportSettlementsOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -16883,7 +16886,7 @@ Export a list of subscriptions for an organization. Use filters to limit results
 ```csharp
 await client.Export.ExportSubscriptionsOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportSubscriptionsOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -17049,7 +17052,7 @@ Export a list of transactions for an org in a file in XLSX or CSV format. Use fi
 ```csharp
 await client.Export.ExportTransactionsOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportTransactionsOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -17383,7 +17386,7 @@ Export a list of vendors for an organization. Use filters to limit results.
 ```csharp
 await client.Export.ExportVendorsOrgAsync(
     ExportFormat1.Csv,
-    123,
+    900123,
     new ExportVendorsOrgRequest
     {
         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -17491,7 +17494,7 @@ await client.Organization.AddOrganizationAsync(
         OrgCity = "Johnson City",
         OrgCountry = "US",
         OrgEntryName = "pilgrim-planner",
-        OrgId = "123",
+        OrgId = "900123",
         OrgLogo = new FileContent
         {
             FContent = "TXkgdGVzdCBmaWxlHJ==...",
@@ -17500,7 +17503,7 @@ await client.Organization.AddOrganizationAsync(
             Furl = "https://mysite.com/my-doc.pdf",
         },
         OrgName = "Pilgrim Planner",
-        OrgParentId = 236,
+        OrgParentId = 900123,
         OrgState = "TN",
         OrgTimezone = -5,
         OrgType = 0,
@@ -17563,7 +17566,7 @@ Updates an organization's details by ID.
 
 ```csharp
 await client.Organization.EditOrganizationAsync(
-    123,
+    900123,
     new OrganizationData
     {
         Contacts = new List<Contacts>()
@@ -17580,7 +17583,7 @@ await client.Organization.EditOrganizationAsync(
         OrgCity = "Johnson City",
         OrgCountry = "US",
         OrgEntryName = "pilgrim-planner",
-        OrgId = "123",
+        OrgId = "900123",
         OrgName = "Pilgrim Planner",
         OrgState = "TN",
         OrgTimezone = -5,
@@ -17650,7 +17653,7 @@ Delete an organization by ID.
 <dd>
 
 ```csharp
-await client.Organization.DeleteOrganizationAsync(123);
+await client.Organization.DeleteOrganizationAsync(900123);
 ```
 </dd>
 </dl>
@@ -17758,7 +17761,7 @@ Gets an organization's basic details by org ID.
 <dd>
 
 ```csharp
-await client.Organization.GetBasicOrganizationByIdAsync(123);
+await client.Organization.GetBasicOrganizationByIdAsync(900123);
 ```
 </dd>
 </dl>
@@ -17812,7 +17815,7 @@ Retrieves details for an organization by ID.
 <dd>
 
 ```csharp
-await client.Organization.GetOrganizationAsync(123);
+await client.Organization.GetOrganizationAsync(900123);
 ```
 </dd>
 </dl>
@@ -17866,7 +17869,7 @@ Retrieves an organization's settings.
 <dd>
 
 ```csharp
-await client.Organization.GetSettingsOrganizationAsync(123);
+await client.Organization.GetSettingsOrganizationAsync(900123);
 ```
 </dd>
 </dl>
@@ -18397,7 +18400,7 @@ await client.Notification.AddNotificationAsync(
         },
         Frequency = NotificationStandardRequestFrequency.Untilcancelled,
         Method = NotificationStandardRequestMethod.Web,
-        OwnerId = 236,
+        OwnerId = 900123,
         OwnerType = 0,
         Status = 1,
         Target = "https://webhook.site/2871b8f8-edc7-441a-b376-98d8c8e33275",
@@ -21091,7 +21094,7 @@ await client.Wallet.ConfigureApplePayOrganizationAsync(
     {
         Cascade = true,
         IsEnabled = true,
-        OrgId = 123,
+        OrgId = 900123,
     }
 );
 ```
@@ -21208,7 +21211,7 @@ await client.Wallet.ConfigureGooglePayOrganizationAsync(
     {
         Cascade = true,
         IsEnabled = true,
-        OrgId = 123,
+        OrgId = 900123,
     }
 );
 ```
@@ -21306,7 +21309,7 @@ await client.Wallet.ConfigureGooglePayPaypointAsync(
 <dl>
 <dd>
 
-Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide.
+Creates a payout subscription to automatically send payouts to a vendor on a recurring schedule. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for a step-by-step guide. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
 </dd>
 </dl>
 </dd>
@@ -21450,7 +21453,7 @@ await client.PayoutSubscription.GetPayoutSubscriptionAsync(42);
 <dl>
 <dd>
 
-Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+Updates a payout subscription's details. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
 </dd>
 </dl>
 </dd>
@@ -21515,7 +21518,7 @@ await client.PayoutSubscription.UpdatePayoutSubscriptionAsync(
 <dl>
 <dd>
 
-Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information.
+Deletes a payout subscription and prevents future payouts. See [Manage payout subscriptions](/guides/pay-out-developer-payout-subscriptions-manage) for more information. Temporary API tokens can't call this endpoint, and a request made with one returns HTTP `401` with response code `9001`.
 </dd>
 </dl>
 </dd>
@@ -22006,7 +22009,7 @@ Available to both Platform and Enterprise Partners.
 
 ```csharp
 await client.CaseManagement.ListCasesAsync(
-    123,
+    900123,
     new ListCasesCaseManagementRequest { FromRecord = 0, LimitRecord = 20 }
 );
 ```
@@ -22672,7 +22675,7 @@ without it gets `403 Forbidden`.
 
 ```csharp
 await client.Billing.ListProfilesAsync(
-    123,
+    900123,
     new ListBillingProfilesRequest { LimitRecord = 20, FromRecord = 0 }
 );
 ```
@@ -22747,7 +22750,7 @@ If the entity exists but has no profile assigned, the call returns
 await client.Billing.GetProfileAsync(
     GetProfileBillingRequestServiceGroup.PayIn,
     GetProfileBillingRequestEntityType.Organization,
-    123
+    900123
 );
 ```
 </dd>

@@ -4492,7 +4492,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportApplicationsAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportApplicationsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4556,7 +4556,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportBatchDetailsOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportBatchDetailsOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4620,7 +4620,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportBatchesOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportBatchesOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4684,7 +4684,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportBatchesOutOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportBatchesOutOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4748,7 +4748,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportBillsOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportBillsOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4812,7 +4812,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportChargebacksOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportChargebacksOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4876,7 +4876,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportCustomersOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportCustomersOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4940,7 +4940,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportInvoicesOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportInvoicesOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -4972,7 +4972,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportOrganizationsAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportOrganizationsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5036,7 +5036,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportPayoutOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportPayoutOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5068,7 +5068,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportPaypointsAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportPaypointsRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5132,7 +5132,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportSettlementsOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportSettlementsOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5196,7 +5196,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportSubscriptionsOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportSubscriptionsOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5260,7 +5260,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportTransactionsOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportTransactionsOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",
@@ -5397,7 +5397,7 @@ public partial class ExportClient : IExportClient
     /// <example><code>
     /// await client.Export.ExportVendorsOrgAsync(
     ///     ExportFormat1.Csv,
-    ///     123,
+    ///     900123,
     ///     new ExportVendorsOrgRequest
     ///     {
     ///         ColumnsExport = "BatchDate:Batch_Date,PaypointName:Legal_name",

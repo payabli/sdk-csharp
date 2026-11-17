@@ -65,7 +65,7 @@ public class ListPaypointsTest : BaseMockServerTest
                   "MCountry": "US",
                   "MState": "TN",
                   "MZip": "37615",
-                  "OrgId": 123,
+                  "OrgId": 900123,
                   "OrgParentName": "PropertyManager Pro",
                   "OwnerData": [
                     {}
@@ -74,7 +74,7 @@ public class ListPaypointsTest : BaseMockServerTest
                   "PaypointStatus": 1,
                   "SalesCode": "SalesCode",
                   "Taxfillname": "Sunshine LLC",
-                  "TemplateId": 22,
+                  "TemplateId": 900022,
                   "WebsiteAddress": "www.example.com",
                   "Whencharged": "When Service Provided",
                   "Whendelivered": "0-7 Days",
@@ -97,7 +97,7 @@ public class ListPaypointsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/paypoints/123")
+                    .WithPath("/Query/paypoints/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -113,7 +113,7 @@ public class ListPaypointsTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListPaypointsAsync(
-            123,
+            900123,
             new ListPaypointsRequest
             {
                 FromRecord = 251,

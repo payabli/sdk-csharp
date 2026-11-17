@@ -130,6 +130,15 @@ public record BillDetailResponse : IJsonOnDeserialized
     public int? Status { get; set; }
 
     /// <summary>
+    /// The name of the payout's `Status`: `Canceled`, `Captured`, `Processing`, `Processed`,
+    /// `Held`, `Paid`, `Authorized`, `Capturing`, `Returned`, `Rejected`, `Reissued`, or
+    /// `Refunded`. Returns `null` for an unrecognized code. See
+    /// [Pay Out statuses](/guides/pay-out-status-reference#payout-transaction-statuses).
+    /// </summary>
+    [JsonPropertyName("StatusLabel")]
+    public string? StatusLabel { get; set; }
+
+    /// <summary>
     /// Text description of the payout transaction status.
     /// </summary>
     [JsonPropertyName("StatusText")]

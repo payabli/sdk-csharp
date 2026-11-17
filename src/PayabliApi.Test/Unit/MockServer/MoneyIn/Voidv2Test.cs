@@ -80,7 +80,7 @@ public class Voidv2Test : BaseMockServerTest
                 },
                 "source": "api",
                 "scheduleReference": 0,
-                "orgId": 123,
+                "orgId": 900123,
                 "refundId": 0,
                 "returnedId": 0,
                 "chargebackId": 0,

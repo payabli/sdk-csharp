@@ -15,6 +15,12 @@ public record BusinessAddressCreate : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// The two-character ISO country code.
+    /// </summary>
+    [JsonPropertyName("country")]
+    public required string Country { get; set; }
+
+    /// <summary>
     /// The address role.
     /// </summary>
     [JsonPropertyName("type")]
@@ -55,12 +61,6 @@ public record BusinessAddressCreate : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("postalCode")]
     public string? PostalCode { get; set; }
-
-    /// <summary>
-    /// The two-character ISO country code.
-    /// </summary>
-    [JsonPropertyName("country")]
-    public string? Country { get; set; }
 
     /// <summary>
     /// The floor, if applicable.

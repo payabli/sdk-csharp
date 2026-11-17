@@ -23,7 +23,7 @@ public class DeleteOrganizationTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Organization/123")
+                    .WithPath("/Organization/900123")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingDelete()
@@ -35,7 +35,7 @@ public class DeleteOrganizationTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Organization.DeleteOrganizationAsync(123);
+        var response = await Client.Organization.DeleteOrganizationAsync(900123);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

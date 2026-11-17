@@ -621,7 +621,7 @@ public partial class WalletClient : IWalletClient
     ///     {
     ///         Cascade = true,
     ///         IsEnabled = true,
-    ///         OrgId = 123,
+    ///         OrgId = 900123,
     ///     }
     /// );
     /// </code></example>
@@ -664,7 +664,7 @@ public partial class WalletClient : IWalletClient
     ///     {
     ///         Cascade = true,
     ///         IsEnabled = true,
-    ///         OrgId = 123,
+    ///         OrgId = 900123,
     ///     }
     /// );
     /// </code></example>

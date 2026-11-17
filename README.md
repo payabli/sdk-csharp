@@ -1,15 +1,15 @@
 # Payabli C# Library
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fpayabli%2Fsdk-csharp)
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Payabli%2FC%23)
 [![nuget shield](https://img.shields.io/nuget/v/PayabliApi)](https://nuget.org/packages/PayabliApi)
 
 The Payabli C# library provides convenient access to the Payabli APIs from C#.
 
 ## Table of Contents
 
-- [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Reference](#reference)
 - [Changelog](#changelog)
 - [Getting Started](#getting-started)
 - [Passing Query Parameters](#passing-query-parameters)
@@ -25,11 +25,6 @@ The Payabli C# library provides convenient access to the Payabli APIs from C#.
   - [Additional Body Properties](#additional-body-properties)
   - [Forward Compatible Enums](#forward-compatible-enums)
 - [Contributing](#contributing)
-- [Reference](#reference)
-
-## Documentation
-
-API reference documentation is available [here](https://docs.payabli.com).
 
 ## Requirements
 
@@ -43,6 +38,10 @@ This SDK requires:
 ```sh
 dotnet add package PayabliApi
 ```
+
+## Reference
+
+A full reference for this library is available [here](./reference.md).
 
 ## Changelog
 
@@ -308,7 +307,3 @@ a proof of concept, but know that we will not be able to merge it as-is. We sugg
 an issue first to discuss with us!
 
 On the other hand, contributions to the README are always very welcome!
-## Reference
-
-A full reference for this library is available [here](https://github.com/payabli/sdk-csharp/blob/HEAD/./reference.md).
-

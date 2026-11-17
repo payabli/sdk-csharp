@@ -26,7 +26,7 @@ public class EditOrganizationTest : BaseMockServerTest
               "orgCity": "Johnson City",
               "orgCountry": "US",
               "orgEntryName": "pilgrim-planner",
-              "orgId": "123",
+              "orgId": "900123",
               "orgName": "Pilgrim Planner",
               "orgState": "TN",
               "orgTimezone": -5,
@@ -49,7 +49,7 @@ public class EditOrganizationTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Organization/123")
+                    .WithPath("/Organization/900123")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .WithHeader("Content-Type", "application/json")
@@ -64,7 +64,7 @@ public class EditOrganizationTest : BaseMockServerTest
             );
 
         var response = await Client.Organization.EditOrganizationAsync(
-            123,
+            900123,
             new OrganizationData
             {
                 Contacts = new List<Contacts>()
@@ -81,7 +81,7 @@ public class EditOrganizationTest : BaseMockServerTest
                 OrgCity = "Johnson City",
                 OrgCountry = "US",
                 OrgEntryName = "pilgrim-planner",
-                OrgId = "123",
+                OrgId = "900123",
                 OrgName = "Pilgrim Planner",
                 OrgState = "TN",
                 OrgTimezone = -5,

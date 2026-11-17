@@ -47,17 +47,17 @@ public class GetBasicOrganizationByIdTest : BaseMockServerTest
                 "createdAt": "2022-07-01T15:00:01.000Z",
                 "HasBilling": true,
                 "HasResidual": true,
-                "idOrg": 123,
+                "idOrg": 900123,
                 "isRoot": false,
                 "OrgAddress": "123 Walnut Street",
                 "OrgCity": "Johnson City",
                 "OrgCountry": "US",
                 "OrgEntryName": "pilgrim-planner",
                 "OrgFavicon": "https://www.pilgrimageplanner.com/favicon.png",
-                "OrgId": "123",
+                "OrgId": "900123",
                 "OrgLogo": "https://www.pilgrimageplanner.com/logo.png",
                 "OrgName": "Pilgrim Planner",
-                "OrgParentId": 236,
+                "OrgParentId": 900123,
                 "OrgParentName": "PropertyManager Pro",
                 "OrgState": "TN",
                 "OrgTimezone": -5,
@@ -116,7 +116,7 @@ public class GetBasicOrganizationByIdTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Organization/basicById/123")
+                    .WithPath("/Organization/basicById/900123")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -128,7 +128,7 @@ public class GetBasicOrganizationByIdTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Organization.GetBasicOrganizationByIdAsync(123);
+        var response = await Client.Organization.GetBasicOrganizationByIdAsync(900123);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

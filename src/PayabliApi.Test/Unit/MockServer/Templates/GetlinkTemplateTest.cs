@@ -22,7 +22,7 @@ public class GetlinkTemplateTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Templates/getlink/80/true")
+                    .WithPath("/Templates/getlink/900022/true")
                     .WithHeader("Authorization", "*")
                     .WithHeader("requestToken", "*", WireMock.Matchers.MatchBehaviour.RejectOnMatch)
                     .UsingGet()
@@ -34,7 +34,7 @@ public class GetlinkTemplateTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Templates.GetlinkTemplateAsync(80, true);
+        var response = await Client.Templates.GetlinkTemplateAsync(900022, true);
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

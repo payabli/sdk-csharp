@@ -17,7 +17,7 @@ public class SearchNotificationLogsTest : BaseMockServerTest
             {
               "startDate": "2024-01-01T00:00:00.000Z",
               "endDate": "2024-01-31T23:59:59.000Z",
-              "orgId": 123,
+              "orgId": 900123,
               "notificationEvent": "approvedpayment",
               "succeeded": true
             }
@@ -34,7 +34,7 @@ public class SearchNotificationLogsTest : BaseMockServerTest
                 "notificationType": 1,
                 "requestId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
                 "id": "550e8400-e29b-41d4-a716-446655440000",
-                "orgId": 123,
+                "orgId": 900123,
                 "paypointId": 3040,
                 "notificationEvent": "approvedpayment",
                 "target": "https://webhook.example.com/payments",
@@ -82,7 +82,7 @@ public class SearchNotificationLogsTest : BaseMockServerTest
                     null,
                     DateTimeStyles.AdjustToUniversal
                 ),
-                OrgId = 123,
+                OrgId = 900123,
                 NotificationEvent = "approvedpayment",
                 Succeeded = true,
             }

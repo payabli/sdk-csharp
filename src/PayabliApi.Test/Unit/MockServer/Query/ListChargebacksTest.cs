@@ -108,7 +108,7 @@ public class ListChargebacksTest : BaseMockServerTest
                     "NetAmount": 1.5,
                     "Operation": "Sale",
                     "OrderId": "",
-                    "OrgId": 123,
+                    "OrgId": 900123,
                     "PaymentData": {
                       "AccountExp": "0330",
                       "AccountType": "visa",

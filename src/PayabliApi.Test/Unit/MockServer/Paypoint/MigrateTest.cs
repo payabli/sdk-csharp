@@ -15,7 +15,7 @@ public class MigrateTest : BaseMockServerTest
         const string requestJson = """
             {
               "entryPoint": "8cfec329267",
-              "newParentOrganizationId": 123,
+              "newParentOrganizationId": 900123,
               "notificationRequest": {
                 "notificationUrl": "https://webhook-test.yoursie.com",
                 "webHeaderParameters": [
@@ -58,7 +58,7 @@ public class MigrateTest : BaseMockServerTest
             new PaypointMoveRequest
             {
                 EntryPoint = "8cfec329267",
-                NewParentOrganizationId = 123,
+                NewParentOrganizationId = 900123,
                 NotificationRequest = new NotificationRequest
                 {
                     NotificationUrl = "https://webhook-test.yoursie.com",

@@ -40,13 +40,14 @@ public class ListPayoutOrgTest : BaseMockServerTest
                     ],
                     "PaymentMethod": "ach",
                     "VendorStatus": 1,
+                    "VendorStatusLabel": "Active",
                     "VendorId": 456,
                     "PaypointLegalname": "Sunshine Services, LLC",
                     "PaypointId": 3040,
                     "PaypointDbaname": "Sunshine Gutters",
                     "PaypointEntryname": "8cfec329267",
                     "ParentOrgName": "PropertyManager Pro",
-                    "ParentOrgId": 123,
+                    "ParentOrgId": 900123,
                     "CreatedDate": "2024-01-10T15:00:01.000Z",
                     "LastUpdated": "2024-01-12T15:00:01.000Z",
                     "remitAddress1": "100 Main Street",
@@ -67,6 +68,7 @@ public class ListPayoutOrgTest : BaseMockServerTest
                   "PaypointLegalname": "Sunshine Services, LLC",
                   "PaypointId": 3040,
                   "Status": 1,
+                  "StatusLabel": "Captured",
                   "PaymentId": "01J0ABCDEF2WQ4VS323V5WKZP3",
                   "orderId": "O-5140",
                   "LastUpdated": "2024-01-15T15:00:01.000Z",
@@ -75,7 +77,7 @@ public class ListPayoutOrgTest : BaseMockServerTest
                   "FeeAmount": 10.25,
                   "Source": "api",
                   "ParentOrgName": "PropertyManager Pro",
-                  "ParentOrgId": 123,
+                  "ParentOrgId": 900123,
                   "BatchNumber": "BT-2024321",
                   "PaymentStatus": "Processed",
                   "PaymentMethod": "ach",
@@ -167,7 +169,7 @@ public class ListPayoutOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/payouts/org/123")
+                    .WithPath("/Query/payouts/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -183,7 +185,7 @@ public class ListPayoutOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListPayoutOrgAsync(
-            123,
+            900123,
             new ListPayoutOrgRequest
             {
                 FromRecord = 251,

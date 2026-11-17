@@ -33,7 +33,7 @@ public class GetUserTest : BaseMockServerTest
               "Scope": [
                 {
                   "orgEntry": "pilgrim-planner",
-                  "orgId": 123,
+                  "orgId": 900123,
                   "orgType": 0
                 }
               ],

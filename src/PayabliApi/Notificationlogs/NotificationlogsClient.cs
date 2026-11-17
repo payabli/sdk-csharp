@@ -540,7 +540,7 @@ public partial class NotificationlogsClient : INotificationlogsClient
     ///         PageSize = 20,
     ///         StartDate = new DateTime(2024, 01, 01, 00, 00, 00, 000),
     ///         EndDate = new DateTime(2024, 01, 31, 23, 59, 59, 000),
-    ///         OrgId = 123,
+    ///         OrgId = 900123,
     ///         NotificationEvent = "approvedpayment",
     ///         Succeeded = true,
     ///     }

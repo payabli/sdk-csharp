@@ -101,6 +101,7 @@ public class ListBillsTest : BaseMockServerTest
                   "PaypointLegalname": "MiCasa Sports LLC",
                   "Source": "web",
                   "Status": 2,
+                  "StatusLabel": "Sent to Approval",
                   "Terms": "NET30",
                   "TotalAmount": 200,
                   "PaidAmount": 0,

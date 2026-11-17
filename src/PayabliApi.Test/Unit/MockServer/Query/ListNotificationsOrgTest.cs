@@ -64,7 +64,7 @@ public class ListNotificationsOrgTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/Query/notifications/org/123")
+                    .WithPath("/Query/notifications/org/900123")
                     .WithParam("fromRecord", "251")
                     .WithParam("limitRecord", "0")
                     .WithParam("sortBy", "desc(field_name)")
@@ -80,7 +80,7 @@ public class ListNotificationsOrgTest : BaseMockServerTest
             );
 
         var response = await Client.Query.ListNotificationsOrgAsync(
-            123,
+            900123,
             new ListNotificationsOrgRequest
             {
                 FromRecord = 251,
